@@ -1,0 +1,113 @@
+{
+  "id": "hash-canonical-001",
+  "description": "Canonical digest of the basis commitment",
+  "input": {
+    "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+    "parties": {
+      "buyer": "0x1111111111111111111111111111111111111111",
+      "seller": "0x2222222222222222222222222222222222222222",
+      "signer": "0x3333333333333333333333333333333333333333"
+    },
+    "requestedOutcome": {
+      "description": "Deliver a cold-chain temperature report for shipment S-1042",
+      "category": "data-delivery"
+    },
+    "providerObligation": {
+      "description": "Produce a signed temperature-reading report covering the full transit window",
+      "target": "report.validity == full-transit"
+    },
+    "commercialTerms": {
+      "currency": "USD",
+      "price": "50000",
+      "fee": "2500",
+      "feePayer": "buyer"
+    },
+    "paymentTerms": {
+      "amount": "50000",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "settlementRequirement": {
+        "rail": null,
+        "amount": "50000",
+        "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "chainId": 8453,
+        "deadline": "2026-10-07T00:00:00Z"
+      }
+    },
+    "acceptanceCriteria": [
+      {
+        "criterionId": "c1",
+        "description": "delivery temperature <= 5C",
+        "requiredEvidenceType": "temperature-reading"
+      }
+    ],
+    "verificationPolicy": {
+      "acceptedIssuers": [
+        "0x5555555555555555555555555555555555555555"
+      ],
+      "verificationScheme": "cose",
+      "evaluationLogic": "payload.maxTemperature <= 5",
+      "maxEvidenceAge": 3600,
+      "minimumEvidenceCount": 1
+    },
+    "evidenceRequirements": {
+      "requiredTypes": [
+        "temperature-reading"
+      ],
+      "minimumCountPerType": 1,
+      "maxAgeSeconds": 3600
+    },
+    "evidenceReferences": [],
+    "deadline": "2026-10-06T18:00:00Z",
+    "timeoutConditions": [
+      {
+        "condition": "no_criterion_satisfied_by_deadline"
+      }
+    ],
+    "failureConditions": [
+      {
+        "condition": "provider_obligation_unfulfilled"
+      }
+    ],
+    "recoveryPolicy": {
+      "maxRetries": 2,
+      "retryIntervalSeconds": 300,
+      "refundOnFailure": true,
+      "compensationPercent": "5"
+    },
+    "refundsCompensation": {
+      "refundOnTotalFailure": true,
+      "partialCreditPercent": "50"
+    },
+    "disputeState": {
+      "open": false
+    },
+    "settlementReferences": [],
+    "executionReceipts": [],
+    "outcomeReceipt": null,
+    "lifecycleState": "issued",
+    "signaturesProofs": {
+      "commitmentDigest": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "signatures": {
+        "buyer": "0x-sig",
+        "seller": "0x-sig"
+      },
+      "scheme": "eip712",
+      "proofReferences": []
+    },
+    "auditChain": [
+      {
+        "state": "issued",
+        "transition": "issue",
+        "at": "2026-10-06T09:00:00Z",
+        "by": "0x1111111111111111111111111111111111111111",
+        "prevHash": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+        "entryHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "finalResolution": null
+  },
+  "expected": {
+    "hash": "0x039ad7f77a468ec254cc70ee3330c1f680ea0d53d530aa45b581d54ab39a7b25"
+  }
+}

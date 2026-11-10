@@ -1,0 +1,17 @@
+{
+  "id": "discovery-fallback-invalid-001-auth-fail",
+  "description": "Auth failure NEVER weakens to standalone fallback",
+  "category_hint": "discovery",
+  "input": {
+    "fallback": {
+      "a2aCardObtained": true,
+      "authOk": false,
+      "requiredExtensionOk": true,
+      "clientPermitsStandalone": true
+    }
+  },
+  "expected": {
+    "allowFallback": false,
+    "errorCode": "DSC_AUTH_FAILED_NO_FALLBACK"
+  }
+}

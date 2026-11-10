@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building Reliable Agentic Commerce with MCP, A2A, UCP | SAAX</title>
+<meta name="description" content="MCP connects agents to tools, A2A connects agents to agents, UCP navigates commerce. A reference architecture for the durable commitment layer that makes it all recoverable.">
+<link rel="canonical" href="https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax">
+<meta property="og:title" content="Building Reliable Agentic Commerce with MCP, A2A, UCP | SAAX">
+<meta property="og:description" content="MCP connects agents to tools, A2A connects agents to agents, UCP navigates commerce. A reference architecture for the durable commitment layer that makes it all recoverable.">
+<meta property="og:url" content="https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building Reliable Agentic Commerce with MCP, A2A, UCP | SAAX">
+<meta name="twitter:description" content="MCP connects agents to tools, A2A connects agents to agents, UCP navigates commerce. A reference architecture for the durable commitment layer that makes it all recoverable.">
+<style>
+:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  article{min-width:0;overflow-wrap:anywhere;}
+  article table{display:block;max-width:100%;overflow-x:auto;}
+  article th,article td{min-width:110px;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){.nav .links{gap:.8rem;}article h1{font-size:1.6rem;}}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building Reliable Agentic Commerce with MCP, A2A, UCP, and SAAX",
+  "description": "MCP connects agents to tools, A2A connects agents to agents, UCP navigates commerce. A reference architecture for the durable commitment layer that makes it all recoverable.",
+  "url": "https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax",
+  "datePublished": "2026-11-08",
+  "dateModified": "2026-11-08",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "building reliable agentic commerce mcp a2a ucp saax", "item": "https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/status">Status</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>Building Reliable Agentic Commerce with MCP, A2A, UCP, and SAAX</h1>
+<p class="post-byline">By SAAX Protocol</p>
+<p class="post-date">2026-11-08</p>
+<p>MCP connects agents to tools. A2A connects agents to agents. UCP lets agents discover and navigate commerce capabilities. What connects the whole stack to a durable record of what was agreed, delivered, and settled? That is the question this article answers — with a concrete reference architecture and an explicit label: the cross-system wiring described here is <em>illustrative</em>, showing how SAAX's implemented commitment layer fits with these protocols.</p>
+<h2>The four layers in one stack</h2>
+<table>
+<thead>
+<tr><th>Layer</th><th>Protocol</th><th>What it does</th><th>What it does not do</th></tr>
+</thead>
+<tbody>
+<tr><td>Tool connectivity</td><td>MCP</td><td>Lets an LLM application call tools (payment APIs, checkout APIs, commitment APIs)</td><td>Not a commerce or records protocol</td></tr>
+<table>
+<thead>
+<tr><th>Agent-to-agent</th><th>A2A</th><th>Inter-agent discovery, messaging, delegated tasks, async status/artifacts, cancellation</th><th>Not a payment or commitment protocol</th></tr>
+</thead>
+<tbody>
+<tr><td>Commerce lifecycle</td><td>UCP</td><td>Capability discovery, catalog, cart, checkout, orders, post-purchase</td><td>Not a durable cross-party deal record</td></tr>
+<table>
+<thead>
+<tr><th>Durable commitment</th><th>SAAX</th><th>Records terms, acceptance criteria, evidence, recovery policy, settlement linkage; survives the worker</th><th>Not a payment rail, identity system, or marketplace</th></tr>
+</thead>
+<tbody>
+<p>The first three get the transaction going. The fourth is what makes it recoverable when something goes wrong.</p>
+<h2>A reference architecture: the buying agent</h2>
+<p>Here is an illustrative architecture for an agent that buys a service with recovery built in. "Illustrative" means the SAAX pieces are implemented today, but the specific wiring with ACP/AP2/UCP in a live deployment is proposed, not yet production-verified.</p>
+<h3>Components</h3>
+<ul>
+<li><strong>Buyer agent</strong> — an LLM application that plans and executes the purchase (via MCP tools).</li>
+<li><strong>Sub-agents</strong> — helpers coordinated through A2A (e.g., a research sub-agent that fetches specs, a payment sub-agent that settles).</li>
+<li><strong>Merchant</strong> — exposes commerce capabilities through UCP and checkout through ACP/ACS.</li>
+<li><strong>Payment rail</strong> — x402 for the actual value transfer on Base.</li>
+<li><strong>SAAX commitment service</strong> — exposes MCP tools (<code>prepare_commitment</code>, <code>accept_commitment</code>, <code>get_commitment</code>, <code>get_commitment_status</code>, <code>list_commitments</code>) and HTTP endpoints; persists commitments durably.</li>
+<li><strong>Verifier/recovery worker</strong> — a separate process that reconciles unknown outcomes against the settlement chain and the commitment store.</li>
+</ul>
+<h3>The flow</h3>
+<ol>
+<li><strong>Discover.</strong> The buyer agent queries UCP to find a merchant offering the service and its capabilities.</li>
+<li><strong>Connect.</strong> MCP gives the agent tool access to the merchant's checkout API and to SAAX's commitment API; A2A coordinates any sub-agent work (e.g., "fetch the current price" delegated to a helper).</li>
+<li><strong>Commit before value moves.</strong> The buyer agent calls SAAX <code>prepare_commitment</code> → gets a provider-signed proposal. The buyer signs acceptance → <code>accept_commitment</code> records exactly one authenticated commitment with a stable ID. Terms, acceptance criteria, and recovery policy are now durable.</li>
+<li><strong>Authorize and pay.</strong> AP2 (or another authority mechanism) issues a signed mandate; the x402 challenge is presented; the agent settles. The commitment ID travels in the payment's external-reference field.</li>
+<li><strong>Verify.</strong> The settlement reference is recorded on the commitment. If the merchant claims fulfillment, evidence is submitted and checked against the acceptance criteria per the commitment's verification policy.</li>
+<li><strong>Recover.</strong> If the agent crashes after payment, the durable commitment survives. A replacement process calls <code>get_commitment</code> by ID, sees the settlement reference, and reconciles — it does not blindly retry. If the outcome is unknown, the verifier checks the settlement chain and the commitment store before deciding.</li>
+</ol>
+<h2>Why the durable record is the linchpin</h2>
+<p>Each protocol in this stack has a failure mode that the others do not cover:</p>
+<ul>
+<li>MCP connects tools but has no commerce memory; if the agent crashes, the tool session is gone.</li>
+<li>A2A tracks tasks and artifacts, but it is not a commercial commitment or payment record.</li>
+<li>UCP covers the order lifecycle on the merchant side, but the merchant is one party; a dispute needs a record both parties share.</li>
+<li>x402 proves settlement but not intent, terms, or fulfillment.</li>
+</ul>
+<p>SAAX's commitment record is the shared artifact: created before value moves, survives process death, and binds authority reference, terms, evidence, recovery policy, and settlement linkage into one verifiable record. That is the "commitment outlives the worker" property, implemented.</p>
+<h2>The implemented SAAX pieces (verified)</h2>
+<p>What SAAX actually ships today, verified in the current release:</p>
+<ul>
+<li><strong>MCP tools:</strong> <code>prepare_commitment</code>, <code>accept_commitment</code>, <code>get_commitment</code>, <code>get_commitment_status</code>, <code>list_commitments</code> (plus legacy <code>create_commitment</code>), exposed at <code>https://www.saax-protocol.com/mcp</code>. A read-only release check validates initialization, tool discovery, ping, and protocol-info — an HTTP 200 alone is not treated as MCP proof.</li>
+<li><strong>Durable idempotency:</strong> the payment idempotency gate uses a durable store (file-backed locally; Supabase/PostgreSQL in the production topology), not process-local memory. Identical retries return the cached response; conflicting payloads are rejected; settled nonces cannot be replayed; state survives restarts.</li>
+<li><strong>Reconcile-before-respond:</strong> on a lost response after persistence, retries reconcile to the existing commitment instead of creating a duplicate. On persistence failure, the system fails closed with an explicit retryable error.</li>
+<li><strong>Unknown outcomes:</strong> preserved as unresolved until authoritative settlement evidence exists; expiry or timeout alone is never treated as payment failure.</li>
+<li><strong>Receipt linkage:</strong> <code>/receipt?txHash=...&rail=x402</code> resolves a settled transaction hash back to the commitment ID.</li>
+</ul>
+<p>The <a href="/status">current status page</a> is the authoritative source for what is live, beta, testnet, or under development.</p>
+<h2>What is illustrative versus implemented</h2>
+<p>To be precise about the boundary:</p>
+<ul>
+<li><strong>Implemented and deployed:</strong> the SAAX MCP tools, the commitment lifecycle, durable idempotency, reconcile-before-respond, receipt linkage, x402 immediate payments on Base mainnet.</li>
+<li><strong>Implemented, testnet-only:</strong> escrow custody (Base Sepolia, operator-run test-USDC release/refund).</li>
+<li><strong>Illustrative / proposed:</strong> the specific wiring of this reference architecture with a particular ACP, AP2, or UCP deployment. SAAX can reference AP2-style authority proofs, but a live production integration with a specific AP2/UCP merchant deployment is not claimed in this article.</li>
+<li><strong>Under development / security review:</strong> Custody V3 candidate; independent external security review pending.</li>
+</ul>
+<h2>Tradeoffs and limitations</h2>
+<ul>
+<li><strong>Cross-system coordination is hard.</strong> For the full stack to be safe, the agent, the merchant, and the payment rail must all honor the same commitment ID. An ID without enforcement is just a label.</li>
+<li><strong>Reconciliation is only as good as its sources.</strong> Checking on-chain state assumes you can read the chain; checking the commitment store assumes it survived the crash.</li>
+<li><strong>MCP "tasks" are experimental.</strong> The current MCP revision marks tasks experimental; durable request semantics are not yet a stable part of MCP itself. That is precisely why the commitment layer sits above MCP rather than inside it.</li>
+<li><strong>Dispute resolution is bounded.</strong> In SAAX's testnet custody flow, disputed funds can remain frozen if the evaluator disappears; mainnet immediate payments are final and non-custodial.</li>
+</ul>
+<h2>The takeaway</h2>
+<p>MCP, A2A, and UCP make agent commerce <em>possible</em>; a durable commitment layer makes it <em>recoverable</em>. SAAX is that layer, designed to sit alongside the connectivity and commerce protocols rather than replace them — with the commitment created before value moves and outliving the worker that executes it.</p>
+<p>Next step: connect an MCP client to <code>https://www.saax-protocol.com/mcp</code>, list the tools, and run <code>prepare_commitment</code> against the public endpoint. It is free, nonbinding, and the fastest way to see the commitment lifecycle in action.</p>
+
+<p class="states"><em>AI disclosure: This article was developed with AI assistance and reviewed by the SAAX team. Claims about external protocols are sourced from official documentation linked in the text; SAAX status claims reflect the published <a href="/status">status page</a>. Nothing here is an independent audit, certification, or production-custody approval.</em></p>
+<p><strong>Next step:</strong> read the <a href="/protocol">protocol overview</a> and the <a href="/spec">commitment lifecycle specification</a>, then try the <a href="/docs#discovery-quickstart">public preflight and acceptance flow</a> — it creates a signed commitment without moving funds.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/status">Status</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

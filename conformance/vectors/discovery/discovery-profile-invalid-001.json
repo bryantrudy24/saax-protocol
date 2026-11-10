@@ -1,0 +1,15 @@
+{
+  "id": "discovery-profile-invalid-001",
+  "description": "Missing required field signingKeys fails specifically",
+  "input": {
+    "profile": {
+      "profileVersion": "1.0.0",
+      "providerId": "https://example-provider.test/",
+      "origin": "https://example-provider.test"
+    }
+  },
+  "expected": {
+    "valid": false,
+    "errors_contain": "signingKeys"
+  }
+}

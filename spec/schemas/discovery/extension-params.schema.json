@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saax-protocol.com/schemas/discovery/extension-params/v1",
+  "title": "SAAX Discovery A2A Extension Parameters",
+  "description": "Versioned extension parameters for the SAAX Discovery A2A Agent Card extension (https://saax-protocol.com/extensions/saax-discovery/v1). A2A v1.0.0 AgentExtension.uri mechanism.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "extensionUri": {
+      "const": "https://saax-protocol.com/extensions/saax-discovery/v1"
+    },
+    "profileVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "profileUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the standalone profile. Application-level validation: https only, no fragment, origin matches the served origin."
+    },
+    "standalonePath": {
+      "type": "string",
+      "const": "/.well-known/saax.json",
+      "description": "Provisional fallback convention; NOT an IANA-registered standard."
+    },
+    "endpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prepareCommitment": {
+          "type": "string",
+          "format": "uri",
+          "description": "https URL of the preflight endpoint, when implemented. Application-level validation: https, same-origin or explicitly authorized cross-origin."
+        }
+      }
+    }
+  },
+  "required": ["extensionUri", "profileVersion"]
+}

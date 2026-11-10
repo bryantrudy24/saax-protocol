@@ -1,0 +1,93 @@
+.vercel
+node_modules/
+.env
+*.log
+# Local probe and rotation scripts (sprint-specific, not part of the protocol)
+_probe-*
+_verify-*
+rotate-*
+signer-rotate*
+probe-*
+verify-*
+
+# One-shot probes, viem experiments, and temp patches
+_one-shot-*
+_viem-*
+_pkg-*
+_dump-*
+_day8-*
+.tmp-*
+
+# Temporary output artifacts
+.output-*
+*.out
+*.bak
+*.old
+*.orig
+
+# Local config and backups
+.env.*
+!/.env.example
+
+# PostgreSQL and docker debris
+/pg_hba.conf.out
+/docker-compose.override.yml
+
+# Malformed filename debris (in case the same shell accident happens again)
+/startsWith*
+/l.startsWith*
+node_modules/.package-lock.json
+.vercel-logs*
+.fstest-mapping.txt
+patch-*.mjs
+patch-*.cjs
+test-e2e-*.mjs
+.env*
+
+# Day 17 scratch: local harness workers, probes, and temp diagnostics (not protocol
+# artifacts; the durable/verifier/worker tests are the committed evidence)
+/_scratch-*
+/_worker-*
+/_escrow-custody-*
+/daily-logs/saax-positioning-reframe.md
+/data/self-shape-verify-*.json
+/package/
+/agentcash-discovery-*.tgz
+/console.log('ERR'
+/{const
+/{
+/no
+/_diag*
+/_parse*
+/_live*
+/_fav*
+/_poll*
+/_probe*
+/_report*
+/_edit*
+/_fix*
+/_patch*
+/_apply*
+/_circle*
+/_deploys*
+/_inventory*
+/_NOTE*
+/_b.html
+/_blogcheck*
+/_tpl*
+/_live402*
+
+# Phase-2 test TLS material (regenerated on demand; never commit keys)
+/tests/discovery-phase2/.test-tls/
+
+# Discovery example PRIVATE key (throwaway fixture; regenerate via
+# scripts/_discovery-example-keygen.cjs — never commit signing material)
+/spec/examples/discovery/keys/example-private.jwk.json
+
+/spec/examples/discovery/keys/example-buyer-private.jwk.json
+
+# Runtime output + live-operator key material (never commit)
+.output/
+# The financial-lifecycle export verifier is REQUIRED committed tooling (the
+# root-level verify-* rule targets probe scripts; the verifier/ dir is not that).
+!/verifier/verify-financial-export.js

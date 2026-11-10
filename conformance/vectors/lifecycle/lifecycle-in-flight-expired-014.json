@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-in-flight-expired-014",
+  "description": "in_flight -> expired (merchant's processing window closes without resolution)",
+  "input": {
+    "from": "in_flight",
+    "to": "expired"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

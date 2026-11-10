@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-verifying-fulfilled-005",
+  "description": "verifying -> fulfilled (all criteria satisfied)",
+  "input": {
+    "from": "verifying",
+    "to": "fulfilled"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

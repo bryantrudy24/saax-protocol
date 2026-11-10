@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX disputes | Recovery scope and evaluator dependence</title>
+<meta name="description" content="How SAAX complaints and testnet on-chain disputes differ; buyer/seller initiation, evaluator resolution and limits on timeout refunds.">
+<link rel="canonical" href="https://saax-protocol.com/disputes">
+<meta property="og:title" content="SAAX disputes | Recovery scope and evaluator dependence">
+<meta property="og:description" content="How SAAX complaints and testnet on-chain disputes differ; buyer/seller initiation, evaluator resolution and limits on timeout refunds.">
+<meta property="og:url" content="https://saax-protocol.com/disputes">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="twitter:title" content="SAAX disputes | Recovery scope and evaluator dependence">
+<meta name="twitter:description" content="How SAAX complaints and testnet on-chain disputes differ; buyer/seller initiation, evaluator resolution and limits on timeout refunds.">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-disputes">SAAX Disputes</h1>
+<p><em>Last updated: 2026-10-06</em></p>
+<p>SAAX standardizes recovery and dispute <em>states</em> within the commitment lifecycle. It does not guarantee reimbursement, reversal, or resolution of disputes. This page explains when to open a dispute or complaint, how to file one, what happens next, and what SAAX can and cannot do.</p>
+<h2 id="when-to-use-this-channel">When to use this channel</h2>
+<p>A dispute or complaint is appropriate when:</p>
+<ul>
+<li>A commitment you participated in did not behave as its terms stated (for example, settlement moved the wrong amount, or a state transition contradicted the recorded terms).</li>
+<li>You believe a settled commitment was charged incorrectly or duplicated.</li>
+<li>You believe the routing service misbehaved — a failure to respond, an incorrect error, or an availability problem that caused you loss.</li>
+<li>You believe someone is misusing the SAAX name or the protocol to defraud users.</li>
+<li>You have a privacy or data-handling concern (those can also go to the privacy contact).</li>
+</ul>
+<p>This channel is <strong>not</strong> for:</p>
+<ul>
+<li>Disagreements with a counterparty about the quality of goods or services that fell outside the commitment's acceptance criteria. SAAX does not arbitrate commerce; it records terms and outcomes.</li>
+<li>Market losses, volatility, or losses from your own key management.</li>
+<li>Anything already resolved on-chain that you simply want reversed — on-chain records are immutable and cannot be undone.</li>
+</ul>
+<h2 id="how-to-file">How to file</h2>
+<p>Email the dispute team at:</p>
+<p><strong>For dispute inquiries, email reachsaaxprotocol@gmail.com.</strong></p>
+<p>Please include:</p>
+<ul>
+<li><strong>Commitment ID</strong> — the commitment identifier from the request or the 402 challenge (if you have one).</li>
+<li><strong>Description of the issue</strong> — what happened, when, and what you expected instead.</li>
+<li><strong>Evidence</strong> — transaction hashes, request/response payloads, timestamps, screenshots, or any other material that supports your account.</li>
+<li><strong>Your wallet address(es)</strong> — so we can correlate records (remember: on-chain records are public).</li>
+<li><strong>Contact details</strong> — where you want a reply.</li>
+</ul>
+<p>The more evidence you include, the faster we can investigate. Requests with no commitment ID or evidence may be returned for more information.</p>
+<h2 id="expected-response-time">Expected response time</h2>
+<p><strong>Best-effort, non-guaranteed.</strong> SAAX components vary in maturity — immediate payments are public beta on Base mainnet, escrow custody is testnet-only preview (not approved for mainnet funds), and custody/governance candidates are under development / security review. This service is maintained by a small team. We aim to:</p>
+<ul>
+<li><strong>Acknowledge</strong> receipt within five business days.</li>
+<li><strong>Provide an initial response</strong> (status or next step) within ten business days.</li>
+</ul>
+<p>These are targets, not commitments. Complex investigations — especially those requiring on-chain analysis or correlation across providers — can take longer. We will not claim a response-time SLA.</p>
+<h2 id="resolution-process">Resolution process</h2>
+<p>After a dispute is filed:</p>
+<ol>
+<li><strong>Acknowledgment</strong> — you receive confirmation of receipt and a reference.</li>
+<li><strong>Triage</strong> — we classify the issue (commitment misbehavior, service failure, process error, or misuse) and assign it.</li>
+<li><strong>Investigation</strong> — we review the commitment record, the relevant transactions, and any evidence you provided, consulting public on-chain data and provider records where needed.</li>
+<li><strong>Findings</strong> — we tell you what the records show: what happened, whether the protocol behaved per its terms, and whether an operator error occurred.</li>
+<li><strong>Outcome</strong> — where the operator is at fault (for example, a service misconfiguration that caused loss), we will state what we can do: a correction of private records, an explanation, or — only where feasible and within the protocol's capabilities — a good-faith accommodation. Where the protocol behaved per its terms, the finding is that the commitment stands as recorded.</li>
+<li><strong>Closure</strong> — the dispute is closed with a written summary. Closing a dispute does not alter immutables: on-chain transactions are not reversed by a dispute outcome.</li>
+</ol>
+<h2 id="escalation">Escalation</h2>
+<p>If the initial response does not resolve the issue:</p>
+<ul>
+<li><strong>Reply to the same thread</strong> asking for escalation, and we will route it to a senior operator.</li>
+<li><strong>Re-file with additional evidence</strong> if you believe something was missed.</li>
+<li>If the issue involves an external party — the token contract (USDC), the Base network, or a hosting provider — we will tell you how to escalate to them, since those are outside SAAX's control.</li>
+</ul>
+<p>There is no formal appeals body beyond the operators. Independent arbitration is possible only if the parties agree to it in the commitment's terms; SAAX does not provide arbitration.</p>
+<h2 id="how-disputes-actually-resolve-escrow-flow">How disputes actually resolve (escrow flow)</h2>
+<p>In the integrated escrow flow (Base Sepolia testnet), a dispute is a real on-chain state: only the funded buyer or seller can call the custody contract to raise a dispute, which freezes the funds. From that point the funds can move <strong>only</strong> by an evaluator-signed verdict under the deployed contract's rules — <code>release</code> or <code>refund</code> (recorded as <code>resolve:release</code> / <code>resolve:refund</code>). There is no operator override, no admin withdrawal, and no automatic timer that resolves a dispute.</p>
+<p>This means disputes are <strong>evaluator-dependent</strong>: the evaluator address bound in the agreement is the only entity that can resolve a disputed escrow. If the evaluator does not act — or disappears — the disputed funds remain locked indefinitely. Only buyer or seller can initiate it; only the evaluator's signed verdict can resolve it. The timeout-refund path does not run while an escrow is disputed.</p>
+<p>This limitation is a design property of the testnet custody contract, and it applies to the testnet research flow only. Mainnet immediate payments have no dispute state at all: settlement is final.</p>
+<h2 id="support-vs-on-chain-disputes">Support vs. on-chain disputes</h2>
+<p>Contacting support (reachsaaxprotocol@gmail.com) is a <strong>complaint channel</strong>, not an on-chain action. It will not freeze funds, move funds, or start an on-chain dispute. On-chain dispute initiation is performed against the custody contract by a participant, and resolution requires the evaluator's signed verdict as described above. A support complaint and an on-chain dispute are separate processes; neither guarantees a refund or a favorable outcome.</p>
+<h2 id="what-saax-can-and-cannot-do">What SAAX can and cannot do</h2>
+<p>SAAX standardizes recovery and dispute states within the commitment lifecycle. It does not guarantee reimbursement, reversal, or resolution of disputes. Enforcement depends on the parties involved and any arbitration mechanisms they agree to.</p>
+<p>Specifically:</p>
+<ul>
+<li><strong>We can:</strong> investigate, explain what the records show, correct private working-memory records, and (where operator error caused loss) make a good-faith accommodation within the protocol's capabilities.</li>
+<li><strong>We cannot:</strong> reverse on-chain transactions, edit immutable records, force a counterparty to pay, guarantee a favorable outcome, or make you whole for market or counterparty losses.</li>
+</ul>
+<h2 id="contact">Contact</h2>
+<ul>
+<li><strong>Disputes:</strong> <a href="mailto:reachsaaxprotocol@gmail.com">reachsaaxprotocol@gmail.com</a></li>
+<li><strong>Privacy:</strong> <a href="mailto:reachsaaxprotocol@gmail.com">reachsaaxprotocol@gmail.com</a></li>
+<li><strong>Security:</strong> <a href="mailto:reachsaaxprotocol@gmail.com">reachsaaxprotocol@gmail.com</a></li>
+</ul>
+<p><em>— SAAX Protocol</em></p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

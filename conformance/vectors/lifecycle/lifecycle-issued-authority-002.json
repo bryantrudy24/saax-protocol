@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-issued-authority-002",
+  "description": "issued -> authority_validated (valid proof)",
+  "input": {
+    "from": "issued",
+    "to": "authority_validated"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

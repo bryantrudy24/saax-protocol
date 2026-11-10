@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preventing Autonomous Agent Double-Purchasing</title>
+<meta name="description" content="Agent retries race the merchant's accept path. A commitment identifier prevents double-purchases only when execution and settlement enforce durable deduplication on it.">
+<link rel="canonical" href="https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing">
+<meta property="og:title" content="Preventing Autonomous Agent Double-Purchasing — SAAX Protocol">
+<meta property="og:description" content="Agent retries race the merchant's accept path. A commitment identifier prevents double-purchases only when execution and settlement enforce durable deduplication on it.">
+<meta property="og:url" content="https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Preventing Autonomous Agent Double-Purchasing — SAAX Protocol">
+<meta name="twitter:description" content="Agent retries race the merchant's accept path. A commitment identifier prevents double-purchases only when execution and settlement enforce durable deduplication on it.">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Preventing Autonomous Agent Double-Purchasing",
+  "description": "How to prevent autonomous agents from double-purchasing: idempotency, durable keys, and settlement integrity.",
+  "url": "https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-24",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Preventing Autonomous Agent Double-Purchasing", "item": "https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>Preventing Autonomous Agent Double-Purchasing</h1>
+<p class="post-date"><em>October 8, 2026</em> · Last updated: 2026-10-24</p>
+<hr>
+<p>An agent retries a tool call. The tool call was a purchase. The merchant receives two valid orders. The agent's ledger records one transaction. The buyer's bank statement shows two.</p>
+<p>This failure mode is a known hazard in agentic commerce, and it isn't a bug in any single component. It's the predictable result of three design decisions that were each reasonable on their own:</p>
+<p><strong>Agents retry.</strong> Reliable agent design requires retry logic. Network calls fail, timeouts happen, models hallucinate transient errors. The standard remedy is to retry until the call succeeds.</p>
+<p><strong>Purchases are non-idempotent by default.</strong> A <code>POST</code> to create an order creates an order. A second <code>POST</code> creates a second order. Nothing in the merchant's API distinguishes "this is a retry of the same intent" from "this is a new purchase."</p>
+<p><strong>Settlement is asynchronous.</strong> The agent's tool call returns when the order is acknowledged, not when the payment settles. Between acknowledgment and settlement, the agent has no signal that the purchase is already in flight.</p>
+<p>The combination is a race condition. Retry logic fires before the settlement confirmation arrives. The agent sees no successful response to the first attempt. It retries. The merchant processes both.</p>
+<p>Retries are bounded, and unknown outcomes must be reconciled. A retry loop is not infinite: a well-designed agent retries a bounded number of times, with backoff, and then stops and escalates. The hard case is the request whose outcome is genuinely unknown — the call timed out, or the response was lost in transit. The agent cannot safely assume the first attempt failed. It must reconcile the uncertain outcome before retrying: check the merchant's order state, the commitment record, or the agent's own ledger — but only when that record authoritatively establishes the outcome. A missing response, record, or receipt never means the purchase did not happen, so absence alone is never grounds to retry.</p>
+<h2>Why this is different from consumer double-charges</h2>
+<p>Consumer double-charges are typically a payment-processor bug — the same authorization submitted twice by accident. The consumer notices on their statement and calls the bank. The card network has a straightforward remedy: reverse the duplicate.</p>
+<p>Agent double-purchases are structural, not accidental. The agent was <em>designed</em> to retry. The merchant was <em>designed</em> to accept valid requests. The payment rail was <em>designed</em> to settle what it receives. Everyone behaved correctly within their own boundary. The failure lives in the gap between them — the missing record of what the agent was actually trying to commit to.</p>
+<h2>The partial fixes that don't fully work</h2>
+<p><strong>Idempotency keys.</strong> The standard remedy for non-idempotent APIs. The client sends a unique key with the request; the server treats duplicate keys as the same request. Durable idempotency keys do work for agents — provided the key is persisted and reused across retries, session restarts, and process boundaries, so the same intent always carries the same key. The failure mode is a regenerated key: if the agent loses the key or creates a fresh one on retry, the server sees a brand-new request. And when the agent cannot tell whether the first request ever arrived, it still needs a reconciliation step, not just a key.</p>
+<p><strong>Nonce-based authorization.</strong> Payment protocols like EIP-3009 require a unique nonce per authorization. The chain rejects a second settlement with the same nonce. This prevents double-<em>settlement</em>. It does not prevent double-<em>order</em> — the merchant may have already accepted both orders before either authorization reaches the chain.</p>
+<p><strong>Spend limits.</strong> A cap on total spend per agent per period. This bounds the damage but doesn't prevent the double-purchase itself. It also fails when the double-purchase is within the limit.</p>
+<p><strong>Tool-call deduplication.</strong> The agent runtime refuses to execute the same tool call twice within a short window. This works when the runtime has a stable view of what "the same tool call" means. It fails when the retry happens across process boundaries, session restarts, or model context resets.</p>
+<p>Each of these addresses part of the problem. None addresses the record that makes the duplicate detectable and enforceable in the first place.</p>
+<h2>What's actually missing</h2>
+<p>The missing piece is a <strong>commitment identifier</strong> that is generated <em>before</em> the purchase attempt and that both the agent and the merchant treat as authoritative.</p>
+<p>This is different from an idempotency key. An idempotency key is generated by the client and honored by the server. A commitment identifier is generated <em>as part of the commitment itself</em> — before the agent attempts the purchase, before the merchant receives the request, before either party has committed to anything. It can serve the same deduplication role as an idempotency key when it is durably persisted and reused across retries, while also binding authority, terms, evidence, and recovery.</p>
+<p>The commitment record binds:</p>
+<ul>
+<li>The specific intent (what the agent is trying to buy)</li>
+<li>The authority (what the agent is allowed to buy, under what limits)</li>
+<li>The terms (price, deliverable, deadline, acceptance criteria)</li>
+<li>The unique commitment identifier that ties the retry to the original intent</li>
+</ul>
+<p>When the agent retries, the retry carries the same commitment identifier. When the merchant receives the second request, it recognizes it as the same commitment. But a commitment ID does not prevent a duplicate by itself — it only makes one detectable. Prevention requires enforcement: the merchant's execution path must perform durable deduplication keyed on that ID before processing, and the payment rail must reject a second settlement of the same authorization. Where the outcome of an attempt is unknown, recovery must reconcile against on-chain state and the commitment record rather than assuming a retry is safe from an absent response.</p>
+<h2>How SAAX handles this</h2>
+<p>SAAX Protocol treats the commitment as the primary artifact of the purchase. The commitment is created before execution begins, and it carries an identifier that survives retries, session restarts, and process boundaries.</p>
+<p>A SAAX commitment includes:</p>
+<ul>
+<li>A unique commitment ID, generated at commitment time</li>
+<li>The authority reference (who authorized this commitment and under what scope)</li>
+<li>The terms (what the commitment obligates the parties to)</li>
+<li>The evidence requirements (what counts as fulfillment)</li>
+<li>The recovery policy (what happens if fulfillment fails)</li>
+</ul>
+<p>When the same intent is retried, the retry references the same commitment ID. The merchant, the agent, and the settlement rail all work from the same record.</p>
+<p>The commitment schema, the lifecycle states, and the evidence interface are documented at <a href="/spec">saax-protocol.com/spec</a>. The conformance suite is at <a href="/conformance">saax-protocol.com/conformance</a>. For how the same commitment ID is carried in real payments, see the <a href="/docs">integration guide</a>.</p>
+<p>SAAX runs immediate payments live on Base mainnet, with escrow flows on testnet only — see the <a href="/status">current status page</a> before relying on any flow.</p>
+<p>Find SAAX on x402scan: <a href="https://www.x402scan.com/server/2836b122-4d1b-4c6f-8ccb-236c539135f8">SAAX Router on x402scan</a>.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "id": "profile-invalid-004",
+  "description": "Profile with expired signing key (validUntil in the past)",
+  "input": {
+    "profileVersion": "1.0.0",
+    "providerId": "https://example-provider.test/",
+    "origin": "https://example-provider.test",
+    "signingKeys": [
+      {
+        "id": "key-expired",
+        "type": "jwk",
+        "jwk": { "kty": "OKP", "crv": "Ed25519", "x": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY" },
+        "controller": "https://example-provider.test/.well-known/did.json",
+        "validFrom": "2025-01-01T00:00:00Z",
+        "validUntil": "2025-06-01T00:00:00Z",
+        "status": "expired"
+      }
+    ],
+    "capabilities": [
+      {
+        "id": "security-scan",
+        "schemas": [
+          {
+            "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+            "version": "1",
+            "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+            "purpose": "commitment-manifest"
+          }
+        ],
+        "input": { "units": { "amount": "250000000", "unit": "micro-units of settlement asset" } },
+        "evidencePolicy": { "requiredEvidenceTypes": ["vulnerability-scan-report"] },
+        "evaluatorRequirements": { "verificationSchemes": ["eip712"] },
+        "maturity": "production"
+      }
+    ],
+    "interfaces": { "discovery": { "profile": true, "prepareCommitment": false, "commitment": true } }
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["signingKeys.0.status"]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "profileVersion": "1.0.0",
+  "proposalId": "prop_a972c4fd2ddb33d6",
+  "nonce": "0x1234abcd5678ef90",
+  "requestDigest": "sha256:c90c751f887a14d10e40c1b09d8100c93d8b41da315518d1cad9c1ac24cd2a7b",
+  "provider": {
+    "providerId": "https://example-provider.test/",
+    "name": "Example SAAX Provider (illustrative)",
+    "signingKeyId": "key-2026-01",
+    "origin": "https://example-provider.test"
+  },
+  "audience": {
+    "buyer": "0x1111111111111111111111111111111111111111",
+    "intendedAudience": "0x1111111111111111111111111111111111111111"
+  },
+  "manifest": {
+    "commitmentManifestVersion": "1",
+    "commitmentManifestDigest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "schema": {
+      "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+      "version": "1",
+      "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  },
+  "terms": {
+    "network": "eip155:8453",
+    "asset": "eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "rail": "x402",
+    "mode": "x402",
+    "amount": "250000000",
+    "unit": "micro-units of settlement asset",
+    "currency": "micro-units of settlement asset",
+    "deadline": "2026-11-06T00:00:00.000Z",
+    "policies": {
+      "refundOnFailure": true,
+      "compensationPercent": "5",
+      "evidencePolicy": {
+        "requiredEvidenceTypes": [
+          "vulnerability-scan-report"
+        ],
+        "minimumCountPerType": 1,
+        "maxEvidenceAgeSeconds": 3600,
+        "acceptedIssuers": [
+          "0x5555555555555555555555555555555555555555"
+        ]
+      },
+      "evaluatorRequirements": {
+        "verificationSchemes": [
+          "eip712",
+          "cose",
+          "jws"
+        ],
+        "minimumVendorScore": 80
+      }
+    }
+  },
+  "issuedAt": "2026-11-05T12:00:05.000Z",
+  "expires": "2026-11-05T13:00:05.000Z",
+  "status": "proposed",
+  "trust": {
+    "selfSigned": true,
+    "authenticated": false,
+    "independentConformance": false,
+    "anchors": []
+  },
+  "signature": {
+    "scheme": "jws",
+    "alg": "EdDSA",
+    "keyId": "key-2026-01",
+    "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImtleS0yMDI2LTAxIn0.eyJhdWRpZW5jZSI6eyJidXllciI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImludGVuZGVkQXVkaWVuY2UiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEifSwiZXhwaXJlcyI6IjIwMjYtMTEtMDVUMTM6MDA6MDUuMDAwWiIsImlzc3VlZEF0IjoiMjAyNi0xMS0wNVQxMjowMDowNS4wMDBaIiwibWFuaWZlc3QiOnsiY29tbWl0bWVudE1hbmlmZXN0RGlnZXN0Ijoic2hhMjU2OjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMiLCJjb21taXRtZW50TWFuaWZlc3RWZXJzaW9uIjoiMSIsInNjaGVtYSI6eyJkaWdlc3QiOiJzaGEyNTY6MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImlkIjoiaHR0cHM6Ly9zYWF4LXByb3RvY29sLmNvbS9zY2hlbWFzL2NvbW1pdG1lbnQtbWFuaWZlc3QvdjEiLCJ2ZXJzaW9uIjoiMSJ9fSwibm9uY2UiOiIweDEyMzRhYmNkNTY3OGVmOTAiLCJwcm9maWxlVmVyc2lvbiI6IjEuMC4wIiwicHJvcG9zYWxJZCI6InByb3BfYTk3MmM0ZmQyZGRiMzNkNiIsInByb3ZpZGVyIjp7Im5hbWUiOiJFeGFtcGxlIFNBQVggUHJvdmlkZXIgKGlsbHVzdHJhdGl2ZSkiLCJvcmlnaW4iOiJodHRwczovL2V4YW1wbGUtcHJvdmlkZXIudGVzdCIsInByb3ZpZGVySWQiOiJodHRwczovL2V4YW1wbGUtcHJvdmlkZXIudGVzdC8iLCJzaWduaW5nS2V5SWQiOiJrZXktMjAyNi0wMSJ9LCJyZXF1ZXN0RGlnZXN0Ijoic2hhMjU2OmM5MGM3NTFmODg3YTE0ZDEwZTQwYzFiMDlkODEwMGM5M2Q4YjQxZGEzMTU1MThkMWNhZDljMWFjMjRjZDJhN2IiLCJzdGF0dXMiOiJwcm9wb3NlZCIsInRlcm1zIjp7ImFtb3VudCI6IjI1MDAwMDAwMCIsImFzc2V0IjoiZWlwMTU1Ojg0NTMvZXJjMjA6MHg4MzM1ODlmY2Q2ZWRiNmUwOGY0YzdjMzJkNGY3MWI1NGJkYTAyOTEzIiwiY3VycmVuY3kiOiJtaWNyby11bml0cyBvZiBzZXR0bGVtZW50IGFzc2V0IiwiZGVhZGxpbmUiOiIyMDI2LTExLTA2VDAwOjAwOjAwLjAwMFoiLCJtb2RlIjoieDQwMiIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MyIsInBvbGljaWVzIjp7ImNvbXBlbnNhdGlvblBlcmNlbnQiOiI1IiwiZXZhbHVhdG9yUmVxdWlyZW1lbnRzIjp7Im1pbmltdW1WZW5kb3JTY29yZSI6ODAsInZlcmlmaWNhdGlvblNjaGVtZXMiOlsiZWlwNzEyIiwiY29zZSIsImp3cyJdfSwiZXZpZGVuY2VQb2xpY3kiOnsiYWNjZXB0ZWRJc3N1ZXJzIjpbIjB4NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NSJdLCJtYXhFdmlkZW5jZUFnZVNlY29uZHMiOjM2MDAsIm1pbmltdW1Db3VudFBlclR5cGUiOjEsInJlcXVpcmVkRXZpZGVuY2VUeXBlcyI6WyJ2dWxuZXJhYmlsaXR5LXNjYW4tcmVwb3J0Il19LCJyZWZ1bmRPbkZhaWx1cmUiOnRydWV9LCJyYWlsIjoieDQwMiIsInVuaXQiOiJtaWNyby11bml0cyBvZiBzZXR0bGVtZW50IGFzc2V0In0sInRydXN0Ijp7ImFuY2hvcnMiOltdLCJhdXRoZW50aWNhdGVkIjpmYWxzZSwiaW5kZXBlbmRlbnRDb25mb3JtYW5jZSI6ZmFsc2UsInNlbGZTaWduZWQiOnRydWV9fQ.rH3JpnxKxISN1HHmTVyGBc3RGNCdkF2vbuft2HuvkJZ7rOvDlCuY-_WA5dTMoYHGcIgcFDGTUkfr1ycXQ625Aw",
+    "canonicalization": "rfc8785"
+  }
+}

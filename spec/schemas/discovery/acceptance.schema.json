@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saax-protocol.com/schemas/discovery/acceptance/v1",
+  "title": "SAAX Buyer Acceptance Contract (Phase 4)",
+  "description": "The buyer's explicit, signed authorization to create exactly one commitment from a verified preflight proposal. Binds proposal id + proposal digest + normalized terms digest. A buyer acceptance is NOT a payment authorization or an evaluator release verdict (domain-separated action/domain fields).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "action", "domain", "acceptanceId", "nonce",
+    "buyer", "provider", "proposal", "termsDigest", "audience",
+    "notBefore", "notAfter", "versions", "signature"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "acceptance-v1" },
+    "action": { "type": "string", "const": "accept_commitment" },
+    "domain": { "type": "string", "const": "saax:acceptance:v1" },
+    "acceptanceId": { "type": "string", "pattern": "^acc_[A-Za-z0-9_-]{8,}$" },
+    "nonce": { "type": "string", "minLength": 8 },
+    "buyer": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providerId", "signingKeyId"],
+      "properties": {
+        "providerId": { "type": "string", "minLength": 1 },
+        "signingKeyId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proposalId", "proposalDigest"],
+      "properties": {
+        "proposalId": { "type": "string", "pattern": "^prop_[A-Za-z0-9_-]{8,}$" },
+        "proposalDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "termsDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "audience": { "type": "string", "minLength": 1 },
+    "notBefore": { "type": "string", "format": "date-time" },
+    "notAfter": { "type": "string", "format": "date-time" },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileVersion", "manifestVersion", "schema"],
+      "properties": {
+        "profileVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "manifestVersion": { "type": "string", "const": "1" },
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version", "digest"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "version": { "type": "string", "minLength": 1 },
+            "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+          }
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "alg", "keyId", "jws", "canonicalization"],
+      "properties": {
+        "scheme": { "type": "string", "const": "jws" },
+        "alg": { "type": "string", "const": "EdDSA" },
+        "keyId": { "type": "string", "minLength": 1 },
+        "jws": { "type": "string", "minLength": 1 },
+        "canonicalization": { "type": "string", "const": "rfc8785" }
+      }
+    }
+  }
+}

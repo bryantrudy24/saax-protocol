@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-in-flight-failed-013",
+  "description": "in_flight -> failed (merchant's processing fails)",
+  "input": {
+    "from": "in_flight",
+    "to": "failed"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

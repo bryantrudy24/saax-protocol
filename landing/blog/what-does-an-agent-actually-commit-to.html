@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Does an Agent Actually Commit To? — SAAX Protocol</title>
+<meta name="description" content="The commitment layer explained — what it records, the lifecycle states, and the in-flight handling rule.">
+<link rel="canonical" href="https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to">
+<meta property="og:title" content="What Does an Agent Actually Commit To? — SAAX Protocol">
+<meta property="og:description" content="The commitment layer explained — what it records, the lifecycle states, and the in-flight handling rule.">
+<meta property="og:url" content="https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Does an Agent Actually Commit To? — SAAX Protocol">
+<meta name="twitter:description" content="The commitment layer explained — what it records, the lifecycle states, and the in-flight handling rule.">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  .muted{color:var(--muted);}
+  .post-list{list-style:none;}
+  .post-list li{padding:.9rem 0;border-bottom:1px solid var(--border);}
+  .post-list a{font-size:1.05rem;font-weight:600;}
+  .post-list .date{color:var(--muted);font-size:.9rem;margin-left:.6rem;}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Does an Agent Actually Commit To?",
+  "description": "What an AI agent actually commits to when it signs an agreement, and why commitment semantics matter.",
+  "url": "https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to",
+  "datePublished": "2026-10-10",
+  "dateModified": "2026-10-17",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "What Does an Agent Actually Commit To?", "item": "https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>What Does an Agent Actually Commit To?</h1>
+<p class="post-date"><em>October 10, 2026</em> · Last updated: 2026-10-17</p>
+<hr>
+<p>A payment authorization is a promise to pay. A fulfillment is proof that something was delivered.</p>
+<p>Between those two events, something has to define what the agent actually agreed to. Price. Deliverable. Deadline. Acceptance criteria. Evidence requirements. What happens if the delivery fails.</p>
+<p>This is the commitment layer, and it's the piece most agent commerce systems are missing.</p>
+<h2>Why authorization isn't enough</h2>
+<p>When a human buys something, the gap between "I authorized this" and "this was delivered correctly" is closed by the human. They know what they wanted. When the goods arrive, they compare. If it doesn't match, they dispute it — and the card network handles it based on the human's testimony.</p>
+<p>When an agent is the buyer, none of that works. The agent's intent is not the principal's intent. The record of what the agent was asked to do lives in a prompt log that may expire. The record of what the agent actually did lives in a tool-call log that may not be preserved. The record of what the merchant delivered lives in the merchant's database. None of them reference each other.</p>
+<p>Six months later, when someone asks what happened, the answer is: you can't reconstruct it.</p>
+<h2>What a commitment records</h2>
+<p>A commitment binds five things before execution begins:</p>
+<p><strong>Authority</strong> — who authorized the agent to act, under what scope, with what limits. This is the proof that the agent was permitted to enter the commitment.</p>
+<p><strong>Terms</strong> — what was agreed. Price, deliverable, deadline, and the specific conditions under which the commitment is fulfilled.</p>
+<p><strong>Acceptance criteria</strong> — what objectively counts as fulfillment. Not "the merchant says it shipped" but "the evidence shows the item matched the specified criteria."</p>
+<p><strong>Evidence requirements</strong> — what proof must be submitted to demonstrate fulfillment. External attestations, delivery hashes, signed receipts, or sensor data depending on the domain.</p>
+<p><strong>Recovery policy</strong> — what happens if fulfillment fails. Refund, compensation, dispute, or escalation. Set at commitment time, not negotiated after the problem emerges.</p>
+<h2>The lifecycle</h2>
+<p>A commitment has states. It moves through them, and each state has defined transitions:</p>
+<p><code>COMMITTED → EXECUTING → FULFILLED</code></p>
+<p>or</p>
+<p><code>COMMITTED → EXECUTING → FAILED → RECOVERY → DISPUTE → RESOLVED → FINAL</code></p>
+<p>Failure doesn't terminate the commitment. It moves it into a recovery state where the recovery policy applies. External systems handle the refund, the compensation, or the arbitration. The commitment records what was required, what failed, what action occurred, and when the commitment became final.</p>
+<h2>The in-flight problem</h2>
+<p>The hardest state is <code>in_flight</code> — the window where the merchant has received the commitment but the agent hasn't yet received confirmation.</p>
+<p>If the agent's first attempt times out, it can't know whether the merchant never received it or is processing it right now. A naive retry with the same commitment ID races the merchant's accept path and creates a duplicate.</p>
+<p>The protocol rule is simple: <strong>an unknown outcome is a status check, not another POST.</strong> This rule is safe only when the status check can determine the real outcome — from durable state or from the chain. Where the broadcast reference was never durably recorded (the broadcast-before-durable-hash gap), an absent record is not proof that a retry is safe; the outcome must be determined from the chain before retrying.</p>
+<p>The agent queries the commitment state before retrying. <code>not_found</code> means safe to retry. <code>in_flight</code> means wait. <code>fulfilled</code> means stop. <code>failed</code> means retry with a fresh commitment ID.</p>
+<p>On the merchant side, the rule is equally clear: the merchant writes <code>in_flight</code> to durable storage <strong>before</strong> processing the request. The write is the lock. A second request with the same commitment ID returns <code>in_flight</code> — it isn't processed again.</p>
+<p>Both sides need both rules. Neither alone closes the gap.</p>
+<h2>Why this matters for the parties involved</h2>
+<p><strong>For the buyer</strong> — the commitment is the evidence. If the delivered result doesn't match the acceptance criteria, the commitment is what proves it.</p>
+<p><strong>For the merchant</strong> — the commitment shows that fulfillment was performed against specific terms. The merchant doesn't carry the liability for a decision that was made against the commitment.</p>
+<p><strong>For the platform or rail</strong> — the commitment links the settlement to the agreement it was for. The platform doesn't need to reconstruct what the transaction was about.</p>
+<p><strong>For the regulator or auditor</strong> — the commitment is the structured record that makes the transaction verifiable and reconstructable.</p>
+<h2>What this isn't</h2>
+<p>A commitment layer is not a payment rail, an identity provider, or an oracle. It doesn't replace x402, MPP, AP2, or the card networks. It sits above them.</p>
+<p>The payment layer proves the transaction was permitted. The commitment layer proves the transaction delivered what it was supposed to.</p>
+<p>Authorization is not fulfillment. The two are treated as equivalent in most commerce infrastructure, and that assumption breaks the moment an agent is on the other end of the purchase.</p>
+<p>The spec is at <a href="/spec">saax-protocol.com/spec</a>. The conformance suite is at <a href="/conformance">saax-protocol.com/conformance</a>. The commitment schema, the lifecycle states, and the in-flight handling rule are documented there.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

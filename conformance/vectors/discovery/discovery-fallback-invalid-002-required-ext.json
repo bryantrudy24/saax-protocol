@@ -1,0 +1,17 @@
+{
+  "id": "discovery-fallback-invalid-002-required-ext",
+  "description": "Incompatible required extension NEVER weakens to a fallback",
+  "category_hint": "discovery",
+  "input": {
+    "fallback": {
+      "a2aCardObtained": true,
+      "authOk": true,
+      "requiredExtensionOk": false,
+      "clientPermitsStandalone": true
+    }
+  },
+  "expected": {
+    "allowFallback": false,
+    "errorCode": "DSC_MISSING_REQUIRED_EXTENSION"
+  }
+}

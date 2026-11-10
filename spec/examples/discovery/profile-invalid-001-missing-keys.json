@@ -1,0 +1,13 @@
+{
+  "id": "profile-invalid-001",
+  "description": "Profile missing required field `signingKeys`",
+  "input": {
+    "profileVersion": "1.0.0",
+    "providerId": "https://example-provider.test/",
+    "origin": "https://example-provider.test"
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["signingKeys"]
+  }
+}

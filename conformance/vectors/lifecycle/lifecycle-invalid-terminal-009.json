@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-invalid-terminal-009",
+  "description": "finalized -> any state is INVALID (terminal)",
+  "input": {
+    "from": "finalized",
+    "to": "executing"
+  },
+  "expected": {
+    "allowed": false
+  }
+}

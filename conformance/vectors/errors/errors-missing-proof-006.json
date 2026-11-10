@@ -1,0 +1,10 @@
+{
+  "id": "errors-missing-proof-006",
+  "description": "Input that must produce AUTH_MISSING_PROOF",
+  "input": {
+    "missingProof": true
+  },
+  "expected": {
+    "error_code": "AUTH_MISSING_PROOF"
+  }
+}

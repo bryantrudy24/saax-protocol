@@ -1,0 +1,10 @@
+{
+  "id": "errors-invalid-transition-004",
+  "description": "Input that must produce ST_INVALID_TRANSITION",
+  "input": {
+    "invalidTransition": true
+  },
+  "expected": {
+    "error_code": "ST_INVALID_TRANSITION"
+  }
+}

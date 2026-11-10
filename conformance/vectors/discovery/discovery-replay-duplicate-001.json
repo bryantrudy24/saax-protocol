@@ -1,0 +1,13 @@
+{
+  "id": "discovery-replay-duplicate-001",
+  "description": "Identical authenticated retry with same nonce+digest retrieves the same operation (duplicate)",
+  "input": {
+    "proposal": { "nonce": "0x1234abcd5678ef90", "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" },
+    "clientNonce": "0x1234abcd5678ef90",
+    "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "storeRow": { "nonce": "0x1234abcd5678ef90", "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" }
+  },
+  "expected": {
+    "outcome": "duplicate"
+  }
+}

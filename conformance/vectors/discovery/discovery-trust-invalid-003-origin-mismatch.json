@@ -1,0 +1,18 @@
+{
+  "id": "discovery-trust-invalid-003-origin-mismatch",
+  "description": "Origin mismatch fails even when the thumbprint is trusted",
+  "category_hint": "discovery",
+  "input": {
+    "trust": {
+      "configuredTrustedThumbprints": ["abc123def456"],
+      "actualSigningThumbprint": "abc123def456",
+      "profileOrigin": "https://evil.example",
+      "configuredOrigin": "https://provider.example",
+      "keyStatus": "active"
+    }
+  },
+  "expected": {
+    "authenticated": false,
+    "trustSource": null
+  }
+}

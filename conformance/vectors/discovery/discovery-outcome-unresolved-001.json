@@ -1,0 +1,9 @@
+{
+  "id": "discovery-outcome-unresolved-001",
+  "description": "Unresolved outcome classifies specifically",
+  "input": { "kind": "unresolved" },
+  "expected": {
+    "outcome": "unresolved",
+    "errorCode": "DSC_UNRESOLVED"
+  }
+}

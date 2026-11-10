@@ -1,0 +1,13 @@
+{
+  "id": "discovery-repr-conflict-001",
+  "description": "Conflicting shared capability data between A2A card and standalone profile fails",
+  "input": {
+    "a2a": { "profileVersion": "1.0.0", "providerId": "https://example-provider.test/", "origin": "https://example-provider.test" },
+    "standalone": { "profileVersion": "1.0.0", "providerId": "https://example-provider.test/", "origin": "https://evil-provider.test" },
+    "sharedFields": ["profileVersion", "providerId", "origin"]
+  },
+  "expected": {
+    "valid": false,
+    "errors_contain": "origin"
+  }
+}

@@ -1,0 +1,5333 @@
+[
+  {
+    "agent_id": 73325,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x1234567890abcdef1234567890abcdef12345678",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50582155,
+    "last_indexed": "2026-10-01T19:45:57.762Z"
+  },
+  {
+    "agent_id": 73846,
+    "owner": "0xc029d23c9d035cd4bbebb57843474fa8eac82081",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a04c8c-4ab1-7292-9c10-e9b9b008b4aa/erc8004",
+    "name": "Cosmo's AI Test Buyer",
+    "description": "Buyer agent used only to test Cosmo's AI ACP marketplace offerings.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a04c8c-4ab1-7292-9c10-e9b9b008b4aa",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50600715,
+    "last_indexed": "2026-10-01T19:45:58.039Z"
+  },
+  {
+    "agent_id": 74112,
+    "owner": "0x02116bd82a8f5752c3664513936ded4f0e676515",
+    "token_uri": "https://voltplayground.xyz/api/agents/78e6c056-6447-4480-8f56-9b7d49ace0af/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50682201,
+    "last_indexed": "2026-10-01T19:45:57.668Z"
+  },
+  {
+    "agent_id": 74113,
+    "owner": "0xe9d80c3c5daece3c2b3913c3d0084cc28566972b",
+    "token_uri": "https://voltplayground.xyz/api/agents/78e6c056-6447-4480-8f56-9b7d49ace0af/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50682211,
+    "last_indexed": "2026-10-01T19:45:57.674Z"
+  },
+  {
+    "agent_id": 74335,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x150e9637489fcc5495f0c1c92232bbfe959e5411",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50688998,
+    "last_indexed": "2026-10-01T19:45:57.758Z"
+  },
+  {
+    "agent_id": 74350,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/profile/0x239170196d99f5df52106d8a87d1d399be8285f7",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50689151,
+    "last_indexed": "2026-10-01T19:45:57.761Z"
+  },
+  {
+    "agent_id": 74501,
+    "owner": "0x8dd234cb2b5da0559b8bd251f510c324bd5dd7ed",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a0573e-d17b-7325-9bac-e967cb259a58/erc8004",
+    "name": "ledgermind",
+    "description": "Ledgermind hackathon settlement client",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a0573e-d17b-7325-9bac-e967cb259a58",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50690439,
+    "last_indexed": "2026-10-01T19:45:57.828Z"
+  },
+  {
+    "agent_id": 76231,
+    "owner": "0x8aa3c36b6dd17ce88a720fef7fe95c28ffc003ee",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a05818-467b-71fc-b168-8d62a55d29dc/erc8004",
+    "name": "truthbear-gauge",
+    "description": "Verify official facts from 180+ government sources with cryptographic proof",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a05818-467b-71fc-b168-8d62a55d29dc",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50698228,
+    "last_indexed": "2026-10-01T19:45:58.074Z"
+  },
+  {
+    "agent_id": 84131,
+    "owner": "0xf2c966dd7a861bba7810cce423e93c91e2f68679",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a06261-f676-7b0d-ba2e-4425f4809d79/erc8004",
+    "name": "Million Dollar Agent",
+    "description": "Autonomous micro-service economic experiment",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a06261-f676-7b0d-ba2e-4425f4809d79",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50783870,
+    "last_indexed": "2026-10-01T19:45:58.141Z"
+  },
+  {
+    "agent_id": 84167,
+    "owner": "0x75a1b6c3952606ef85fdbec5bc8a49459f4abd3f",
+    "token_uri": "https://voltplayground.xyz/api/agents/da4cf6b4-ca80-4ca3-a7fe-32110e191084/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50800486,
+    "last_indexed": "2026-10-01T19:45:57.677Z"
+  },
+  {
+    "agent_id": 84373,
+    "owner": "0x51e2d61bb29bd800042f664b7f3619e4e279ae9d",
+    "token_uri": "https://voltplayground.xyz/api/agents/c7a6bb46-197e-4d64-be37-efc5e9304000/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50814244,
+    "last_indexed": "2026-10-01T19:45:57.679Z"
+  },
+  {
+    "agent_id": 84383,
+    "owner": "0x812c6ace1aa1d2f40b7ecb85029456f6a2605001",
+    "token_uri": "https://voltplayground.xyz/api/agents/6980fafc-04b8-438f-9f10-1c1198bf35d5/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50821323,
+    "last_indexed": "2026-10-01T19:45:57.682Z"
+  },
+  {
+    "agent_id": 84569,
+    "owner": "0x67722c823010ceb4bed5325fe109196c0f67d053",
+    "token_uri": "https://marketplace.olas.network/erc8004/base/ai-agents/637",
+    "name": "ziki-himwar50 by Olas",
+    "description": "[Pearl service] Basius service deployment on Base network",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://marketplace.olas.network/base/ai-agents/637",
+        "version": null
+      },
+      {
+        "name": "agentWallet",
+        "endpoint": "eip155:8453:0x0bfb6cdb1d27a359676589c4e80c8b0e58438e82",
+        "version": null
+      }
+    ],
+    "supported_trust": [
+      "reputation"
+    ],
+    "active": true,
+    "block_number": 50832397,
+    "last_indexed": "2026-10-01T19:45:59.061Z"
+  },
+  {
+    "agent_id": 84572,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/agents/0xf4561eb181dbea69c331508a988d836a9292428d",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50834661,
+    "last_indexed": "2026-10-01T19:45:58.216Z"
+  },
+  {
+    "agent_id": 84580,
+    "owner": "0xffd2ff35147e6b1069664a983ec4b6fa154f8cfd",
+    "token_uri": "https://voltplayground.xyz/api/agents/5dc971ac-f5b5-460a-ba1e-3462f240713b/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50840934,
+    "last_indexed": "2026-10-01T19:45:58.296Z"
+  },
+  {
+    "agent_id": 84599,
+    "owner": "0x5c02f58d3a8d5f1ecbb72e0e06cddc364abbf11c",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a06a26-140c-7eb6-8e84-5499c0769494/erc8004",
+    "name": "kinostate-buyer",
+    "description": "Test buyer agent for kinostate ACP demo",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a06a26-140c-7eb6-8e84-5499c0769494",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50849029,
+    "last_indexed": "2026-10-01T19:45:58.416Z"
+  },
+  {
+    "agent_id": 84615,
+    "owner": "0x45c3945041ac3fc16f5d1a2c7c3aeb4da1e02422",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a06a5b-590c-729a-befb-34f16fa9fe25/erc8004",
+    "name": "RevenueScoutAgent",
+    "description": "Autonomous AI agent that finds, completes, and gets paid for digital work.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a06a5b-590c-729a-befb-34f16fa9fe25",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50850803,
+    "last_indexed": "2026-10-01T19:45:58.412Z"
+  },
+  {
+    "agent_id": 84626,
+    "owner": "0x251565b4f6875d1c00f5c417edd38d7f34e0d5ad",
+    "token_uri": "https://voltplayground.xyz/api/agents/e63ca747-a6e4-41bf-8735-33eb292306f4/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50860692,
+    "last_indexed": "2026-10-01T19:45:58.300Z"
+  },
+  {
+    "agent_id": 84659,
+    "owner": "0x7e3508933c99dd4c8977d8a942ab413d8b0dce21",
+    "token_uri": "https://voltplayground.xyz/api/agents/bd7eb3ef-b63c-40a2-9ff7-6c48045a8c28/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50867539,
+    "last_indexed": "2026-10-01T19:45:58.298Z"
+  },
+  {
+    "agent_id": 84660,
+    "owner": "0xea4ca7803c6f86ca04b8a54cf29678c425eef52a",
+    "token_uri": "https://voltplayground.xyz/api/agents/c439a7e5-8d5d-4b51-b2e7-b6b3618e7e59/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50867589,
+    "last_indexed": "2026-10-01T19:45:58.299Z"
+  },
+  {
+    "agent_id": 84663,
+    "owner": "0x5c0896b8fd3723ceb02e29e607e7b6413b42c678",
+    "token_uri": "https://voltplayground.xyz/api/agents/aff5ddea-4a98-4ca9-81c0-7f4f9e08fd17/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50868122,
+    "last_indexed": "2026-10-01T19:45:58.301Z"
+  },
+  {
+    "agent_id": 84667,
+    "owner": "0xea8a3a831c1c0a96c4c26698dfed6397d1885cc4",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a06c9d-4366-7290-91b9-d779fa8a99df/erc8004",
+    "name": "SYBIL",
+    "description": "Autonomous Solidity security agent that executes Pashov Audit Group skills, stores repository-scoped vulnerability memory, and rechecks findings across GitHub changes.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a06c9d-4366-7290-91b9-d779fa8a99df",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50869795,
+    "last_indexed": "2026-10-01T19:45:58.423Z"
+  },
+  {
+    "agent_id": 84670,
+    "owner": "0x680fe78b1e76dad7f214216787481767543dcce5",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a06ca6-31c8-75cf-ad02-48081efda174/erc8004",
+    "name": "SYBIL Test Client",
+    "description": "Project-operated test client used only to purchase and verify SYBIL audit and contract-recheck jobs. Both agents are operated by the SENTINEL project.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a06ca6-31c8-75cf-ad02-48081efda174",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50870625,
+    "last_indexed": "2026-10-01T19:45:58.432Z"
+  },
+  {
+    "agent_id": 84675,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/publishers/0x0b1813107740c33782692f9e79483422cbba1e71",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50872005,
+    "last_indexed": "2026-10-01T19:45:58.216Z"
+  },
+  {
+    "agent_id": 84701,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/publishers/0x5e8fcda5b9a4e257256b921c5a9e15ac8affd538",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50883893,
+    "last_indexed": "2026-10-01T19:45:59.160Z"
+  },
+  {
+    "agent_id": 84844,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xeebe94d4ed4a9e52b049e44ec1c35c1f73f67f4e",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50909762,
+    "last_indexed": "2026-10-01T19:45:59.159Z"
+  },
+  {
+    "agent_id": 84850,
+    "owner": "0x769b449bb87455012d5c533722bcae39633a7240",
+    "token_uri": "https://execution.market/workers/0x769b449bb87455012d5c533722bcae39633a7240",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50911915,
+    "last_indexed": "2026-10-01T19:45:59.159Z"
+  },
+  {
+    "agent_id": 84895,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/agents/charliescout.json",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50934838,
+    "last_indexed": "2026-10-01T19:45:59.207Z"
+  },
+  {
+    "agent_id": 84922,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://raw.githubusercontent.com/Nish916/nexuseval-demand-mesh/main/execution-market-agent.json",
+    "name": "NexusEval Worker",
+    "description": "Autonomous legitimate paid-task worker powered by NexusEval with local Qwen3:8b for research, structured analysis, data processing, content generation, code execution, API integration, public-web research, bounty qualification, delivery validation, and payment-evidence checks.",
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50947417,
+    "last_indexed": "2026-10-01T19:45:59.301Z"
+  },
+  {
+    "agent_id": 84947,
+    "owner": "0x7eb002ddf5a0f78b427a7569e4bfde3ffb433078",
+    "token_uri": "https://api.acp.virtuals.io/agents/019f6c00-618a-7fd2-bab9-3fba995e6b53/erc8004",
+    "name": "NuSHA",
+    "description": "Venice private image generation (GPT Image 2, Nano Banana Pro, Recraft V4 Pro, Luma Uni-1 Max, Seedream V5 Pro, Grok Imagine 2.0, Qwen Image 2 Pro, Flux 2 Max, Hunyuan Image 3.0, Krea v2 Large, Ideogram V4 — 1K/2K/4K), Venice uncensored chat completions (text inference), Venice embeddings (RAG/vector search), Venice TTS (text-to-speech). Full-stack Venice AI services on Base. Image generation, text generation, embeddings, and speech synthesis.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/019f6c00-618a-7fd2-bab9-3fba995e6b53",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50950689,
+    "last_indexed": "2026-10-01T19:45:59.576Z"
+  },
+  {
+    "agent_id": 84978,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/8ae42e72-d419-4ff9-9765-6b37a98f2157/erc8004/metadata",
+    "name": "Brisa Research Agent",
+    "description": "AI Agent Brisa Research Agent",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xb82818459a74ec93af71f346cbb298a175b9a652/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50968442,
+    "last_indexed": "2026-10-01T19:45:59.369Z"
+  },
+  {
+    "agent_id": 84979,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/d5f22113-f10a-49b6-bc43-ecc179115bb9/erc8004/metadata",
+    "name": "Merv Microfund",
+    "description": "AI Agent Merv Microfund",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x97f44cfcb76d61c5e63e8b3b983f087c8954bee1/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50968538,
+    "last_indexed": "2026-10-01T19:45:59.426Z"
+  },
+  {
+    "agent_id": 84981,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/45c1acf7-f20c-43cb-b2d8-a48b4bc3cdfc/erc8004/metadata",
+    "name": "Javier CodeFix",
+    "description": "AI Agent Javier CodeFix",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xa633afdaa2180aef00aa2cb5220414b43a293db3/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50969219,
+    "last_indexed": "2026-10-01T19:45:59.496Z"
+  },
+  {
+    "agent_id": 84982,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/51ac3269-c23f-4eb0-ab3d-1c9429d7a1ea/erc8004/metadata",
+    "name": "5vl Auto",
+    "description": "AI Agent 5vl Auto",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x99a4fa97d129174a7a553f746e017b13cea14095/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50969494,
+    "last_indexed": "2026-10-01T19:45:59.401Z"
+  },
+  {
+    "agent_id": 84983,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x6b8524f4b284e9b311fe02523c7122393a67984a",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50969826,
+    "last_indexed": "2026-10-01T19:45:59.214Z"
+  },
+  {
+    "agent_id": 84996,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/bc3dc35f-4ff1-4957-ac85-e61fe273cde0/erc8004/metadata",
+    "name": "GENESIS_UPDATED",
+    "description": "AI Agent GENESIS_UPDATED",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x25ce508fa017ea8236cdfa7d8269888eefcaab3c/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978186,
+    "last_indexed": "2026-10-01T19:45:59.393Z"
+  },
+  {
+    "agent_id": 84997,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/41adc177-745a-483a-b061-a3be66ca64a4/erc8004/metadata",
+    "name": "GENESIS-ClaimTest",
+    "description": "AI Agent GENESIS-ClaimTest",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x6f56f51e79eee3aece2a46e1eafd5fa6acea5c48/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978219,
+    "last_indexed": "2026-10-01T19:45:59.796Z"
+  },
+  {
+    "agent_id": 85000,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/378f2c88-712c-4c97-bec8-6f9fc23085e0/erc8004/metadata",
+    "name": "GENESIS-Claim-1788746361375",
+    "description": "AI Agent GENESIS-Claim-1788746361375",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x41d1fab68e50ddf1cb1e432cede96a2c9de84962/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978508,
+    "last_indexed": "2026-10-01T19:45:59.768Z"
+  },
+  {
+    "agent_id": 85002,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/085f12a8-a282-414e-aa60-6660422586cd/erc8004/metadata",
+    "name": "GENESIS-CDP-1788746501922",
+    "description": "AI Agent GENESIS-CDP-1788746501922",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xe2Ed4E5EDdF4a4B05A8A9E3222ec4C53ad8f2774/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978579,
+    "last_indexed": "2026-10-01T19:45:59.911Z"
+  },
+  {
+    "agent_id": 85003,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/d0220907-4f2e-43f2-9f61-f9c28268e235/erc8004/metadata",
+    "name": "GENESIS-BANKR-1788746537026",
+    "description": "AI Agent GENESIS-BANKR-1788746537026",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xcb32c0ded477df5eec08f71de3a5b94bef730b27/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978596,
+    "last_indexed": "2026-10-01T19:45:59.767Z"
+  },
+  {
+    "agent_id": 85014,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/d9a83730-edb0-4d59-b0bd-c547f6c806a1/erc8004/metadata",
+    "name": "GENESIS-TEST-1788746501922",
+    "description": "AI Agent GENESIS-TEST-1788746501922",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x511e292a56a0f4202c4f29a2b5ef8ff61dbc4a94/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50978723,
+    "last_indexed": "2026-10-01T19:45:59.813Z"
+  },
+  {
+    "agent_id": 85030,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/d77d9423-d727-4bc7-9e2e-a6e1d3473a8e/erc8004/metadata",
+    "name": "Codex Five",
+    "description": "AI Agent Codex Five",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x6ba43075a4468634dd8f9a30808b09d45ce9d54b/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50980147,
+    "last_indexed": "2026-10-01T19:46:00.003Z"
+  },
+  {
+    "agent_id": 85033,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/064fdcc2-48bf-460c-8982-13982d36e5fd/erc8004/metadata",
+    "name": "Codex Five Secure",
+    "description": "AI Agent Codex Five Secure",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xC9fFc1C3C3CadFA6dA1108040A5117F20FF43061/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50980308,
+    "last_indexed": "2026-10-01T19:46:00.039Z"
+  },
+  {
+    "agent_id": 85034,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/01a69061-1a07-49b1-ae0a-354ec9a65391/erc8004/metadata",
+    "name": "AIEast-Codex-Cashflow-907",
+    "description": "AI Agent AIEast-Codex-Cashflow-907",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xa53f964f87ff45a07028908658298f44ad8f114d/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50980421,
+    "last_indexed": "2026-10-01T19:45:59.800Z"
+  },
+  {
+    "agent_id": 85035,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/84c80c12-32a6-4f94-9749-20503ff8fc28/erc8004/metadata",
+    "name": "IsolatedTaskAgent580A1B",
+    "description": "AI Agent IsolatedTaskAgent580A1B",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x1b9BA0A3167DA7573050C427627f1Fe4d2c37Be3/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50981183,
+    "last_indexed": "2026-10-01T19:45:59.828Z"
+  },
+  {
+    "agent_id": 85036,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/5fe14db7-b97c-4618-8610-549abf5f64f4/erc8004/metadata",
+    "name": "MoneyMiner",
+    "description": "AI Agent MoneyMiner",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x180d92dd274a352f686873c23378d674bd6573e1/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50981199,
+    "last_indexed": "2026-10-01T19:45:59.837Z"
+  },
+  {
+    "agent_id": 85038,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/9f5d18dd-cb1e-4eee-8add-5f3972765a91/erc8004/metadata",
+    "name": "MoneyMinerAuto",
+    "description": "AI Agent MoneyMinerAuto",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x3fef7eafea1d7b55ca6ec54d1667c8b647b8123c/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50981321,
+    "last_indexed": "2026-10-01T19:45:59.789Z"
+  },
+  {
+    "agent_id": 85041,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/288c11ff-e528-4a98-b68a-485167f7413f/erc8004/metadata",
+    "name": "OneYuanWorkshop-0907-ce7b",
+    "description": "AI Agent OneYuanWorkshop-0907-ce7b",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xec726747E4d8B7386cd2f181D616b0951CabC515/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50982977,
+    "last_indexed": "2026-10-01T19:45:59.832Z"
+  },
+  {
+    "agent_id": 85042,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/a7ac50df-4af7-48f4-9e03-265f5eea0e3e/erc8004/metadata",
+    "name": "MoneyMinerCDP",
+    "description": "AI Agent MoneyMinerCDP",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x85fa26d5D1B65e90DEb2a99Dd8b5bC9FD0098442/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50983021,
+    "last_indexed": "2026-10-01T19:46:00.320Z"
+  },
+  {
+    "agent_id": 85060,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/e629fcd1-1a9b-45ed-9129-86a7ef2a0992/erc8004/metadata",
+    "name": "CedarForge-20639f",
+    "description": "AI Agent CedarForge-20639f",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xece024186068e74fbcc635db1197631cb7e80c5c/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50991758,
+    "last_indexed": "2026-10-01T19:46:00.983Z"
+  },
+  {
+    "agent_id": 85066,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/79d7ed38-a00c-453c-9726-8c94aa70c03a/erc8004/metadata",
+    "name": "ClearTable-workesfm",
+    "description": "AI Agent ClearTable-workesfm",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x68b6ae3c3ab3c29fc1e40abed7f9e2a8e22ed849/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 50994129,
+    "last_indexed": "2026-10-01T19:46:00.370Z"
+  },
+  {
+    "agent_id": 85084,
+    "owner": "0xe5484de53b74299f52eaed48fb39a0fd29e9295e",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a07bd8-e471-7089-9f22-cbf23b93d562/erc8004",
+    "name": "Trading Coordinator",
+    "description": "Client agent that buys research signals to build a paper index.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a07bd8-e471-7089-9f22-cbf23b93d562",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 50997442,
+    "last_indexed": "2026-10-01T19:46:00.314Z"
+  },
+  {
+    "agent_id": 85101,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/cc498c67-37ee-4afd-b0e9-ff757ec11ff9/erc8004/metadata",
+    "name": "AntigravityWorker",
+    "description": "AI Agent AntigravityWorker",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xbA7C828133571b2991E03a206d5533Bcb6131894/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51001198,
+    "last_indexed": "2026-10-01T19:46:00.294Z"
+  },
+  {
+    "agent_id": 85102,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/53201ad1-2b7f-4202-8ee6-ec742a14a0ad/erc8004/metadata",
+    "name": "AntigravityWorker_v2",
+    "description": "AI Agent AntigravityWorker_v2",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xcdFe7551656D27F3C3FF996eFcF619B362a1e9e4/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51001491,
+    "last_indexed": "2026-10-01T19:46:00.295Z"
+  },
+  {
+    "agent_id": 85103,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/f90d1f40-7ec0-4216-937e-e721e6ca9379/erc8004/metadata",
+    "name": "DollarCraft0709",
+    "description": "AI Agent DollarCraft0709",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x34f765642665e587a25b8bfeda2056378fa037f9/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51001841,
+    "last_indexed": "2026-10-01T19:46:00.596Z"
+  },
+  {
+    "agent_id": 85106,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/08422b57-5536-4300-8911-c41d09d51b27/erc8004/metadata",
+    "name": "MoneyGeneratorData",
+    "description": "AI Agent MoneyGeneratorData",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x4e8809c5dae88fe2baf6c51dd195703d021fbf63/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51002837,
+    "last_indexed": "2026-10-01T19:46:01.118Z"
+  },
+  {
+    "agent_id": 85109,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/fda68921-3f58-41c3-85fa-9cae661c8263/erc8004/metadata",
+    "name": "WaveChaseBounty",
+    "description": "AI Agent WaveChaseBounty",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x5e6092e44132a00419a9f4a424f764d9def8faf3/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51003827,
+    "last_indexed": "2026-10-01T19:46:01.064Z"
+  },
+  {
+    "agent_id": 85111,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/eda7a415-7f58-4d60-91cf-edaf94ccfab0/erc8004/metadata",
+    "name": "WaveChaseBounty",
+    "description": "AI Agent WaveChaseBounty",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x75cd4639e6c72837dafa8b7b78d2e64d1dce3677/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51004447,
+    "last_indexed": "2026-10-01T19:46:00.383Z"
+  },
+  {
+    "agent_id": 85119,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/0a461caa-9481-4fa9-81d9-c9ad948c2821/erc8004/metadata",
+    "name": "GenesisResearchAgent_3696",
+    "description": "AI Agent GenesisResearchAgent_3696",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x1108a675caad9d7c339a73da45ecddc0eeb7f739/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51007613,
+    "last_indexed": "2026-10-01T19:46:00.965Z"
+  },
+  {
+    "agent_id": 85121,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/e3c23189-df7d-4f0b-a1f6-1c921d2819a8/erc8004/metadata",
+    "name": "AlgoWorker-0sp6ei",
+    "description": "AI Agent AlgoWorker-0sp6ei",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xf4cb19c73a995750d43f3a9ccad57b3c0521154f/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51008348,
+    "last_indexed": "2026-10-01T19:46:00.294Z"
+  },
+  {
+    "agent_id": 85237,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/80b50b54-fd2c-4a54-aa5b-dce0d87ea3ea/erc8004/metadata",
+    "name": "ClearTask-Ear-0907",
+    "description": "AI Agent ClearTask-Ear-0907",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x9f3ece034130ece716846dbc5e6261cdd7b02570/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51010972,
+    "last_indexed": "2026-10-01T19:46:01.396Z"
+  },
+  {
+    "agent_id": 85249,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/7b29fab0-774f-4069-9573-1a649c9b926e/erc8004/metadata",
+    "name": "AlgoWorker-CDP-xfhano",
+    "description": "AI Agent AlgoWorker-CDP-xfhano",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x87C5CDe6a3Fc4fD475f19Aa3a721C939297c201A/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51011016,
+    "last_indexed": "2026-10-01T19:46:01.311Z"
+  },
+  {
+    "agent_id": 85263,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/fdbb0fda-cc79-48e1-84ec-080d563e366c/erc8004/metadata",
+    "name": "ClearTask-Ear-0907-CDP",
+    "description": "AI Agent ClearTask-Ear-0907-CDP",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x5292886C08f9f4DfEEB7F2e3082cE2C3bB80B757/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51011088,
+    "last_indexed": "2026-10-01T19:46:01.336Z"
+  },
+  {
+    "agent_id": 85280,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/160e42b9-8e92-4631-8ff8-773134ab7ac0/erc8004/metadata",
+    "name": "AlgoWorker-CDP-psj7h3",
+    "description": "AI Agent AlgoWorker-CDP-psj7h3",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x4eA7bBb7abE94644b671A53ce41C9163fae512C2/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51011182,
+    "last_indexed": "2026-10-01T19:46:01.307Z"
+  },
+  {
+    "agent_id": 85348,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/22b384c8-fb89-4d49-9df2-0e177fdb8a13/erc8004/metadata",
+    "name": "Astra Bounty",
+    "description": "AI Agent Astra Bounty",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xe7f92024802fa2fa13e2d111659df98984a03bd2/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51011996,
+    "last_indexed": "2026-10-01T19:46:01.621Z"
+  },
+  {
+    "agent_id": 85349,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/6e4a942b-20b0-4c6c-91d3-c2b4a0109889/erc8004/metadata",
+    "name": "SignalWorker-146e11d2",
+    "description": "AI Agent SignalWorker-146e11d2",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x074dfbf3f8c1f51350d4e24d0e992c76d30def94/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51012323,
+    "last_indexed": "2026-10-01T19:46:01.326Z"
+  },
+  {
+    "agent_id": 85351,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/3dfeeacc-a953-44c9-a99c-b97e79cc8b11/erc8004/metadata",
+    "name": "SignalWorker-e13bdcd3",
+    "description": "AI Agent SignalWorker-e13bdcd3",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xC8a16fadeB8e0b0130C9249813C40d1e251cC697/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51012495,
+    "last_indexed": "2026-10-01T19:46:01.300Z"
+  },
+  {
+    "agent_id": 85362,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xb46f2a23c0f72ee42cd1702cf91d0e2ba8b3e6de",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51017169,
+    "last_indexed": "2026-10-01T19:46:01.167Z"
+  },
+  {
+    "agent_id": 85368,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/e0c9417f-b092-4f70-adfe-7dcbb9754d5e/erc8004/metadata",
+    "name": "TaskCraft-01a07e75",
+    "description": "AI Agent TaskCraft-01a07e75",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xdf21a40044b1521563f136e6feb61299d401f7fe/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51019443,
+    "last_indexed": "2026-10-01T19:46:01.288Z"
+  },
+  {
+    "agent_id": 85371,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xce81d12cce65bba50b017857a98526b021004b97",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51019987,
+    "last_indexed": "2026-10-01T19:46:01.214Z"
+  },
+  {
+    "agent_id": 85373,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/89a67d18-2195-4764-bbe8-f485c395d2fb/erc8004/metadata",
+    "name": "ExecutiveCouncilAgent",
+    "description": "AI Agent ExecutiveCouncilAgent",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xd6f5422bb76b5239f8c1e5db8062aa7cd7242d18/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51020150,
+    "last_indexed": "2026-10-01T19:46:01.299Z"
+  },
+  {
+    "agent_id": 85380,
+    "owner": "0x87ef068dee858b0fb6894aa6978174c54b3a05d4",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a07ea0-cce2-7c06-a1c9-59d86de3b48c/erc8004",
+    "name": "Apex Leviathan",
+    "description": "Apex Leviathan — The highest-throughput execution and intelligence layer on Base L2. Powered by local Base Reth IPC (33.8µs P50) and REVM simulation. Provides token honeypot checks, preflight transaction simulation, DEX spot and TWAP oracles, and automated smart contract security audits. Sub-second SLAs, zero-gas read replicas, 100% deterministic deliverables.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a07ea0-cce2-7c06-a1c9-59d86de3b48c",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 51020801,
+    "last_indexed": "2026-10-01T19:46:01.389Z"
+  },
+  {
+    "agent_id": 85381,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/a329ba1f-7ff4-45e9-a3f4-86a891f6f028/erc8004/metadata",
+    "name": "PavilionCodingAgent",
+    "description": "AI Agent PavilionCodingAgent",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x6cefa2d5b3e6a2d2b86593bfd78491f6eab20683/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51020808,
+    "last_indexed": "2026-10-01T19:46:01.825Z"
+  },
+  {
+    "agent_id": 85388,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/publishers/0xa227120f858eb6e3c1283fc7f0013909c86fc95f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51021176,
+    "last_indexed": "2026-10-01T19:46:01.666Z"
+  },
+  {
+    "agent_id": 85405,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/d30c8fd6-9e63-4171-9a41-8c3c5846ff49/erc8004/metadata",
+    "name": "CentCraft-01a07eda",
+    "description": "AI Agent CentCraft-01a07eda",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x38c118456b67987316cf50800fe547545bfb113e/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51022749,
+    "last_indexed": "2026-10-01T19:46:01.824Z"
+  },
+  {
+    "agent_id": 85406,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/3d36cec9-d6ba-4b0b-92ef-d435e724535a/erc8004/metadata",
+    "name": "CentCraft-01a07eda-Custom",
+    "description": "AI Agent CentCraft-01a07eda-Custom",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x72ca24683223a5839ac5c9e06acd779d768aa5f6/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51022907,
+    "last_indexed": "2026-10-01T19:46:01.814Z"
+  },
+  {
+    "agent_id": 85407,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/88d4860a-542a-4d31-bc7a-27e777586db9/erc8004/metadata",
+    "name": "ArturGuerraCodex",
+    "description": "AI Agent ArturGuerraCodex",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x634dc06b858548c1fe3e99342635496da4c80221/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51023866,
+    "last_indexed": "2026-10-01T19:46:01.774Z"
+  },
+  {
+    "agent_id": 85408,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/bd01b95c-7c04-4df4-a57d-c8f5d9ee9739/erc8004/metadata",
+    "name": "CarefulWork0908",
+    "description": "AI Agent CarefulWork0908",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x30adc8f999cfaf32df05f73b51d175d440cae77a/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51023887,
+    "last_indexed": "2026-10-01T19:46:01.814Z"
+  },
+  {
+    "agent_id": 85409,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/adef26d2-dee3-42b5-bcf4-e27528b884e1/erc8004/metadata",
+    "name": "ANK Hunter",
+    "description": "AI Agent ANK Hunter ",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x42873b635886fdd6a6c60b7fe73c3e5cfb4f15da/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51024146,
+    "last_indexed": "2026-10-01T19:46:01.807Z"
+  },
+  {
+    "agent_id": 85414,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/ef5741aa-6c22-43dd-8a32-e48100c7c70a/erc8004/metadata",
+    "name": "Lars Verified Repairs",
+    "description": "AI Agent Lars Verified Repairs",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x69c29a266c95ebc19398f244976ca3a0b7d46ed1/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51027659,
+    "last_indexed": "2026-10-01T19:46:02.032Z"
+  },
+  {
+    "agent_id": 85420,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/23cd62a9-a40b-47e8-9c56-e1dae82f34c7/erc8004/metadata",
+    "name": "Javier Sánchez Technical",
+    "description": "AI Agent Javier Sánchez Technical",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x2dbeeb3321ee0616b97f3a63fddcede830356616/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51029698,
+    "last_indexed": "2026-10-01T19:46:02.032Z"
+  },
+  {
+    "agent_id": 85421,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/42bef151-2a5e-4b8c-bbbd-a13a66080129/erc8004/metadata",
+    "name": "RETIRED - Samlogic Engineering",
+    "description": "AI Agent RETIRED - Samlogic Engineering",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xa647fd87311a98960cd07e41847c34ba0711e656/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51029906,
+    "last_indexed": "2026-10-01T19:46:01.784Z"
+  },
+  {
+    "agent_id": 85422,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/eaa639b5-05b9-4c34-bc35-f922749d0cf5/erc8004/metadata",
+    "name": "ceresemil-work",
+    "description": "AI Agent ceresemil-work",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x6db08e72f54cb8d56afa65226db4363c12546b5f/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51030390,
+    "last_indexed": "2026-10-01T19:46:01.824Z"
+  },
+  {
+    "agent_id": 85423,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/agents/0xDdfa80f9167a83329164f300FA049b26F4500A3f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51030489,
+    "last_indexed": "2026-10-01T19:46:01.689Z"
+  },
+  {
+    "agent_id": 85424,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/agents/0xDdfa80f9167a83329164f300FA049b26F4500A3f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51030540,
+    "last_indexed": "2026-10-01T19:46:02.049Z"
+  },
+  {
+    "agent_id": 85425,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/b3904eca-788f-466c-9dd1-92804bb54313/erc8004/metadata",
+    "name": "kiwi",
+    "description": "AI Agent kiwi",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xc4acd68e58c064fbbb5fdb037d9eb82ce27618ad/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51031762,
+    "last_indexed": "2026-10-01T19:46:02.199Z"
+  },
+  {
+    "agent_id": 85426,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51031947,
+    "last_indexed": "2026-10-01T19:46:02.236Z"
+  },
+  {
+    "agent_id": 85428,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032068,
+    "last_indexed": "2026-10-01T19:46:02.230Z"
+  },
+  {
+    "agent_id": 85429,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032070,
+    "last_indexed": "2026-10-01T19:46:02.232Z"
+  },
+  {
+    "agent_id": 85430,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032072,
+    "last_indexed": "2026-10-01T19:46:02.234Z"
+  },
+  {
+    "agent_id": 85432,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032074,
+    "last_indexed": "2026-10-01T19:46:02.238Z"
+  },
+  {
+    "agent_id": 85433,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032076,
+    "last_indexed": "2026-10-01T19:46:02.228Z"
+  },
+  {
+    "agent_id": 85434,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032079,
+    "last_indexed": "2026-10-01T19:46:02.229Z"
+  },
+  {
+    "agent_id": 85435,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032081,
+    "last_indexed": "2026-10-01T19:46:02.233Z"
+  },
+  {
+    "agent_id": 85436,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032084,
+    "last_indexed": "2026-10-01T19:46:02.238Z"
+  },
+  {
+    "agent_id": 85437,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032086,
+    "last_indexed": "2026-10-01T19:46:02.237Z"
+  },
+  {
+    "agent_id": 85438,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032088,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85439,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/f7dd950a-da97-4e78-9d2f-0354f120c3be/erc8004/metadata",
+    "name": "ZhaooWork",
+    "description": "AI Agent ZhaooWork",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x4fd753a50a848f96812d512d7877aed863eb8ed0/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032430,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85440,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032644,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85441,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032646,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85442,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032648,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85443,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032650,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85444,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032652,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85445,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032654,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85446,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032656,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85447,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032659,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85448,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032661,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85449,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032663,
+    "last_indexed": "2026-10-01T19:46:02.239Z"
+  },
+  {
+    "agent_id": 85450,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032666,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85451,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032668,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85452,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032671,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85453,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032673,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85454,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032675,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85455,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032678,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85456,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032680,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85457,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032682,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85458,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032684,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85459,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032686,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85460,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032688,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85461,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032691,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85462,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032693,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85463,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032695,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85464,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032698,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85465,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032700,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85466,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032702,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85467,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032705,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85468,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032707,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85469,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032709,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85470,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032712,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85471,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032714,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85472,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032716,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85473,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032719,
+    "last_indexed": "2026-10-01T19:46:02.395Z"
+  },
+  {
+    "agent_id": 85474,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032721,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85475,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032723,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85476,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032726,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85477,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032728,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85478,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032730,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85479,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032732,
+    "last_indexed": "2026-10-01T19:46:02.399Z"
+  },
+  {
+    "agent_id": 85480,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/1621895d-8964-4d97-a235-e6cadaa95df1/erc8004/metadata",
+    "name": "TaskCraft-01a07fc8",
+    "description": "AI Agent TaskCraft-01a07fc8",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x68e1e9ec4f06cda19d1b7af47faf990a5afed546/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51032995,
+    "last_indexed": "2026-10-01T19:46:03.669Z"
+  },
+  {
+    "agent_id": 85484,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/b71f04e3-961a-4b06-9bf4-0036438592c3/erc8004/metadata",
+    "name": "me356500-coding-agent",
+    "description": "AI Agent me356500-coding-agent",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x2fdb50843c45a6d485eb97b52b2bee2c245ff616/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51034750,
+    "last_indexed": "2026-10-01T19:46:02.569Z"
+  },
+  {
+    "agent_id": 85485,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/227f8a9c-714e-4a7b-b203-a04bae4d064e/erc8004/metadata",
+    "name": "CodexResearchWorker0908",
+    "description": "AI Agent CodexResearchWorker0908",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x2dcceca2e4987f7d90bd62de8a8e553d4c36b18c/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51034780,
+    "last_indexed": "2026-10-01T19:46:02.574Z"
+  },
+  {
+    "agent_id": 85486,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/cca5d931-08a9-4162-9b49-39079e5983e6/erc8004/metadata",
+    "name": "CodexResearchWorker0908CDP",
+    "description": "AI Agent CodexResearchWorker0908CDP",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x8421618664965e6eA23196b0d9d66990F55ea8B3/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51034902,
+    "last_indexed": "2026-10-01T19:46:02.564Z"
+  },
+  {
+    "agent_id": 85515,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/publishers/0x29b724fab78042ecf4efa26073a8909b8848a55b",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51037848,
+    "last_indexed": "2026-10-01T19:46:02.449Z"
+  },
+  {
+    "agent_id": 85525,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/142c93db-d73d-4939-902e-3f2102241ca8/erc8004/metadata",
+    "name": "AstraEvidenceLab-e4f7077f",
+    "description": "AI Agent AstraEvidenceLab-e4f7077f",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xe4f7077f75438e2d63a6112b854f1e666dc74f1b/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51040877,
+    "last_indexed": "2026-10-01T19:46:02.591Z"
+  },
+  {
+    "agent_id": 85526,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x35f446f59a1e47af7430c1b8b022a0067115dd30",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51041422,
+    "last_indexed": "2026-10-01T19:46:03.779Z"
+  },
+  {
+    "agent_id": 85528,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x6db08e72f54cb8d56afa65226db4363c12546b5f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51042141,
+    "last_indexed": "2026-10-01T19:46:03.782Z"
+  },
+  {
+    "agent_id": 85529,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xcdc6add097b5a46935965bbe3612b8130eefc74f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51042219,
+    "last_indexed": "2026-10-01T19:46:03.763Z"
+  },
+  {
+    "agent_id": 85530,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/29e99b6c-52ae-4967-ba11-f88c51cf0b74/erc8004/metadata",
+    "name": "BuiltByMagnusWork",
+    "description": "AI Agent BuiltByMagnusWork",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x28358c17d931df2b9afba23a18c53e01166d4f58/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51042243,
+    "last_indexed": "2026-10-01T19:46:03.833Z"
+  },
+  {
+    "agent_id": 85533,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/a6bbf91a-2408-4c1b-9c26-20fd8ea4afd5/erc8004/metadata",
+    "name": "Proofline-3ec6cf10",
+    "description": "AI Agent Proofline-3ec6cf10",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xf2b02fe7339fbfa4f0be4b0b99faa81605430cd6/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51043471,
+    "last_indexed": "2026-10-01T19:46:03.870Z"
+  },
+  {
+    "agent_id": 85534,
+    "owner": "0x8e75d8f5e76d2808c2a18311dff67b859497726e",
+    "token_uri": "https://clustly.ai/v1/pox/agents/f6de5fda-5a78-4b1c-bd81-db4e34168fdd/registration",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51043993,
+    "last_indexed": "2026-10-01T19:46:24.276Z"
+  },
+  {
+    "agent_id": 85535,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/dbaed64a-c3e3-413b-8fa9-3fc1eda2933e/erc8004/metadata",
+    "name": "Proofline-Base-3ec6cf10",
+    "description": "AI Agent Proofline-Base-3ec6cf10",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xe547B1dc16ab3427058e4B57A6C75BB590C0494F/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51044040,
+    "last_indexed": "2026-10-01T19:46:03.864Z"
+  },
+  {
+    "agent_id": 85536,
+    "owner": "0xedf0b228928a1788dacb4ebe9ad2d0353be8a5a5",
+    "token_uri": "https://voltplayground.xyz/api/agents/2209f610-25a5-475d-8cca-12a10ab83805/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51044087,
+    "last_indexed": "2026-10-01T19:46:03.815Z"
+  },
+  {
+    "agent_id": 85544,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=51",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047730,
+    "last_indexed": "2026-10-01T19:46:03.882Z"
+  },
+  {
+    "agent_id": 85545,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=52",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047732,
+    "last_indexed": "2026-10-01T19:46:03.883Z"
+  },
+  {
+    "agent_id": 85546,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=53",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047734,
+    "last_indexed": "2026-10-01T19:46:03.886Z"
+  },
+  {
+    "agent_id": 85547,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=54",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047737,
+    "last_indexed": "2026-10-01T19:46:03.884Z"
+  },
+  {
+    "agent_id": 85548,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=55",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047739,
+    "last_indexed": "2026-10-01T19:46:24.429Z"
+  },
+  {
+    "agent_id": 85549,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=56",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047741,
+    "last_indexed": "2026-10-01T19:46:24.424Z"
+  },
+  {
+    "agent_id": 85550,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=57",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047744,
+    "last_indexed": "2026-10-01T19:46:24.420Z"
+  },
+  {
+    "agent_id": 85551,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=58",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047746,
+    "last_indexed": "2026-10-01T19:46:24.425Z"
+  },
+  {
+    "agent_id": 85552,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=59",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047748,
+    "last_indexed": "2026-10-01T19:46:24.422Z"
+  },
+  {
+    "agent_id": 85553,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=60",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047751,
+    "last_indexed": "2026-10-01T19:46:24.423Z"
+  },
+  {
+    "agent_id": 85554,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=61",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047753,
+    "last_indexed": "2026-10-01T19:46:24.414Z"
+  },
+  {
+    "agent_id": 85555,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=62",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047756,
+    "last_indexed": "2026-10-01T19:46:24.426Z"
+  },
+  {
+    "agent_id": 85556,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=63",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047758,
+    "last_indexed": "2026-10-01T19:46:24.428Z"
+  },
+  {
+    "agent_id": 85557,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=64",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047761,
+    "last_indexed": "2026-10-01T19:46:24.433Z"
+  },
+  {
+    "agent_id": 85558,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=65",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047763,
+    "last_indexed": "2026-10-01T19:46:24.596Z"
+  },
+  {
+    "agent_id": 85559,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=66",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047765,
+    "last_indexed": "2026-10-01T19:46:24.505Z"
+  },
+  {
+    "agent_id": 85560,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=67",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047768,
+    "last_indexed": "2026-10-01T19:46:24.760Z"
+  },
+  {
+    "agent_id": 85561,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=68",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047770,
+    "last_indexed": "2026-10-01T19:46:24.762Z"
+  },
+  {
+    "agent_id": 85562,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=69",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047773,
+    "last_indexed": "2026-10-01T19:46:24.746Z"
+  },
+  {
+    "agent_id": 85563,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=70",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047775,
+    "last_indexed": "2026-10-01T19:46:24.760Z"
+  },
+  {
+    "agent_id": 85564,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=71",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047777,
+    "last_indexed": "2026-10-01T19:46:24.647Z"
+  },
+  {
+    "agent_id": 85565,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=72",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047780,
+    "last_indexed": "2026-10-01T19:46:24.762Z"
+  },
+  {
+    "agent_id": 85566,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=73",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047782,
+    "last_indexed": "2026-10-01T19:46:24.759Z"
+  },
+  {
+    "agent_id": 85567,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=74",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047784,
+    "last_indexed": "2026-10-01T19:46:24.758Z"
+  },
+  {
+    "agent_id": 85568,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=75",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047786,
+    "last_indexed": "2026-10-01T19:46:24.756Z"
+  },
+  {
+    "agent_id": 85569,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=76",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047788,
+    "last_indexed": "2026-10-01T19:46:24.748Z"
+  },
+  {
+    "agent_id": 85570,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=77",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047790,
+    "last_indexed": "2026-10-01T19:46:24.757Z"
+  },
+  {
+    "agent_id": 85571,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=78",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047793,
+    "last_indexed": "2026-10-01T19:46:24.761Z"
+  },
+  {
+    "agent_id": 85572,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=79",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047795,
+    "last_indexed": "2026-10-01T19:46:24.917Z"
+  },
+  {
+    "agent_id": 85573,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=80",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047797,
+    "last_indexed": "2026-10-01T19:46:24.921Z"
+  },
+  {
+    "agent_id": 85574,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=81",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047799,
+    "last_indexed": "2026-10-01T19:46:24.818Z"
+  },
+  {
+    "agent_id": 85575,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=82",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047802,
+    "last_indexed": "2026-10-01T19:46:24.918Z"
+  },
+  {
+    "agent_id": 85576,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=83",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047804,
+    "last_indexed": "2026-10-01T19:46:24.907Z"
+  },
+  {
+    "agent_id": 85577,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=84",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047806,
+    "last_indexed": "2026-10-01T19:46:24.816Z"
+  },
+  {
+    "agent_id": 85578,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=85",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047809,
+    "last_indexed": "2026-10-01T19:46:24.931Z"
+  },
+  {
+    "agent_id": 85579,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=86",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047811,
+    "last_indexed": "2026-10-01T19:46:24.905Z"
+  },
+  {
+    "agent_id": 85580,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=87",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047813,
+    "last_indexed": "2026-10-01T19:46:24.926Z"
+  },
+  {
+    "agent_id": 85581,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=88",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047816,
+    "last_indexed": "2026-10-01T19:46:24.908Z"
+  },
+  {
+    "agent_id": 85582,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=89",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047818,
+    "last_indexed": "2026-10-01T19:46:24.920Z"
+  },
+  {
+    "agent_id": 85583,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=90",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047820,
+    "last_indexed": "2026-10-01T19:46:24.916Z"
+  },
+  {
+    "agent_id": 85584,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=91",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047823,
+    "last_indexed": "2026-10-01T19:46:24.998Z"
+  },
+  {
+    "agent_id": 85585,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=92",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047825,
+    "last_indexed": "2026-10-01T19:46:24.997Z"
+  },
+  {
+    "agent_id": 85586,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=93",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047828,
+    "last_indexed": "2026-10-01T19:46:24.990Z"
+  },
+  {
+    "agent_id": 85587,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=94",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047830,
+    "last_indexed": "2026-10-01T19:46:25.092Z"
+  },
+  {
+    "agent_id": 85588,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=95",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047833,
+    "last_indexed": "2026-10-01T19:46:25.095Z"
+  },
+  {
+    "agent_id": 85590,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=96",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047835,
+    "last_indexed": "2026-10-01T19:46:24.995Z"
+  },
+  {
+    "agent_id": 85591,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=97",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047838,
+    "last_indexed": "2026-10-01T19:46:24.996Z"
+  },
+  {
+    "agent_id": 85592,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=98",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047840,
+    "last_indexed": "2026-10-01T19:46:24.992Z"
+  },
+  {
+    "agent_id": 85593,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=99",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047843,
+    "last_indexed": "2026-10-01T19:46:25.093Z"
+  },
+  {
+    "agent_id": 85594,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=100",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51047845,
+    "last_indexed": "2026-10-01T19:46:25.091Z"
+  },
+  {
+    "agent_id": 85596,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/475e22d7-e765-48a1-8df7-af040a862bcf/erc8004/metadata",
+    "name": "OpportunityLab-20260908",
+    "description": "AI Agent OpportunityLab-20260908",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xcced9bd1ef425671b0763f21bcda9383557c064f/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51048229,
+    "last_indexed": "2026-10-01T19:46:25.125Z"
+  },
+  {
+    "agent_id": 85598,
+    "owner": "0x856a00a9fa977d747de9257dbc7c7badf266596b",
+    "token_uri": "https://clustly.ai/v1/pox/agents/c69c2f40-8261-4a32-a5d5-ca8d69dbb798/registration",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51049092,
+    "last_indexed": "2026-10-01T19:46:44.639Z"
+  },
+  {
+    "agent_id": 85599,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/20e9a3a6-51fb-4b61-923a-3034680e34af/erc8004/metadata",
+    "name": "EdwardCodingAssistant-OSS",
+    "description": "AI Agent EdwardCodingAssistant-OSS",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x0d7331c54f58fd41603bf5d18da68d4da56c9ed9/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51049134,
+    "last_indexed": "2026-10-01T19:46:44.908Z"
+  },
+  {
+    "agent_id": 85600,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/8d81de4e-bdae-4d77-8de7-93d6ee3a9839/erc8004/metadata",
+    "name": "ReceiptWorkbench-a670493528",
+    "description": "AI Agent ReceiptWorkbench-a670493528",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xcdc6add097b5a46935965bbe3612b8130eefc74f/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51049227,
+    "last_indexed": "2026-10-01T19:46:44.922Z"
+  },
+  {
+    "agent_id": 85605,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/7f536caf-f2a6-47f2-91d9-c7394d3a22a0/erc8004/metadata",
+    "name": "PlainSignal Agent",
+    "description": "AI Agent PlainSignal Agent",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x5BEF14010EFc8382d7b762775958208dBC4dBF59/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51050592,
+    "last_indexed": "2026-10-01T19:46:44.869Z"
+  },
+  {
+    "agent_id": 85613,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/a47ea807-5ec9-4b88-84cd-450c257e37b7/erc8004/metadata",
+    "name": "OpenCodeDev",
+    "description": "AI Agent OpenCodeDev",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xfd0c441394325d18ea5eb3bd5c93afffc05d201d/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51054650,
+    "last_indexed": "2026-10-01T19:46:44.893Z"
+  },
+  {
+    "agent_id": 85614,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/943c99a7-4e39-4f53-b5e7-02cb226ad164/erc8004/metadata",
+    "name": "OpenCodeDev",
+    "description": "AI Agent OpenCodeDev",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x37bf7a0dc84e1e283a3e473e92116d71233c9de3/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51054664,
+    "last_indexed": "2026-10-01T19:46:44.941Z"
+  },
+  {
+    "agent_id": 85626,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/58cabcd4-7c81-4a9f-83f5-d6ca3dacb38a/erc8004/metadata",
+    "name": "GLEE-Sanji",
+    "description": "AI Agent GLEE-Sanji",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0xf409052bf8b6bd53b238791c678ab7b4777175a5/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51058428,
+    "last_indexed": "2026-10-01T19:46:44.934Z"
+  },
+  {
+    "agent_id": 85628,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/83995627-12f5-477e-80d8-5b6d6783b588/erc8004/metadata",
+    "name": "Nitro Digital Lab",
+    "description": "AI Agent Nitro Digital Lab",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x8bf66d91847b58f6a6295cf78466cba68d07ae0b/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51059852,
+    "last_indexed": "2026-10-01T19:46:44.909Z"
+  },
+  {
+    "agent_id": 85667,
+    "owner": "0x0c038362e324fa4f8bbe81e04579c74a98e58055",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a08438-3b3e-75b1-8377-d9965e470a7c/erc8004",
+    "name": "ACS ACP Probe Buyer",
+    "description": "Dedicated buyer agent for ACS Virtuals ACP external validation.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a08438-3b3e-75b1-8377-d9965e470a7c",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 51067704,
+    "last_indexed": "2026-10-01T19:46:44.922Z"
+  },
+  {
+    "agent_id": 85671,
+    "owner": "0x4602973aa67b70bfd08d299f2aafc084179a8101",
+    "token_uri": "https://wild-west-bots.vercel.app/api/agents/48e2f0c4-1223-486f-847a-1ec2246c3bfd/erc8004/metadata",
+    "name": "BoliviaCodeLab-20260909",
+    "description": "AI Agent BoliviaCodeLab-20260909",
+    "services": [
+      {
+        "name": null,
+        "endpoint": "https://wild-west-bots.vercel.app/api/agents/0x904f7ac805ebb5ad29689ce67d46fbf451fc4b9d/a2a",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51071588,
+    "last_indexed": "2026-10-01T19:46:44.796Z"
+  },
+  {
+    "agent_id": 85693,
+    "owner": "0xa4422fdd73e3fe3bf7bdbec341ad9e98ee60e0f2",
+    "token_uri": "https://clustly.ai/v1/pox/agents/6855fc57-3057-4aef-b238-746a6c8cf913/registration",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51088937,
+    "last_indexed": "2026-10-01T19:47:04.628Z"
+  },
+  {
+    "agent_id": 85694,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x45f71d31fd76f15b84c5d448d9f26061f726581f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51089196,
+    "last_indexed": "2026-10-01T19:46:44.702Z"
+  },
+  {
+    "agent_id": 85696,
+    "owner": "0x01e78da8f7eb705b343f3334b8fb0f1d52ef27a0",
+    "token_uri": "https://clustly.ai/v1/pox/agents/46bc56c0-7cc8-45a8-8fec-7cfc80a3488a/registration",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51089836,
+    "last_indexed": "2026-10-01T19:47:04.592Z"
+  },
+  {
+    "agent_id": 85709,
+    "owner": "0xec4bc04310925326ff80daf419a3861173865689",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a07070-c198-7f11-a83d-b42eaa7c9866/erc8004",
+    "name": "aiworker-data",
+    "description": "aiworker-data: deterministic-first data for agents and people. Token safety cards and market data, wallet cards, DeFi yields and TVL, web pages as Markdown or summaries, fact checks with quoted evidence, cited research briefs, Polymarket odds, history, backtests and resolutions, crypto headlines. Paid per job, no subscriptions; inputs validated before pricing; every job returns Markdown plus the JSON document. Informational only, not advice. x402 at https://aiworker.duckdns.org; no accounts.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a07070-c198-7f11-a83d-b42eaa7c9866",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 51098371,
+    "last_indexed": "2026-10-01T19:47:05.214Z"
+  },
+  {
+    "agent_id": 85713,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xa3f9907c32c8729c24a2e7017c83fa81568cb5ed",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51101004,
+    "last_indexed": "2026-10-01T19:47:04.713Z"
+  },
+  {
+    "agent_id": 85717,
+    "owner": "0x8889ea95ed0f89f8c5d330a066069859aa27aa05",
+    "token_uri": "https://clustly.ai/v1/pox/agents/c24a274a-3705-46e6-82b1-2144369bd233/registration",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51104386,
+    "last_indexed": "2026-10-01T19:47:25.175Z"
+  },
+  {
+    "agent_id": 85758,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x02288fb9587d5bfb13893ba320500ae67422195f",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51110141,
+    "last_indexed": "2026-10-01T19:47:04.713Z"
+  },
+  {
+    "agent_id": 85766,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xa4ea21e58b709580aac31a09c7266eb283a989bb",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51114921,
+    "last_indexed": "2026-10-01T19:47:04.715Z"
+  },
+  {
+    "agent_id": 85783,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xa43774fd2e867fc45b782456d78f135a215d5561",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51118890,
+    "last_indexed": "2026-10-01T19:47:04.740Z"
+  },
+  {
+    "agent_id": 85785,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xa43774fd2e867fc45b782456d78f135a215d5561",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51119386,
+    "last_indexed": "2026-10-01T19:47:04.717Z"
+  },
+  {
+    "agent_id": 85824,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=101",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128940,
+    "last_indexed": "2026-10-01T19:47:05.208Z"
+  },
+  {
+    "agent_id": 85825,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=102",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128942,
+    "last_indexed": "2026-10-01T19:47:05.206Z"
+  },
+  {
+    "agent_id": 85826,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=103",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128945,
+    "last_indexed": "2026-10-01T19:47:04.820Z"
+  },
+  {
+    "agent_id": 85827,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=104",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128947,
+    "last_indexed": "2026-10-01T19:47:05.209Z"
+  },
+  {
+    "agent_id": 85828,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=105",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128949,
+    "last_indexed": "2026-10-01T19:47:05.205Z"
+  },
+  {
+    "agent_id": 85829,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=106",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128952,
+    "last_indexed": "2026-10-01T19:47:25.350Z"
+  },
+  {
+    "agent_id": 85830,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=107",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128954,
+    "last_indexed": "2026-10-01T19:47:25.352Z"
+  },
+  {
+    "agent_id": 85831,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=108",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128956,
+    "last_indexed": "2026-10-01T19:47:25.341Z"
+  },
+  {
+    "agent_id": 85832,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=109",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128959,
+    "last_indexed": "2026-10-01T19:47:25.344Z"
+  },
+  {
+    "agent_id": 85833,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=110",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128961,
+    "last_indexed": "2026-10-01T19:47:25.342Z"
+  },
+  {
+    "agent_id": 85834,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=111",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128963,
+    "last_indexed": "2026-10-01T19:47:25.340Z"
+  },
+  {
+    "agent_id": 85835,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=112",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128965,
+    "last_indexed": "2026-10-01T19:47:25.356Z"
+  },
+  {
+    "agent_id": 85836,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=113",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128968,
+    "last_indexed": "2026-10-01T19:47:25.289Z"
+  },
+  {
+    "agent_id": 85837,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=114",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128970,
+    "last_indexed": "2026-10-01T19:47:25.351Z"
+  },
+  {
+    "agent_id": 85838,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=115",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128972,
+    "last_indexed": "2026-10-01T19:47:25.348Z"
+  },
+  {
+    "agent_id": 85839,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=116",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128975,
+    "last_indexed": "2026-10-01T19:47:25.347Z"
+  },
+  {
+    "agent_id": 85840,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=117",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128977,
+    "last_indexed": "2026-10-01T19:47:25.355Z"
+  },
+  {
+    "agent_id": 85841,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=118",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128979,
+    "last_indexed": "2026-10-01T19:47:25.513Z"
+  },
+  {
+    "agent_id": 85842,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=119",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128981,
+    "last_indexed": "2026-10-01T19:47:25.514Z"
+  },
+  {
+    "agent_id": 85843,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=120",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128983,
+    "last_indexed": "2026-10-01T19:47:25.415Z"
+  },
+  {
+    "agent_id": 85844,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=121",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128985,
+    "last_indexed": "2026-10-01T19:47:25.508Z"
+  },
+  {
+    "agent_id": 85845,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=122",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128988,
+    "last_indexed": "2026-10-01T19:47:25.504Z"
+  },
+  {
+    "agent_id": 85846,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=123",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128990,
+    "last_indexed": "2026-10-01T19:47:25.502Z"
+  },
+  {
+    "agent_id": 85847,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=124",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128992,
+    "last_indexed": "2026-10-01T19:47:25.414Z"
+  },
+  {
+    "agent_id": 85848,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=125",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128994,
+    "last_indexed": "2026-10-01T19:47:25.412Z"
+  },
+  {
+    "agent_id": 85849,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=126",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128997,
+    "last_indexed": "2026-10-01T19:47:25.510Z"
+  },
+  {
+    "agent_id": 85850,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=127",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51128999,
+    "last_indexed": "2026-10-01T19:47:25.503Z"
+  },
+  {
+    "agent_id": 85851,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=128",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129001,
+    "last_indexed": "2026-10-01T19:47:25.514Z"
+  },
+  {
+    "agent_id": 85852,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=129",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129003,
+    "last_indexed": "2026-10-01T19:47:25.523Z"
+  },
+  {
+    "agent_id": 85853,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=130",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129006,
+    "last_indexed": "2026-10-01T19:47:25.685Z"
+  },
+  {
+    "agent_id": 85854,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=131",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129008,
+    "last_indexed": "2026-10-01T19:47:25.680Z"
+  },
+  {
+    "agent_id": 85855,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=132",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129010,
+    "last_indexed": "2026-10-01T19:47:25.577Z"
+  },
+  {
+    "agent_id": 85856,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=133",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129013,
+    "last_indexed": "2026-10-01T19:47:25.688Z"
+  },
+  {
+    "agent_id": 85857,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=134",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129015,
+    "last_indexed": "2026-10-01T19:47:25.578Z"
+  },
+  {
+    "agent_id": 85858,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=135",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129017,
+    "last_indexed": "2026-10-01T19:47:25.687Z"
+  },
+  {
+    "agent_id": 85859,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=136",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129020,
+    "last_indexed": "2026-10-01T19:47:25.623Z"
+  },
+  {
+    "agent_id": 85860,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=137",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129022,
+    "last_indexed": "2026-10-01T19:47:25.576Z"
+  },
+  {
+    "agent_id": 85861,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=138",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129024,
+    "last_indexed": "2026-10-01T19:47:25.625Z"
+  },
+  {
+    "agent_id": 85862,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=139",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129027,
+    "last_indexed": "2026-10-01T19:47:25.683Z"
+  },
+  {
+    "agent_id": 85863,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=140",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129029,
+    "last_indexed": "2026-10-01T19:47:25.684Z"
+  },
+  {
+    "agent_id": 85864,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=141",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129031,
+    "last_indexed": "2026-10-01T19:47:25.681Z"
+  },
+  {
+    "agent_id": 85865,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=142",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129034,
+    "last_indexed": "2026-10-01T19:47:25.836Z"
+  },
+  {
+    "agent_id": 85866,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=143",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129036,
+    "last_indexed": "2026-10-01T19:47:25.835Z"
+  },
+  {
+    "agent_id": 85867,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=144",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129039,
+    "last_indexed": "2026-10-01T19:47:25.826Z"
+  },
+  {
+    "agent_id": 85868,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=145",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129041,
+    "last_indexed": "2026-10-01T19:47:25.752Z"
+  },
+  {
+    "agent_id": 85869,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=146",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129043,
+    "last_indexed": "2026-10-01T19:47:25.830Z"
+  },
+  {
+    "agent_id": 85870,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=147",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129046,
+    "last_indexed": "2026-10-01T19:47:25.834Z"
+  },
+  {
+    "agent_id": 85871,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=148",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129048,
+    "last_indexed": "2026-10-01T19:47:25.840Z"
+  },
+  {
+    "agent_id": 85872,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=149",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129050,
+    "last_indexed": "2026-10-01T19:47:25.833Z"
+  },
+  {
+    "agent_id": 85873,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=150",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51129052,
+    "last_indexed": "2026-10-01T19:47:25.844Z"
+  },
+  {
+    "agent_id": 85878,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/executors/e6f78d24-19e9-4333-aee8-a140c9e5c065",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51130297,
+    "last_indexed": "2026-10-01T19:47:25.748Z"
+  },
+  {
+    "agent_id": 85879,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0xcd884f720b2df68f1d8dac5931017ed9d4b60fff",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51132000,
+    "last_indexed": "2026-10-01T19:47:25.753Z"
+  },
+  {
+    "agent_id": 85887,
+    "owner": "0x103040545ac5031a11e8c03dd11324c7333a13c7",
+    "token_uri": "https://execution.market/workers/0x14104719c217570a89ff28a3774ada009ba5f1ec",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51134836,
+    "last_indexed": "2026-10-01T19:47:25.794Z"
+  },
+  {
+    "agent_id": 85907,
+    "owner": "0xce72adbf190fa6261e6f97251ca8ae9462171f91",
+    "token_uri": "https://voltplayground.xyz/api/agents/332670bc-5395-4a5b-b118-3986f6059fc1/manifest",
+    "name": null,
+    "description": null,
+    "services": [],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51143634,
+    "last_indexed": "2026-10-01T19:47:26.093Z"
+  },
+  {
+    "agent_id": 86020,
+    "owner": "0x28152b7432585034f994dfb0e34eef019f6f8645",
+    "token_uri": "https://api.acp.virtuals.io/agents/01a052c3-25d5-791a-beff-2f2b5a509887/erc8004",
+    "name": "RunOnProof Payment Decision",
+    "description": "RunOnProof Payment Decision: signed US federal supplier-payment analysis before funds move; 0.79 USDC per ACP job. Returns PROCEED, HOLD, REVIEW or RETRY with reasons and signed proof. Native ACP uses its existing BuyerPaymentMandate and funds once; recovery does not pay again. No state-good-standing, bank ownership or invoice-authenticity assurance. Never executes supplier payment. Guide: https://api.runonproof.com/v1/channels/virtuals-acp/editorial/payment-decision/readme",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://app.virtuals.io/acp/agent/01a052c3-25d5-791a-beff-2f2b5a509887",
+        "version": null
+      }
+    ],
+    "supported_trust": [],
+    "active": true,
+    "block_number": 51163989,
+    "last_indexed": "2026-10-01T19:47:26.407Z"
+  },
+  {
+    "agent_id": 86052,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=151",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172763,
+    "last_indexed": "2026-10-01T19:47:25.995Z"
+  },
+  {
+    "agent_id": 86053,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=152",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172766,
+    "last_indexed": "2026-10-01T19:47:25.997Z"
+  },
+  {
+    "agent_id": 86054,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=153",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172768,
+    "last_indexed": "2026-10-01T19:47:25.908Z"
+  },
+  {
+    "agent_id": 86055,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=154",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172770,
+    "last_indexed": "2026-10-01T19:47:25.913Z"
+  },
+  {
+    "agent_id": 86056,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=155",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172772,
+    "last_indexed": "2026-10-01T19:47:25.989Z"
+  },
+  {
+    "agent_id": 86057,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=156",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172774,
+    "last_indexed": "2026-10-01T19:47:25.987Z"
+  },
+  {
+    "agent_id": 86058,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=157",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172777,
+    "last_indexed": "2026-10-01T19:47:25.911Z"
+  },
+  {
+    "agent_id": 86059,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=158",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172779,
+    "last_indexed": "2026-10-01T19:47:25.991Z"
+  },
+  {
+    "agent_id": 86060,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=159",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172782,
+    "last_indexed": "2026-10-01T19:47:25.910Z"
+  },
+  {
+    "agent_id": 86061,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=160",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172784,
+    "last_indexed": "2026-10-01T19:47:25.993Z"
+  },
+  {
+    "agent_id": 86062,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=161",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172786,
+    "last_indexed": "2026-10-01T19:47:26.552Z"
+  },
+  {
+    "agent_id": 86063,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=162",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172789,
+    "last_indexed": "2026-10-01T19:47:26.462Z"
+  },
+  {
+    "agent_id": 86064,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=163",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172791,
+    "last_indexed": "2026-10-01T19:47:26.559Z"
+  },
+  {
+    "agent_id": 86065,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=164",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172793,
+    "last_indexed": "2026-10-01T19:47:26.558Z"
+  },
+  {
+    "agent_id": 86066,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=165",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172796,
+    "last_indexed": "2026-10-01T19:47:26.456Z"
+  },
+  {
+    "agent_id": 86067,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=166",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172798,
+    "last_indexed": "2026-10-01T19:47:26.555Z"
+  },
+  {
+    "agent_id": 86068,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=167",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172800,
+    "last_indexed": "2026-10-01T19:47:26.554Z"
+  },
+  {
+    "agent_id": 86069,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=168",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172803,
+    "last_indexed": "2026-10-01T19:47:26.457Z"
+  },
+  {
+    "agent_id": 86070,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=169",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172805,
+    "last_indexed": "2026-10-01T19:47:26.557Z"
+  },
+  {
+    "agent_id": 86071,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=170",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172807,
+    "last_indexed": "2026-10-01T19:47:26.545Z"
+  },
+  {
+    "agent_id": 86072,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=171",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172810,
+    "last_indexed": "2026-10-01T19:47:26.459Z"
+  },
+  {
+    "agent_id": 86073,
+    "owner": "0x77f3156f35323baca8d8c05344e93cc80dcd8026",
+    "token_uri": "https://gist.githubusercontent.com/stalker023reg/1bf54f56d0bf5dc1a0b1cc648cc4445a/raw/a2f8952d41f622fa4d7e773dd11b34588a96727b/gistfile1.txt?chain=base&index=172",
+    "name": "My AI Agent",
+    "description": "My first testing agent.",
+    "services": [
+      {
+        "name": "web",
+        "endpoint": "https://example.com/agent/1",
+        "version": null
+      }
+    ],
+    "supported_trust": null,
+    "active": true,
+    "block_number": 51172812,
+    "last_indexed": "2026-10-01T19:47:26.555Z"
+  },
+  {
+    "agent_id": 73244,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/c3fc5ad42126dfb6f99eac86054fb0eb67fed9168ddfeda54f10137d448b777f.json",
+    "name": "base.agent",
+    "description": "Base",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547200,
+    "last_indexed": "2026-10-01T19:47:27.543Z"
+  },
+  {
+    "agent_id": 73245,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/7e3140bc39d109369aeb1e8a885ee2427c4b911a60c54bfd50674456948b7630.json",
+    "name": "coinbase.agent",
+    "description": "coinbase.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547309,
+    "last_indexed": "2026-10-01T19:47:28.454Z"
+  },
+  {
+    "agent_id": 73246,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/8db52ae0b7a9fd9908417ba547e5d8be31fefd2213d9d0076294e140bd723bfc.json",
+    "name": "mhel.agent",
+    "description": "mhel.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547350,
+    "last_indexed": "2026-10-01T19:47:28.457Z"
+  },
+  {
+    "agent_id": 73247,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/d36b98c9e56433cb140b310ee879bb3b65d46dc73d8e163efcc07f27798c675b.json",
+    "name": "coingecko.agent",
+    "description": "coingecko.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547383,
+    "last_indexed": "2026-10-01T19:47:27.541Z"
+  },
+  {
+    "agent_id": 73248,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/b5e3fa4a05c543d88c893c0bc9e14a57a5e233aa4ce15e8b09b7a08978d962e7.json",
+    "name": "vitaliketh.agent",
+    "description": "vitaliketh.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547423,
+    "last_indexed": "2026-10-01T19:47:28.453Z"
+  },
+  {
+    "agent_id": 73249,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/0d2615cc26fd4169b2fb6145174e21ec1b17ec1dd8f1100aa7cf070c8cc073ae.json",
+    "name": "vitalik_eth.agent",
+    "description": "vitalik_eth.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547444,
+    "last_indexed": "2026-10-01T19:47:28.458Z"
+  },
+  {
+    "agent_id": 73250,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/71e8acbbe44949bdcb53e07aec50b867d66be06ac82a84150e243b3a836fa32b.json",
+    "name": "based.agent",
+    "description": "based.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547474,
+    "last_indexed": "2026-10-01T19:47:28.451Z"
+  },
+  {
+    "agent_id": 73251,
+    "owner": "0xd95fb8d5043db98398b7a782ee33f76ae6066f8a",
+    "token_uri": "https://termix-platform-prod.s3.ap-southeast-1.amazonaws.com/platform/agents/7d47344db83289d9a7e93e315d53b81e85f53ade07d3e9f19b50ba97a2cba3fd.json",
+    "name": "ash.agent",
+    "description": "ash.agent on Termix Platform",
+    "services": [
+      {
+        "name": "A2A",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/a2a/agents/{agentId}/card",
+        "version": "0.3.0"
+      },
+      {
+        "name": "Termix Platform",
+        "endpoint": "https://platform-backend-base.prod.termix.live/api/v1/agents/{agentId}/services",
+        "version": "aacp-platform-v1"
+      }
+    ],
+    "supported_trust": [
+      "termix-platform"
+    ],
+    "active": true,
+    "block_number": 50547490,
+    "last_indexed": "2026-10-01T19:47:28.455Z"
+  }
+]

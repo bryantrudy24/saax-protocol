@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saax-protocol.com/schemas/discovery/prepare-request/v1",
+  "title": "SAAX Discovery prepare_commitment Request",
+  "description": "Free, nonbinding preflight request. Identifies desired capability, schema/version, units, financial profile, constraints, and intended parties. Creates no agreement, payment, custody deposit, service execution, resource reservation, or spending authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profileVersion",
+    "capability",
+    "schema",
+    "units",
+    "financialProfile",
+    "clientNonce",
+    "issuedAt"
+  ],
+  "properties": {
+    "profileVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "version": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "unit"],
+      "properties": {
+        "amount": { "type": "string", "pattern": "^[0-9]+$", "description": "Integer-string settlement amount in the declared unit." },
+        "unit": { "type": "string", "minLength": 1 }
+      }
+    },
+    "financialProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network", "asset", "rail", "mode"],
+      "properties": {
+        "network": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+$" },
+        "asset": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+/[-a-z0-9]{3,8}:[^/]+$" },
+        "rail": { "enum": ["x402", "mpp", "ap2", "acp", "ach", "card", "internal-ledger", "unknown"] },
+        "mode": { "type": "string", "minLength": 1 }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxAmount": { "type": "string", "pattern": "^[0-9]+$" },
+        "deadline": { "type": "string", "format": "date-time" }
+      }
+    },
+    "intendedParties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "buyer": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+        "seller": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" }
+      }
+    },
+    "clientNonce": { "type": "string", "minLength": 8 },
+    "issuedAt": { "type": "string", "format": "date-time" }
+  }
+}

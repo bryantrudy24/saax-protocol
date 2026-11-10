@@ -1,0 +1,10 @@
+{
+  "id": "lifecycle-status-not-found-016",
+  "description": "get_commitment_status for not_found returns next_action: retry_safe",
+  "input": {
+    "lookup": "not_found"
+  },
+  "expected": {
+    "next_action": "retry_safe"
+  }
+}

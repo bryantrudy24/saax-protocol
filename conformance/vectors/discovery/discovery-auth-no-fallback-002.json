@@ -1,0 +1,11 @@
+{
+  "id": "discovery-auth-no-fallback-002",
+  "description": "Incompatible required extension must NOT trigger weaker fallback",
+  "input": {
+    "authOk": true,
+    "requiredExtensionOk": false
+  },
+  "expected": {
+    "allowFallback": false
+  }
+}

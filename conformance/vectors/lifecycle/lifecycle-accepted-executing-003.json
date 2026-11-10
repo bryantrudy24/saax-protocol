@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-accepted-executing-003",
+  "description": "accepted -> executing (provider starts)",
+  "input": {
+    "from": "accepted",
+    "to": "executing"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

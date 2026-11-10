@@ -1,0 +1,51 @@
+{
+  "name": "Example SAAX Provider (illustrative)",
+  "description": "Illustrative A2A Agent Card for the SAAX Discovery Profile v1.0.0 extension.",
+  "supportedInterfaces": [
+    {
+      "url": "https://example-provider.test/a2a/v1",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": {
+    "organization": "Example SAAX Provider (illustrative)",
+    "url": "https://example-provider.test"
+  },
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://saax-protocol.com/extensions/saax-discovery/v1",
+        "description": "SAAX Discovery Profile v1: provider capability and financial-compatibility declaration, plus free nonbinding prepare_commitment preflight.",
+        "required": false
+      }
+    ],
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": [
+    "text"
+  ],
+  "defaultOutputModes": [
+    "text"
+  ],
+  "skills": [
+    {
+      "id": "security-scan",
+      "name": "Security scan",
+      "description": "Runs a credentialed vulnerability scan against a buyer-supplied endpoint.",
+      "tags": [
+        "security",
+        "scan"
+      ]
+    }
+  ],
+  "signatures": [
+    {
+      "protected": "eyJhbGciOiJFZERTQSIsImtpZCI6ImtleS0yMDI2LTAxIn0",
+      "signature": "lSCNVYrSWw_PZ6ulw_WBUx99P50RnjYcssp7ibPVSLyotpgNdQt1EgIY93MY7NbUPiGEE6LuPn4MSd_DfsSiDQ"
+    }
+  ]
+}

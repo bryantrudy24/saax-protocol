@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saax-protocol.com/schemas/discovery/proposal/v1",
+  "title": "SAAX Discovery Signed Proposal (prepare_commitment response)",
+  "description": "Provider's signed, nonbinding proposal. Binds provider identity, intended buyer/audience, manifest/schema versions and digests, network/asset/rail/mode, amount, applicable policies, proposal id, nonce, issued-at, expiry, and signature profile. Provider signature is NOT buyer acceptance and creates no commitment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profileVersion",
+    "proposalId",
+    "nonce",
+    "requestDigest",
+    "provider",
+    "audience",
+    "manifest",
+    "terms",
+    "issuedAt",
+    "expires",
+    "status",
+    "signature"
+  ],
+  "properties": {
+    "profileVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "proposalId": { "type": "string", "pattern": "^prop_[A-Za-z0-9_-]+$" },
+    "nonce": { "type": "string", "minLength": 8 },
+    "requestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providerId", "signingKeyId", "origin"],
+      "properties": {
+        "providerId": { "type": "string", "format": "uri" },
+        "name": { "type": "string", "maxLength": 200 },
+        "signingKeyId": { "type": "string", "minLength": 1 },
+        "origin": { "type": "string", "pattern": "^https://[a-zA-Z0-9.-]+$" }
+      }
+    },
+    "audience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intendedAudience"],
+      "properties": {
+        "buyer": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+        "intendedAudience": { "type": "string", "minLength": 1 }
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commitmentManifestVersion", "commitmentManifestDigest", "schema"],
+      "properties": {
+        "commitmentManifestVersion": { "type": "string", "minLength": 1 },
+        "commitmentManifestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "schema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version", "digest"],
+          "properties": {
+            "id": { "type": "string", "format": "uri" },
+            "version": { "type": "string", "minLength": 1 },
+            "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+          }
+        }
+      }
+    },
+    "terms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network", "asset", "rail", "mode", "amount", "unit", "currency", "deadline"],
+      "properties": {
+        "network": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+$" },
+        "asset": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+/[-a-z0-9]{3,8}:[^/]+$" },
+        "rail": { "enum": ["x402", "mpp", "ap2", "acp", "ach", "card", "internal-ledger", "unknown"] },
+        "mode": { "type": "string", "minLength": 1 },
+        "amount": { "type": "string", "pattern": "^[0-9]+$", "description": "Integer-string settlement amount in the declared unit." },
+        "unit": { "type": "string", "minLength": 1 },
+        "currency": { "type": [ "string", "null" ], "minLength": 1, "description": "Explicit settlement currency from the profile combination (null for nonfinancial/rail-neutral — never inferred, never defaulted to USDC)" },
+        "decimals": { "type": [ "integer", "null" ], "minimum": 0, "description": "Explicit settlement decimals from the profile combination (null for nonfinancial/rail-neutral)" },
+        "financialTerms": { "enum": [ "financial", "nonfinancial", "rail-neutral" ], "description": "Explicit term class authenticated into the proposal" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "policies": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "refundOnFailure": { "type": "boolean" },
+            "compensationPercent": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" }
+          }
+        }
+      }
+    },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expires": { "type": "string", "format": "date-time" },
+    "status": { "const": "proposed" },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "alg", "keyId", "jws", "canonicalization"],
+      "properties": {
+        "scheme": { "const": "jws" },
+        "alg": { "const": "EdDSA" },
+        "keyId": { "type": "string", "minLength": 1 },
+        "jws": { "type": "string", "minLength": 1 },
+        "canonicalization": { "const": "rfc8785" }
+      }
+    },
+    "trust": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selfSigned", "authenticated", "independentConformance", "anchors"],
+      "properties": {
+        "selfSigned": { "type": "boolean" },
+        "authenticated": { "type": "boolean" },
+        "independentConformance": { "type": "boolean" },
+        "anchors": { "type": "array", "items": { "enum": ["registry", "did", "prior-trust", "out-of-band"] } }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "operations": {
+    "1792172973": {
+      "nonce": "1792172973",
+      "payloadHash": "358763d2984af1adec08cd6fb1767f73d9eef1d91a7f468ff4e5e7f886b62eb7",
+      "role": "evaluator",
+      "action": "submit verdict",
+      "commitmentDigest": "0xcee406b35858283c44a6f02abf7f1b44b8dfbddda9473ee3f4082f620722d4f8",
+      "escrowId": "0xcee406b35858283c44a6f02abf7f1b44b8dfbddda9473ee3f4082f620722d4f8",
+      "custody": "0x5a5472d751839cd4968cbf1b136baf862279ff5d",
+      "chainId": "84532",
+      "expiry": "1792176573",
+      "status": "complete",
+      "acceptedAt": 1792172973,
+      "externalEffect": {
+        "occurred": true,
+        "txHash": "0x093e880350c998cca1fa40e89e15a0d13dcd0e7460f23c68252910a01a4996ee",
+        "state": "released",
+        "at": 1792172976,
+        "block": "48202344"
+      },
+      "result": {
+        "action": "submit verdict"
+      }
+    }
+  }
+}

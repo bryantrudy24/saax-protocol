@@ -1,0 +1,26 @@
+{
+  "profileVersion": "1.0.0",
+  "capability": { "id": "security-scan" },
+  "schema": {
+    "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+    "version": "1",
+    "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "units": { "amount": "250000000", "unit": "micro-units of settlement asset" },
+  "financialProfile": {
+    "network": "eip155:8453",
+    "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "rail": "x402",
+    "mode": "x402"
+  },
+  "constraints": {
+    "maxAmount": "250000000",
+    "deadline": "2026-11-06T00:00:00Z"
+  },
+  "intendedParties": {
+    "buyer": "0x1111111111111111111111111111111111111111",
+    "seller": "0x2222222222222222222222222222222222222222"
+  },
+  "clientNonce": "0x1234abcd5678ef90",
+  "issuedAt": "2026-11-05T12:00:00Z"
+}

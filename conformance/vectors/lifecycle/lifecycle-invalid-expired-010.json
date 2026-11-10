@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-invalid-expired-010",
+  "description": "expired -> accepted is INVALID (terminal by time)",
+  "input": {
+    "from": "expired",
+    "to": "accepted"
+  },
+  "expected": {
+    "allowed": false
+  }
+}

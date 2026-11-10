@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conformance Suite - SAAX Protocol</title>
+<meta name="description" content="Public conformance tests for the SAAX Protocol specification: what the suite verifies, how to run it, the test vector format, and how to implement against SAAX.">
+<link rel="canonical" href="https://saax-protocol.com/conformance">
+<meta property="og:title" content="Conformance Suite - SAAX Protocol | SAAX Protocol">
+<meta property="og:description" content="Public conformance tests for the SAAX Protocol specification: what the suite verifies, how to run it, the test vector format, and how to implement against SAAX.">
+<meta property="og:url" content="https://saax-protocol.com/conformance">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>SAAX Conformance Suite</h1>
+<p><em>Public conformance tests for the SAAX Protocol specification. Any implementation that claims SAAX conformance can run this suite to prove it.</em></p>
+<h2>Overview</h2>
+<p>The SAAX Conformance Suite is a set of test vectors and a runner that verify an implementation matches the SAAX Protocol specification. It is for:</p>
+<ul>
+<li><strong>Implementation teams</strong> — prove your implementation conforms to the standard</li>
+<li><strong>Auditors and reviewers</strong> — independently check a claimed-conformant node</li>
+<li><strong>The SAAX Network (planned)</strong> — once independent nodes operate, their conformance is assessed against these vectors. The federated network is not yet deployed; the only running endpoint is the SAAX Router, operated by the SAAX team.</li>
+</ul>
+<p>The suite is provider-neutral: it tests the <em>standard</em>, not any one product. The reference implementation used to validate the vectors is the SAAX Router, but the runner works against any implementation that exposes the same function contract.</p>
+<h2>What It Tests</h2>
+<p>The suite covers eight areas of the specification:</p>
+<p>| Category | Vectors | What it verifies |</p>
+<p>|---|---|---|</p>
+<p>| commitments | 10 | Commitment schema validity: required fields, addresses, amounts, settlement requirements |</p>
+<p>| signatures | 5 | Signature verification: valid, malformed, wrong signer, wrong digest, expired |</p>
+<p>| hashes | 5 | Canonical hashing: key-order invariance, field-ordering sensitivity, known digests |</p>
+<p>| lifecycle | 10 | State machine: valid transitions, invalid transitions, terminal states |</p>
+<p>| evidence | 5 | Evidence evaluation: satisfied, not_satisfied, insufficient, tampered, stale |</p>
+<p>| authority | 5 | Authority proof validation: valid, expired, out-of-scope, bad signature, malformed |</p>
+<p>| settlement | 5 | Settlement linkage: x402/MPP rails, unsupported rail, invalid credential, realise(R) |</p>
+<p>| errors | 10 | Error classification: each input maps to the canonical error code |</p>
+<h2>How to Run It</h2>
+<p>Requirements: Node.js 18+ and the implementation modules you want to test.</p>
+<pre>
+# from your copy of the suite
+cd conformance
+node runner/run-conformance.mjs
+</pre>
+<p>Expected output ends with:</p>
+<pre>
+Summary: 55 passed, 0 failed (55 total)
+</pre>
+<p>The runner exits <code>0</code> when every vector passes, and <code>1</code> if any fail.</p>
+<h2>Test Vector Format</h2>
+<p>Each vector is a JSON file with <code>id</code>, <code>description</code>, <code>input</code>, and <code>expected</code>:</p>
+<pre>
+{
+  "id": "commitment-basic-001",
+  "description": "A minimal valid commitment with required fields only",
+  "input": { "...": "the commitment object" },
+  "expected": {
+    "valid": true,
+    "state_after_issuance": "issued"
+  }
+}
+</pre>
+<p>A full worked example: <a href="/conformance/vectors/commitments/commitment-basic-001.json">commitment-basic-001.json</a></p>
+<h2>Implementing Against SAAX</h2>
+<p>The runner calls a fixed set of functions. Point it at your implementation with the <code>SAAX_IMPL_MODULE</code> environment variable:</p>
+<pre>
+SAAX_IMPL_MODULE=/path/to/your-impl.mjs node runner/run-conformance.mjs
+</pre>
+<p>Your module must export these functions:</p>
+<p>| Function | Vectors using it |</p>
+<p>|---|---|</p>
+<p>| <code>validateCommitment(commitment)</code> | commitments, errors |</p>
+<p>| <code>verifyPartySignature(input)</code> | signatures |</p>
+<p>| <code>commitmentDigest(commitment)</code> | hashes |</p>
+<p>| <code>transition(input)</code> | lifecycle |</p>
+<p>| <code>evaluateCriterion(criterion, evidence[])</code> | evidence |</p>
+<p>| <code>validateAuthorityProof(proof, commitment)</code> | authority |</p>
+<p>| <code>resolveSettlementVector(input)</code> | settlement |</p>
+<p>| <code>classifyError(input)</code> | errors |</p>
+<p>The runner source is public: <a href="/conformance/runner/run-conformance.mjs">run-conformance.mjs</a>.</p>
+<h2>Current Suite Status</h2>
+<p><strong>55 vectors passing</strong> against the reference implementation (SAAX Router). These published vectors are conformance fixtures for the commitment schema, signatures, hashes, lifecycle, evidence, authority, settlement linkage, and error classification. They are distinct from (a) tampering tests — which mutate a record and assert that verification rejects it — and (b) lifecycle verification checks — which validate a full commitment history against chain data via the standalone verifier. A passing vector suite means the reference implementation conforms to the published standard’s tested behavior. It is <strong>not</strong> an independent audit, a security certification, or a guarantee of production readiness.</p>
+<h2>MCP Tool Surface</h2>
+<p>The MCP endpoint currently exposes <strong>11 tools</strong>: <code>create_commitment</code>, <code>get_protocol_info</code>, <code>get_routing_fee</code>, <code>ping</code>, <code>route_request</code>, <code>get_commitment</code>, <code>list_capabilities</code>, <code>get_authority_validation</code>, <code>get_evidence_verification</code>, <code>list_commitments</code>, and <code>get_commitment_status</code>.</p>
+<h2>Contributing Vectors</h2>
+<p>The suite is open to new vectors. Contributions should:</p>
+<ul>
+<li>Target one of the eight categories</li>
+<li>Be a single JSON file matching the vector format</li>
+<li>Include a description of the behavior being pinned down</li>
+<li>Add at least one positive and one negative case for any new behavior</li>
+</ul>
+<p>To submit, use the support contact in the <a href="/docs">integration guide</a>. Test vectors use test-only keys — never real mainnet keys.</p>
+<h2>The Specification</h2>
+<p>The vectors pin down behavior defined in the <a href="/spec">SAAX Protocol specification</a>. Where the spec and a vector disagree, the vector records the shipped behavior of the reference implementation.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

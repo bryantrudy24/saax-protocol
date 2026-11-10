@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-invalid-issued-fulfilled-008",
+  "description": "issued -> fulfilled is INVALID",
+  "input": {
+    "from": "issued",
+    "to": "fulfilled"
+  },
+  "expected": {
+    "allowed": false
+  }
+}

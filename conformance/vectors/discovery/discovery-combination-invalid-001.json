@@ -1,0 +1,29 @@
+{
+  "id": "discovery-combination-invalid-001",
+  "description": "Combination not in supportedCombinations fails (syntax alone is not enough)",
+  "input": {
+    "profile": {
+      "financialCompatibility": {
+        "supportedCombinations": [
+          {
+            "network": "eip155:8453",
+            "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+            "rail": "x402",
+            "mode": "x402",
+            "maturity": "production"
+          }
+        ]
+      }
+    },
+    "combo": {
+      "network": "eip155:8453",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "rail": "mpp",
+      "mode": "mpp"
+    }
+  },
+  "expected": {
+    "valid": false,
+    "errors_contain": "combination"
+  }
+}

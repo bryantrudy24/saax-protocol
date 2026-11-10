@@ -1,0 +1,10 @@
+{
+  "id": "errors-kill-switch-010",
+  "description": "Input that must produce SYS_KILL_SWITCH",
+  "input": {
+    "killSwitch": true
+  },
+  "expected": {
+    "error_code": "SYS_KILL_SWITCH"
+  }
+}

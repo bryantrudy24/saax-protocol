@@ -1,0 +1,52 @@
+{
+  "_comment": "SAAX Protocol — Supplier payment-rail registrations. Each indexed supplier MAY advertise payment rails here. This file is the Day 5 test fixture AND the shape the live index will emit on Day 7 (wallet wiring swaps only the data source, not the router). A supplier that advertises neither rail is routed 'unsupported' and excluded from matches — the router NEVER silently sends a rail the supplier did not accept. payTo addresses must pass basic format validation before any payment payload is constructed.",
+  "_supportedNetworks": ["base", "polygon", "solana"],
+  "_supportedAsset": "USDC",
+  "registrations": {
+    "84667": {
+      "agentId": 84667,
+      "name": "SYBIL",
+      "pricing": "fixed",
+      "scheme": "exact",
+      "rails": {
+        "x402": {
+          "payTo": "0xea8a3a831c1c0a96c4c26698dfed6397d1885cc4",
+          "asset": "USDC",
+          "networks": ["base"],
+          "maxTimeoutSeconds": 60
+        }
+      }
+    },
+    "85380": {
+      "agentId": 85380,
+      "name": "Apex Leviathan",
+      "pricing": "usage",
+      "scheme": "upto",
+      "rails": {
+        "x402": {
+          "payTo": "0x87ef068dee858b0fb6894aa6978174c54b3a05d4",
+          "asset": "USDC",
+          "networks": ["base"],
+          "maxTimeoutSeconds": 60
+        }
+      }
+    },
+    "51085": {
+      "agentId": 51085,
+      "name": "Surf AI",
+      "pricing": "fixed",
+      "rails": {
+        "mpp": {
+          "rail": "Stripe-native / fiat",
+          "note": "requires fiat rails or Stripe-native settlement"
+        }
+      }
+    },
+    "1380": {
+      "agentId": 1380,
+      "name": "Captain Dackie",
+      "pricing": "fixed",
+      "rails": {}
+    }
+  }
+}

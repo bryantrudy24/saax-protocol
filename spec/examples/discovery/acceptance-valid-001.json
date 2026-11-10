@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "acceptance-v1",
+  "action": "accept_commitment",
+  "domain": "saax:acceptance:v1",
+  "acceptanceId": "acc_example00000000000001",
+  "nonce": "accnonce-example-0001",
+  "buyer": "0x1111111111111111111111111111111111111111",
+  "provider": {
+    "providerId": "https://example-provider.test/",
+    "signingKeyId": "key-2026-01"
+  },
+  "proposal": {
+    "proposalId": "prop_a972c4fd2ddb33d6",
+    "proposalDigest": "sha256:f5b17cdd0264a8602acc8c77c14775bd4b8bc117bdc9015bf352cf0815ff76c9"
+  },
+  "termsDigest": "sha256:c4504f00152ac79d0da9a863593dd87237d6924d79582e354587dbc1375c771e",
+  "audience": "https://example-provider.test/",
+  "notBefore": "2026-11-05T11:58:00Z",
+  "notAfter": "2026-11-05T12:30:00Z",
+  "versions": {
+    "profileVersion": "1.0.0",
+    "manifestVersion": "1",
+    "schema": {
+      "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+      "version": "1",
+      "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  },
+  "signature": {
+    "scheme": "jws",
+    "alg": "EdDSA",
+    "keyId": "buyer-key-2026-01",
+    "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImJ1eWVyLWtleS0yMDI2LTAxIn0.eyJhY2NlcHRhbmNlSWQiOiJhY2NfZXhhbXBsZTAwMDAwMDAwMDAwMDAxIiwiYWN0aW9uIjoiYWNjZXB0X2NvbW1pdG1lbnQiLCJhdWRpZW5jZSI6Imh0dHBzOi8vZXhhbXBsZS1wcm92aWRlci50ZXN0LyIsImJ1eWVyIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiZG9tYWluIjoic2FheDphY2NlcHRhbmNlOnYxIiwibm9uY2UiOiJhY2Nub25jZS1leGFtcGxlLTAwMDEiLCJub3RBZnRlciI6IjIwMjYtMTEtMDVUMTI6MzA6MDBaIiwibm90QmVmb3JlIjoiMjAyNi0xMS0wNVQxMTo1ODowMFoiLCJwcm9wb3NhbCI6eyJwcm9wb3NhbERpZ2VzdCI6InNoYTI1NjpmNWIxN2NkZDAyNjRhODYwMmFjYzhjNzdjMTQ3NzViZDRiOGJjMTE3YmRjOTAxNWJmMzUyY2YwODE1ZmY3NmM5IiwicHJvcG9zYWxJZCI6InByb3BfYTk3MmM0ZmQyZGRiMzNkNiJ9LCJwcm92aWRlciI6eyJwcm92aWRlcklkIjoiaHR0cHM6Ly9leGFtcGxlLXByb3ZpZGVyLnRlc3QvIiwic2lnbmluZ0tleUlkIjoia2V5LTIwMjYtMDEifSwic2NoZW1hVmVyc2lvbiI6ImFjY2VwdGFuY2UtdjEiLCJ0ZXJtc0RpZ2VzdCI6InNoYTI1NjpjNDUwNGYwMDE1MmFjNzlkMGRhOWE4NjM1OTNkZDg3MjM3ZDY5MjRkNzk1ODJlMzU0NTg3ZGJjMTM3NWM3NzFlIiwidmVyc2lvbnMiOnsibWFuaWZlc3RWZXJzaW9uIjoiMSIsInByb2ZpbGVWZXJzaW9uIjoiMS4wLjAiLCJzY2hlbWEiOnsiZGlnZXN0Ijoic2hhMjU2OjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMiLCJpZCI6Imh0dHBzOi8vc2FheC1wcm90b2NvbC5jb20vc2NoZW1hcy9jb21taXRtZW50LW1hbmlmZXN0L3YxIiwidmVyc2lvbiI6IjEifX19.9bycEUgNBn-SozkmeLO_ywKzYIbSFu2fmZR_yoHQQ4tBznvzMbqm_FzbfSjK8kHEHiIpEV3xlxWZX0G5dRRRDg",
+    "canonicalization": "rfc8785"
+  }
+}

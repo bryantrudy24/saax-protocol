@@ -1,0 +1,10 @@
+{
+  "id": "lifecycle-status-in-flight-015",
+  "description": "get_commitment_status for in_flight returns next_action: poll",
+  "input": {
+    "state": "in_flight"
+  },
+  "expected": {
+    "next_action": "poll"
+  }
+}

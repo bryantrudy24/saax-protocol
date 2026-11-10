@@ -1,0 +1,12 @@
+{
+  "id": "discovery-retrieval-invalid-001",
+  "description": "Retrieval policy rejects a private-network endpoint",
+  "input": {
+    "url": "https://192.168.1.10/.well-known/saax.json",
+    "profileVersion": "1.0.0"
+  },
+  "expected": {
+    "valid": false,
+    "errors_contain": "private"
+  }
+}

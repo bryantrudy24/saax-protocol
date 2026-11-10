@@ -1,0 +1,54 @@
+{
+  "id": "proposal-invalid-001",
+  "description": "Tampered proposal terms (amount changed after signing)",
+  "input": {
+    "profileVersion": "1.0.0",
+    "proposalId": "prop_01JEXAMPLE0000000000000001",
+    "nonce": "0x1234abcd5678ef90",
+    "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "provider": {
+      "providerId": "https://example-provider.test/",
+      "name": "Example SAAX Provider (illustrative)",
+      "signingKeyId": "key-2026-01",
+      "origin": "https://example-provider.test"
+    },
+    "audience": {
+      "buyer": "0x1111111111111111111111111111111111111111",
+      "intendedAudience": "0x1111111111111111111111111111111111111111"
+    },
+    "manifest": {
+      "commitmentManifestVersion": "1",
+      "commitmentManifestDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "schema": {
+        "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+        "version": "1",
+        "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    },
+    "terms": {
+      "network": "eip155:8453",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "rail": "x402",
+      "mode": "x402",
+      "amount": "999999999",
+      "unit": "micro-units of settlement asset",
+      "currency": "USDC",
+      "deadline": "2026-11-06T00:00:00Z",
+      "policies": { "refundOnFailure": true, "compensationPercent": "5" }
+    },
+    "issuedAt": "2026-11-05T12:00:05Z",
+    "expires": "2026-11-05T13:00:05Z",
+    "status": "proposed",
+    "signature": {
+      "scheme": "jws",
+      "alg": "EdDSA",
+      "keyId": "key-2026-01",
+      "jws": "eyJhbGciOiJFZERTQSJ9.eyJwcm9wb3NhbElkIjoicHJvcF8wMUotLS0ifQ.SIGNATURE_PLACEHOLDER",
+      "canonicalization": "rfc8785"
+    }
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["terms.amount"]
+  }
+}

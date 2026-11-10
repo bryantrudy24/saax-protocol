@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Audit Trail Problem in Agentic Commerce</title>
+<meta name="description" content="Six months after an agent made a purchase, can you reconstruct what happened? In most systems today, the answer is no.">
+<link rel="canonical" href="https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce">
+<meta property="og:title" content="The Audit Trail Problem in Agentic Commerce — SAAX Protocol">
+<meta property="og:description" content="Six months after an agent made a purchase, can you reconstruct what happened? In most systems today, the answer is no.">
+<meta property="og:url" content="https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Audit Trail Problem in Agentic Commerce — SAAX Protocol">
+<meta name="twitter:description" content="Six months after an agent made a purchase, can you reconstruct what happened? In most systems today, the answer is no.">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Audit Trail Problem in Agentic Commerce",
+  "description": "Six months after an agent made a purchase, can you reconstruct what happened? In most systems today, the answer is no.",
+  "url": "https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-17",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "The Audit Trail Problem in Agentic Commerce", "item": "https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>The Audit Trail Problem in Agentic Commerce</h1>
+<p class="post-date"><em>October 8, 2026</em> · Last updated: 2026-10-17</p>
+<hr>
+<p>Six months after an agent made a purchase, someone needs to know what happened.</p>
+<p>The buyer wants to reconcile the charge. The merchant wants to prove the fulfillment was correct. A regulator wants to understand how the decision was made. An auditor wants to verify that the transaction complied with the policy that was in force at the time.</p>
+<p>Every one of them asks the same question: <em>can you reconstruct what actually happened?</em></p>
+<p>In most agentic commerce systems today, the answer is no.</p>
+<h2>Why the record doesn't survive</h2>
+<p>Agent transactions produce a scattered trail. The agent runtime logs the tool calls. The merchant logs the orders. The payment rail logs the settlements. The model provider may log the prompts, if anything, for a limited window. The authorization system logs the delegation. Each of these records is fragmentary, held by a different party, retained for a different period, and structured differently.</p>
+<p>Reconstructing a single transaction across all of them requires the cooperation of every party involved, in a time window before any of them have deleted their logs. In practice, that window closes faster than anyone expects. Log retention policies range from days to months. The agent's session context is gone the moment the process restarts. The model provider's prompts are typically retained for 30 days at most.</p>
+<p>Six months later, there is nothing to reconstruct from.</p>
+<p>This isn't a storage problem. Storage is cheap. The problem is that no one treated the transaction as a record worth preserving in the first place. Each system recorded what it needed for its own operation, and none of them recorded what would be needed to answer the question that comes later.</p>
+<h2>What an audit trail actually requires</h2>
+<p>An audit trail is not a log. It is a <strong>structured, verifiable record that answers the questions a later reviewer will ask</strong>. For agentic commerce, those questions are:</p>
+<ul>
+<li><strong>What was authorized?</strong> The principal's instruction. The scope granted to the agent. The limits in force at the time.</li>
+<li><strong>What was committed?</strong> The specific terms the agent agreed to. Price. Deliverable. Deadline. Acceptance criteria.</li>
+<li><strong>What was executed?</strong> The agent's actions. The merchant's fulfillment. The settlement that occurred.</li>
+<li><strong>What proves fulfillment?</strong> External evidence that the deliverable matched the acceptance criteria. Independent attestations if applicable.</li>
+<li><strong>What recovery occurred?</strong> If something failed, what the recovery policy said, what action was taken, and when the commitment reached finality.</li>
+</ul>
+<p>An audit trail is not a single log line. It is a <strong>bound record</strong> that captures all five of these as a unit, so they can be reviewed together when the question is asked.</p>
+<h2>Why existing solutions don't cover this</h2>
+<p><strong>Application logs</strong> capture what an application did. They do not capture the authority under which it acted, the terms it was bound to, or the evidence that supports its claims.</p>
+<p><strong>Payment records</strong> capture that money moved. They do not capture what the payment was for, whether the deliverable matched the commitment, or what recovery policy applied if it didn't.</p>
+<p><strong>Blockchain settlement</strong> is immutable but minimal. A transaction hash proves the settlement occurred. It does not prove what the settlement was for.</p>
+<p><strong>AP2 and similar protocols</strong> define authorization mandates. They record that an agent was authorized to act. They do not record what the agent actually committed to, what was delivered, or how the outcome was verified.</p>
+<p><strong>Platform audit logs</strong> are held by the platform. They are useful for the platform's own operations. They are not a durable record the buyer, merchant, or regulator can independently verify.</p>
+<p>Each captures a piece. None captures the commitment record that makes the transaction reconstructable.</p>
+<h2>What SAAX does</h2>
+<p>SAAX Protocol treats the commitment as the durable unit of record. A commitment captures:</p>
+<ul>
+<li>The authority reference (the proof that the agent was authorized to act)</li>
+<li>The terms (what was promised, at what price, under what constraints)</li>
+<li>The acceptance criteria (what counts as fulfillment)</li>
+<li>The evidence references (what proof was submitted to demonstrate fulfillment)</li>
+<li>The settlement reference (which rail settled, and to what reference)</li>
+<li>The outcome (whether the commitment was fulfilled, failed, or disputed)</li>
+<li>The finality (when the commitment reached its terminal state)</li>
+</ul>
+<p>Each commitment is signed and hashed. The record is structured. It survives process restarts, session boundaries, and platform retention policies because it is stored independently of any single party's operational logs.</p>
+<p>This does not replace the operational logs of each system. It provides the <strong>commitment record</strong> that all of them can reference when a later reviewer asks what happened.</p>
+<h2>What "durable" actually means</h2>
+<p>The record has to be durable in three ways:</p>
+<p><strong>Structurally durable</strong> — the record has a defined schema, not free-form text. A reviewer in six months can read it and understand what happened without needing the original system to explain.</p>
+<p><strong>Cryptographically durable</strong> — the record is signed by the parties that created it and hashed for integrity. Alteration after the fact is detectable.</p>
+<p><strong>Independently durable</strong> — the record is not held solely by one party. Any party to the commitment can hold a copy. The absence of one party's storage does not erase the record.</p>
+<h2>Why this matters for the parties involved</h2>
+<p>For the <strong>buyer</strong>, the record shows what was authorized and what was delivered. If the delivered result does not match the acceptance criteria, the record is the evidence for the recovery claim.</p>
+<p>For the <strong>merchant</strong>, the record shows that fulfillment was performed against a specific commitment with specific terms. The merchant does not carry the liability for a decision that was made against the commitment.</p>
+<p>For the <strong>platform or rail</strong>, the record shows the commitment that the settlement was linked to. The platform does not need to reconstruct what the transaction was for — the commitment record answers it.</p>
+<p>For the <strong>regulator or auditor</strong>, the record is the structured evidence they need to verify that the transaction complied with the policy in force at the time.</p>
+<h2>What this looks like in practice</h2>
+<p>When a SAAX commitment is created, it includes the authority reference, the terms, the acceptance criteria, the evidence requirements, and the recovery policy. This becomes the durable record.</p>
+<p>When the commitment is executed, the evidence is attached as references — external attestations, delivery proofs, delivery hashes — signed and bound to the commitment.</p>
+<p>When the commitment reaches fulfillment or failure, the outcome and finality states are recorded against the same commitment. The full lifecycle — from authority to finality — is captured in a single durable record.</p>
+<p>Six months later, the record still exists only if the parties retained it: the export file, the on-chain anchor, and the evidence material must be available. The on-chain digest and attestation are durable; the full agreement terms and evidence payloads are durable only where the parties keep them (or where the export preserves them). A record that exists only in a worker's memory is not durable. Exporting the commitment and retaining the evidence are part of making the audit trail real.</p>
+<p>The spec is at <a href="/spec">saax-protocol.com/spec</a>. The conformance suite is at <a href="/conformance">saax-protocol.com/conformance</a>. The commitment schema, the evidence interface, and the audit-chain structure are documented there.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

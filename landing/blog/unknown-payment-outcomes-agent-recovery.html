@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unknown Payment Outcomes: The Agent Recovery Problem | SAAX</title>
+<meta name="description" content="The timeout after an agent payment is where duplicates are born. Why unknown outcomes are structural, which partial fixes stop where, and the durable-record reconciliation pattern.">
+<link rel="canonical" href="https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery">
+<meta property="og:title" content="Unknown Payment Outcomes: The Agent Recovery Problem | SAAX">
+<meta property="og:description" content="The timeout after an agent payment is where duplicates are born. Why unknown outcomes are structural, which partial fixes stop where, and the durable-record reconciliation pattern.">
+<meta property="og:url" content="https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unknown Payment Outcomes: The Agent Recovery Problem | SAAX">
+<meta name="twitter:description" content="The timeout after an agent payment is where duplicates are born. Why unknown outcomes are structural, which partial fixes stop where, and the durable-record reconciliation pattern.">
+<style>
+
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  .muted{color:var(--muted);}
+  .post-list{list-style:none;}
+  .post-list li{padding:.9rem 0;border-bottom:1px solid var(--border);}
+  .post-list a{font-size:1.05rem;font-weight:600;}
+  .post-list .date{color:var(--muted);font-size:.9rem;margin-left:.6rem;}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unknown Payment Outcomes: The Agent Recovery Problem Nobody Instruments",
+  "description": "The timeout after an agent payment is where duplicates are born. Why unknown outcomes are structural, which partial fixes stop where, and the durable-record reconciliation pattern.",
+  "url": "https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery",
+  "datePublished": "2026-11-04",
+  "dateModified": "2026-11-04",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://saax-protocol.com/assets/logo-full-light.png"
+    }
+  },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "unknown payment outcomes agent recovery", "item": "https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>Unknown Payment Outcomes: The Agent Recovery Problem Nobody Instruments</h1>
+<p class="post-date"><em>November 4, 2026</em> · Last updated: 2026-11-04</p>
+<hr>
+<p>The most dangerous moment in an agent payment is not the payment. It is the timeout after it.</p>
+<p>An agent calls a purchase endpoint. The call times out. The response never arrives. Was the purchase made? The agent does not know. Every reliable-agent tutorial says retry; every commerce system treats the second request as a second purchase. Out of that collision come the duplicate charges, the reconciliation messes, and the "the agent bought it twice" incidents that the retry guidance was supposed to prevent.</p>
+<h2>Why unknown outcomes are structural</h2>
+<p>Unknown outcomes are not a bug in one component. They are the intersection of three reasonable design decisions:</p>
+<ul>
+<li><strong>Agents retry.</strong> Network calls fail, timeouts happen, and the standard remedy is a bounded retry with backoff.</li>
+<li><strong>Purchases are not idempotent by default.</strong> A second POST to an order API creates a second order unless the server explicitly deduplicates.</li>
+<li><strong>Settlement is asynchronous.</strong> The agent's tool call often returns when the order is acknowledged, not when the payment confirms.</li>
+</ul>
+<p>The dangerous case is the request whose outcome is genuinely unknown: the call timed out, the response was lost, or the process crashed mid-flight. From the agent's seat, "no response" is indistinguishable from "response lost". Retrying on an absent response is exactly how a double-purchase gets created; assuming the first attempt failed is exactly how a missing record gets declared a non-purchase.</p>
+<h2>The partial fixes, and where each stops</h2>
+<ul>
+<li><strong>Idempotency keys</strong> work for agents provided the key is persisted and reused across retries, session restarts, and process boundaries. The failure mode is a regenerated key: if the agent loses the key or mints a fresh one on retry, the server sees a new request. And when the agent cannot tell whether the first request arrived at all, it still needs reconciliation, not just a key.</li>
+<li><strong>Nonce-based authorization</strong> (EIP-3009 style) prevents double-settlement — the chain rejects a second settlement with the same nonce. It does not prevent double-order: the merchant may have accepted both orders before either authorization reaches the chain.</li>
+<li><strong>Spend limits</strong> bound the damage. They do not prevent the duplicate, and they fail silently when the duplicate is inside the limit.</li>
+<li><strong>Tool-call deduplication</strong> in the agent runtime works when the runtime has a stable view of what "the same tool call" means. It fails across session restarts, process boundaries, and context resets — precisely the boundaries where crashes happen.</li>
+</ul>
+<p>Each of these addresses a slice. None addresses the core need: a durable record, created before the attempt, that makes the duplicate detectable and the outcome reconcilable. The double-purchasing failure mode is detailed in <a href="/blog/preventing-autonomous-agent-double-purchasing">Preventing Autonomous Agent Double-Purchasing</a>.</p>
+<h2>The durable-record pattern</h2>
+<p>The pattern that survives unknown outcomes has three parts:</p>
+<ul>
+<li><strong>A commitment identifier minted before the attempt.</strong> The agent creates a commitment record — intent, authority, terms, acceptance criteria, recovery policy — and receives an ID. Every retry of the same intent carries the same ID.</li>
+<li><strong>Durable deduplication at the execution layer.</strong> The merchant's execution path rejects a second request carrying a commitment ID it already processed. An identifier alone does not stop a duplicate; enforcement does.</li>
+<li><strong>Reconciliation of unknown outcomes.</strong> When the outcome is unknown, recovery checks on-chain settlement state and the commitment record before deciding whether a retry is safe. Absence of a response is never treated as proof the purchase did not happen.</li>
+</ul>
+<p>Step three is the one most systems skip. A missing response, record, or receipt never means the purchase did not happen — so absence alone is never grounds to retry. The correct move is to query the settlement state (did the chain move funds for this reference?) and the commitment state (is there an in-flight commitment with this ID?) before the next attempt.</p>
+<h2>How SAAX structures this</h2>
+<p>SAAX treats the commitment as the primary artifact of the purchase. The commitment is created before execution begins and carries an ID that survives retries, session restarts, and process boundaries; recovery semantics for failure, timeout, partial completion, and dispute are part of the <a href="/spec">commitment lifecycle</a>, and the <a href="/status">current status page</a> is explicit that recovery is operator-assisted and demonstrated at specific crash boundaries — not automatic.</p>
+<p>That last qualifier matters. A commitment record makes the unknown outcome <em>detectable</em> and gives recovery something durable to reconcile against. It does not by itself guarantee that a hung workflow resumes itself. Anyone evaluating SAAX for agent recovery should read the <a href="/status">current status page</a>: immediate x402/MPP payments are public beta on Base mainnet and non-custodial; escrow custody is testnet preview only; a Custody V3 candidate with governance work is under development and has not been independently reviewed.</p>
+<h2>Tradeoffs</h2>
+<ul>
+<li><strong>Dedup enforcement is a coordination problem.</strong> The merchant, the agent, and the settlement rail must all honor the same ID. A commitment ID without enforcement is just a label.</li>
+<li><strong>Reconciliation is only as good as its sources.</strong> Checking on-chain state assumes you can read the chain; checking the commitment record assumes the record store survived the crash.</li>
+<li><strong>Bounded retries still need a verdict.</strong> At some point the agent must stop and escalate to a human or a recovery process; durable records make that escalation legible, not automatic.</li>
+</ul>
+<h2>Where this fits</h2>
+<p>For a builder wiring agent payments today: persist an idempotency key or commitment ID across process boundaries, make your merchant execution path reject duplicate IDs, and — above all — replace "retry on timeout" with "reconcile, then decide". Treat every unknown outcome as potentially settled until on-chain and commitment state say otherwise.</p>
+<p>The <a href="/spec">commitment schema, lifecycle states, and recovery semantics</a> are documented in the SAAX specification, with <a href="/conformance">published conformance vectors</a>.</p>
+<p>Next step: instrument one of your existing purchase tool calls — before the call, write a commitment/attempt record with a stable ID; on timeout, check the settlement chain and the record before retrying; log what the reconciliation step concluded. Run it against a test endpoint until you see the duplicate case disappear.</p>
+</article>
+</div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

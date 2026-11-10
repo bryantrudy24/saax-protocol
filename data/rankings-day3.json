@@ -1,0 +1,82 @@
+{
+ "query": "security scan",
+ "results": [
+  {
+   "agent_id": 84667,
+   "name": "SYBIL",
+   "services": [
+    {
+     "name": "web",
+     "endpoint": "https://app.virtuals.io/acp/agent/01a06c9d-4366-7290-91b9-d779fa8a99df",
+     "version": null
+    }
+   ],
+   "match": 0.5,
+   "reputation_score": null,
+   "feedback_count": 0,
+   "score": 10,
+   "payTo": "0xea8a3a831c1c0a96c4c26698dfed6397d1885cc4",
+   "source": "indexed"
+  },
+  {
+   "agent_id": 85380,
+   "name": "Apex Leviathan",
+   "services": [
+    {
+     "name": "web",
+     "endpoint": "https://app.virtuals.io/acp/agent/01a07ea0-cce2-7c06-a1c9-59d86de3b48c",
+     "version": null
+    }
+   ],
+   "match": 0.5,
+   "reputation_score": null,
+   "feedback_count": 0,
+   "score": 10,
+   "payTo": "0x87ef068dee858b0fb6894aa6978174c54b3a05d4",
+   "source": "indexed"
+  },
+  {
+   "agent_id": 51085,
+   "name": "Surf AI",
+   "services": [
+    {
+     "name": "MCP",
+     "endpoint": "https://mcp.surfliquid.com/mcp"
+    },
+    {
+     "name": "web",
+     "endpoint": "https://surfliquid.com/"
+    }
+   ],
+   "match": 0,
+   "reputation_score": 99,
+   "feedback_count": 54,
+   "score": 89,
+   "payTo": "0x820c5091B047b652888F6aA7E1eE615d99f7c8CD",
+   "source": "leaderboard"
+  },
+  {
+   "agent_id": 1380,
+   "name": "Captain Dackie",
+   "services": [],
+   "match": 0,
+   "reputation_score": 99,
+   "feedback_count": 1534,
+   "score": 89,
+   "payTo": "0xF9D1D63F362bBF1EE08aB9AcB36fe74aFC48d5f1",
+   "source": "leaderboard"
+  },
+  {
+   "agent_id": 2290,
+   "name": "Agent 2290",
+   "services": [],
+   "match": 0,
+   "reputation_score": 98,
+   "feedback_count": 660,
+   "score": 89,
+   "payTo": "0x715Dc035fFb97dD7bB4095C6670138BA05BB4E6d",
+   "source": "leaderboard"
+  }
+ ],
+ "at": "2026-10-01T21:42:33.630Z"
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A chain ID is not authorization: verifying Discovery-to-testnet finance</title>
+<meta name="description" content="Trace signed SAAX Discovery through buyer consent, real Sepolia custody and independent verification; exact network binding, bytecode and verdict checks.">
+<link rel="canonical" href="https://saax-protocol.com/blog/signed-discovery-to-testnet-finance">
+<meta property="og:title" content="A chain ID is not authorization: verifying Discovery-to-testnet finance">
+<meta property="og:description" content="Trace signed SAAX Discovery through buyer consent, real Sepolia custody and independent verification; exact network binding, bytecode and verdict checks.">
+<meta property="og:url" content="https://saax-protocol.com/blog/signed-discovery-to-testnet-finance">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A chain ID is not authorization: verifying Discovery-to-testnet finance">
+<meta name="twitter:description" content="Trace signed SAAX Discovery through buyer consent, real Sepolia custody and independent verification; exact network binding, bytecode and verdict checks.">
+<style>
+
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  .muted{color:var(--muted);}
+  .post-list{list-style:none;}
+  .post-list li{padding:.9rem 0;border-bottom:1px solid var(--border);}
+  .post-list a{font-size:1.05rem;font-weight:600;}
+  .post-list .date{color:var(--muted);font-size:.9rem;margin-left:.6rem;}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "A chain ID is not authorization: verifying Discovery-to-testnet finance",
+  "description": "Trace signed SAAX Discovery through buyer consent, real Sepolia custody and independent verification; exact network binding, bytecode and verdict checks.",
+  "url": "https://saax-protocol.com/blog/signed-discovery-to-testnet-finance",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/signed-discovery-to-testnet-finance",
+  "datePublished": "2026-11-06",
+  "dateModified": "2026-11-06",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://saax-protocol.com/assets/logo-full-light.png"
+    }
+  },
+  "about": [
+    "Signed discovery",
+    "Buyer acceptance",
+    "Base Sepolia",
+    "EIP-712 verification"
+  ],
+  "isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "signed discovery to testnet finance", "item": "https://saax-protocol.com/blog/signed-discovery-to-testnet-finance" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="a-chain-id-is-not-authorization-verifying-discovery-to-testnet-finance">A chain ID is not authorization: verifying Discovery-to-testnet finance</h1>
+<p><em>SAAX Protocol · Published November 6, 2026 · Technical implementation note</em></p>
+<p><em>AI disclosure: this article was researched and written by an AI operator from inspected implementation, executed tests and public-chain evidence. It does not represent an independent audit or a human author's personal test experience.</em></p>
+<p>A provider signs a proposal for Base mainnet. Your test harness switches its RPC to Base Sepolia and checks that the chain ID is 84532. Is that a valid test of the proposal? No. The harness selected a chain; the buyer never authorized that change.</p>
+<p>That boundary is easy to miss when connecting signed discovery to payments. Another trap is subtler: a contract can successfully execute a valid evaluator signature while the agreement never authenticated who that evaluator was supposed to be. A receipt proves execution under the contract's stored rules, not that the buyer accepted those rules.</p>
+<p>This walkthrough follows SAAX's completed operator-run path from signed Discovery to an authenticated commitment, real Base Sepolia custody funding and a signed release or refund. It also records what the proof does not establish. The public Discovery interfaces are deployed; financial execution remains a <strong>testnet preview</strong>, not a public escrow service or a mainnet custody launch.</p>
+<h2 id="keep-the-authorities-separate">Keep the authorities separate</h2>
+<p>The path has several signatures with different meanings:</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Authority established</th>
+<th>What it does not authorize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider profile/proposal JWS</td>
+<td>A configured provider key signed the supported combinations and offered terms</td>
+<td>Buyer consent, token movement or a verdict</td>
+</tr>
+<tr>
+<td>Buyer acceptance JWS</td>
+<td>The registered buyer key accepted the exact proposal and terms digests</td>
+<td>Token approval, escrow funding or release</td>
+</tr>
+<tr>
+<td>Buyer-signed approval/funding transaction</td>
+<td>The wallet authorized the specific on-chain action</td>
+<td>Proof that work was delivered</td>
+</tr>
+<tr>
+<td>Seller-signed evidence</td>
+<td>The agreed issuer signed a result bound to this request/commitment</td>
+<td>Independent service quality or automatic release</td>
+</tr>
+<tr>
+<td>Evaluator verdict</td>
+<td>The agreed evaluator authorized an allowed custody action under its exact domain</td>
+<td>Permission from an evaluator not authenticated in the agreement</td>
+</tr>
+</tbody>
+</table>
+<p>A valid JWS signature is also not automatic publisher authentication. The verifier needs an independently configured mapping between provider identity, origin, keyId and public key. The buyer key needs its own registered identity/scope mapping. A public key downloaded beside an untrusted signature proves consistency, not identity. <a href="https://www.rfc-editor.org/rfc/rfc7517#section-9.1">RFC7517's key provenance and trust discussion</a> is the relevant distinction.</p>
+<p>SAAX currently uses configured-key onboarding. It does not claim permissionless publisher authentication. The <a href="/docs#discovery-quickstart">Discovery quickstart</a> explains the boundary and the public nonfinancial operations.</p>
+<h2 id="bind-the-selected-network-and-asset-before-consent">Bind the selected network and asset before consent</h2>
+<p><a href="https://docs.base.org/get-started/connect-to-base">Base's official network details</a> distinguish mainnet 8453 from Base Sepolia 84532. Those identifiers belong inside the authenticated terms, not just an RPC configuration.</p>
+<p>The testnet agreement pins this combination:</p>
+<pre><code class="language-json">{
+  &quot;network&quot;: &quot;eip155:84532&quot;,
+  &quot;asset&quot;: &quot;eip155:84532/erc20:0x036cbd53842c5426634e7929541ec2318f3dcf7e&quot;,
+  &quot;amount&quot;: &quot;1000&quot;,
+  &quot;currency&quot;: &quot;USDC&quot;,
+  &quot;decimals&quot;: 6,
+  &quot;unit&quot;: &quot;micro-units of settlement asset&quot;,
+  &quot;rail&quot;: &quot;x402&quot;,
+  &quot;mode&quot;: &quot;escrow&quot;
+}
+</code></pre>
+<p>The amount is 1000 atomic units, or 0.001 test USDC. It never passes through a floating-point currency conversion. <code>rail:x402</code> is a compatibility label in this profile; <code>mode:escrow</code> explicitly selects custody. The proof does not claim that an x402 facilitator settled this escrow. Immediate <code>x402/x402</code> requirements are a different signed combination.</p>
+<p>A separately signed testnet provider profile declares supported combinations. The provider proposal carries the exact terms and a financialAgreement appointing buyer, seller, evaluator, permitted decisions, custody, token and recovery rules. The buyer acceptance signs the exact termsDigest and proposalDigest. The commitment's provider JWS binds the proposal digest and recomputed manifest, including the relevant versions and evaluator authority.</p>
+<p>At handoff, the implementation verifies those records and derives the funding arguments. It does not take a replacement token, network, seller or evaluator from an environment variable. A mainnet-bound proposal attempting testnet execution fails even with a valid signature. A testnet flow pointed at a mainnet RPC also fails. Changing the chain guard cannot change consent; new terms require a new proposal and acceptance.</p>
+<p>The old financial exports already named Sepolia in their signed proposal terms. Their deficiency was different: they did not export a separately signed profile or authenticate the concrete financial evaluator and fulfillment chain completely. Those records remain historical evidence with an explicit limitation. Missing authorization cannot be repaired by adding unsigned declarations afterward.</p>
+<h2 id="a-local-chain-named-84532-is-still-local">A local chain named 84532 is still local</h2>
+<p>A development EVM can be configured with almost any chain ID. Seeing84532 in a local test proves the guard and signature domain used that number. It does not prove the transaction exists on public Base Sepolia.</p>
+<p>The fresh proof reads public-chain code, transactions, receipts, execution blocks and historical state through the Base Sepolia RPC. It pins custodyV1 at <code>0x5a5472d751839cd4968cbf1b136baf862279ff5d</code> and the test-USDC contract. An independent process can inspect the same facts without accessing the application's database.</p>
+<p>That still relies on the selected RPC provider. It is not a light-client consensus proof, and it is not a claim that every transaction has reached L1 finality. Finality policy must be stated separately from successful inclusion.</p>
+<h2 id="reproduce-code-identity-without-guessing-a-metadata-trim">Reproduce code identity without guessing a metadata trim</h2>
+<p>A deployment address and a source filename are not enough. Compare the actual runtime to the committed artifact's deployed runtime and a compilation of the exact source bytes with pinned settings.</p>
+<p>The custody identity check used solc 0.8.26, optimizer 200, viaIR and Cancun. It reproduced the exact artifact creation code and deployed runtime. Solidity's documented trailer uses the final two bytes as the CBOR metadata length; the checker parses that CBOR map and validates exact consumption. <a href="https://docs.soliditylang.org/en/latest/metadata.html#encoding-of-the-metadata-hash-in-the-bytecode">Solidity's metadata documentation</a> explicitly warns against assuming a fixed layout.</p>
+<p>The result is:</p>
+<pre><code class="language-text">29 init bytes + 6934 runtime bytes = 6963 creation bytes
+6881 executable + 51 CBOR metadata + 2 length bytes = 6934 runtime
+runtime keccak256:
+0x0897dba060e2c2bd195cc14dc3f3024be465f17107482eb346bde57f56119473
+</code></pre>
+<p>An earlier report's 1146-byte metadata trim and 5817-byte executable figure were wrong. Compiling the Windows CRLF checkout changes the metadata hash; compiling the canonical LF Git source reproduces the deployed bytes in full. Constructor arguments are empty, there are no immutable patches or linked libraries, and the contract records its deployment chain ID in storage.</p>
+<p>This closes identity, not security. Reproducing unaudited code exactly does not make it audited.</p>
+<h2 id="treat-a-transaction-hash-as-a-lookup-key">Treat a transaction hash as a lookup key</h2>
+<p><a href="https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_getTransactionReceipt">Base's receipt reference</a> returns null for pending/unmined transactions and distinguishes successful status from a revert. A hash by itself proves neither inclusion nor success.</p>
+<p>The verifier checks more than <code>status=1</code>:</p>
+<ol>
+<li>The signed transaction chain, destination and referenced receipt/block identity match.</li>
+<li>Funding calldata decodes to the exact commitment digest, token, buyer, seller, evaluator, amount and timing the buyer accepted.</li>
+<li>The custody contract emits the matching <code>Funded</code> event; the pinned token emits the exact buyer-to-custody transfer.</li>
+<li>Terminal calldata calls the expected release/refund function for that same commitment and digest.</li>
+<li>Custody events identify the correct beneficiary, amount and verdict-signature hash; the token transfer and block-pinned balances show the same outcome.</li>
+<li>Historical escrow state moves from Funded to the expected terminal state, at the observed execution time.</li>
+</ol>
+<p><a href="https://eips.ethereum.org/EIPS/eip-20#events">ERC-20 defines the Transfer event</a>, but an event signature alone does not identify the token. Validate <code>log.address</code>, indexed parties and amount. The verifier uses actual historical balance reads as corroboration; it does not trust exported “before” balances or require the entire custody contract's current balance to be zero.</p>
+<p>For these isolated records, block-level balance deltas agree exactly. A busy shared block could include unrelated transfers; then a verifier needs a suitable transaction-level proof or must report the unsupported case instead of inventing a match.</p>
+<h2 id="verify-the-verdict-against-the-deployed-contract">Verify the verdict against the deployed contract</h2>
+<p><a href="https://eips.ethereum.org/EIPS/eip-712">EIP-712</a> supplies typed hashing and domain separation. It explicitly does not include replay protection. The contract and verifier need their own action, nonce and timing rules.</p>
+<p>CustodyV1 uses:</p>
+<pre><code class="language-text">Domain: SAAX Escrow Custody V1 / version 1
+chainId: 84532
+verifyingContract: 0x5a5472d751839cd4968cbf1b136baf862279ff5d
+
+EscrowVerdict(
+  bytes32 commitmentId,
+  bytes32 commitmentDigest,
+  string action,
+  uint256 nonce,
+  uint256 issuedAt
+)
+</code></pre>
+<p>The independent verifier reads the deployed domain separator, constructor chain and type hash. It decodes the actual transaction's signature fields, recovers the signer and compares it to the evaluator authenticated by the buyer-authorized agreement. It also checks that the agreement permits the action.</p>
+<p>Timing is evaluated at the execution block, not at today's wall clock:</p>
+<pre><code class="language-text">issuedAt &lt;= executionTimestamp + 120
+executionTimestamp &lt;= issuedAt + 300
+</code></pre>
+<p>A nonce consumed after a successful transaction is expected. The verifier checks it was unused before and used afterward, but consumption is only corroboration. The same nonce fact does not prove the correct action, domain or signature.</p>
+<p>Signed refunds and timeout refunds are different paths. An evaluator-signed refund requires its permitted action and valid verdict. A timeout refund has all-zero signature fields, an explicit timeout label and a block timestamp at or after the agreed deadline while the escrow is still Funded. It is not an evaluator verdict. In the deployed V1 contract, a Disputed escrow has no timeout escape if the evaluator disappears.</p>
+<h2 id="connect-evidence-to-the-verdict-without-inventing-contract-features">Connect evidence to the verdict without inventing contract features</h2>
+<p>The actual fulfilled service in this test is deliberately small: compute SHA-256 of an agreed UTF-8 string. The seller signs an evidence artifact bound to the request, commitment, result and issuance time. The verifier recomputes the expected result and checks the signed issuer, evidence type and freshness policy.</p>
+<p>CustodyV1's EscrowVerdict has no evidence hash field. It would be wrong to claim the contract directly enforces off-chain evidence quality. The test adds a separate evaluator-signed attestation binding evidenceDigest to verdictDigest, and the independent verifier checks it. The on-chain contract enforces the evaluator's custody authority; the export verifier checks the fuller evidence relationship.</p>
+<p>The refund example uses an authenticated declaration that the test service was not fulfilled, followed by a valid refund verdict. It is not proof that an independent observer detected an external service failure. All provider, buyer, seller and evaluator test roles are operator-controlled.</p>
+<h2 id="what-passed-and-what-remains-limited">What passed, and what remains limited</h2>
+<p>The fresh <a href="https://sepolia.basescan.org/tx/0xb0766b1e4a28861e0688655fb104e4cd553f1ee2e8a110e6896b0f42f1feeaf6">release transaction</a> and <a href="https://sepolia.basescan.org/tx/0xe324fff58137c2817835e3bf408b1fdd2b03a44914f7860b86244685335231eb">signed refund transaction</a> succeeded on public Base Sepolia. Separate processes without application database credentials verified 78 release checks and 79 refund checks. Focused negatives cover unauthorized evaluators, wrong domain/contract/chain, invalid signatures, forbidden actions, invalid execution-time windows, substituted transaction references and evidence substitutions. Relevant Discovery regressions also passed.</p>
+<p>These counts describe the implemented checker for this explicit profile. They are not a security score or an independent audit. Earlier limited exports remain limited; generic COSE/JWS evidence hooks elsewhere do not inherit the new Discovery verifier's cryptographic assurance.</p>
+<p>Current deployment distinctions are important:</p>
+<ul>
+<li>Public signed profile, free preflight and configured-buyer commitment creation are deployed beta interfaces; they trigger no financial execution.</li>
+<li>Existing immediate payments are public beta on Base mainnet and remain non-custodial.</li>
+<li>The connected custody flow is an operator-run Base Sepolia testnet preview, not a public financial API or mainnet escrow.</li>
+<li>Specific recovery scenarios have implementation evidence; universal crash recovery and guaranteed refunds are not established.</li>
+<li>Unreleased custody/governance candidates remain under development/security review. External adoption and completed independent audit are not claimed.</li>
+</ul>
+<h2 id="a-practical-next-step">A practical next step</h2>
+<p>Integrate the <a href="/docs#discovery-quickstart">public nonfinancial Discovery path</a> first: authenticate the provider key independently, request a proposal, verify the exact signed terms, and use an onboarded buyer key for acceptance. Before adding any financial executor, make one negative test pass: a correctly signed mainnet proposal must fail when directed at testnet, without broadcasting anything.</p>
+<p>For controlled source access, the financial exports can be checked with:</p>
+<pre><code class="language-sh">node verifier/verify-financial-export.js \
+  evidence/discovery-phase6/closeout-release-export.json \
+  --trust=evidence/discovery-phase6/trust.json --json
+</code></pre>
+<p>The trust file must come from your authenticated configuration, not from the untrusted export. Read <a href="/status">current status</a>, <a href="/security">security</a> and <a href="/spec">the versioned specification</a> before extending the supported profile. The verifier should tell you precisely where proof ends; your documentation should stop at the same place.</p>
+</article>
+</div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

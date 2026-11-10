@@ -1,0 +1,72 @@
+◇ injected env (6) from .env
+========== SAAX Protocol — DAY 9: SELF-HOSTED x402 GATEWAY E2E ==========
+mode: DRY RUN (no real broadcast; SAAX_GATEWAY_DRY_RUN=1)
+seller address: 0x6611Fadc959c323C4CDCDd54FBb415954d795fDF
+seller key loaded: true
+buyer (test-only) address: 0x367b6119f06EB5D152C8a6b7bfA4E18a7af667Aa
+endpoint up on :8611 (SAAX_X402_MODE=self, seller=0x6611Fadc959c323C4CDCDd54FBb415954d795fDF)
+
+== T1: no payment header -> 402 challenge with PAYMENT-REQUIRED ==
+  HTTP 402 payment-required header present: true
+PASS  T1 returns 402  [402]
+PASS  T1 PAYMENT-REQUIRED header present  [eyJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMyIiwiYXNzZXQiOiIweDAzNkNiRDUz...]
+PASS  T1 header decodes to challenge JSON  [{"network":"eip155:84532","asset":"0x036CbD53842c5426634e7929541eC2318f3dCF7e","amount":"50000","pay]
+PASS  T1 network eip155:84532  [eip155:84532]
+PASS  T1 asset = Base Sepolia USDC  [0x036CbD53842c5426634e7929541eC2318f3dCF7e]
+PASS  T1 payTo = seller wallet  [0x6611Fadc959c323C4CDCDd54FBb415954d795fDF]
+PASS  T1 amount = routing fee 50000  [50000]
+PASS  T1 facilitator = self  [self]
+PASS  T1 scheme = exact  [exact]
+
+== T2: valid signature -> verify -> routing -> settle -> receipt ==
+  HTTP 200 status=ok mode=self
+  payment-response header: eyJ0cmFuc2FjdGlvbkhhc2giOiJkcnlydW5fMGY2OWRiNGMtZjIzYy00ZGUzLWE5NTQtMGNiMzgwOTlk...
+  receipt: txHash=dryrun_0f69db4c-f23c-4de3-a954-0cb38099d3bd status=settled (dryrun)
+PASS  T2 payment verified mode=self  [{"mode":"self","verified":true}]
+PASS  T2 routing executed (200 ok)  [200]
+PASS  T2 matches returned  [3]
+PASS  T2 PAYMENT-RESPONSE header present  [missing]
+PASS  T2 receipt status settled  [settled]
+PASS  T2 receipt txHash present (dryrun_)  [dryrun_0f69db4c-f23c-4de3-a954-0cb38099d3bd]
+PASS  T2 dry-run marker (no real broadcast)  [true]
+
+== T3: replay same signature -> no double charge ==
+  HTTP 200 body==IDENTICAL_TO_ORIGINAL payment-response=NONE
+PASS  T3 replay rejected or cached (409 or identical cached body)  [200 / cached=true]
+PASS  T3 no double settlement (no fresh PAYMENT-RESPONSE)  [none]
+
+== T4: invalid signature -> 402, no routing ==
+  HTTP 402 rejectReason=signature does not verify for authorization.from
+PASS  T4 returns 402  [402]
+PASS  T4 no routing executed  [{"error":"402 Payment Required","scheme":"exact","network":"eip155:84532","asset":"0x036CbD53842c5426634e7929541eC2318f3]
+PASS  T4 rejection reason surfaced  [signature does not verify for authorization.from]
+
+== T5: expired authorization -> 402, no routing ==
+  HTTP 402 rejectReason=authorization expired (validBefore passed)
+PASS  T5 returns 402  [402]
+PASS  T5 no routing  [{"error":"402 Payment Required","scheme":"exact","network":"eip155:84532","asset":"0x036CbD53842c5426634e7929541eC2318f3]
+PASS  T5 expired reason surfaced  [authorization expired (validBefore passed)]
+
+== T6: fresh request key + same nonce -> replay-safe (Item 4) ==
+  request A (key t6-key-a) -> HTTP 200
+  request B (key t6-key-b, SAME nonce) -> HTTP 200 body==IDENTICAL_TO_A
+PASS  T6 request A processed (200 ok)  [200]
+PASS  T6 request B rejected or cached (409 / identical cached body)  [200 / cached=true]
+
+== T7: Day 8 rate limit (61/min) -> 61st returns 429 ==
+  burst -> first 429 at request <=61 (75ms)
+PASS  T7 429 before 61+ requests (within window)  [429]
+
+== T8: Day 8 kill switch (SAAX_KILL_SWITCH=true) -> 503, zero broadcast ==
+  HTTP 503 body={"status":"halted","reason":"operator_kill_switch"}
+PASS  T8 503 halted  [503]
+PASS  T8 reason operator_kill_switch  [operator_kill_switch]
+PASS  T8 no payment header on halt response  [none]
+
+== T9: buyer reputation from signer recovery ==
+  HTTP 200 reputation={"walletAddress":"0x367b6119f06eb5d152c8a6b7bfa4e18a7af667aa","resolvedAgentId":null,"reputationScore":0,"discountApplied":0,"source":"signature"} fee={"baseUsd":0.05,"discountPct":0,"finalUsd":0.05,"decision":"buyer rep 0 below 90 -> no discount"}
+PASS  T9 payment verified self  [200]
+PASS  T9 reputation resolved from signer (not header)  [buyer rep 0 below 90 -> no discount | OUTCOME LOG: ranking result logged (request_id=nnonce:1f5970ca925bbd7f30e87c55a16f4a7e3aa22bf095f364269a99ac0e828b9190, suppliers=5, shrinkage=true) | REPUTATION: {"walletAddress":"0x367b6119f06eb5d152c8a6b7bfa4e18a7af667aa","resolvedAgentId":null,"reputationScore":0,"discountApplied":0,"source":"signature"}]
+PASS  T9 mock header ignored in self mode (no 20% discount)  [{"baseUsd":0.05,"discountPct":0,"finalUsd":0.05,"decision":"buyer rep 0 below 90 -> no discount"}]
+
+ALL DAY 9 GATEWAY TESTS PASSED

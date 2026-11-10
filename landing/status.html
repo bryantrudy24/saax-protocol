@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX current status | Discovery beta and testnet finance</title>
+<meta name="description" content="Verified SAAX status: public signed Discovery and buyer acceptance, Base-mainnet immediate payments, and operator-run Sepolia finance with explicit limits.">
+<link rel="canonical" href="https://saax-protocol.com/status">
+<meta property="og:title" content="SAAX current status | Discovery beta and testnet finance">
+<meta property="og:description" content="Verified SAAX status: public signed Discovery and buyer acceptance, Base-mainnet immediate payments, and operator-run Sepolia finance with explicit limits.">
+<meta property="og:url" content="https://saax-protocol.com/status">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;--amber-bg:#f2d23b;--amber-fg:#1f1a00;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article .status-note{border:1px solid var(--amber-bg);border-radius:12px;padding:1.1rem 1.3rem;background:#1c2128;margin:0 0 1.4rem;}
+  article .status-note h2{color:var(--amber-bg);margin-top:0;}
+  article .status-note p{color:var(--fg);}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .table-scroll table{min-width:560px;}
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="twitter:title" content="SAAX current status | Discovery beta and testnet finance">
+<meta name="twitter:description" content="Verified SAAX status: public signed Discovery and buyer acceptance, Base-mainnet immediate payments, and operator-run Sepolia finance with explicit limits.">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/status">Status</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-current-status">SAAX current status</h1>
+<p><em>Last verified: 2026-11-06</em></p>
+
+<div class="status-note" role="note" aria-label="Public Beta notice" style="border:1px solid var(--amber-bg); border-radius:12px; padding:1.1rem 1.3rem; background:#1c2128; margin:0 0 1.4rem;">
+<h2 style="color:var(--amber-bg); margin-top:0;">SAAX Protocol — Public Beta</h2>
+<p>SAAX Protocol is currently in public Beta. Immediate-payment functionality is available on Base mainnet, while escrow custody remains limited to testnet.</p>
+<p>Independent external security review is pending. Although internal verification and reliability testing have been performed, these do not replace an independent security assessment.</p>
+<p>Live transactions involve financial and technical risks, including potential loss of funds and irreversible blockchain transfers. Users should evaluate these risks carefully and use the platform at their own discretion.</p>
+<p><em>This notice does not constitute a guarantee of reimbursement, dispute recovery, or financial protection.</em></p>
+</div>
+
+<p>SAAX is a commitment layer for autonomous commerce. The public discovery and commitment-creation interfaces are deployed. A separate operator-run integration has completed real Base Sepolia funding, release and refund with complete independent export verification for its defined test profile. These are different deployment scopes. Neither makes mainnet escrow available.</p>
+<h2 id="maturity-at-a-glance">Maturity at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Status</th>
+<th>Demonstrated scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol specification</td>
+<td><strong>Public specification — versioned</strong></td>
+<td>Protocol v1.0.3; Discovery profile 1.0.0 and acceptance-v1 are separate formats. Publication is not standards-body adoption.</td>
+</tr>
+<tr>
+<td>Routing and immediate payments</td>
+<td><strong>Public beta</strong></td>
+<td>Existing x402 USDC payments on Base mainnet 8453; direct payments, no mainnet custody.</td>
+</tr>
+<tr>
+<td>Signed discovery, preflight and buyer acceptance</td>
+<td><strong>Beta</strong></td>
+<td>Public signed profile, free nonbinding preflight, configured-buyer acceptance creating one authenticated commitment. No payment or service execution is triggered.</td>
+</tr>
+<tr>
+<td>Verification and receipts</td>
+<td><strong>Beta</strong></td>
+<td>Actual JWS crypto for Discovery records; verification is format-specific. General COSE/JWS evidence hooks remain distinct. <code>GET /receipt?txHash=...</code> resolves a settled transaction hash to its commitment; verified live on 2026-11-06.</td>
+</tr>
+<tr>
+<td>Custody / financial integration</td>
+<td><strong>Testnet preview — not approved for mainnet funds</strong></td>
+<td>Separately signed Base Sepolia profile, authenticated agreement/evaluator, actual test-USDC funding and signed release/refund, portable exports and public-chain verification. Financial execution is operator-run, not a public API.</td>
+</tr>
+<tr>
+<td>Unreleased custody and governance candidates</td>
+<td><strong>Under development / security review</strong></td>
+<td>Custody V3 has an owner-approved snapshot for independent review; that review has not been completed. It is not an audit, not production readiness, and not deployment approval. Local candidate tests do not identify the deployed V1 contract. No completed independent audit or approved mainnet custody release.</td>
+</tr>
+<tr>
+<td>Durable idempotency and reconciliation</td>
+<td><strong>Beta (deployed)</strong></td>
+<td>Durable payment idempotency (file-backed locally; Supabase/PostgreSQL in the production topology), reconcile-before-respond, and a Supabase reconciliation RPC for stale pending operations. Verified by reliability and fault-injection suites; production multi-instance financial concurrency not yet exercised.</td>
+</tr>
+<tr>
+<td>Financial-limit infrastructure (pilot)</td>
+<td><strong>Implemented / disabled</strong></td>
+<td>Per-buyer and global transaction limits, wallet allowlist, and atomic reservation engine are deployed with <strong>enforcement OFF</strong>. Pilot allowlist is not populated; no limits are active. Activation requires separate owner authorization.</td>
+</tr>
+
+</tbody>
+</table>
+<h2 id="publicly-deployed-today">Publicly deployed today</h2>
+<ul>
+<li><code>GET /.well-known/saax.json</code>: signed provider profile with explicit supported combinations. The preserved live profile identifies Base mainnet 8453.</li>
+<li><code>POST /prepare-commitment</code> and MCP <code>prepare_commitment</code>: free compatibility checking and a provider-signed proposal. No agreement, funds, reserved capacity, service execution or spending authority.</li>
+<li><code>POST /accept-commitment</code> and MCP <code>accept_commitment</code>: verifies an onboarded buyer's signed acceptance and records exactly one authenticated commitment. Durable proposal/acceptance storage supports retries; a new idempotency key does not make a single-use proposal reusable.</li>
+<li>Existing MCP tools and mainnet routing/immediate-payment services. A read-only release check performs MCP initialization, tool discovery, <code>ping</code> and protocol-info calls; an HTTP 200 alone is not treated as MCP proof.</li>
+</ul>
+<p>The provider signature proves consistency with a key. Clients independently authenticate the provider key before installing it; configured-key trust is not permissionless publisher authentication. Buyer acceptance requires separately onboarded buyer keys. A key copied from an untrusted profile/export does not establish identity. See <a href="/docs#discovery-quickstart">quickstart and trust onboarding</a>.</p>
+<h2 id="real-base-sepolia-evidence">Real Base Sepolia evidence</h2>
+<p>The latest financial closeout uses a separately signed testnet profile, exact <code>eip155:84532</code> network and test-USDC CAIP-19 asset, six decimals, explicit escrow mode, and buyer-authorized seller/evaluator/custody/recovery terms. It rejects network or asset substitution; an RPC chain guard cannot rewrite signed terms.</p>
+<p>Two minimal records each funded 1000 raw test-USDC units (0.001 test USDC):</p>
+<ul>
+<li><a href="https://sepolia.basescan.org/tx/0xb0766b1e4a28861e0688655fb104e4cd553f1ee2e8a110e6896b0f42f1feeaf6">Successful release</a>, block 55360516.</li>
+<li><a href="https://sepolia.basescan.org/tx/0xe324fff58137c2817835e3bf408b1fdd2b03a44914f7860b86244685335231eb">Successful evaluator-signed refund</a>, block 55360737.</li>
+</ul>
+<p>The separate-process verifier ran without application database credentials: release78/78 and refund79/79 checks passed. It authenticates the profile/provider/buyer/complete terms/commitment/evaluator, verifies the deployed EIP-712 verdict at the execution block's timestamp, decodes the actual successful transactions/events, and checks historical custody/token outcomes. It also verifies signed fulfillment evidence and an evaluator signature connecting evidence to the verdict. These are internal software checks, not an independent security audit.</p>
+<p>The fulfilled service is a deterministic local SHA-256 computation; the refund record is an authenticated test nonfulfillment declaration. Provider, buyer, seller and evaluator are operator-controlled test roles. No external customer, independent evaluator or public financial endpoint is claimed. <a href="/blog/signed-discovery-to-testnet-finance">Read the implementation walkthrough</a>.</p>
+<h2 id="contract-identity-and-historical-corrections">Contract identity and historical corrections</h2>
+<p>The deployed testnet contract is CustodyV1 at <code>0x5a5472d751839cd4968cbf1b136baf862279ff5d</code>, not the unreleased CustodyV3 candidate. Its runtime is 6934 bytes:6881 executable +51 CBOR metadata +2 length bytes. Pinned solc 0.8.26 compilation of the exact Git source matches the committed artifact and actual deployed runtime in full. Earlier metadata-length arithmetic was wrong; no new deployment was required. A code match establishes identity, not safety.</p>
+<p>Earlier financial exports are retained as historical evidence. Their proposal terms did identify Sepolia, but they lacked the separately signed profile and complete buyer-authorized evaluator/evidence chain required by the stronger verifier. Their old39-check result is not complete end-to-end assurance. They are not rewritten or promoted by adding declarations.</p>
+<h2 id="recovery-and-custody-limits">Recovery and custody limits</h2>
+<p>Discovery issuance recovery has been tested with replacement processes after durable acceptance and after issuance, preserving the same commitment. Specific financial crash/broadcast reconciliation scenarios have separate script evidence. These demonstrations do not prove every crash boundary, distributed failure, external-provider recovery or unattended operational service.</p>
+<p>CustodyV1 can release under the agreed evaluator signature, refund under an evaluator-signed refund, or permit an unsigned timeout refund after the deadline while still <strong>Funded</strong>. A timeout refund is not an evaluator verdict. <strong>Disputed funds can remain frozen indefinitely if the evaluator disappears.</strong> There is no admin withdrawal, pause, upgrade or evaluator-replacement mechanism. Refunds and safety are not guaranteed.</p>
+<h2 id="what-remains-before-production-custody">What remains before production custody</h2>
+<p>Mainnet custody deployment and spending are not enabled. Production signer/governance provisioning, exposure limits, operational recovery/canary parameters, legal review, target-chain release validation, independent security review and remediation remain open. Local candidate tests, a local chain configured as84532 and local EAS anchors are not proof of public Base Sepolia execution or public-chain finality. The new financial self-test does not claim an EAS anchor or L1-finality proof.</p>
+<p>An external-participant pilot package exists but has not been sent; no external pilot completion or independent adoption is established. The Custody V3 snapshot is owner-approved as the baseline for independent review only; independent review has not been completed, and approval-for-review is not an audit, production readiness, or deployment approval.</p>
+<h2 id="documents">Documents</h2>
+<ul>
+<li><a href="/docs">Integration guide</a></li>
+<li><a href="/spec">Versioned specification</a></li>
+<li><a href="/blog/signed-discovery-to-testnet-finance">Verification walkthrough</a></li>
+<li><a href="/security">Security and risk boundaries</a></li>
+<li><a href="/terms">Terms of use</a></li>
+</ul>
+<p>SAAX remains experimental software with component-specific maturity labels. Mainnet immediate payments process real funds. Nothing here guarantees recovery, safety, audit status, legal compliance or financial outcomes.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/status">Status</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

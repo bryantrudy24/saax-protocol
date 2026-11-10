@@ -1,0 +1,17 @@
+{
+  "id": "discovery-fallback-invalid-003-no-card-no-permit",
+  "description": "No A2A card but client does NOT permit standalone fallback = no fallback",
+  "category_hint": "discovery",
+  "input": {
+    "fallback": {
+      "a2aCardObtained": false,
+      "authOk": true,
+      "requiredExtensionOk": true,
+      "clientPermitsStandalone": false
+    }
+  },
+  "expected": {
+    "allowFallback": false,
+    "errorCode": "DSC_MISSING_REQUIRED_EXTENSION"
+  }
+}

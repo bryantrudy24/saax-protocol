@@ -1,0 +1,55 @@
+# SAAX Protocol
+
+> A versioned commitment specification and implementation for agent commerce. Read status before acting: deployment and maturity are component-specific.
+
+## Current verified state (2026-11-06)
+- Specification: public, versioned protocol v1.0.3; Discovery profile1.0.0 and acceptance-v1 are separate formats.
+- Signed Discovery, free preflight and configured-buyer acceptance: beta, publicly deployed, no payment/service execution. Configured-key provider trust requires independent onboarding; not permissionless publisher authentication.
+- Existing x402 USDC immediate payments: public beta on Base mainnet8453, non-custodial. (MPP rail implemented but not registered in production.)
+- Custody finance: testnet preview, operator-run Base Sepolia84532 only, not public financial endpoints or mainnet custody. A separately signed profile, authenticated evaluator and complete independent export verification were demonstrated with deterministic local SHA256 evidence and real test USDC.
+- Verification/receipts: beta and format-specific. Discovery JWS is real crypto; general COSE/JWS evidence hooks retain structural/attesting-verifier limits. GET /receipt?txHash=... resolves a settled transaction hash to its commitment; verified live 2026-11-06.
+- Recovery: implemented specific issuance/broadcast reconciliation scenarios, not universal or unattended recovery. Disputed V1 funds can remain frozen indefinitely if evaluator disappears; no guaranteed refunds.
+- Unreleased custody/governance candidates: under development/security review. Custody V3 has an owner-approved snapshot for independent review; review not completed (not an audit, not readiness, not deployment approval). No completed independent audit or external adoption claimed.
+
+## Core documentation
+- [Current status](https://saax-protocol.com/status)
+- [Integration and Discovery quickstart](https://saax-protocol.com/docs#discovery-quickstart)
+- [Protocol overview](https://saax-protocol.com/protocol)
+- [Versioned specification](https://saax-protocol.com/spec)
+- [Conformance](https://saax-protocol.com/conformance)
+- [Security](https://saax-protocol.com/security)
+- [Terms](https://saax-protocol.com/terms)
+- [Privacy](https://saax-protocol.com/privacy)
+- [Disputes](https://saax-protocol.com/disputes)
+- [Full documentation text](https://saax-protocol.com/llms-full.txt)
+
+## Public interfaces
+- Signed profile: https://saax-protocol.com/.well-known/saax.json (current production signed terms identify8453; do not reinterpret as testnet).
+- Free preflight: POST https://saax-protocol.com/prepare-commitment
+- Buyer acceptance: POST https://saax-protocol.com/accept-commitment (onboarded buyer keys required; no funds move).
+- MCP: https://www.saax-protocol.com/mcp ; verified initialize/tools/list/ping/protocol-info,13 tools including prepare_commitment/accept_commitment.
+- Mainnet immediate-payment HTTP route: https://saax-protocol.com/route (separate existing settlement host: https://settlement.saax-protocol.com).
+
+## Essays
+- [Agentic Commerce Protocols in November 2026: A Verified Map of ACP, AP2, UCP, x402, MCP, A2A - and Where a Commitment Layer Fits](https://saax-protocol.com/blog/agentic-commerce-protocols-verified-map-2026)
+- [What Happens After an AI Agent Pays? x402, Stablecoins, Settlement Evidence, and SAAX](https://saax-protocol.com/blog/after-ai-agent-pays-x402-stablecoins-saax)
+- [Google AP2 and SAAX: Authorization Evidence vs Durable Commitments](https://saax-protocol.com/blog/google-ap2-authorization-vs-durable-commitments)
+- [Building Reliable Agentic Commerce with MCP, A2A, UCP, and SAAX](https://saax-protocol.com/blog/building-reliable-agentic-commerce-mcp-a2a-ucp-saax)
+- [Building Reliable Autonomous Commerce: Join the SAAX Protocol Discussion](https://saax-protocol.com/blog/building-reliable-autonomous-commerce)
+- [Agent Execution Liability: Who Pays When an Agent Buys Wrong](https://saax-protocol.com/blog/agent-execution-liability-who-pays-when-an-agent-buys-wrong)
+- [Agentic Commerce Disputes: The Complete FAQ](https://saax-protocol.com/blog/agentic-commerce-disputes-complete-faq)
+- [Agentic Commerce Protocols Explained: AP2, x402, ACP, and UCP](https://saax-protocol.com/blog/agentic-commerce-protocols-explained)
+- [Agentic Commerce Rails: What Exists and What's Missing](https://saax-protocol.com/blog/agentic-commerce-rails)
+- [ERC-8004 and Agent Identity: What the Draft Standard Actually Defines](https://saax-protocol.com/blog/erc-8004-agent-identity-draft-standard)
+- [How to Handle Agentic Commerce Disputes](https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes)
+- [How to Actually Make Money with AI Agents (And Why Most People Don't)](https://saax-protocol.com/blog/how-to-make-money-with-ai-agents)
+- [Preventing Autonomous Agent Double-Purchasing](https://saax-protocol.com/blog/preventing-autonomous-agent-double-purchasing)
+- [What an AI agent payment authorization actually authorizes](https://saax-protocol.com/blog/what-agent-payment-authorization-actually-authorizes)
+- [What a smart contract escrow security review actually verifies](https://saax-protocol.com/blog/what-escrow-security-review-actually-verifies)
+- [A chain ID is not authorization: verifying Discovery-to-testnet finance](https://saax-protocol.com/blog/signed-discovery-to-testnet-finance)
+- [The Audit Trail Problem in Agentic Commerce](https://saax-protocol.com/blog/the-audit-trail-problem-in-agentic-commerce)
+- [Unknown Payment Outcomes: The Agent Recovery Problem Nobody Instruments](https://saax-protocol.com/blog/unknown-payment-outcomes-agent-recovery)
+- [What Does an Agent Actually Commit To?](https://saax-protocol.com/blog/what-does-an-agent-actually-commit-to)
+- [Agentic Commerce Foundations: The Complete Guide](https://saax-protocol.com/blog/what-is-agentic-commerce)
+- [Why Payment Authorization ≠ Fulfillment in Agentic Commerce](https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment)
+- [x402 Receipts: What a Payment Receipt Actually Proves](https://saax-protocol.com/blog/x402-receipts-what-a-receipt-proves)

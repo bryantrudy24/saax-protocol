@@ -1,0 +1,11 @@
+{
+  "id": "discovery-auth-no-fallback-001",
+  "description": "Authentication failure must NOT fall back to an unsigned profile",
+  "input": {
+    "authOk": false,
+    "requiredExtensionOk": true
+  },
+  "expected": {
+    "allowFallback": false
+  }
+}

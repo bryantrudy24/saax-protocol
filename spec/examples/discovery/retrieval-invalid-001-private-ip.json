@@ -1,0 +1,12 @@
+{
+  "id": "retrieval-invalid-001",
+  "description": "Unsafe endpoint: non-https or private-network URL in endpoints",
+  "input": {
+    "url": "http://192.168.1.10/.well-known/saax.json",
+    "profileVersion": "1.0.0"
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["origin"]
+  }
+}

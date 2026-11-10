@@ -1,0 +1,28 @@
+{
+  "id": "discovery-combination-valid-001",
+  "description": "Exact supported combination (x402/USDC/eip155:8453) passes",
+  "input": {
+    "profile": {
+      "financialCompatibility": {
+        "supportedCombinations": [
+          {
+            "network": "eip155:8453",
+            "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+            "rail": "x402",
+            "mode": "x402",
+            "maturity": "production"
+          }
+        ]
+      }
+    },
+    "combo": {
+      "network": "eip155:8453",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "rail": "x402",
+      "mode": "x402"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

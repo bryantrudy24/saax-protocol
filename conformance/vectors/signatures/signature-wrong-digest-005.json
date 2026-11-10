@@ -1,0 +1,13 @@
+{
+  "id": "signature-wrong-digest-005",
+  "description": "Signature over the wrong digest",
+  "input": {
+    "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+    "party": "buyer",
+    "signature": "0x-sig",
+    "digest": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "expected": {
+    "valid": false
+  }
+}

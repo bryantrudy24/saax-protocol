@@ -1,0 +1,10 @@
+{
+  "id": "errors-unsupported-rail-008",
+  "description": "Input that must produce SET_UNSUPPORTED_RAIL",
+  "input": {
+    "unsupportedRail": true
+  },
+  "expected": {
+    "error_code": "SET_UNSUPPORTED_RAIL"
+  }
+}

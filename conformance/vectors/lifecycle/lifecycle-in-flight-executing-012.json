@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-in-flight-executing-012",
+  "description": "in_flight -> executing (merchant begins fulfillment)",
+  "input": {
+    "from": "in_flight",
+    "to": "executing"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

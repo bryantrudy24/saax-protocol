@@ -1,0 +1,12 @@
+{
+  "id": "retrieval-invalid-002",
+  "description": "Unsafe endpoint: http (non-TLS) scheme",
+  "input": {
+    "url": "http://example-provider.test/.well-known/saax.json",
+    "profileVersion": "1.0.0"
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["origin"]
+  }
+}

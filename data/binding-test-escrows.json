@@ -1,0 +1,26 @@
+{
+  "valid": {
+    "CID": "0xec43a7ea45b83cec2bcb9de882ba28d739a11d06d82ba17209c19bd73c2f689f",
+    "tx": "0x24ad5fb3e137bb0770cf2fd323d3addd9e1066c07a95c7e4fda880febfe24198",
+    "buyer": "0xFec898A99e35d2E3a06bCfb54c4A8886DA19cA13",
+    "resolved": {
+      "action": "refund (evaluator-signed verdict)",
+      "tx": "0xf1f19d2a99d957718493f7f224117b5facc84ba212f7f0ee6ab57b758fdda044",
+      "block": "48214741",
+      "stateAfter": "refunded"
+    }
+  },
+  "mismatch": {
+    "CID": "0xa41af455dcdbd80098096a8eeefe39c094490239f309a9c7a6cfb6ff3d429d97",
+    "tx": "0xec150ada14f16869999161cadfc6008136782526fe54c0ab539934127ce988db",
+    "buyer": "0x1111111111111111111111111111111111111111",
+    "resolved": {
+      "action": "refund (evaluator-signed verdict)",
+      "tx": "0xc16ff1a84d52c496bbffc2c6836946061ca1ef0403ed92b4cf8100879cdadfab",
+      "block": "48214743",
+      "stateAfter": "refunded"
+    }
+  },
+  "deadline": "1792204150",
+  "note": "Both escrows were created for the focused authorization-binding test (Day 26 corrections) and resolved to refunded via evaluator-signed refund verdicts. Custody balance after resolution: 0."
+}

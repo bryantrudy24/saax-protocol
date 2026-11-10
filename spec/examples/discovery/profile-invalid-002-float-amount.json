@@ -1,0 +1,44 @@
+{
+  "id": "profile-invalid-002",
+  "description": "Profile with float amount (not integer-string)",
+  "input": {
+    "profileVersion": "1.0.0",
+    "providerId": "https://example-provider.test/",
+    "origin": "https://example-provider.test",
+    "signingKeys": [
+      {
+        "id": "key-2026-01",
+        "type": "jwk",
+        "jwk": { "kty": "OKP", "crv": "Ed25519", "x": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY" },
+        "controller": "https://example-provider.test/.well-known/did.json",
+        "validFrom": "2026-01-01T00:00:00Z",
+        "validUntil": "2027-01-01T00:00:00Z",
+        "status": "active"
+      }
+    ],
+    "capabilities": [
+      {
+        "id": "security-scan",
+        "schemas": [
+          {
+            "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+            "version": "1",
+            "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+            "purpose": "commitment-manifest"
+          }
+        ],
+        "input": {
+          "units": { "amount": 250000000.5, "unit": "micro-units of settlement asset" }
+        },
+        "evidencePolicy": { "requiredEvidenceTypes": ["vulnerability-scan-report"] },
+        "evaluatorRequirements": { "verificationSchemes": ["eip712"] },
+        "maturity": "production"
+      }
+    ],
+    "interfaces": { "discovery": { "profile": true, "prepareCommitment": false, "commitment": true } }
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["units.amount"]
+  }
+}

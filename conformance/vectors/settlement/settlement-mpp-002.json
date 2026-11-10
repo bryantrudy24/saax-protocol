@@ -1,0 +1,17 @@
+{
+  "id": "settlement-mpp-002",
+  "description": "MPP rail resolves when explicitly requested",
+  "input": {
+    "r": {
+      "rail": "mpp",
+      "amount": "50000",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "recipient": "0x2222222222222222222222222222222222222222",
+      "chainId": 8453,
+      "deadline": "2026-10-07T00:00:00Z"
+    }
+  },
+  "expected": {
+    "rail": "mpp"
+  }
+}

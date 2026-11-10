@@ -1,0 +1,13 @@
+{
+  "id": "discovery-replay-conflict-001",
+  "description": "Changed request with the same nonce is a conflict, never silent re-process",
+  "input": {
+    "proposal": { "nonce": "0x1234abcd5678ef90", "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" },
+    "clientNonce": "0x1234abcd5678ef90",
+    "requestDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "storeRow": { "nonce": "0x1234abcd5678ef90", "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" }
+  },
+  "expected": {
+    "outcome": "conflict"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "discovery-outcome-unavailable-001",
+  "description": "Unavailable outcome classifies specifically",
+  "input": { "kind": "unavailable" },
+  "expected": {
+    "outcome": "unavailable",
+    "errorCode": "DSC_UNAVAILABLE"
+  }
+}

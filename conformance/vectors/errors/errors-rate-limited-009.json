@@ -1,0 +1,10 @@
+{
+  "id": "errors-rate-limited-009",
+  "description": "Input that must produce SYS_RATE_LIMITED",
+  "input": {
+    "rateLimited": true
+  },
+  "expected": {
+    "error_code": "SYS_RATE_LIMITED"
+  }
+}

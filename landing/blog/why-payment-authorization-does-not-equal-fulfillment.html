@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Payment Authorization ≠ Fulfillment in Agentic Commerce</title>
+<meta name="description" content="A payment authorization proves the transaction was permitted. It does not prove the deliverable matched the agreement.">
+<link rel="canonical" href="https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment">
+<meta property="og:title" content="Why Payment Authorization ≠ Fulfillment in Agentic Commerce — SAAX Protocol">
+<meta property="og:description" content="A payment authorization proves the transaction was permitted. It does not prove the deliverable matched the agreement.">
+<meta property="og:url" content="https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Payment Authorization ≠ Fulfillment in Agentic Commerce — SAAX Protocol">
+<meta name="twitter:description" content="A payment authorization proves the transaction was permitted. It does not prove the deliverable matched the agreement.">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Payment Authorization ≠ Fulfillment in Agentic Commerce",
+  "description": "Why payment authorization is not the same as fulfillment in agentic commerce, and why the distinction matters.",
+  "url": "https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-17",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Why Payment Authorization ≠ Fulfillment in Agentic Commerce", "item": "https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>Why Payment Authorization ≠ Fulfillment in Agentic Commerce</h1>
+<p class="post-date"><em>October 8, 2026</em> · Last updated: 2026-10-17</p>
+<hr>
+<p>A payment authorization is a promise to pay. A fulfillment is proof that something was delivered.</p>
+<p>The two are treated as equivalent in most commerce infrastructure. The authorization clears, the settlement occurs, and the transaction is considered complete. This works when a human is on the other end of the purchase — they authorized the transaction, they received the goods, and their own judgment closes the gap.</p>
+<p>When an agent is on the other end, the gap doesn't close. The agent authorized the transaction. The payment cleared. The merchant shipped something. But whether that something matches what the agent <em>actually intended to buy</em> is a separate question — and no layer in the stack is designed to answer it.</p>
+<h2>What payment protocols actually prove</h2>
+<p>A payment authorization proves one thing: <strong>at a specific moment, some party with valid credentials authorized a transfer of value to another party.</strong></p>
+<p>That is the entire claim. It does not prove:</p>
+<ul>
+<li>That the authorizing party understood what they were authorizing</li>
+<li>That the recipient was capable of delivering what was paid for</li>
+<li>That the deliverable matched any acceptance criteria</li>
+<li>That the transaction was not duplicated</li>
+<li>That the merchant's claim of fulfillment is true</li>
+<li>That any recovery process exists if the fulfillment fails</li>
+</ul>
+<p>These are not edge cases. They are the ordinary questions that arise in commerce, and the payment layer answers none of them.</p>
+<h2>Why this was fine before agents</h2>
+<p>For a human-driven purchase, the gap between authorization and fulfillment is closed by the human. The buyer knows what they intended to buy. When the goods arrive, the buyer compares the goods to the intent. If they don't match, the buyer initiates a dispute — which the card network handles based on the human's testimony.</p>
+<p>The card network's dispute infrastructure assumes a human is available to testify. It assumes the human's intent is knowable because the human is the one who authorized the transaction. It assumes the record of the intent is the human's word.</p>
+<p>When an agent is the authorizer, none of these assumptions hold. The agent's intent is not equivalent to the principal's intent. The record of what the agent was asked to do lives in a prompt log that may expire. The record of what the agent actually did lives in a tool-call log that may not have been preserved. The record of what the merchant delivered lives in the merchant's database. None of these records necessarily reference each other.</p>
+<p>When the human buyer calls their bank to dispute the charge, they can say "I never asked for this." When the principal behind an agent calls their bank, they have to say "I asked the agent to do something, and the agent did something different, and here is the record that proves it." For most agent systems, that record does not exist.</p>
+<h2>Why stablecoin rails make it worse</h2>
+<p>Card networks at least have a dispute layer. Stablecoin rails generally don't: settlement is final the moment the transaction confirms, with no built-in reversal mechanism. That does not mean value can never move back — the parties can voluntarily transfer funds, and in SAAX's testnet escrow flow the custody contract can transfer funds back to the buyer under an evaluator-signed refund verdict. But that is a separate, conditional transfer, not a reversal of the blockchain record, and it is not guaranteed. On mainnet immediate payments, settlement is final.</p>
+<p>This is not a design flaw in stablecoin rails. It is a design property. The entire point of a stablecoin is that settlement is final. The point of a card authorization is that settlement can be reversed under specific conditions. These are different products serving different use cases.</p>
+<p>But agents are increasingly being deployed on stablecoin rails for the same reasons they're deployed everywhere — programmable, fast, low-fee, no banking hours. When agent commerce runs on rails that have no dispute mechanism, the gap between authorization and fulfillment becomes permanent.</p>
+<h2>The three-layer model that's missing</h2>
+<p>Agent commerce requires three distinct layers, and most implementations collapse them into one:</p>
+<p><strong>Authorization</strong> — proves that a party with valid credentials authorized a specific transfer of value. This is what x402, MPP, and the card networks handle.</p>
+<p><strong>Commitment</strong> — binds the specific terms of what was agreed. Price, deliverable, deadline, acceptance criteria, evidence requirements, recovery policy. This is the layer that does not exist in most agent commerce systems today.</p>
+<p><strong>Settlement</strong> — moves the value on the specified rail. This is what the payment processors handle.</p>
+<p>Most systems today have authorization and settlement. The commitment layer — the one that records what was agreed and evaluates whether the agreement was fulfilled — is missing.</p>
+<p>Without the commitment layer, the payment layer is trying to do the work of the commitment layer. It approves transactions it should not approve, and it disputes transactions it cannot evaluate. It has no basis for either decision because it was never given the terms.</p>
+<h2>What SAAX does</h2>
+<p>SAAX Protocol defines the commitment layer as a distinct artifact from the authorization and the settlement.</p>
+<p>A commitment binds:</p>
+<ul>
+<li>The authority reference (who authorized this commitment, under what scope)</li>
+<li>The terms (what was agreed, at what price, by what deadline)</li>
+<li>The acceptance criteria (what counts as fulfillment)</li>
+<li>The evidence requirements (what proof must be submitted)</li>
+<li>The recovery policy (what happens if fulfillment fails)</li>
+<li>The settlement reference (which rail settles this commitment, and to what reference)</li>
+</ul>
+<p>The authorization and settlement happen on the rails the parties have chosen. The commitment is the record that binds them together — and the record that determines whether the fulfillment matched the agreement.</p>
+<p>This is not a replacement for x402, MPP, or the card networks. It is the layer above them — the layer that answers the question the payment layer cannot: <em>did the fulfillment match the commitment?</em></p>
+<p>The spec is at <a href="/spec">saax-protocol.com/spec</a>. The conformance suite is at <a href="/conformance">saax-protocol.com/conformance</a>. The commitment schema, the evidence interface, and the settlement-linkage model are documented there.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

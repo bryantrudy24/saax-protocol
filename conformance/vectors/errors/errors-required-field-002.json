@@ -1,0 +1,10 @@
+{
+  "id": "errors-required-field-002",
+  "description": "Input that must produce VAL_REQUIRED_FIELD",
+  "input": {
+    "missing": "parties"
+  },
+  "expected": {
+    "error_code": "VAL_REQUIRED_FIELD"
+  }
+}

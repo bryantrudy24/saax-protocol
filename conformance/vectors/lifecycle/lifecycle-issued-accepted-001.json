@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-issued-accepted-001",
+  "description": "issued -> accepted (no authority ref, all signed)",
+  "input": {
+    "from": "issued",
+    "to": "accepted"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "errors-insufficient-evidence-007",
+  "description": "Input that must produce EVI_INSUFFICIENT_EVIDENCE",
+  "input": {
+    "insufficientEvidence": true
+  },
+  "expected": {
+    "error_code": "EVI_INSUFFICIENT_EVIDENCE"
+  }
+}

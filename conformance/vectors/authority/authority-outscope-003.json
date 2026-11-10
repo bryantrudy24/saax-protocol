@@ -1,0 +1,32 @@
+{
+  "id": "authority-outscope-003",
+  "description": "A proof out of scope for the requested action/amount is rejected",
+  "input": {
+    "proof": {
+      "authorityProofId": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "proofType": "ap2-mandate",
+      "issuer": "0x4444444444444444444444444444444444444444",
+      "subject": "0x1111111111111111111111111111111111111111",
+      "scope": {
+        "actions": [
+          "read-only"
+        ],
+        "capability": "data-delivery",
+        "amountMax": "100",
+        "currency": "USD"
+      },
+      "validFrom": "2026-10-06T00:00:00Z",
+      "validUntil": "2026-10-07T00:00:00Z",
+      "signature": "COSE_Sign1-test-valid",
+      "verificationScheme": "cose",
+      "verificationMaterial": "0x4444444444444444444444444444444444444444"
+    },
+    "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+    "requestedAction": "settle",
+    "amount": "50000",
+    "currency": "USD"
+  },
+  "expected": {
+    "valid": false
+  }
+}

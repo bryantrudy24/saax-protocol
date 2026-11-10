@@ -1,0 +1,11 @@
+{
+  "id": "discovery-replay-fresh-001",
+  "description": "First-time nonce is accepted",
+  "input": {
+    "proposal": { "nonce": "0x1234abcd5678ef90", "requestDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" },
+    "storeRow": null
+  },
+  "expected": {
+    "outcome": "accepted"
+  }
+}

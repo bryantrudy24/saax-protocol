@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-executing-evidence-pending-004",
+  "description": "executing -> evidence_pending (obligation complete)",
+  "input": {
+    "from": "executing",
+    "to": "evidence_pending"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

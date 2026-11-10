@@ -1,0 +1,14 @@
+{
+  "id": "discovery-fallback-valid-001",
+  "description": "No A2A card + auth ok + required ext ok + client permits = fallback allowed",
+  "category_hint": "discovery",
+  "input": {
+    "fallback": {
+      "a2aCardObtained": false,
+      "authOk": true,
+      "requiredExtensionOk": true,
+      "clientPermitsStandalone": true
+    }
+  },
+  "expected": { "allowFallback": true, "errorCode": null }
+}

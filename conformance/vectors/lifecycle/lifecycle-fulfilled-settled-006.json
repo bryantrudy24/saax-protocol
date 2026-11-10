@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-fulfilled-settled-006",
+  "description": "fulfilled -> settled (settlement realised)",
+  "input": {
+    "from": "fulfilled",
+    "to": "settled"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

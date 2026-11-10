@@ -1,0 +1,13 @@
+{
+  "id": "profile-invalid-003",
+  "description": "Unsupported version (profileVersion 0.9.0, downgrade)",
+  "input": {
+    "profileVersion": "0.9.0",
+    "providerId": "https://example-provider.test/",
+    "origin": "https://example-provider.test"
+  },
+  "expected": {
+    "valid": false,
+    "errors": ["profileVersion"]
+  }
+}

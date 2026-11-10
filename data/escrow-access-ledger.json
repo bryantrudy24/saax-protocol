@@ -1,0 +1,82 @@
+{
+  "operations": {
+    "6001": {
+      "nonce": "6001",
+      "payloadHash": "e7497dfd503f54cad55bbd3e168aa16589cd275969d268975fa0e5d223c6d217",
+      "role": "buyer",
+      "action": "execute",
+      "commitmentDigest": "0xf8944632c46b2c77c18e03e4191cd7333b8a984ad76a92d7524ef084d4e7e5f3",
+      "escrowId": "0xf8944632c46b2c77c18e03e4191cd7333b8a984ad76a92d7524ef084d4e7e5f3",
+      "custody": "0x5a5472d751839cd4968cbf1b136baf862279ff5d",
+      "chainId": "84532",
+      "expiry": "1792173608",
+      "status": "complete",
+      "acceptedAt": 1792170008,
+      "externalEffect": {
+        "occurred": true,
+        "txHash": "0xabababababababababababababababababababababababababababababababab",
+        "state": "released",
+        "at": 1792170008,
+        "block": "48200000",
+        "placeholder": true,
+        "placeholderNote": "original record: occurred=true with synthetic txHash 0xabab...ab and block 48200000. Preserved verbatim below; corrected to the real chain-derived release reference.",
+        "original": {
+          "occurred": true,
+          "txHash": "0xabababababababababababababababababababababababababababababababab",
+          "state": "released",
+          "at": 1792170008,
+          "block": "48200000"
+        },
+        "corrected": {
+          "occurred": true,
+          "txHash": "0x684f263d0116dabfaaf052cd39cfe418cf129de49db8b988d83606f1d6600575",
+          "block": "48201131",
+          "source": "on-chain receipt of release transaction (status success, from evaluator to custody)",
+          "receiptLink": "https://sepolia.basescan.org/tx/0x684f263d0116dabfaaf052cd39cfe418cf129de49db8b988d83606f1d6600575"
+        }
+      },
+      "result": {
+        "action": "execute"
+      },
+      "corrections": [
+        {
+          "at": "2026-10-16T19:43:15.387Z",
+          "item": "ledger placeholder txHash/block correction",
+          "original": {
+            "txHash": "0xabababababababababababababababababababababababababababababababab",
+            "block": "48200000",
+            "occurred": true
+          },
+          "corrected": {
+            "txHash": "0x684f263d0116dabfaaf052cd39cfe418cf129de49db8b988d83606f1d6600575",
+            "block": "48201131",
+            "occurred": true
+          },
+          "basis": "The escrow 0xf8944632... is Released on-chain; the recorded placeholder was a synthetic stand-in. The real release tx 0x684f263d... (block 48201131) status=success is the chain-derived truth.",
+          "authority": "SAAX Protocol evidence corrections — no synthetic values in chain-evidence records"
+        }
+      ],
+      "claimQualification": "Synthetic values remain in preserved historical records. The 480 disputeAt and the 0xababab…ab placeholder are preserved for auditability. The corrected authoritative values — disputeAt 1792172058 and txHash 0x684f263d… — are identified alongside the originals. Consumers must read the corrected value, not the preserved original. The discipline note prevents new synthetic values; it does not retroactively remove the old ones."
+    },
+    "1792198963": {
+      "nonce": "1792198963",
+      "payloadHash": "41d45d8ad1cd1e4d81dba7f368a9ca1e27b7689d2f281190b3305914dcf7edc1",
+      "role": "buyer",
+      "action": "request status",
+      "commitmentDigest": "0xe934dee4c574f156e3305f817fdb614b4c90358daf3b1e44734d2f6d4611cbe1",
+      "escrowId": "0xe934dee4c574f156e3305f817fdb614b4c90358daf3b1e44734d2f6d4611cbe1",
+      "custody": "0x5a5472d751839cd4968cbf1b136baf862279ff5d",
+      "chainId": "84532",
+      "expiry": "1792202563",
+      "status": "accepted",
+      "acceptedAt": 1792198966,
+      "externalEffect": null,
+      "result": {
+        "action": "request status",
+        "manifestCid": "0xe934dee4c574f156e3305f817fdb614b4c90358daf3b1e44734d2f6d4611cbe1",
+        "chainId": "84532",
+        "recoveredSigner": "0xfec898a99e35d2e3a06bcfb54c4a8886da19ca13"
+      }
+    }
+  }
+}

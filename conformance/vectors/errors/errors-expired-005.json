@@ -1,0 +1,10 @@
+{
+  "id": "errors-expired-005",
+  "description": "Input that must produce ST_EXPIRED_COMMITMENT",
+  "input": {
+    "expired": true
+  },
+  "expected": {
+    "error_code": "ST_EXPIRED_COMMITMENT"
+  }
+}

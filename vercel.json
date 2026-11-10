@@ -1,0 +1,174 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/landing/index.html"
+    },
+    {
+      "source": "/protocol",
+      "destination": "/landing/protocol.html"
+    },
+    {
+      "source": "/docs",
+      "destination": "/landing/docs.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/landing/terms.html"
+    },
+    {
+      "source": "/spec",
+      "destination": "/landing/spec.html"
+    },
+    {
+      "source": "/security",
+      "destination": "/landing/security.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/landing/privacy.html"
+    },
+    {
+      "source": "/disputes",
+      "destination": "/landing/disputes.html"
+    },
+    {
+      "source": "/status",
+      "destination": "/landing/status.html"
+    },
+    {
+      "source": "/welcome",
+      "destination": "/landing/welcome.html"
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "destination": "/landing/.well-known/security.txt"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/landing/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/landing/sitemap.xml"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp.mjs"
+    },
+    {
+      "source": "/.well-known/saax.json",
+      "destination": "/api/discovery.mjs"
+    },
+    {
+      "source": "/.well-known/discovery",
+      "destination": "/api/discovery.mjs"
+    },
+    {
+      "source": "/prepare-commitment",
+      "destination": "/api/discovery.mjs"
+    },
+    {
+      "source": "/accept-commitment",
+      "destination": "/api/discovery.mjs"
+    },
+    {
+      "source": "/og-image.png",
+      "destination": "/landing/og-image.png"
+    },
+    {
+      "source": "/conformance",
+      "destination": "/landing/conformance.html"
+    },
+    {
+      "source": "/conformance/vectors",
+      "destination": "/landing/conformance-vectors.md"
+    },
+    {
+      "source": "/conformance/vectors/:path*",
+      "destination": "/conformance/vectors/:path*"
+    },
+    {
+      "source": "/conformance/runner/:path*",
+      "destination": "/conformance/runner/:path*"
+    },
+    {
+      "source": "/llms.txt",
+      "destination": "/landing/llms.txt"
+    },
+    {
+      "source": "/llms-full.txt",
+      "destination": "/landing/llms-full.txt"
+    },
+    {
+      "source": "/blog",
+      "destination": "/landing/blog/index.html"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/landing/blog/:slug.html"
+    },
+    {
+      "source": "/route",
+      "destination": "/api/route.mjs"
+    },
+    {
+      "source": "/receipt",
+      "destination": "/api/receipt.mjs"
+    },
+    {
+      "source": "/.well-known/glama.json",
+      "destination": "/landing/.well-known/glama.json"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/api/checkout.mjs"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/landing/assets/:path*"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/landing/assets/favicon.ico"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Authorization, Content-Type, Mcp-Session-Id, Accept, Accept-Language"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, DELETE, OPTIONS"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/blog/agentic-commerce-what-is-it",
+      "destination": "/blog/agentic-commerce-rails",
+      "permanent": true
+    }
+  ],
+  "functions": {
+    "api/route.mjs": {
+      "includeFiles": "data/**"
+    },
+    "api/receipt.mjs": {
+      "includeFiles": "data/**"
+    },
+    "api/mcp.mjs": {
+      "includeFiles": "data/**"
+    }
+  }
+}

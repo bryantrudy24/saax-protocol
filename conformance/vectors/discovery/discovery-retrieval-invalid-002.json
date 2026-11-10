@@ -1,0 +1,12 @@
+{
+  "id": "discovery-retrieval-invalid-002",
+  "description": "Retrieval policy rejects http (non-TLS)",
+  "input": {
+    "url": "http://example-provider.test/.well-known/saax.json",
+    "profileVersion": "1.0.0"
+  },
+  "expected": {
+    "valid": false,
+    "errors_contain": "https"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "errors-invalid-commitment-001",
+  "description": "Input that must produce VAL_INVALID_COMMITMENT",
+  "input": {
+    "missing": "commitmentId"
+  },
+  "expected": {
+    "error_code": "VAL_INVALID_COMMITMENT"
+  }
+}

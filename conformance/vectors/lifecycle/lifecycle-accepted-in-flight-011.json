@@ -1,0 +1,11 @@
+{
+  "id": "lifecycle-accepted-in-flight-011",
+  "description": "accepted -> in_flight (merchant receives the commitment; the in_flight write is the lock)",
+  "input": {
+    "from": "accepted",
+    "to": "in_flight"
+  },
+  "expected": {
+    "allowed": true
+  }
+}

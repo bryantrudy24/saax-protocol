@@ -1,0 +1,23 @@
+{
+  "default": "84532",
+  "policies": {
+    "31337": {
+      "policy": "local-official-eas-1.7.1-v1-31337",
+      "chainId": 31337,
+      "note": "Explicitly LOCAL-TEST-ONLY entry. Official EAS 1.7.1 deployed fresh on the local EVM chain 31337 (distinct local ID per chain-identity resolution). Identity checks (schema UID, runtime hashes, registry wiring, immutability) still apply exactly; authorizes nothing on any public chain.",
+      "easAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "registryAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "runtimeCodeHash": "0xf533943c7cbba3ef19c1cb7fb138153e1f14c5f47e8a01e1525d4ea97493d26c",
+      "registryRuntimeCodeHash": "0x836ef00c51e5bf57f15193a89cdb228599d0f875009d250b6ed167fd3ef92318"
+    },
+    "84532": {
+      "policy": "local-official-eas-1.7.1-v1",
+      "chainId": 84532,
+      "note": "Local in-process hardhat evidence era (Phase 3B checkpoint). Kept byte-identical for historical evidence compatibility. NOT public Base Sepolia: it pins hardhat-derived addresses/hashes produced on a local EVM that historically presented chain 84532. Deployment identity checks still apply; do not treat as a public deployment policy.",
+      "easAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "registryAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "runtimeCodeHash": "0xa8b1e2c215bde135b8d60870004cb58f0bafe4a47b655aef1e408c2316cf8be7",
+      "registryRuntimeCodeHash": "0x836ef00c51e5bf57f15193a89cdb228599d0f875009d250b6ed167fd3ef92318"
+    }
+  }
+}

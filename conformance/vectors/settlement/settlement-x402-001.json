@@ -1,0 +1,17 @@
+{
+  "id": "settlement-x402-001",
+  "description": "x402 rail resolves for an R with rail null (default rail)",
+  "input": {
+    "r": {
+      "rail": null,
+      "amount": "50000",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "recipient": "0x2222222222222222222222222222222222222222",
+      "chainId": 8453,
+      "deadline": "2026-10-07T00:00:00Z"
+    }
+  },
+  "expected": {
+    "rail": "x402"
+  }
+}

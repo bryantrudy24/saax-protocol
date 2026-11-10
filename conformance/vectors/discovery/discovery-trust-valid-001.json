@@ -1,0 +1,15 @@
+{
+  "id": "discovery-trust-valid-001",
+  "description": "Configured trusted key + active + origin match = authenticated",
+  "category_hint": "discovery",
+  "input": {
+    "trust": {
+      "configuredTrustedThumbprints": ["abc123def456"],
+      "actualSigningThumbprint": "abc123def456",
+      "profileOrigin": "https://provider.example",
+      "configuredOrigin": "https://provider.example",
+      "keyStatus": "active"
+    }
+  },
+  "expected": { "authenticated": true, "trustSource": "configured-key" }
+}

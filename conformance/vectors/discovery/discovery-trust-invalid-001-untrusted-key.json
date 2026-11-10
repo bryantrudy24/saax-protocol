@@ -1,0 +1,18 @@
+{
+  "id": "discovery-trust-invalid-001-untrusted-key",
+  "description": "Valid signature from an untrusted key does NOT authenticate",
+  "category_hint": "discovery",
+  "input": {
+    "trust": {
+      "configuredTrustedThumbprints": ["abc123def456"],
+      "actualSigningThumbprint": "fedcba654321",
+      "profileOrigin": "https://provider.example",
+      "configuredOrigin": "https://provider.example",
+      "keyStatus": "active"
+    }
+  },
+  "expected": {
+    "authenticated": false,
+    "trustSource": null
+  }
+}

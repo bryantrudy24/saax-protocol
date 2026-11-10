@@ -1,0 +1,17 @@
+{
+  "0x1111111111111111111111111111111111111111": {
+    "publicJwk": {
+      "key_ops": [
+        "verify"
+      ],
+      "ext": true,
+      "alg": "Ed25519",
+      "crv": "Ed25519",
+      "x": "a1qu3pj4GmKnry6iJygii3bSHEkqLmwZkZut6R7G0xg",
+      "kty": "OKP"
+    },
+    "scopeMaxAmount": "500000000",
+    "scopeCurrency": "USDC",
+    "scopeCapability": "security-scan"
+  }
+}

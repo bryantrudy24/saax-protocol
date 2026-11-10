@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Handle Agentic Commerce Disputes — SAAX Protocol</title>
+<meta name="description" content="When an agent buys wrong, there is no structured record of what was committed. A commitment layer makes disputes decidable.">
+<link rel="canonical" href="https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes">
+<meta property="og:title" content="How to Handle Agentic Commerce Disputes — SAAX Protocol">
+<meta property="og:description" content="When an agent buys wrong, there is no structured record of what was committed. A commitment layer makes disputes decidable.">
+<meta property="og:url" content="https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Handle Agentic Commerce Disputes — SAAX Protocol">
+<meta name="twitter:description" content="When an agent buys wrong, there is no structured record of what was committed. A commitment layer makes disputes decidable.">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  .muted{color:var(--muted);}
+  .post-list{list-style:none;}
+  .post-list li{padding:.9rem 0;border-bottom:1px solid var(--border);}
+  .post-list a{font-size:1.05rem;font-weight:600;}
+  .post-list .date{color:var(--muted);font-size:.9rem;margin-left:.6rem;}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Handle Agentic Commerce Disputes",
+  "description": "A practical guide to handling disputes in agentic commerce: evidence, evaluation, and resolution boundaries.",
+  "url": "https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes",
+  "datePublished": "2026-10-08",
+  "dateModified": "2026-10-17",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How to Handle Agentic Commerce Disputes", "item": "https://saax-protocol.com/blog/how-to-handle-agentic-commerce-disputes" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>How to Handle Agentic Commerce Disputes</h1>
+<p class="post-date"><em>October 8, 2026</em> · Last updated: 2026-10-17</p>
+<hr>
+<p>When an AI agent buys something and the purchase goes wrong, the parties usually discover the same problem: there is no structured record of what was actually committed.</p>
+<p>The authorization was valid. The credentials were real. The merchant fulfilled a legitimate order. The buyer is looking at a charge for something they never intended to purchase. Card networks were built for a two-party dispute. Stablecoin rails were built for instant, irreversible settlement. Neither was designed to answer the question that matters here: <strong>what did the agent actually commit to, and did the merchant deliver it?</strong></p>
+<p>The dispute isn't about whether money moved. It's about whether the commitment was fulfilled.</p>
+<p>The missing piece is not a resolution mechanism. It's the commitment record that makes a dispute decidable — what was authorized, what was agreed, what was executed, what proves fulfillment, and what happens when fulfillment fails.</p>
+<p>SAAX Protocol treats the commitment as the primary artifact. Authority, terms, acceptance criteria, evidence requirements, and recovery policy are all bound before execution begins. When something goes wrong, the parties work from that record instead of reconstructing events after the fact.</p>
+<p>The commitment lifecycle has defined states for failure:</p>
+<p><strong>COMMITTED → EXECUTING → FAILED → RECOVERY → DISPUTE → RESOLVED → FINAL</strong></p>
+<p>Recovery policy is set at commitment time, not negotiated after the problem emerges. In the integrated testnet escrow flow (Base Sepolia), a dispute freezes the escrowed funds on-chain, and the only way they move is an evaluator-signed verdict (release or refund, recorded as <code>resolve:release</code> / <code>resolve:refund</code>). This has been demonstrated in testnet runs. Refunds and compensation are separate on-chain transfers, not reversals of blockchain history, and they are not guaranteed. SAAX records what was required, what failed, what action occurred, and when the commitment became final.</p>
+<p>The commitment schema, recovery states, and evidence interface are documented at <a href="/spec">saax-protocol.com/spec</a>. The conformance suite is at <a href="/conformance">saax-protocol.com/conformance</a>.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

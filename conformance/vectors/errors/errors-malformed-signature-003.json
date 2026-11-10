@@ -1,0 +1,10 @@
+{
+  "id": "errors-malformed-signature-003",
+  "description": "Input that must produce VAL_MALFORMED_SIGNATURE",
+  "input": {
+    "badSignature": true
+  },
+  "expected": {
+    "error_code": "VAL_MALFORMED_SIGNATURE"
+  }
+}

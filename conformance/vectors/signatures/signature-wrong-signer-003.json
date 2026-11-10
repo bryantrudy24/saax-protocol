@@ -1,0 +1,13 @@
+{
+  "id": "signature-wrong-signer-003",
+  "description": "Signature from a party not in the commitment",
+  "input": {
+    "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+    "party": "seller",
+    "signature": "0x-valid-buyer-sig",
+    "digest": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "expected": {
+    "valid": false
+  }
+}

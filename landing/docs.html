@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX integration guide | Signed Discovery, acceptance and verification</title>
+<meta name="description" content="Integrate signed SAAX Discovery, free preflight and buyer-authorized commitments; distinguish live payments from verified testnet-only custody.">
+<link rel="canonical" href="https://saax-protocol.com/docs">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:title" content="SAAX integration guide | Signed Discovery, acceptance and verification">
+<meta property="og:description" content="Integrate signed SAAX Discovery, free preflight and buyer-authorized commitments; distinguish live payments from verified testnet-only custody.">
+<meta property="og:url" content="https://saax-protocol.com/docs">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="SAAX integration guide | Signed Discovery, acceptance and verification">
+<meta name="twitter:description" content="Integrate signed SAAX Discovery, free preflight and buyer-authorized commitments; distinguish live payments from verified testnet-only custody.">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-integration-guide">SAAX integration guide</h1>
+
+
+<div class="status-note" role="note" aria-label="Public Beta notice" style="border:1px solid var(--amber-bg); border-radius:12px; padding:1.1rem 1.3rem; background:#1c2128; margin:0 0 1.4rem;">
+<h2 style="color:var(--amber-bg); margin-top:0;">SAAX Protocol — Public Beta</h2>
+<p>SAAX Protocol is currently in public Beta. Immediate-payment functionality is available on Base mainnet, while escrow custody remains limited to testnet.</p>
+<p>Independent external security review is pending. Although internal verification and reliability testing have been performed, these do not replace an independent security assessment.</p>
+<p>Live transactions involve financial and technical risks, including potential loss of funds and irreversible blockchain transfers. Users should evaluate these risks carefully and use the platform at their own discretion.</p>
+<p><em>This notice does not constitute a guarantee of reimbursement, dispute recovery, or financial protection.</em></p>
+</div>
+<p><em>Last verified: 2026-11-06</em></p>
+<p>Start with the interface you intend to use. Public signed Discovery and buyer-authorized commitment creation do not move funds. Existing immediate payments are public beta on Base mainnet. The connected custody integration is a separate Base Sepolia testnet preview, operated through controlled scripts rather than public financial execution endpoints.</p>
+<p>Read the <a href="/terms">terms</a> and <a href="/status">current status</a>. No refund, safety, service-quality or independent-audit guarantee applies.</p>
+<h2 id="choose-a-supported-path">Choose a supported path</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Availability</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signed profile → preflight → buyer acceptance</td>
+<td><strong>Beta; publicly deployed</strong></td>
+<td>Creates a verifiable commitment after configured buyer authorization; no financial side effect.</td>
+</tr>
+<tr>
+<td>Immediate x402 payment</td>
+<td><strong>Public beta; Base mainnet 8453</strong></td>
+<td>Existing direct USDC payment flow, no mainnet escrow.</td>
+</tr>
+<tr>
+<td>Discovery → custody → signed release/refund</td>
+<td><strong>Testnet preview; operator-run</strong></td>
+<td>Actual Base Sepolia 84532 test-USDC execution with complete independent export verification for the defined self-test. No public financial API.</td>
+</tr>
+<tr>
+<td>Unreleased custody/governance candidates</td>
+<td><strong>Under development / security review</strong></td>
+<td>Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed &#8212; not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="discovery-quickstart">Discovery quickstart</h2>
+<h3 id="1-authenticate-the-provider-key-independently">1. Authenticate the provider key independently</h3>
+<p>Download the public profile:</p>
+<pre><code class="language-sh">curl https://saax-protocol.com/.well-known/saax.json
+</code></pre>
+<p>The current provider is <code>https://saax-protocol.com/</code>, origin <code>https://saax-protocol.com</code>, keyId <code>live-2026-11</code>, Ed25519 JWK thumbprint <code>KebjwLFLSV6LJFZ_Hp7ROBkVpHVBwrFNRgHkAQ5JldM</code>. These are identifiers to compare, <strong>not an independent trust source merely because this page or the same server displays them</strong>. Confirm the provider/key mapping through a separately authenticated operator channel before installing it in your client's trust configuration. Verify the full profile signature, origin, version, active key validity and expiry against that configured key.</p>
+<p>Supported trust is configured-key onboarding. DID, registry or automatically permissionless publisher authentication is not established. Signature validity and publisher identity are separate checks. Rotate a trust pin only after independently authenticating its replacement; preserve historical verification keys.</p>
+<h3 id="2-request-free-nonbinding-preflight">2. Request free, nonbinding preflight</h3>
+<p>Use an exact combination from the authenticated profile. The preserved public profile currently identifies <code>eip155:8453</code> and Base-mainnet USDC. <strong>Do not execute that proposal on testnet.</strong> The operator-run financial preview uses a different, separately signed testnet profile.</p>
+<p>Example request below is illustrative. Replace the buyer with your own address, generate a new nonce/time/deadline, and use the exact schema and combination in the verified live profile. Schema digests in that profile are provider declarations, not proof of an external schema audit.</p>
+<pre><code class="language-json">{
+  &quot;profileVersion&quot;: &quot;1.0.0&quot;,
+  &quot;capability&quot;: { &quot;id&quot;: &quot;security-scan&quot; },
+  &quot;schema&quot;: {
+    &quot;id&quot;: &quot;https://saax-protocol.com/schemas/commitment-manifest/v1&quot;,
+    &quot;version&quot;: &quot;1&quot;,
+    &quot;digest&quot;: &quot;sha256:3333333333333333333333333333333333333333333333333333333333333333&quot;
+  },
+  &quot;units&quot;: { &quot;amount&quot;: &quot;1000&quot;, &quot;unit&quot;: &quot;micro-units of settlement asset&quot; },
+  &quot;financialProfile&quot;: {
+    &quot;network&quot;: &quot;eip155:8453&quot;,
+    &quot;asset&quot;: &quot;eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913&quot;,
+    &quot;rail&quot;: &quot;x402&quot;,
+    &quot;mode&quot;: &quot;x402&quot;
+  },
+  &quot;constraints&quot;: { &quot;deadline&quot;: &quot;REPLACE_WITH_FUTURE_UTC_ISO_TIME&quot; },
+  &quot;intendedParties&quot;: { &quot;buyer&quot;: &quot;REPLACE_WITH_YOUR_EVM_ADDRESS&quot; },
+  &quot;clientNonce&quot;: &quot;REPLACE_WITH_UNIQUE_NONCE_AT_LEAST_8_CHARS&quot;,
+  &quot;issuedAt&quot;: &quot;REPLACE_WITH_CURRENT_UTC_ISO_TIME&quot;
+}
+</code></pre>
+<p>Save the completed request as <code>prepare-request.json</code> and send:</p>
+<pre><code class="language-sh">curl https://saax-protocol.com/prepare-commitment \
+  -H 'Content-Type: application/json' \
+  --data-binary @prepare-request.json
+</code></pre>
+<p>MCP <code>prepare_commitment</code> uses the same validation core. Verify the returned Ed25519 JWS over canonical proposal bytes, request digest, intended buyer/audience, schema/profile/manifest versions, network/asset/amount/decimals/unit, rail/mode, policy, nonce, issuedAt and expiry. Do not trust unsigned top-level copies instead of the signed representation.</p>
+<p>Preflight charges no fee and creates no economic commitment, reservation, execution or spending authority. Identical nonce/request retries return the existing proposal; changed content under the same nonce conflicts. Proposals are offers-until-expiry subject to explicit stale-on-change revalidation, not guaranteed capacity.</p>
+<h3 id="3-sign-buyer-acceptance-then-create-one-commitment">3. Sign buyer acceptance, then create one commitment</h3>
+<p>A provider signature is not buyer consent. Acceptance requires a separately onboarded buyer Ed25519 public key mapped to the buyer identity and scope by the operator; possessing an arbitrary wallet address or copying a public key into the request does not register it. Unsupported buyers receive authorization errors. This is not permissionless buyer onboarding.</p>
+<p>The acceptance-v1 document binds action <code>accept_commitment</code>, domain <code>saax:acceptance:v1</code>, intended provider/audience, buyer identity, proposalId and exact proposalDigest, termsDigest, profile/manifest/schema versions, an independent nonce, and a validity window. Sign canonical acceptance bytes with the registered buyer key. The operator revalidates supported terms, trust and expiry before durable acceptance.</p>
+<pre><code class="language-json">{
+  &quot;proposal&quot;: { &quot;...&quot;: &quot;FULL_SIGNED_PROPOSAL_UNCHANGED&quot; },
+  &quot;acceptance&quot;: { &quot;...&quot;: &quot;FULL_BUYER_SIGNED_ACCEPTANCE_V1&quot; },
+  &quot;idempotencyKey&quot;: &quot;PERSIST_ONE_KEY_FOR_THIS_OPERATION&quot;
+}
+</code></pre>
+<p>Post this envelope to <code>https://saax-protocol.com/accept-commitment</code>, or call MCP <code>accept_commitment</code>. A successful first creation returns201; an identical retry returns the existing operation/commitment. Reusing a single-use proposal with a new key is rejected. The authenticated commitment contains manifest-v1 fields plus the real provider JWS wrapper <code>manifest-v1.1+saax-proposal-bound</code>; the historical COSE-shaped placeholder is not itself a cryptographic signature.</p>
+<p>The operation may carry financial terms but creates <strong>no token approval, transfer, escrow funding, service execution or verdict</strong>. Later financial choices require their own signed terms and authorization. Do not equate proposalId, operationId, commitmentId, manifestHash, escrow ID or transaction hash.</p>
+<h2 id="mcp-integration">MCP integration</h2>
+<p>Endpoint:</p>
+<pre><code class="language-text">https://www.saax-protocol.com/mcp
+</code></pre>
+<p>The release check initializes MCP and calls <code>tools/list</code>, <code>ping</code> and <code>get_protocol_info</code>. The deployed tool names are:</p>
+<ul>
+<li><code>get_protocol_info</code>, <code>get_routing_fee</code>, <code>ping</code></li>
+<li><code>route_request</code>, <code>list_capabilities</code></li>
+<li><code>get_commitment</code>, <code>list_commitments</code>, <code>get_commitment_status</code></li>
+<li><code>create_commitment</code></li>
+<li><code>get_evidence_verification</code>, <code>get_authority_validation</code></li>
+<li><code>prepare_commitment</code>, <code>accept_commitment</code></li>
+</ul>
+<p>Client configuration varies by MCP client:</p>
+<pre><code class="language-json">{ &quot;mcpServers&quot;: { &quot;saax&quot;: { &quot;url&quot;: &quot;https://www.saax-protocol.com/mcp&quot; } } }
+</code></pre>
+<p>The older <code>create_commitment</code> tool is distinct from the new signed proposal/acceptance path. Its deterministic <code>saax_...</code> reference or a successful tool response does not establish the complete signed Discovery financial profile. Use the exact export verifier for the representation you received, not a generic claim that any commitment is fully verified.</p>
+<h2 id="existing-immediate-payments">Existing immediate payments</h2>
+<p>The existing live mainnet Router uses x402 with Base USDC. The MPP rail implementation exists but is not registered in production (x402-only mode). The site HTTP route is <code>https://saax-protocol.com/route</code>; the settlement host <code>https://settlement.saax-protocol.com</code> is a separate existing integration surface. Read its current challenge before authorizing a payment. This website release does not change its payment code, fees, secrets or configuration.</p>
+<p>A402 challenge supplies the amount, asset, network and payee. A separate wallet/payment authorization is required; Discovery acceptance does not pay. Confirm the actual successful settlement and its binding to your intended request. A transaction hash is not proof of success, fulfillment or refund rights. See <a href="/blog/x402-receipts-what-a-receipt-proves">what a receipt proves</a>.</p>
+<p>The x402 broadcaster may cover gas for its supported immediate-payment path; do not generalize this to custody transactions. Mainnet immediate payments are non-custodial and final, not escrow-backed.</p>
+<h2 id="testnet-financial-integration-and-independent-verification">Testnet financial integration and independent verification</h2>
+<p>The isolated preview completes: separately signed testnet profile → provider proposal → buyer acceptance → commitment → real custody funding → signed evidence → evaluator-signed release or refund → complete export → independent verifier. It pins Base Sepolia 84532, USDC <code>0x036cbd53842c5426634e7929541ec2318f3dcf7e</code>, six decimals and CustodyV1 <code>0x5a5472d751839cd4968cbf1b136baf862279ff5d</code>.</p>
+<p>Network and CAIP-19 asset chain must agree across authenticated terms and execution. Mainnet terms cannot be interpreted as a testnet label, and no environment override changes the signed asset. Explicit <code>mode:escrow</code> differs from immediate-payment <code>mode:x402</code>; the preview's x402 compatibility rail label does not mean a facilitator settled the escrow.</p>
+<p>Operator-run tooling in the controlled source checkout:</p>
+<pre><code class="language-sh">node scripts/check-custody-identity.cjs
+node verifier/verify-financial-export.js \
+  evidence/discovery-phase6/closeout-release-export.json \
+  --trust=evidence/discovery-phase6/trust.json --json
+</code></pre>
+<p>Source access and dependencies are prerequisites; the repository is not represented as permissionlessly public. These are read-only verification commands, not public financial execution endpoints. The verifier uses explicit public trust inputs and public historical RPC reads without SAAX database credentials. It recomputes bindings, verifies actual signatures/evaluator permissions and the exact deployed-contract EIP-712 domain/type/action/nonce/issuedAt at execution time, then checks successful decoded calldata/events, historical state and token outcomes. Current evidence passes78 release checks and79 signed-refund checks. <a href="/blog/signed-discovery-to-testnet-finance">Walk through the verification boundaries</a>.</p>
+<p>The actual fulfilled service is a deterministic local SHA-256 self-test. All roles are operator-controlled. The refund evidence is an authenticated test nonfulfillment declaration. Signed seller evidence is independently checked, and a separate evaluator attestation binds it to the custody verdict because deployed V1 does not include an evidence hash in its verdict struct. This does not prove external service quality, external adoption or independent audit.</p>
+<p>Funding requires test USDC and test ETH for gas. No public <code>/fund</code>, <code>/release</code> or <code>/refund</code> service is enabled. A local EVM with chain ID84532 is not public Base Sepolia proof. Earlier incomplete exports remain historical records, not silently upgraded evidence.</p>
+<h2 id="receipts-recovery-and-custody-readiness">Receipts, recovery and custody readiness</h2>
+<p><code>/receipt?txHash=&lt;hash&gt;&amp;rail=x402</code> is a settlement-reference lookup, not the complete financial verifier. The latest live read returns HTTP 500 with a store-schema mismatch; this documentation release does not modify the database or claim that defect is fixed. Discovery and read-only MCP checks pass separately.</p>
+<p>Recovery tests cover replacement-process issuance after durable acceptance and specific financial broadcast/reconciliation boundaries. The new producer journals the signed transaction hash before broadcast and reconciles by that hash; it does not prove every failure boundary or provide an unattended public recovery service. Reconcile unknown outcomes before retrying. <a href="/blog/unknown-payment-outcomes-agent-recovery">Recovery explanation</a>.</p>
+<p>CustodyV1 signed refunds and unsigned deadline refunds are different authorizations. Timeout refunds work only while <strong>Funded</strong>, not while <strong>Disputed</strong>. Only buyer or seller can raise a dispute. An unavailable evaluator can leave disputed funds frozen indefinitely; there is no admin, pause, upgrade or evaluator replacement. Newer custody/governance candidates remain under development/security review, not deployed versions. No mainnet escrow readiness or guaranteed refund is claimed.</p>
+<h2 id="supplier-registration">Supplier registration</h2>
+<p>The existing Router consumes ERC-8004 identity/reputation signals and ranks available suppliers. A registry entry is neither authentication of every Discovery publisher nor proof of actual service quality. See the <a href="/blog/erc-8004-agent-identity-draft-standard">identity standard explanation</a> and inspect current registration/endpoint requirements before relying on discovery.</p>
+<h2 id="pricing-and-subscriptions">Pricing and subscriptions</h2>
+<p>Discovery preflight has no fee. Mainnet routing/payment fees are disclosed in the applicable challenge before authorization. Existing Premium subscriptions use Stripe: 14-day trial with card collected upfront, Developer $29/month, Business $199/month, Enterprise custom. Subscription email matching is an access key, not identity proof. Features apply as they ship; no SLA, compliance certification or outcome guarantee is implied. The website release does not alter billing logic.</p>
+<h2 id="risk-and-support">Risk and support</h2>
+<p>Read <a href="/security">security</a>, <a href="/disputes">disputes</a>, <a href="/privacy">privacy</a> and <a href="/terms">terms</a>. SAAX is experimental software with component-specific maturity; production payments involve real funds. SAAX is not affiliated with Coinbase, Base or the ERC-8004 authors. Internal tests and independent verification software are not independent security review.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

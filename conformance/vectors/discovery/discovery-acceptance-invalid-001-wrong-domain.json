@@ -1,0 +1,43 @@
+{
+  "id": "discovery-acceptance-invalid-001-wrong-domain",
+  "description": "Acceptance with a foreign domain fails at contract level",
+  "input": {
+    "acceptance": {
+      "schemaVersion": "acceptance-v1",
+      "action": "accept_commitment",
+      "domain": "saax:payment:v1",
+      "acceptanceId": "acc_example00000000000001",
+      "nonce": "accnonce-example-0001",
+      "buyer": "0x1111111111111111111111111111111111111111",
+      "provider": {
+        "providerId": "https://example-provider.test/",
+        "signingKeyId": "key-2026-01"
+      },
+      "proposal": {
+        "proposalId": "prop_01JEXAMPLE0000000000000001",
+        "proposalDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "termsDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "audience": "https://example-provider.test",
+      "notBefore": "2026-11-05T11:58:00Z",
+      "notAfter": "2026-11-05T12:30:00Z",
+      "versions": {
+        "profileVersion": "1.0.0",
+        "manifestVersion": "1",
+        "schema": {
+          "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+          "version": "1",
+          "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      },
+      "signature": {
+        "scheme": "jws",
+        "alg": "EdDSA",
+        "keyId": "buyer-key-2026-01",
+        "jws": "[redacted-buyer-jws]",
+        "canonicalization": "rfc8785"
+      }
+    }
+  },
+  "expected": { "valid": false }
+}

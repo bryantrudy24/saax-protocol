@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX security | Trust, verification and custody limits</title>
+<meta name="description" content="SAAX security boundaries: configured-key trust, exact signed financial terms, independent testnet verification, evaluator risk and unaudited custody.">
+<link rel="canonical" href="https://saax-protocol.com/security">
+<meta property="og:title" content="SAAX security | Trust, verification and custody limits">
+<meta property="og:description" content="SAAX security boundaries: configured-key trust, exact signed financial terms, independent testnet verification, evaluator risk and unaudited custody.">
+<meta property="og:url" content="https://saax-protocol.com/security">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="twitter:title" content="SAAX security | Trust, verification and custody limits">
+<meta name="twitter:description" content="SAAX security boundaries: configured-key trust, exact signed financial terms, independent testnet verification, evaluator risk and unaudited custody.">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-security">SAAX Security</h1>
+
+
+<div class="status-note" role="note" aria-label="Public Beta notice" style="border:1px solid var(--amber-bg); border-radius:12px; padding:1.1rem 1.3rem; background:#1c2128; margin:0 0 1.4rem;">
+<h2 style="color:var(--amber-bg); margin-top:0;">SAAX Protocol — Public Beta</h2>
+<p>SAAX Protocol is currently in public Beta. Immediate-payment functionality is available on Base mainnet, while escrow custody remains limited to testnet.</p>
+<p>Independent external security review is pending. Although internal verification and reliability testing have been performed, these do not replace an independent security assessment.</p>
+<p>Live transactions involve financial and technical risks, including potential loss of funds and irreversible blockchain transfers. Users should evaluate these risks carefully and use the platform at their own discretion.</p>
+<p><em>This notice does not constitute a guarantee of reimbursement, dispute recovery, or financial protection.</em></p>
+</div>
+<p><em>Last verified: 2026-11-06</em></p>
+<p>SAAX is experimental software. This document describes the security posture of the SAAX Protocol and the SAAX Router, the classes of threats they are designed to defend against, and how to report a vulnerability. It distinguishes <strong>what is deployed and enforced on the live mainnet Router</strong>, <strong>what is implemented and tested in the integrated testnet escrow flow</strong>, and <strong>what remains unverified or out of scope</strong>.</p>
+<h2 id="scope">Scope</h2>
+<p>SAAX protects for four properties:</p>
+<ul>
+<li><strong>Commitment integrity</strong> — a commitment record, once issued, cannot be silently altered; its terms, parties, evidence, and references are attributable and auditable.</li>
+<li><strong>Settlement correctness</strong> — value moves only when the settlement requirement of a valid commitment is satisfied, and moves exactly as the commitment specifies.</li>
+<li><strong>Reputation integrity</strong> — reputation signals derive from verifiable on-chain behavior and signatures, not self-declared claims.</li>
+<li><strong>Availability of the routing layer</strong> — the routing service remains responsive to legitimate requests under load and resets cleanly after overload or operator action.</li>
+</ul>
+<h2 id="threat-model">Threat model</h2>
+<p>SAAX defends against the following attack classes. They are described generically; the precise controls are shared with operators and reviewers under coordinated disclosure.</p>
+<ul>
+<li><strong>Duplicate charges</strong> — an attacker replays a payment authorization to extract value more than once. Mitigated by idempotency keys bound to each commitment (enforced on the live Router and in the escrow flow).</li>
+<li><strong>Gas abuse and denial of service</strong> — an attacker floods the routing layer to exhaust computational or network resources. Mitigated by per-origin rate limiting.</li>
+<li><strong>Nonce replay</strong> — an attacker replays a signed transfer authorization whose nonce was already consumed. Mitigated by nonce-bound idempotency: each authorization is tied to a unique nonce and settles at most once.</li>
+<li><strong>Spoofed buyer reputation</strong> — an attacker fabricates a reputation signal for an address they do not control. Mitigated by deriving reputation from signatures and on-chain records rather than claimed identity.</li>
+<li><strong>Signature forgery</strong> — an attacker forges an authorization or attestation. Mitigated by typed, domain-separated signature schemes (EIP-712) and contract scanning aware of proxy-upgrade patterns.</li>
+<li><strong>Prompt injection via untrusted input</strong> — an attacker embeds instructions in free-text fields that a downstream system might execute. Mitigated by a sanitization gate that strips control content from untrusted input before it is processed. This is a defense-in-depth control; it does not eliminate the risk of prompt injection in any downstream model or agent.</li>
+<li><strong>Supply-side fraud</strong> — a provider advertises capabilities it cannot deliver. Mitigated by a capability floor and reputation weighting that ranks providers on verified performance rather than self-declaration.</li>
+<li><strong>Credential leakage</strong> — an operator's secret material is exposed to the network. Mitigated by a non-custodial design: the protocol never requires buyer funds to be held by the routing layer. Secret material is handled under a non-leakage architecture. On mainnet, the Router is non-custodial (payments are direct x402 authorizations from the buyer's wallet). In the testnet escrow flow, funds are held by the custody contract, not by the Router's operator.</li>
+</ul>
+<h2 id="mitigations-in-place-by-deployment">Mitigations in place — by deployment</h2>
+<p>The following table states where each control is enforced.</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idempotency</td>
+<td>Duplicate requests carrying the same idempotency key return the cached response and do not re-process value movement.</td>
+<td>Live Router (mainnet immediate payments)</td>
+</tr>
+<tr>
+<td>Rate limiting</td>
+<td>Requests in excess of the per-origin window are rejected with HTTP 429.</td>
+<td>Live Router</td>
+</tr>
+<tr>
+<td>Nonce-bound settlement</td>
+<td>Payment authorizations are bound to unique nonces; a spent nonce cannot be replayed.</td>
+<td>Live Router; testnet escrow (per-verdict nonce consumed at acceptance)</td>
+</tr>
+<tr>
+<td>Signature-derived reputation</td>
+<td>Reputation resolves from signatures and on-chain feedback, not claimed identity or client-supplied headers.</td>
+<td>Live Router (reads ERC-8004 identity registry)</td>
+</tr>
+<tr>
+<td>Typed verification</td>
+<td>Authorizations use typed, domain-separated signing (EIP-712); contract interactions are scanned with proxy-upgrade awareness.</td>
+<td>Live Router; testnet escrow (EIP-712 verdicts/access auth)</td>
+</tr>
+<tr>
+<td>Input sanitization</td>
+<td>Untrusted fields are sanitized at the boundary; empty or malformed payloads are rejected with HTTP 422.</td>
+<td>Live Router</td>
+</tr>
+<tr>
+<td>Trusted-proxy handling</td>
+<td>When deployed behind a reverse proxy, client addressing is read from the proxy-provided header so rate limits cannot be bypassed by proxy rotation.</td>
+<td>Live Router (deployment-specific)</td>
+</tr>
+<tr>
+<td>Kill switch</td>
+<td>An operator-controlled halt returns HTTP 503 before any value movement or external call.</td>
+<td>Live Router</td>
+</tr>
+<tr>
+<td>Escrow chain guard</td>
+<td>Every transaction-capable path refuses a chain other than Base Sepolia (84532) for escrow flows; mainnet escrow custody is never enabled.</td>
+<td>Testnet escrow instance only</td>
+</tr>
+<tr>
+<td>Durable acceptance ledger</td>
+<td>Accepted operations, nonce consumption, and reconcile outcomes are persisted durably (JSON ledger with atomic rename) so a replacement worker can reconcile without re-executing.</td>
+<td>Testnet escrow instance (durable file); Postgres profile in the reference deployment</td>
+</tr>
+<tr>
+<td>EAS anchoring</td>
+<td>Agreements are anchored via EAS attestation on-chain for independent verification.</td>
+<td>Testnet escrow flow (live EAS on Base Sepolia)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="discovery-and-financial-verification-boundaries">Discovery and financial verification boundaries</h2>
+<p>Public signed Discovery, free preflight and configured-buyer acceptance are deployed <strong>beta</strong> interfaces. They verify real Ed25519 JWS signatures for their defined records and persist a single authenticated commitment, but do not fund, pay, execute a service or release custody. Provider identity requires an independently installed configured key; a self-declared key is not permissionless authentication. Buyer public keys are separately onboarded and scoped.</p>
+<p>The isolated financial preview requires a separately signed Base Sepolia profile and exact network/CAIP-19 asset agreement through proposal, buyer acceptance, commitment and execution. A mainnet-bound proposal cannot become testnet authorization because an environment variable or RPC endpoint changed. The production mainnet profile and immediate-payment behavior remain separate and unchanged.</p>
+<p>The exact deployed CustodyV1 runtime, committed artifact and pinned-source compilation match in full:6934 runtime bytes =6881 executable +51 CBOR metadata +2 length bytes, compiled with solc 0.8.26, optimizer 200, viaIR, Cancun. The earlier guessed metadata trim was incorrect. Identity is not proof of safety or independent review.</p>
+<p>The expanded separate-process financial verifier authenticates configured provider and buyer keys, complete terms/digests/versions and evaluator permissions, then checks the actual deployed EIP-712 domain/type/action/nonce/issuedAt at execution-block time, successful decoded transaction calldata/events, historical escrow state, token transfers and balances. Signed seller evidence is checked against its policy; a separate evaluator signature connects its digest to the custody verdict. V1 does not directly include an evidence hash in its verdict struct.</p>
+<p>This result applies to a deterministic local SHA256 self-test with real Base Sepolia custody, not independently observed external service quality. All test roles are operator-controlled. Historical exports lacking the signed profile/evaluator/evidence chain remain explicitly incomplete; valid old transactions are preserved. General COSE/JWS authority/evidence hooks elsewhere retain their format-specific structural/attesting-verifier limitations. No blanket cryptographic-verification or audit claim follows.</p>
+<h2 id="residual-risks">Residual risks</h2>
+<p>SAAX does not fully eliminate the following risks, and users should assume they exist:</p>
+<ul>
+<li><strong>Smart contract risk</strong> — the settlement contracts and the tokens they move may contain undiscovered defects; on-chain behavior is final.</li>
+<li><strong>Key compromise at the user layer</strong> — if a participant's own keys are compromised, no protocol control can prevent loss.</li>
+<li><strong>Censorship and liveness</strong> — routing availability depends on the operators of the routing node and on the Base network; neither SAAX nor any user can force either to remain available.</li>
+<li><strong>RPC dependence</strong> — settlement correctness depends on the RPC providers serving on-chain data; a malicious or degraded provider can delay or distort observed state.</li>
+<li><strong>Reputation gaming</strong> — colluding parties can manipulate on-path reputation over time; reputation weighting reduces but does not eliminate this.</li>
+<li><strong>Social engineering</strong> — operators and integrators can be induced to misconfigure deployments; no technical control fully prevents operator error.</li>
+<li><strong>Evaluator dependence (escrow)</strong> — in the escrow flow, disputed funds can be released or refunded only by the evaluator whose address is bound in the agreement. If that evaluator disappears, the disputed escrow cannot be resolved by anyone else. This is a design property of the testnet custody contract, not a bug.</li>
+<li><strong>Recovery boundaries</strong> — replacement-process Discovery issuance and specific financial broadcast/reconciliation scenarios have test evidence. The new isolated producer persists its signed transaction hash before broadcast; this does not prove every older driver, failure boundary, external provider or unattended deployment recovers. Recovery remains explicit and operator-assisted, not a universal guarantee.</li>
+<li><strong>Prompt injection</strong> — input sanitization reduces but cannot eliminate prompt-injection risk in downstream models, agents, or tools.</li>
+</ul>
+<h2 id="audit-status">Audit status</h2>
+<p>SAAX has <strong>no independent security audit</strong> of the protocol implementation, the Router, or the testnet custody contract as of this update. Passing conformance vectors and internal test suites are not an audit and do not constitute a security certification. The custody contract is testnet-only research code; it has not been reviewed by an independent custodian or auditor, and it is not production custody.</p>
+<p><strong>Custody V3 candidate:</strong> a newer custody candidate (<code>SAAXEscrowCustodyV3.sol</code>) has been tested only on a local EVM (chain 31337) with synthetic keys. An independent-review snapshot package has been prepared and <strong>owner-approved as the baseline for independent review</strong>; <strong>no independent security review has been completed</strong> — the project owner is seeking a suitable review firm, and no engagement or endorsement is implied. Approval-for-review is not an audit, not production readiness, and not deployment approval. Local test counts and local anchors are not independent security assurance or public-chain finality. See <a href="/status">current status</a>.</p>
+<h2 id="non-custodial-claim-scoped">Non-custodial claim, scoped</h2>
+<p>On mainnet, the Router is non-custodial: immediate x402 payments move directly from the buyer's wallet to the payee; the Router never holds buyer funds. In the testnet escrow flow, funds are held by the <code>SAAXEscrowCustodyV1</code> contract — that is custody by a smart contract, not by the operator — and it is testnet-only. "Non-custodial" does not mean "no funds are ever held anywhere": it means the routing operator does not hold them. The Custody V3 candidate is local only and is not part of any hosted flow.</p>
+<h2 id="out-of-scope">Out of scope</h2>
+<p>SAAX is not designed to protect against:</p>
+<ul>
+<li>Compromise of a user's own private keys or wallet software.</li>
+<li>Malicious behavior of counterparties outside the commitment's terms (e.g., off-protocol fraud, delivery of defective goods despite passing acceptance criteria).</li>
+<li>Financial loss from market movement, token volatility, or failed external systems.</li>
+<li>Legal or regulatory consequences of using the protocol in a given jurisdiction.</li>
+<li>Attacks on the underlying networks (Base), the USDC contract, or the RPC infrastructure SAAX depends on.</li>
+<li>Losses arising from user error, including sending funds to the wrong address or misreading commitment terms.</li>
+</ul>
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p>If you believe you have found a security issue in SAAX, please report it by email:</p>
+<p><strong>To report a security concern, email reachsaaxprotocol@gmail.com.</strong></p>
+<p>Please include:</p>
+<ul>
+<li>A description of the vulnerability and its impact.</li>
+<li>The component affected (protocol, routing service, contracts, or docs).</li>
+<li>Steps to reproduce, including any payloads or request sequences.</li>
+<li>Your contact details if you would like a reply.</li>
+</ul>
+<p>What we commit to:</p>
+<ul>
+<li><strong>Acknowledgment</strong> within five business days of receipt.</li>
+<li><strong>Triage and a first response</strong> within ten business days.</li>
+<li><strong>Coordinated disclosure</strong> — we will work with you on a disclosure timeline (typically up to 90 days) before public discussion, unless the issue is already public or being actively exploited.</li>
+</ul>
+<p>Do not test against production accounts, live funds, or the mainnet settlement contracts beyond what is necessary to demonstrate an issue. Use small amounts. Reports are handled on a best-effort, non-guaranteed timeline; this is experimental software maintained by a small team.</p>
+<p>— SAAX Protocol</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

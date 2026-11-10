@@ -1,0 +1,158 @@
+{
+  "profileVersion": "1.0.0",
+  "providerId": "https://saax-protocol.com/",
+  "providerName": "SAAX Protocol — Live Discovery Provider",
+  "origin": "https://saax-protocol.com",
+  "capabilities": [
+    {
+      "id": "security-scan",
+      "name": "Security scan of endpoint",
+      "description": "Runs a credentialed vulnerability scan against a buyer-supplied endpoint.",
+      "schemas": [
+        {
+          "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+          "version": "1",
+          "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+          "purpose": "commitment-manifest"
+        }
+      ],
+      "input": {
+        "units": {
+          "amount": "250000000",
+          "unit": "micro-units of settlement asset"
+        },
+        "constraints": {
+          "maxAmount": "250000000",
+          "minDuration": 60,
+          "maxDuration": 86400
+        }
+      },
+      "evidencePolicy": {
+        "requiredEvidenceTypes": [
+          "vulnerability-scan-report"
+        ],
+        "minimumCountPerType": 1,
+        "maxEvidenceAgeSeconds": 3600,
+        "acceptedIssuers": [
+          "0x5555555555555555555555555555555555555555"
+        ]
+      },
+      "evaluatorRequirements": {
+        "verificationSchemes": [
+          "jws"
+        ],
+        "minimumVendorScore": 80
+      },
+      "maturity": "production",
+      "networkAvailability": {
+        "networks": [
+          "eip155:8453"
+        ],
+        "testnetOnly": false
+      }
+    }
+  ],
+  "financialCompatibility": {
+    "networks": [
+      "eip155:8453"
+    ],
+    "assets": [
+      "eip155:8453/erc20:0x833589fcd6eDb6E08f4c7C32D4f71b54bdA02913"
+    ],
+    "rails": [
+      "x402",
+      "mpp",
+      "ap2",
+      "acp"
+    ],
+    "paymentModes": [
+      "x402",
+      "mpp",
+      "ap2",
+      "acp"
+    ],
+    "paymentMode": "x402",
+    "settlementModes": [
+      "escrow"
+    ],
+    "defaultUnit": "micro-units of settlement asset",
+    "supportedCombinations": [
+      {
+        "network": "eip155:8453",
+        "asset": "eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "rail": "x402",
+        "mode": "x402",
+        "settlementCurrency": "USDC",
+        "settlementDecimals": 6,
+        "financialTerms": "financial",
+        "maturity": "production"
+      }
+    ]
+  },
+  "interfaces": {
+    "discovery": {
+      "profile": true,
+      "prepareCommitment": true,
+      "commitment": true
+    }
+  },
+  "conformance": {
+    "claims": [
+      {
+        "standard": "SAAX Discovery Profile",
+        "version": "1.0.0",
+        "mode": "self-declared"
+      }
+    ],
+    "demonstrated": [
+      {
+        "test": "SAAX Conformance Suite",
+        "version": "1.0.0",
+        "resultUrl": "https://saax-protocol.com/conformance#discovery",
+        "result": "pass"
+      }
+    ]
+  },
+  "trust": {
+    "selfSigned": true,
+    "authenticated": false,
+    "independentConformance": false,
+    "anchors": []
+  },
+  "endpoints": {
+    "discovery": "https://saax-protocol.com/.well-known/saax.json",
+    "prepareCommitment": "https://saax-protocol.com/prepare-commitment",
+    "acceptCommitment": "https://saax-protocol.com/accept-commitment",
+    "allowCrossOrigin": [],
+    "schemaAllowlist": [
+      "https://saax-protocol.com/schemas/"
+    ]
+  },
+  "cacheControl": {
+    "maxAgeSeconds": 3600,
+    "staleWhileRevalidate": true
+  },
+  "expires": "2027-11-06T00:00:00Z",
+  "signingKeys": [
+    {
+      "id": "live-2026-11",
+      "type": "jwk",
+      "jwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "QU1nxUgwQlWG8fxmRUX0uXUPVZxd0are0_rki0q4s-s"
+      },
+      "controller": "https://saax-protocol.com/.well-known/did.json",
+      "validFrom": "2026-11-06T00:00:00Z",
+      "validUntil": "2027-11-06T00:00:00Z",
+      "status": "active"
+    }
+  ],
+  "signature": {
+    "scheme": "jws",
+    "alg": "EdDSA",
+    "keyId": "live-2026-11",
+    "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImxpdmUtMjAyNi0xMSJ9.eyJjYWNoZUNvbnRyb2wiOnsibWF4QWdlU2Vjb25kcyI6MzYwMCwic3RhbGVXaGlsZVJldmFsaWRhdGUiOnRydWV9LCJjYXBhYmlsaXRpZXMiOlt7ImRlc2NyaXB0aW9uIjoiUnVucyBhIGNyZWRlbnRpYWxlZCB2dWxuZXJhYmlsaXR5IHNjYW4gYWdhaW5zdCBhIGJ1eWVyLXN1cHBsaWVkIGVuZHBvaW50LiIsImV2YWx1YXRvclJlcXVpcmVtZW50cyI6eyJtaW5pbXVtVmVuZG9yU2NvcmUiOjgwLCJ2ZXJpZmljYXRpb25TY2hlbWVzIjpbImp3cyJdfSwiZXZpZGVuY2VQb2xpY3kiOnsiYWNjZXB0ZWRJc3N1ZXJzIjpbIjB4NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NSJdLCJtYXhFdmlkZW5jZUFnZVNlY29uZHMiOjM2MDAsIm1pbmltdW1Db3VudFBlclR5cGUiOjEsInJlcXVpcmVkRXZpZGVuY2VUeXBlcyI6WyJ2dWxuZXJhYmlsaXR5LXNjYW4tcmVwb3J0Il19LCJpZCI6InNlY3VyaXR5LXNjYW4iLCJpbnB1dCI6eyJjb25zdHJhaW50cyI6eyJtYXhBbW91bnQiOiIyNTAwMDAwMDAiLCJtYXhEdXJhdGlvbiI6ODY0MDAsIm1pbkR1cmF0aW9uIjo2MH0sInVuaXRzIjp7ImFtb3VudCI6IjI1MDAwMDAwMCIsInVuaXQiOiJtaWNyby11bml0cyBvZiBzZXR0bGVtZW50IGFzc2V0In19LCJtYXR1cml0eSI6InByb2R1Y3Rpb24iLCJuYW1lIjoiU2VjdXJpdHkgc2NhbiBvZiBlbmRwb2ludCIsIm5ldHdvcmtBdmFpbGFiaWxpdHkiOnsibmV0d29ya3MiOlsiZWlwMTU1Ojg0NTMiXSwidGVzdG5ldE9ubHkiOmZhbHNlfSwic2NoZW1hcyI6W3siZGlnZXN0Ijoic2hhMjU2OjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMiLCJpZCI6Imh0dHBzOi8vc2FheC1wcm90b2NvbC5jb20vc2NoZW1hcy9jb21taXRtZW50LW1hbmlmZXN0L3YxIiwicHVycG9zZSI6ImNvbW1pdG1lbnQtbWFuaWZlc3QiLCJ2ZXJzaW9uIjoiMSJ9XX1dLCJjb25mb3JtYW5jZSI6eyJjbGFpbXMiOlt7Im1vZGUiOiJzZWxmLWRlY2xhcmVkIiwic3RhbmRhcmQiOiJTQUFYIERpc2NvdmVyeSBQcm9maWxlIiwidmVyc2lvbiI6IjEuMC4wIn1dLCJkZW1vbnN0cmF0ZWQiOlt7InJlc3VsdCI6InBhc3MiLCJyZXN1bHRVcmwiOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tL2NvbmZvcm1hbmNlI2Rpc2NvdmVyeSIsInRlc3QiOiJTQUFYIENvbmZvcm1hbmNlIFN1aXRlIiwidmVyc2lvbiI6IjEuMC4wIn1dfSwiZW5kcG9pbnRzIjp7ImFjY2VwdENvbW1pdG1lbnQiOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tL2FjY2VwdC1jb21taXRtZW50IiwiYWxsb3dDcm9zc09yaWdpbiI6W10sImRpc2NvdmVyeSI6Imh0dHBzOi8vc2FheC1wcm90b2NvbC5jb20vLndlbGwta25vd24vc2FheC5qc29uIiwicHJlcGFyZUNvbW1pdG1lbnQiOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tL3ByZXBhcmUtY29tbWl0bWVudCIsInNjaGVtYUFsbG93bGlzdCI6WyJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tL3NjaGVtYXMvIl19LCJleHBpcmVzIjoiMjAyNy0xMS0wNlQwMDowMDowMFoiLCJmaW5hbmNpYWxDb21wYXRpYmlsaXR5Ijp7ImFzc2V0cyI6WyJlaXAxNTU6ODQ1My9lcmMyMDoweDgzMzU4OWZjZDZlRGI2RTA4ZjRjN0MzMkQ0ZjcxYjU0YmRBMDI5MTMiXSwiZGVmYXVsdFVuaXQiOiJtaWNyby11bml0cyBvZiBzZXR0bGVtZW50IGFzc2V0IiwibmV0d29ya3MiOlsiZWlwMTU1Ojg0NTMiXSwicGF5bWVudE1vZGUiOiJ4NDAyIiwicGF5bWVudE1vZGVzIjpbIng0MDIiLCJtcHAiLCJhcDIiLCJhY3AiXSwicmFpbHMiOlsieDQwMiIsIm1wcCIsImFwMiIsImFjcCJdLCJzZXR0bGVtZW50TW9kZXMiOlsiZXNjcm93Il0sInN1cHBvcnRlZENvbWJpbmF0aW9ucyI6W3siYXNzZXQiOiJlaXAxNTU6ODQ1My9lcmMyMDoweDgzMzU4OWZjZDZlZGI2ZTA4ZjRjN2MzMmQ0ZjcxYjU0YmRhMDI5MTMiLCJmaW5hbmNpYWxUZXJtcyI6ImZpbmFuY2lhbCIsIm1hdHVyaXR5IjoicHJvZHVjdGlvbiIsIm1vZGUiOiJ4NDAyIiwibmV0d29yayI6ImVpcDE1NTo4NDUzIiwicmFpbCI6Ing0MDIiLCJzZXR0bGVtZW50Q3VycmVuY3kiOiJVU0RDIiwic2V0dGxlbWVudERlY2ltYWxzIjo2fV19LCJpbnRlcmZhY2VzIjp7ImRpc2NvdmVyeSI6eyJjb21taXRtZW50Ijp0cnVlLCJwcmVwYXJlQ29tbWl0bWVudCI6dHJ1ZSwicHJvZmlsZSI6dHJ1ZX19LCJvcmlnaW4iOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tIiwicHJvZmlsZVZlcnNpb24iOiIxLjAuMCIsInByb3ZpZGVySWQiOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tLyIsInByb3ZpZGVyTmFtZSI6IlNBQVggUHJvdG9jb2wg4oCUIExpdmUgRGlzY292ZXJ5IFByb3ZpZGVyIiwic2lnbmluZ0tleXMiOlt7ImNvbnRyb2xsZXIiOiJodHRwczovL3NhYXgtcHJvdG9jb2wuY29tLy53ZWxsLWtub3duL2RpZC5qc29uIiwiaWQiOiJsaXZlLTIwMjYtMTEiLCJqd2siOnsiY3J2IjoiRWQyNTUxOSIsImt0eSI6Ik9LUCIsIngiOiJRVTFueFVnd1FsV0c4ZnhtUlVYMHVYVVBWWnhkMGFyZTBfcmtpMHE0cy1zIn0sInN0YXR1cyI6ImFjdGl2ZSIsInR5cGUiOiJqd2siLCJ2YWxpZEZyb20iOiIyMDI2LTExLTA2VDAwOjAwOjAwWiIsInZhbGlkVW50aWwiOiIyMDI3LTExLTA2VDAwOjAwOjAwWiJ9XSwidHJ1c3QiOnsiYW5jaG9ycyI6W10sImF1dGhlbnRpY2F0ZWQiOmZhbHNlLCJpbmRlcGVuZGVudENvbmZvcm1hbmNlIjpmYWxzZSwic2VsZlNpZ25lZCI6dHJ1ZX19.6tEXBkcJauMoF6FXr03Q0pARIt1UP4YtbtglE62HtjiTYbgHizXuQwnjGzErJMH9RBHjj3M8hF8pN3cRP1FPCg",
+    "canonicalization": "rfc8785"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "discovery-profile-valid-001",
+  "description": "Valid baseline profile passes",
+  "input": {
+    "profile": {
+      "profileVersion": "1.0.0",
+      "providerId": "https://example-provider.test/",
+      "providerName": "Example SAAX Provider (illustrative)",
+      "origin": "https://example-provider.test",
+      "signingKeys": [
+        {
+          "id": "key-2026-01",
+          "type": "jwk",
+          "jwk": { "kty": "OKP", "crv": "Ed25519", "x": "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY" },
+          "controller": "https://example-provider.test/.well-known/did.json",
+          "validFrom": "2026-01-01T00:00:00Z",
+          "validUntil": "2027-12-31T00:00:00Z",
+          "status": "active"
+        }
+      ],
+      "capabilities": [
+        {
+          "id": "security-scan",
+          "name": "Security scan of endpoint",
+          "description": "Runs a credentialed vulnerability scan against a buyer-supplied endpoint.",
+          "schemas": [
+            {
+              "id": "https://saax-protocol.com/schemas/commitment-manifest/v1",
+              "version": "1",
+              "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+              "purpose": "commitment-manifest"
+            }
+          ],
+          "input": { "units": { "amount": "250000000", "unit": "micro-units of settlement asset" } },
+          "evidencePolicy": { "requiredEvidenceTypes": ["vulnerability-scan-report"] },
+          "evaluatorRequirements": { "verificationSchemes": ["eip712", "cose", "jws"] },
+          "maturity": "production"
+        }
+      ],
+      "financialCompatibility": {
+        "networks": ["eip155:8453"],
+        "assets": ["eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"],
+        "rails": ["x402", "mpp", "ap2", "acp"],
+        "paymentModes": ["x402", "mpp", "ap2", "acp"],
+        "supportedCombinations": [
+          {
+            "network": "eip155:8453",
+            "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+            "rail": "x402",
+            "mode": "x402",
+            "maturity": "production"
+          }
+        ]
+      },
+      "interfaces": { "discovery": { "profile": true, "prepareCommitment": false, "commitment": true } },
+      "conformance": {
+        "claims": [{ "standard": "SAAX Discovery Profile", "version": "1.0.0", "mode": "self-declared" }],
+        "demonstrated": [
+          {
+            "test": "SAAX Conformance Suite",
+            "version": "1.0.0",
+            "resultUrl": "https://example-provider.test/conformance#discovery",
+            "result": "pass"
+          }
+        ]
+      },
+      "trust": { "selfSigned": true, "authenticated": false, "independentConformance": false, "anchors": [] },
+      "endpoints": { "discovery": "https://example-provider.test/.well-known/saax.json" },
+      "expires": "2027-12-31T00:00:00Z"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

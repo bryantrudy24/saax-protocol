@@ -1,0 +1,19 @@
+{
+  "comment": "Illustrative SAAX Discovery client trust configuration (Phase 2). The ONLY implemented trust source in this phase is 'configured-key': the client pins the trusted provider signing keys by RFC 7638 JWK thumbprint. DID resolution, registry listing, and prior-pinned identity are explicitly UNSUPPORTED trust sources.",
+  "providerId": "https://example-provider.test/",
+  "origin": "https://example-provider.test",
+  "trustedKeys": [
+    "km8hwMvDvYUpPms0P-IgvKjh7Ew0rj0adLXqLiC7cUQ"
+  ],
+  "allowStandaloneFallback": true,
+  "requiredExtensions": [
+    "https://saax-protocol.com/extensions/saax-discovery/v1"
+  ],
+  "permitLocalhost": false,
+  "retrieval": {
+    "maxRedirects": 3,
+    "profileMaxBytes": 262144,
+    "schemaMaxBytes": 1048576,
+    "maxTotalMs": 10000
+  }
+}

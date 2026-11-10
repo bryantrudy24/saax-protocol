@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX Protocol — Commitment lifecycle specification</title>
+<meta name="description" content="Versioned SAAX lifecycle, authority, evidence and settlement interfaces, with exact Discovery and testnet custody verification boundaries.">
+<link rel="canonical" href="https://saax-protocol.com/spec">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:title" content="SAAX Protocol — Commitment lifecycle specification">
+<meta property="og:description" content="Versioned SAAX lifecycle, authority, evidence and settlement interfaces, with exact Discovery and testnet custody verification boundaries.">
+<meta property="og:url" content="https://saax-protocol.com/spec">
+<meta property="og:type" content="website">
+<meta name="twitter:title" content="SAAX Protocol — Commitment lifecycle specification">
+<meta name="twitter:description" content="Versioned SAAX lifecycle, authority, evidence and settlement interfaces, with exact Discovery and testnet custody verification boundaries.">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-protocol-commitment-lifecycle-specification">SAAX Protocol — Commitment Lifecycle Specification</h1>
+<p><em>Public specification — versioned (protocol v1.0.3). This document describes the standard, not any particular implementation. Components vary in maturity: routing and immediate payments are public beta on Base mainnet, commitment verification and receipts are beta, escrow custody is testnet preview (not approved for mainnet funds), and unreleased custody/governance candidates are under development / security review. <a href="/terms">Read the full terms of use</a> before using it with real funds.</em></p>
+<hr>
+<h2 id="1-the-commitment-lifecycle">1. The Commitment Lifecycle</h2>
+<p>The SAAX commitment lifecycle is a governed commitment that moves through a defined sequence:</p>
+<p><strong>Authority → Commitment → Contract Terms → Execution → Evidence → Verification → Fulfilled or Failed → Settlement or Recovery → Finality → Audit</strong></p>
+<p>The commitment binds the terms — capability, price, acceptance criteria, deadline, cancel condition — <strong>before</strong> value moves. It carries no rail, no credential, no settlement reference: settlement is resolved at execution time.</p>
+<p>The commitment is issued before value moves. A spend bound to a commitment must be denied if the requested amount or currency differs.</p>
+<hr>
+<h2 id="2-evidence-attestation-abstraction">2. Evidence / Attestation Abstraction</h2>
+<h3 id="21-principle">2.1 Principle</h3>
+<p>SAAX does not trust the buyer or seller to declare fulfillment. Evidence comes from <strong>external sources</strong> with independent verification — temperature sensors, delivery trackers, reputation oracles, inspectors. SAAX validates evidence (structure, signature, provenance, binding) and evaluates it against the commitment's acceptance-criterion verification policies. <strong>SAAX never produces the evidence.</strong></p>
+<h3 id="22-evidence-record-schema">2.2 Evidence record schema</h3>
+<pre><code class="language-json">{
+  &quot;evidenceId&quot;: &quot;0x...&quot;,
+  &quot;evidenceType&quot;: &quot;temperature-reading&quot;,
+  &quot;issuer&quot;: &quot;0x...&quot;,
+  &quot;subject&quot;: &quot;0x...&quot;,
+  &quot;issuanceTimestamp&quot;: &quot;2026-10-06T...&quot;,
+  &quot;contextReference&quot;: &quot;0x...&quot;,
+  &quot;payload&quot;: { ... },
+  &quot;payloadHash&quot;: &quot;sha256:...&quot;,
+  &quot;provenance&quot;: { ... },
+  &quot;signature&quot;: &quot;COSE_Sign1...&quot;,
+  &quot;verificationScheme&quot;: &quot;eip712|cose|jws&quot;,
+  &quot;verificationMaterial&quot;: &quot;0x...&quot;,
+  &quot;commitmentId&quot;: &quot;0x...&quot;,
+  &quot;acceptanceCriterionId&quot;: &quot;0x...&quot;
+}
+</code></pre>
+<p>Every field is validated; only recognized fields are kept. The payload hash is the SHA-256 of the canonical JSON encoding of the payload — any payload tampering changes the hash and fails validation.</p>
+<h3 id="23-verification-policy-model">2.3 Verification-policy model</h3>
+<p>The commitment specifies a verification policy per acceptance criterion:</p>
+<pre><code class="language-json">{
+  &quot;criterionId&quot;: &quot;0x...&quot;,
+  &quot;criterionDescription&quot;: &quot;delivery temperature &lt;= 5C&quot;,
+  &quot;requiredEvidenceType&quot;: &quot;temperature-reading&quot;,
+  &quot;acceptedIssuers&quot;: [&quot;0x...&quot;],
+  &quot;verificationScheme&quot;: &quot;cose&quot;,
+  &quot;evaluationLogic&quot;: &quot;payload.temperature &lt;= 5&quot;,
+  &quot;maxEvidenceAge&quot;: 3600,
+  &quot;minimumEvidenceCount&quot;: 1
+}
+</code></pre>
+<p>Policies are provider-neutral: <code>acceptedIssuers</code> is an optional allowlist, <code>evaluationLogic</code> is a tiny safe evaluator (numeric comparison only — no code execution), and <code>verificationScheme</code> selects the signature scheme (eip712 | cose | jws).</p>
+<h3 id="24-evaluation">2.4 Evaluation</h3>
+<p>SAAX provides three operations over evidence:</p>
+<ul>
+<li><strong>Validate evidence</strong> — checks structure, signature, provenance, and binding to the commitment and criterion. A hash-vs-payload mismatch (tampering) fails validation.</li>
+<li><strong>Evaluate criterion</strong> — applies the verification policy (type, allowlist, freshness, evaluation logic, minimum count) and returns <code>satisfied | not_satisfied | insufficient_evidence</code>.</li>
+<li><strong>Record outcome</strong> — writes the result to the commitment record, bound to the commitment and criterion.</li>
+</ul>
+<h3 id="25-evidence-lifecycle">2.5 Evidence lifecycle</h3>
+<pre><code>commitment issued
+  -&gt;
+acceptance criteria defined with verification policies
+  -&gt;
+external evidence submitted (from any source)
+  -&gt;
+SAAX validates evidence (structure, signature, provenance, binding)
+  -&gt;
+SAAX evaluates against criterion
+  -&gt;
+outcome recorded: satisfied | not_satisfied | insufficient_evidence
+  -&gt;
+commitment reaches finality or enters recovery
+</code></pre>
+<p>The signature scheme <code>eip712</code> is verified cryptographically over the EIP-712 domain <code>{ name: 'SAAX Evidence', version: '1' }</code>. <code>cose</code> and <code>jws</code> envelopes are validated <strong>structurally</strong> — envelope shape, required headers, and field typing — by the reference implementation; cryptographic verification of the token's signature requires the pluggable verifier hook to be connected to an attesting verifier (for example an issuer's public-key store). Structural validation alone does not prove who signed the token. A commitment that accepts <code>cose</code>/<code>jws</code> evidence should specify the verifier that attests it.</p>
+<hr>
+<h2 id="3-authority-proof-interface">3. Authority-Proof Interface</h2>
+<h3 id="31-principle">3.1 Principle</h3>
+<p>A commitment references an <strong>external authority proof</strong> — AP2 mandates, verifiable intents, OAuth tokens, or custom schemes. <strong>SAAX does not issue authority proofs; it consumes them</strong> from external systems and re-evaluates them at execution time.</p>
+<h3 id="32-authorityproof-structure">3.2 AuthorityProof structure</h3>
+<pre><code class="language-json">{
+  &quot;authorityProofId&quot;: &quot;0x...&quot;,
+  &quot;proofType&quot;: &quot;ap2-mandate|verifiable-intent|oauth-token|custom&quot;,
+  &quot;issuer&quot;: &quot;0x...&quot;,
+  &quot;subject&quot;: &quot;0x...&quot;,
+  &quot;scope&quot;: { ... },
+  &quot;validFrom&quot;: &quot;2026-10-06T...&quot;,
+  &quot;validUntil&quot;: &quot;2026-10-07T...&quot;,
+  &quot;signature&quot;: &quot;COSE_Sign1...&quot;,
+  &quot;verificationScheme&quot;: &quot;cose|jws|eip712&quot;,
+  &quot;verificationMaterial&quot;: &quot;0x...&quot;
+}
+</code></pre>
+<p>Scope model: <code>actions[]</code> (the requested action must be in this list), optional <code>capability</code>, optional <code>amountMax</code> (raw units), optional <code>currency</code>. An absent scope dimension is unrestricted; a present dimension must be satisfied by the commitment.</p>
+<h3 id="33-validation">3.3 Validation</h3>
+<ul>
+<li><strong>Validate authority proof</strong> — checks structure, signature, scope, and time validity.</li>
+<li><strong>Is authorized</strong> — verifies the proof covers the specific action the commitment represents (combines integrity + time + scope).</li>
+<li><strong>Attach to commitment</strong> — attaches the proof <strong>reference</strong> to the commitment at issuance. The full proof and its signature are never stored on the commitment — only the verifiable reference; the proof material lives at the external issuer.</li>
+</ul>
+<h3 id="34-authority-lifecycle">3.4 Authority lifecycle</h3>
+<pre><code>authority proof presented (external source)
+  -&gt;
+SAAX validates proof (structure, signature, scope, time)
+  -&gt;
+commitment issued, referencing the authority proof
+  -&gt;
+proof evaluated at execution time (still valid? still in scope?)
+  -&gt;
+commitment validly authorized or rejected
+</code></pre>
+<p>In the current v3 agreement format, an agreement without an external authority proof is signed directly by the parties — the buyer and the seller — and those signatures are part of the digest that is hashed and anchored. That is the normal path today, not a legacy fallback; external authority proofs are an additional authorization mechanism a commitment can reference.</p>
+<hr>
+<h2 id="4-settlement-rail-neutrality">4. Settlement-Rail Neutrality</h2>
+<p><strong>SAAX does not prescribe a settlement rail.</strong></p>
+<ul>
+<li>The commitment issues a settlement <strong>requirement (R)</strong> that is rail-agnostic: <code>R = &lt;amt, cur, payee, eta, scheme, t_exp&gt;</code> — no rail knowledge at commitment time.</li>
+<li>The <strong>rail (S)</strong> is resolved at execution time from the registered registry.</li>
+<li>Currently registered rails: <strong>x402</strong>, <strong>MPP</strong>.</li>
+<li>Future rails: entitlement, card, ACH, internal ledger — any implementation of the rail interface can register as a SAAX settlement rail.</li>
+</ul>
+<h3 id="41-rail-interface">4.1 Rail interface</h3>
+<pre><code>interface SettlementRail {
+  realise(R): Credential                    // turn a neutral requirement into a credential
+  validate(Credential, R): boolean          // is this credential valid FOR R?
+  settle(Credential): TransactionReference  // move value; return PUBLIC tx reference
+}
+</code></pre>
+<p>Any system that implements this interface can register as a SAAX settlement rail:</p>
+<pre><code class="language-js">registry.register('new-rail', { realise, validate, settle });
+const rail = registry.resolve('new-rail');
+</code></pre>
+<p>The rail knows nothing about the commitment's content; it only knows how to realise R. Rail credentials never appear in receipts, logs, or results — only the public transaction reference.</p>
+<hr>
+<h2 id="saax-components-vary-in-maturity-the-specification-is-public-and-versioned-routing-and-immediate-payments-are-public-beta-on-base-mainnet-commitment-verification-and-receipts-are-beta-escrow-custody-is-testnet-preview-not-approved-for-mainnet-funds-and-unreleased-custodygovernance-candidates-are-under-development-security-review-read-the-full-terms-of-use-nothing-in-this-specification-constitutes-financial-legal-or-investment-advice"><em>SAAX components vary in maturity: the specification is public and versioned, routing and immediate payments are public beta on Base mainnet, commitment verification and receipts are beta, escrow custody is testnet preview (not approved for mainnet funds), and unreleased custody/governance candidates are under development / security review. <a href="/terms">Read the full terms of use</a>. Nothing in this specification constitutes financial, legal, or investment advice.</em></h2>
+<h2 id="5-escrow-custody-day-17">5. Escrow Custody (Day 17)</h2>
+<p>SAAX escrow protects funds pending an outcome. The escrow is a <strong>separate on-chain custody contract</strong> — never an in-memory flag, never a direct transfer labelled "escrow".</p>
+<p><em>Status note: the custody implementation described below refers to the hosted testnet escrow flow (Base Sepolia, chain 84532). A newer custody candidate, <code>SAAXEscrowCustodyV3.sol</code>, has been tested only on a local EVM (chain 31337) and is under independent-review preparation; it is not deployed and does not power any hosted flow. See <a href="/status">current status</a>.</em></p>
+<h3 id="51-where-funds-are-held">5.1 Where funds are held</h3>
+<p>Settled USDC is moved into <code>SAAXEscrowCustodyV1</code> on the configured network (Base Sepolia for testnet). The contract's <code>balanceOf(this)</code> is the authoritative held amount — verifiable on-chain by anyone, without SAAX's database.</p>
+<h3 id="52-who-can-release-refund-withdraw">5.2 Who can release / refund / withdraw</h3>
+<ul>
+<li><strong>release(commitmentId, digest, nonce, issuedAt, v, r, s)</strong> — releases USDC to the seller. Requires an <strong>EIP-712 verdict signed by the agreed EVALUATOR</strong> (from the commitment terms, bound at fund time). <code>msg.sender</code> may be a relayer; the recovered signer must equal the evaluator. Wrong signer / wrong digest / expired / replayed verdict → revert.</li>
+<li><strong>refund(...)</strong> — returns USDC to the buyer. Requires an evaluator-signed refund verdict <strong>OR</strong> the deadline has passed (timeout refund, no signature needed).</li>
+<li><strong>raiseDispute / resolve</strong> — only the funded buyer or seller can raise a dispute (funds freeze); only the evaluator's signed verdict naming <code>release|refund|hold</code> resolves it.</li>
+<li><strong>NO admin, NO owner, NO upgrade, NO withdraw function.</strong> Once funded, funds move ONLY to the seller (release) or buyer (refund). The deployer cannot pull funds; SAAX's database status cannot move funds.</li>
+</ul>
+<h3 id="53-binding">5.3 Binding</h3>
+<p>Custody is bound to:
+- <strong>commitment digest</strong> (bytes32, from the EAS-anchored manifest) — every terminal action requires it; wrong digest reverts.
+- <strong>buyer, seller, evaluator, asset, amount, network, deadline</strong> — frozen at <code>fund()</code>; terminal states are final (one release OR one refund, never both).</p>
+<h3 id="54-timeout-refund-dispute-evaluator-upgrade-behavior">5.4 Timeout / refund / dispute / evaluator / upgrade behavior</h3>
+<ul>
+<li><strong>Timeout</strong>: after <code>deadline</code>, <code>refund()</code> without a signature succeeds (funds return to buyer). Before deadline, unsigned refund reverts.</li>
+<li><strong>Dispute</strong>: <code>raiseDispute</code> from <code>Funded</code> freezes funds into <code>Disputed</code>; direct release/refund during dispute reverts; only <code>resolve</code> (evaluator verdict) moves funds.</li>
+<li><strong>Evaluator unavailable</strong>: a Funded escrow can use its unsigned deadline refund after the deadline. A Disputed escrow cannot use that timeout path and can remain frozen indefinitely. No automatic resolution or operator override exists.</li>
+<li><strong>Upgrade</strong>: none — the contract is immutable by design.</li>
+</ul>
+<h3 id="55-contract-addresses-testnet">5.5 Contract addresses (testnet)</h3>
+<ul>
+<li>EAS: <code>0x4200000000000000000000000000000000000021</code></li>
+<li>SchemaRegistry: <code>0x4200000000000000000000000000000000000020</code></li>
+<li>Base Sepolia USDC: <code>0x036CbD53842c5426634e7929541eC2318f3dCF7e</code></li>
+<li><code>SAAXEscrowCustodyV1</code> source: <code>contracts/SAAXEscrowCustodyV1.sol</code> (deployed via <code>scripts/testnet-broadcast.js --deploy-custody</code>)</li>
+</ul>
+<hr>
+<h2 id="discovery-signature-and-financial-profile-clarification-2026-11-06">Discovery signature and financial-profile clarification (2026-11-06)</h2>
+<p>Discovery profile 1.0.0, acceptance-v1 and <code>manifest-v1.1+saax-proposal-bound</code> are distinct from protocol/package v1.0.3 and older v3 agreement exports. The live Discovery path uses actual Ed25519 JWS crypto for provider proposal/SR and onboarded-buyer acceptance. The general structural COSE/JWS evidence-hook limitation in section2.5 still applies to that separate evidence interface; it must not be generalized to claim Discovery JWS is structural-only.</p>
+<p>The public Discovery/preflight/acceptance operations create no payment, custody or service execution. Financial terms are not spending authority. A financial profile selecting network/asset/rail/mode cannot later substitute them under the general rail-neutral abstraction; the provider must issue new terms and the buyer must accept them.</p>
+<p>The separate <code>discovery-financial-v2</code> testnet export profile binds an explicitly signed Sepolia profile, exact proposal/terms/manifest digests, configured buyer authority, evaluator address/permitted decisions, custody/runtime identity, recovery rules and evidence policy. Its independent verifier checks the deployed-contract verdict, timestamp and actual successful custody/token outcome without application DB credentials. The local SHA256 self-test evidence and separate evaluator evidence-to-verdict attestation are explicitly operator-controlled, not an external attester demonstration, EAS anchor or independent audit. <a href="/blog/signed-discovery-to-testnet-finance">Details and limitations</a>.</p>
+<h2 id="6-durable-persistence-implementation-profiles">6. Durable Persistence — Implementation Profiles</h2>
+<p>The standard requires that a commitment's authoritative state survive process restarts and be recoverable by a replacement worker. It does not prescribe one storage technology. Implementations satisfy this by profile:</p>
+<ul>
+<li><strong>Postgres profile</strong> (the reference deployment's Docker <code>ax_router</code> database): escrow state lives in <code>ax_router.escrows</code> with atomic conditional transitions; process memory is only a cache.</li>
+<li><strong>File-ledger profile</strong> (the escrow-access acceptance milestone): accepted operations, nonce consumption, and reconcile outcomes are persisted to a JSON ledger with atomic rename (<code>data/escrow-access-ledger.json</code>). Nonce consumption happens at durable acceptance, not at external execution; an identical retry returns the recorded result; a changed payload on the same nonce is rejected.</li>
+<li><strong>Memory-only profile</strong> (the x402 idempotency cache): duplicate-request responses are held in working memory and are lost on restart. This does not affect the durable escrow record.</li>
+</ul>
+<h3 id="61-tables">6.1 Tables</h3>
+<ul>
+<li><code>ax_router.escrows</code> — one row per commitment; immutable binding fields (digest, buyer, seller, evaluator, amount, asset, network, deadline) + mutable state/version + tx refs + audit chain.</li>
+<li><code>ax_router.escrow_events</code> — ordered, hash-chained audit events (append-only, FK to escrow).</li>
+<li><code>ax_router.escrow_intents</code> — external action intents persisted BEFORE any broadcast (idempotency-keyed, unique), reconciled AFTER with the authoritative outcome.</li>
+</ul>
+<h3 id="62-atomic-transitions">6.2 Atomic transitions</h3>
+<p><code>upsert_escrow</code> is a single SQL statement that:
+- rejects <strong>stale writes</strong> (<code>STALE_VERSION</code> — a generic upsert can never clobber newer durable state),
+- rejects <strong>illegal transitions</strong> (<code>ILLEGAL_TRANSITION</code> — e.g. held→unfunded),
+- rejects any change to a <strong>terminal state</strong> (<code>TERMINAL_STATE</code> — released/refunded/timed_out are final).</p>
+<p><code>record_escrow_intent</code> / <code>update_escrow_intent</code> enforce intent lifecycle atomically: pending→broadcast once; confirmed is terminal; duplicate idempotency keys are rejected (no double broadcast).</p>
+<h3 id="63-recovery">6.3 Recovery</h3>
+<p>On restart, <code>pending_escrow_intents</code> returns all pending/broadcast/unknown intents; the replacement worker re-queries authoritative chain/service state before retrying. Unknown outcomes remain explicitly <code>unknown</code> until reconciled. A missing record or an absent transaction scan is never treated as proof that a broadcast did not happen: the worker must determine the on-chain outcome by reading the chain at the identified reference, and only then record it. Demonstrations: <code>scripts/test-escrow-durable.js</code> (14 checks), <code>scripts/test-worker-failure.js</code> (11 checks, real SIGKILL).</p>
+<hr>
+<h2 id="7-independent-verification-day-17">7. Independent Verification (Day 17)</h2>
+<p><code>verifier/verify-export.js</code> runs in a <strong>fresh process with no SAAX database access</strong> and derives every result from the export + public chain data:</p>
+<ol>
+<li><strong>Agreement digest</strong> — recomputes <code>sha256</code> of the COSE_Sign1 envelope (documented algorithm) and compares to the export.</li>
+<li><strong>Party authorization</strong> — recovers the EIP-712 signer of each authorization record (secp256k1) and checks it against the agreed party; never trusts a claimed signer.</li>
+<li><strong>EAS anchor</strong> — reads <code>getAttestation(uid)</code> via the chain RPC; checks schema UID, revocable=false, and the on-chain commitment digest.</li>
+<li><strong>Journal ordering</strong> — validates the hash-linked audit chain (root=commitmentId; every entryHash matches content; timestamps monotonic).</li>
+<li><strong>Escrow terminal outcome</strong> — a claimed release/refund must carry a tx reference; with an RPC, the receipt must be success. Non-terminal state = explicit <code>unknown</code>.</li>
+<li><strong>Evidence-backed release</strong> — a released escrow must cite evidence references.</li>
+</ol>
+<p>Tampering classes rejected by test: modified terms, altered/reordered/missing journal events, forged evidence, wrong anchor, substituted escrow tx refs, incomplete digest, incomplete terminal escrow. Incomplete → explicit NOT VERIFIED (incomplete/unknown), never success.</p>
+<hr>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol — Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

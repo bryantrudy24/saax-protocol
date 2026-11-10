@@ -1,0 +1,18 @@
+{
+  "id": "discovery-trust-invalid-002-revoked-key",
+  "description": "Revoked signing key does NOT authenticate even if thumbprint is trusted",
+  "category_hint": "discovery",
+  "input": {
+    "trust": {
+      "configuredTrustedThumbprints": ["abc123def456"],
+      "actualSigningThumbprint": "abc123def456",
+      "profileOrigin": "https://provider.example",
+      "configuredOrigin": "https://provider.example",
+      "keyStatus": "revoked"
+    }
+  },
+  "expected": {
+    "authenticated": false,
+    "trustSource": null
+  }
+}

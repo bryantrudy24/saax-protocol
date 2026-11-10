@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - SAAX Protocol</title>
+<meta name="description" content="The SAAX Protocol privacy policy: what is collected, what is public or private, retention, third-party processors, user rights, and what cannot be deleted.">
+<link rel="canonical" href="https://saax-protocol.com/privacy">
+<meta property="og:title" content="Privacy Policy - SAAX Protocol | SAAX Protocol">
+<meta property="og:description" content="The SAAX Protocol privacy policy: what is collected, what is public or private, retention, third-party processors, user rights, and what cannot be deleted.">
+<meta property="og:url" content="https://saax-protocol.com/privacy">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>SAAX Privacy Policy</h1>
+<p><em>Last updated: 2026-10-17</em></p>
+<p>This policy describes what SAAX collects, what is public, what is private, how long data is retained, and what you can and cannot delete. It describes actual current practice. Where a capability does not exist (for example, guaranteed deletion), this policy says so plainly.</p>
+<h2>What we collect</h2>
+<p>When you interact with the SAAX Protocol or the SAAX Router, the following data may be collected or processed:</p>
+<p>| Data | Why | Where it lives |</p>
+<p>|---|---|---|</p>
+<p>| Commitment records | The terms, parties, and lifecycle state of commitments you create or participate in | Router working memory; durable ledger (file-based escrow-access ledger); on-chain records where settlement or anchoring occurs |</p>
+<p>| Wallet addresses | Identifying the parties to a commitment and their settlement references | On-chain and Router working memory / durable ledger |</p>
+<p>| Email addresses | Subscription access key for SAAX Premium; receipt payer field where recorded | Stripe + Router subscription store (Supabase) |</p>
+<p>| IP addresses | Rate limiting and abuse prevention | Router working memory (transient) |</p>
+<p>| Timestamps | Lifecycle ordering, evidence freshness, audit | Router working memory and on-chain |</p>
+<p>| Evidence references | References (not necessarily contents) to external proof material | Router working memory and on-chain where recorded |</p>
+<p>SAAX does not use cookies, does not run analytics or tracking scripts, and does not sell or share personal data for advertising. The landing page and documentation site set no tracking cookies.</p>
+<h2>What is public</h2>
+<p>Anything written on-chain is <strong>permanent and public</strong>:</p>
+<ul>
+<li>Commitments that are settled or anchored on-chain.</li>
+<li>Settlement transactions and their amounts, parties, and timestamps.</li>
+<li>On-chain reputation feedback.</li>
+<li>EAS attestations anchoring agreements (on Base Sepolia for the testnet escrow flow; on-chain where anchored for mainnet).</li>
+</ul>
+<p>On-chain records are visible to anyone and cannot be removed by SAAX or by you. <strong>Do not put private information in a commitment, an evidence payload, or a settlement reference</strong> if you do not want it public forever.</p>
+<p>On-chain records and anchored attestations are <strong>hashes and references</strong> — the digest of the agreement, not necessarily the complete agreement contents. For the escrow flow, the v3 agreement digest is anchored via EAS; the full agreement terms may live only with the parties unless they are included in the payload. In general, a public hash or reference does not by itself reveal the full underlying content.</p>
+<h2>What is private</h2>
+<p>The following are private to the operators of the SAAX Router and are not published:</p>
+<ul>
+<li>Router database records and working memory (including in-memory commitment state).</li>
+<li>Rate-limit counters and the IP addresses they are derived from.</li>
+<li>Session data.</li>
+<li>Unsolicited or draft commitment state that has not been written on-chain.</li>
+<li>Evidence payloads that are referenced but never published on-chain (only their hashes or references may be recorded).</li>
+</ul>
+<p>Access to these private records is limited to the operators of the routing service.</p>
+<h2>Retention</h2>
+<p>| Data | Retention |</p>
+<p>|---|---|</p>
+<p>| In-memory commitment state | For the life of the process; lost on restart (memory-only profile) |</p>
+<p>| Rate-limit counters | Transient; reset on process restart or at window boundary |</p>
+<p>| IP addresses | Transient; held only for the rate-limit window |</p>
+<p>| File-based durable ledger (escrow access) | Kept until the operator deletes it; no automatic expiry; used for acceptance, nonce, and reconcile records |</p>
+<p>| On-chain commitments, settlements, reputation feedback, attestations | <strong>Permanent</strong> — immutable on the blockchain |</p>
+<p>| Logs | Held by the hosting providers per their standard practices (see below); SAAX does not run its own log retention service |</p>
+<p>There is <strong>no deletion SLA</strong>, and none is claimed. If you want a record removed from private working memory, ask (contact below); removal is best-effort and only possible for records that have not been written on-chain. On-chain records cannot be deleted.</p>
+<h2>Third-party processors</h2>
+<p>The SAAX service runs on third-party infrastructure. These providers process the data described above on SAAX's behalf:</p>
+<ul>
+<li><strong>Vercel</strong> — hosts the public website, the MCP endpoint, the HTTP <code>/route</code> endpoint, the <code>/receipt</code> endpoint, and the Stripe checkout handler. Their privacy policy governs their handling of request logs and hosting data.</li>
+<li><strong>Railway (or the configured hosting provider)</strong> — hosts the routing/settlement service and its environment configuration. Their privacy policy governs their handling of service logs and configuration.</li>
+<li><strong>Base RPC providers</strong> (e.g., <code>https://mainnet.base.org</code>, <code>https://sepolia.base.org</code>) — relay the on-chain reads and writes SAAX makes. Transactions you submit through SAAX are broadcast via these providers and are public on the Base network.</li>
+<li><strong>Namecheap (or the domain registrar)</strong> — domain registration for saax-protocol.com; holds registrar records per their policy.</li>
+<li><strong>Stripe</strong> — processes SAAX Premium subscription payments, checkout sessions, and webhooks. When you subscribe, your payment details are handled by Stripe under their privacy policy; SAAX receives the subscription status and the email address on the checkout.</li>
+</ul>
+<p>SAAX selects providers for infrastructure purposes and does not control their internal data practices. Review their policies directly for details.</p>
+<h2>User rights</h2>
+<p>You can request access to, correction of, or deletion of private records SAAX holds about you:</p>
+<ul>
+<li><strong>Email:</strong> reachsaaxprotocol@gmail.com</li>
+<li>We will respond on a best-effort basis and will confirm what private records exist for an address you control.</li>
+<li><strong>Correction</strong> is possible for private working memory only; on-chain records cannot be corrected.</li>
+<li><strong>Deletion</strong> is best-effort and applies only to private working memory; we will state plainly what we could and could not delete.</li>
+</ul>
+<p>We will not charge a fee for a reasonable request. We may ask you to prove control of the wallet address in question before acting.</p>
+<h2>What cannot be deleted</h2>
+<ul>
+<li>On-chain records are immutable. Commitments, settlements, and reputation feedback written to Base mainnet or Base Sepolia cannot be deleted, edited, or made private by anyone, including SAAX.</li>
+<li>Evidence that was hashed or referenced on-chain can be discontinued (you can stop maintaining the material it points to), but the reference itself remains.</li>
+</ul>
+<h2>Contact</h2>
+<p>For privacy requests, email <a href="mailto:reachsaaxprotocol@gmail.com">reachsaaxprotocol@gmail.com</a>.</p>
+<p>— SAAX Protocol</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

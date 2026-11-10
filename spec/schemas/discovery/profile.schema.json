@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saax-protocol.com/schemas/discovery/profile/v1",
+  "title": "SAAX Discovery Profile (standalone)",
+  "description": "Standalone SAAX Discovery profile served at /.well-known/saax.json (provisional fallback convention). Versioned; identity, capability, financial compatibility, endpoints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profileVersion",
+    "providerId",
+    "origin",
+    "signingKeys",
+    "capabilities",
+    "financialCompatibility",
+    "interfaces",
+    "conformance",
+    "trust",
+    "endpoints",
+    "expires"
+  ],
+  "properties": {
+    "profileVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "providerId": { "type": "string", "format": "uri" },
+    "providerName": { "type": "string", "maxLength": 200 },
+    "origin": {
+      "type": "string",
+      "pattern": "^https://[a-zA-Z0-9.-]+$",
+      "description": "HTTPS origin that serves the profile. Application-level: no path, no query, no userinfo, no non-443 port, hostname must equal retrieval host."
+    },
+    "signingKeys": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "controller", "validFrom", "validUntil", "status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "enum": ["jwk", "did"] },
+          "jwk": {
+            "type": "object",
+            "required": ["kty"],
+            "properties": {
+              "kty": { "const": "OKP" },
+              "crv": { "const": "Ed25519" },
+              "x": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          "did": { "type": "string", "format": "uri" },
+          "controller": { "type": "string", "format": "uri" },
+          "validFrom": { "type": "string", "format": "date-time" },
+          "validUntil": { "type": "string", "format": "date-time" },
+          "status": { "enum": ["active", "revoked", "expired"] },
+          "revokedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "schemas", "input", "evidencePolicy", "evaluatorRequirements", "maturity"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "maxLength": 200 },
+          "description": { "type": "string", "maxLength": 2000 },
+          "schemas": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "version", "digest", "purpose"],
+              "properties": {
+                "id": { "type": "string", "format": "uri" },
+                "version": { "type": "string", "minLength": 1 },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$",
+                  "description": "SHA-256 digest (hex, lowercase) prefixed with 'sha256:'."
+                },
+                "purpose": { "enum": ["commitment-manifest", "evidence", "proposal"] }
+              }
+            }
+          },
+          "input": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["units"],
+            "properties": {
+              "units": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["amount", "unit"],
+                "properties": {
+                  "amount": { "type": "string", "pattern": "^[0-9]+$", "description": "Integer-string settlement amount in the declared unit." },
+                  "unit": { "type": "string", "minLength": 1 }
+                }
+              },
+              "constraints": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "maxAmount": { "type": "string", "pattern": "^[0-9]+$" },
+                  "minDuration": { "type": "integer", "minimum": 0 },
+                  "maxDuration": { "type": "integer", "minimum": 0 }
+                }
+              }
+            }
+          },
+          "evidencePolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requiredEvidenceTypes"],
+            "properties": {
+              "requiredEvidenceTypes": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "minimumCountPerType": { "type": "integer", "minimum": 0 },
+              "maxEvidenceAgeSeconds": { "type": "integer", "minimum": 0 },
+              "acceptedIssuers": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" }
+              }
+            }
+          },
+          "evaluatorRequirements": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["verificationSchemes"],
+            "properties": {
+              "verificationSchemes": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "enum": ["eip712", "cose", "jws"] }
+              },
+              "minimumVendorScore": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          },
+          "maturity": { "enum": ["experimental", "beta", "production"] },
+          "networkAvailability": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "networks": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+$", "description": "CAIP-2 chain id. Application-level: namespace/reference syntax per CAIP-2." }
+              },
+              "testnetOnly": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "financialCompatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["networks", "assets", "rails", "paymentModes", "supportedCombinations"],
+      "properties": {
+        "networks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+$" }
+        },
+        "assets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[-a-z0-9]{3,8}:[^/]+/[-a-z0-9]{3,8}:[^/]+$",
+            "description": "CAIP-19 asset type: chain/asset_namespace:asset_reference."
+          }
+        },
+        "rails": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["x402", "mpp", "ap2", "acp", "ach", "card", "internal-ledger", "unknown"] }
+        },
+        "paymentModes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "paymentMode": { "type": "string", "minLength": 1 },
+        "settlementModes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "defaultUnit": { "type": "string", "minLength": 1 },
+        "supportedCombinations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["network", "asset", "rail", "mode", "maturity"],
+            "properties": {
+              "network": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+$" },
+              "asset": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[^/]+/[-a-z0-9]{3,8}:[^/]+$" },
+              "rail": { "enum": ["x402", "mpp", "ap2", "acp", "ach", "card", "internal-ledger", "unknown"] },
+              "mode": { "type": "string", "minLength": 1 },
+              "maturity": { "enum": ["experimental", "beta", "production"] },
+              "settlementCurrency": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Explicit settlement currency for this combination (e.g. USDC). REQUIRED for financial combos; must be absent or null for nonfinancial/rail-neutral combos (defined as financialTerms: \"none\")."
+              },
+              "settlementDecimals": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Explicit decimals for the settlement currency (USDC = 6). REQUIRED when settlementCurrency is set."
+              },
+              "financialTerms": {
+                "enum": ["financial", "nonfinancial", "rail-neutral"],
+                "description": "Explicit term class. \"financial\" requires settlementCurrency+settlementDecimals; \"nonfinancial\"/\"rail-neutral\" forbid a settlement currency (no silent USDC default)."
+              }
+            }
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["discovery"],
+      "properties": {
+        "discovery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["profile", "prepareCommitment", "commitment"],
+          "properties": {
+            "profile": { "type": "boolean" },
+            "prepareCommitment": { "type": "boolean" },
+            "commitment": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "conformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claims", "demonstrated"],
+      "properties": {
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["standard", "version", "mode"],
+            "properties": {
+              "standard": { "type": "string" },
+              "version": { "type": "string" },
+              "mode": { "const": "self-declared" }
+            }
+          }
+        },
+        "demonstrated": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["test", "version", "resultUrl", "result"],
+            "properties": {
+              "test": { "type": "string" },
+              "version": { "type": "string" },
+              "resultUrl": { "type": "string", "format": "uri" },
+              "result": { "enum": ["pass", "fail", "unverified"] }
+            }
+          }
+        }
+      }
+    },
+    "trust": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selfSigned", "authenticated", "independentConformance", "anchors"],
+      "properties": {
+        "selfSigned": { "type": "boolean" },
+        "authenticated": { "type": "boolean" },
+        "independentConformance": { "type": "boolean" },
+        "anchors": {
+          "type": "array",
+          "items": { "enum": ["registry", "did", "prior-trust", "out-of-band"] }
+        }
+      }
+    },
+    "endpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["discovery"],
+      "properties": {
+        "discovery": { "type": "string", "format": "uri" },
+        "prepareCommitment": { "type": "string", "format": "uri" },
+        "acceptCommitment": { "type": "string", "format": "uri", "description": "Explicit buyer authorization -> exactly one authenticated commitment endpoint (Phase 4, nonfinancial)." },
+        "allowCrossOrigin": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "description": "Explicitly authorized cross-origin endpoints. Deny by default."
+          }
+        },
+        "schemaAllowlist": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "description": "Origins/URLs from which schemas may be fetched. Safe schema fetching."
+          }
+        }
+      }
+    },
+    "cacheControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+        "staleWhileRevalidate": { "type": "boolean" }
+      }
+    },
+    "expires": { "type": "string", "format": "date-time" },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "alg", "keyId", "jws", "canonicalization"],
+      "properties": {
+        "scheme": { "const": "jws" },
+        "alg": { "const": "EdDSA" },
+        "keyId": { "type": "string", "minLength": 1 },
+        "jws": { "type": "string", "minLength": 1 },
+        "canonicalization": { "const": "rfc8785" }
+      }
+    }
+  }
+}

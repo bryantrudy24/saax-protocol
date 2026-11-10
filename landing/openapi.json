@@ -1,0 +1,175 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SAAX Router",
+    "version": "1.0.3",
+    "x-guidance": "Use POST /route to request a capability. Returns a ranked supplier list with pricing. SAAX is a commitment layer: immediate x402/MPP payments settle on Base mainnet and return a commitment ID; an integrated escrow flow is tested on Base Sepolia only and is not available on mainnet; a Custody V3 candidate is tested only on a local EVM (chain 31337) and is not deployed. See /status for current status. Use GET /receipt to resolve a settled transaction back to a commitment ID.",
+    "contact": {
+      "name": "SAAX Protocol",
+      "url": "https://saax-protocol.com",
+      "email": "reachsaaxprotocol@gmail.com"
+    }
+  },
+  "paths": {
+    "/route": {
+      "post": {
+        "operationId": "requestCapability",
+        "summary": "Request a capability and receive a ranked supplier list",
+        "description": "Submit a capability request to the SAAX Router. The Router evaluates suppliers and returns a ranked list with pricing. Payment is required before the response is returned; the endpoint settles via x402 on Base mainnet.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "capability"
+                ],
+                "properties": {
+                  "capability": {
+                    "type": "string",
+                    "description": "The capability requested (e.g. security scan)."
+                  },
+                  "budget": {
+                    "type": "number",
+                    "description": "Maximum budget in USD the caller is willing to pay."
+                  },
+                  "deadline": {
+                    "type": "string",
+                    "description": "ISO 8601 deadline for the capability to be delivered."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ranked supplier list with pricing"
+          },
+          "402": {
+            "description": "Payment Required"
+          }
+        },
+        "x-payment-info": {
+          "price": {
+            "mode": "dynamic",
+            "currency": "USD",
+            "min": "0",
+            "max": "0.05"
+          },
+          "protocols": [
+            {
+              "x402": {}
+            }
+          ],
+          "extensions": {
+            "bazaar": {
+              "schema": {
+                "properties": {
+                  "input": {
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "capability": {
+                            "type": "string",
+                            "description": "The capability requested (e.g. security scan)."
+                          },
+                          "budget": {
+                            "type": "number",
+                            "description": "Maximum budget in USD the caller is willing to pay."
+                          }
+                        },
+                        "required": [
+                          "capability"
+                        ]
+                      }
+                    }
+                  },
+                  "output": {
+                    "properties": {
+                      "example": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          },
+                          "matches": {
+                            "type": "array"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "healthCheck",
+        "summary": "Liveness probe",
+        "description": "Returns service status.",
+        "responses": {
+          "200": {
+            "description": "Service is healthy"
+          }
+        },
+        "security": []
+      }
+    },
+    "/receipt": {
+      "get": {
+        "operationId": "resolveReceipt",
+        "summary": "Resolve a settled transaction to a commitment ID",
+        "description": "Reads the commitment store and returns the commitment linked to a settled on-chain transaction hash. Payer is the buyer record (an email address where one was recorded) and payee is the seller identifier from the terms; either may be null in a minimal record. A receipt confirms a settlement reference; it does not by itself prove the work was fulfilled or independently verify the lifecycle.",
+        "parameters": [
+          {
+            "name": "txHash",
+            "in": "query",
+            "required": true,
+            "description": "0x-prefixed 64-hex transaction hash",
+            "schema": {
+              "type": "string",
+              "pattern": "^0x[a-fA-F0-9]{64}$"
+            }
+          },
+          {
+            "name": "rail",
+            "in": "query",
+            "required": false,
+            "description": "Settlement rail (x402, mpp, ap2, acp, unspecified)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "x402",
+                "mpp",
+                "ap2",
+                "acp",
+                "unspecified"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Receipt: commitment_id, rail, payer (nullable), payee (nullable), amount, settled_at"
+          },
+          "400": {
+            "description": "invalid txHash"
+          },
+          "404": {
+            "description": "no settlement bound to this txHash"
+          },
+          "500": {
+            "description": "store not configured or lookup failed"
+          }
+        }
+      }
+    }
+  }
+}

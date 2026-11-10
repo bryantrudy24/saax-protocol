@@ -1,0 +1,5 @@
+Contact: mailto:reachsaaxprotocol@gmail.com
+Expires: 2027-10-06T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://saax-protocol.com/.well-known/security.txt
+Policy: https://saax-protocol.com/security
