@@ -1,4 +1,4 @@
-// SAAX Protocol â€” Day 4/5 + Day 8 + Day 11: Demand Intake Endpoint (mock x402 mode)
+﻿// SAAX Protocol Ã¢â‚¬â€ Day 4/5 + Day 8 + Day 11: Demand Intake Endpoint (mock x402 mode)
 //
 // HTTP POST /route
 //   Accepts:  { capability, budget, deadline }
@@ -6,7 +6,7 @@
 //             or ranked + ROUTED supplier matches with settlement receipts
 //             when a valid payment signature is presented.
 //
-// DAY 5 â€” PAYMENT ROUTING LOGIC (MOCK MODE)
+// DAY 5 Ã¢â‚¬â€ PAYMENT ROUTING LOGIC (MOCK MODE)
 //   - After ranking, every matched supplier is routed through the decision
 //     tree (endpoint/router.js): x402 (payTo + USDC on base/polygon/solana) |
 //     mpp (fiat/Stripe-native) | unsupported (excluded from the match list).
@@ -38,25 +38,25 @@
 //   Payment payloads are untrusted input: parsed structurally, never executed.
 //   Supplier payTo addresses fail format validation -> supplier excluded.
 //
-// DAY 8 â€” PRE-LIVE SECURITY CONTROLS (see daily-logs/day8-log.md):
+// DAY 8 Ã¢â‚¬â€ PRE-LIVE SECURITY CONTROLS (see daily-logs/day8-log.md):
 //   GATE ORDER (new, strictly earliest-first):
-//     1. KILL SWITCH  (endpoint/killswitch.js)   â€” SAAX_KILL_SWITCH / SAAX_KILL_SWITCH_FILE
+//     1. KILL SWITCH  (endpoint/killswitch.js)   Ã¢â‚¬â€ SAAX_KILL_SWITCH / SAAX_KILL_SWITCH_FILE
 //        Runs FIRST, before EVERYTHING (idempotency, rate limit, sanitization,
 //        signature, on-chain, amount). Live verify + switch ON -> 503 halted.
 //        Mock lane stays open (kill switch stops LIVE processing, not mock
 //        testing).
-//     2. RATE LIMIT   (endpoint/ratelimit.js)    â€” SAAX_RATE_LIMIT_{IP,WALLET}[,_WINDOW]
+//     2. RATE LIMIT   (endpoint/ratelimit.js)    Ã¢â‚¬â€ SAAX_RATE_LIMIT_{IP,WALLET}[,_WINDOW]
 //        Two-tier sliding window (ip 60/min, wallet 30/min) BEFORE sanitization.
 //        429 + Retry-After. No exemptions.
-//     3. IDEMPOTENCY  (endpoint/idempotency.js)  â€” Idempotency-Key header or
+//     3. IDEMPOTENCY  (endpoint/idempotency.js)  Ã¢â‚¬â€ Idempotency-Key header or
 //        deterministic derived key. verified/settled -> cached response;
 //        pending -> 409; different payload hash -> 422. TTL 24h, hourly sweep.
-//     4. SANITIZATION (existing gate, unchanged) â€” 422 on empty/injection.
+//     4. SANITIZATION (existing gate, unchanged) Ã¢â‚¬â€ 422 on empty/injection.
 //     5. PAYMENT VERIFICATION (existing x402 path, unchanged).
-//     6. BUYER REPUTATION (endpoint/identity.js) â€” live: from the verified x402
+//     6. BUYER REPUTATION (endpoint/identity.js) Ã¢â‚¬â€ live: from the verified x402
 //        signer address via IdentityRegistry reverse lookup + ReputationRegistry
 //        (Path (a), operator-confirmed); mock: x-mock-buyer-rep header kept as
-//        a stand-in. Live mode IGNORES the header. See Â§9/Â§6 of the checklist.
+//        a stand-in. Live mode IGNORES the header. See Ã‚Â§9/Ã‚Â§6 of the checklist.
 //     7. RANKING -> ROUTING -> SETTLEMENT (unchanged).
 //
 //   Regression contract (NOT optional): Day 5 unit 26/26, Day 5 E2E 17/17,
@@ -73,7 +73,7 @@ const { JsonRpcProvider, Contract } = require('ethers');
 const x402 = require('./x402.js');
 const gateway = require('./gateway.js'); // Day 9: self-hosted x402 gateway (SAAX_X402_MODE=self)
 // Day 11 (Item 3/4): commitment lifecycle leaf modules (loaded through the
-// gateway facade so the rail registry is a single seam â€” see gateway.js).
+// gateway facade so the rail registry is a single seam Ã¢â‚¬â€ see gateway.js).
 const commitmentMod = require('./commitment.js');
 const requirementMod = require('./requirement.js');
 const receiptMod = require('./receipt.js');
@@ -111,7 +111,7 @@ const REPUTATION_REGISTRY = process.env.SAAX_REPUTATION_REGISTRY || '0x8004BAa17
 const SELF_MODE = gateway.getMode() === 'self';
 const INSTANCE_TOKEN = process.pid + ':' + Date.now();
 // Branch provenance (Item 4 of the integration milestone): every 402 emission
-// site names the branch that emitted it â€” observed, never inferred from the
+// site names the branch that emitted it Ã¢â‚¬â€ observed, never inferred from the
 // response shape. branch=<name> identifies the emitting site.
 function diagBranch(branch, req) {
   const line = '[diag] pid=' + process.pid + ' instance=' + INSTANCE_TOKEN +
@@ -148,7 +148,7 @@ if (_storeClient) {
 // the file-backed durable store into the idempotency gate and the gateway
 // nonce guard so replay protection survives process restart. Single-writer
 // topology: one process/host (local server, Railway single dyno). Multi-
-// instance runtimes must configure Supabase (see design doc §5.1).
+// instance runtimes must configure Supabase (see design doc Â§5.1).
 if (!_storeClient && String(process.env.SAAX_IDEMPOTENCY_STORE || '').toLowerCase() !== 'memory') {
   const { DurableIdempotencyStore } = require('./idempotency-durable.js');
   const durableDir = process.env.SAAX_IDEMPOTENCY_DIR || path.join(__dirname, '..', '.output', 'reliability', 'idempotency');
@@ -170,7 +170,7 @@ async function reconcileIdempotencyOnce() {
   if (_reconciled) return;
   _reconciled = true;
   // Supabase/PostgREST path: reconcile the DURABLE DB record via the RPC
-  // (transactional per-key advisory locks; unknown rows left pending — never
+  // (transactional per-key advisory locks; unknown rows left pending â€” never
   // auto-replay). Evidence lists are empty here: the application has no
   // authoritative chain evidence at startup for arbitrary pending rows, so
   // this pass ONLY marks unresolved rows; it never resolves by age. Mock
@@ -267,8 +267,8 @@ if (ESCROW_BACKED) {
 // Access authorization (permits the operation) is SEPARATE from the release
 // verdict (moves escrowed funds, signed by the digest-covered evaluator under
 // the deployed custody contract's EIP-712 scheme). This handler never moves
-// funds: it authenticates, validates, records acceptance, and â€” for actions
-// that are themselves on-chain operations (refund/dispute) â€” records the
+// funds: it authenticates, validates, records acceptance, and Ã¢â‚¬â€ for actions
+// that are themselves on-chain operations (refund/dispute) Ã¢â‚¬â€ records the
 // intended external action for the caller to execute through the verdict path.
 async function handleEscrowAccess(req, res, log, ctx) {
   const respond = (code, body) => { res.writeHead(code, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(body)); };
@@ -346,7 +346,7 @@ async function handleEscrowAccess(req, res, log, ctx) {
   }
   const esc = escrowProof.escrow;
   if (isExecution) {
-    // Parties + digest + amount + asset must match the AGREEMENT â€” the
+    // Parties + digest + amount + asset must match the AGREEMENT Ã¢â‚¬â€ the
     // signed manifest's terms (buyer/seller/amount/currency resolved to the
     // escrow asset), NOT request-supplied identities or operator config
     // alone. The on-chain escrow's digest is already the manifest hash
@@ -369,7 +369,7 @@ async function handleEscrowAccess(req, res, log, ctx) {
     // on-chain escrow party that owns the action's role. A buyer-scoped
     // action requires signer == escrow.buyer (and == agreement buyer via the
     // check above); seller/evaluator actions require their own party. A
-    // configured buyer address alone is NOT sufficient â€” the escrow's own
+    // configured buyer address alone is NOT sufficient Ã¢â‚¬â€ the escrow's own
     // buyer must match the signer.
     const roleParty = { buyer: esc.buyer, seller: esc.seller, evaluator: esc.evaluator }[p.role];
     if (roleParty && String(roleParty).toLowerCase() !== String(auth.signer).toLowerCase()) {
@@ -379,7 +379,7 @@ async function handleEscrowAccess(req, res, log, ctx) {
       return;
     }
     if (!escrowProof.funded || esc.state === 'released' || esc.state === 'refunded' || esc.state === 'timed_out') {
-      const reason = 'escrow-backed mode: escrow not funded/terminal (state=' + esc.state + ') for execution action ' + p.action + ' â€” status queries do not require funding';
+      const reason = 'escrow-backed mode: escrow not funded/terminal (state=' + esc.state + ') for execution action ' + p.action + ' Ã¢â‚¬â€ status queries do not require funding';
       log.push('ESCROW ACCESS REJECT: ' + reason);
       diagBranch('escrow-access-unfunded', req);
       respond(402, { error: reason });
@@ -391,12 +391,12 @@ async function handleEscrowAccess(req, res, log, ctx) {
   // D3 INTEGRATED MODE (SAAX_INTEGRATED_WORKER=1): the acceptance is ONE
   // transaction in the shared SQLite store (operation + work item + journal
   // outbox intent). The hosted lane (env unset) keeps the JSON ledger path
-  // below — byte-identical behavior. The actionArgs (verdict/commitment
+  // below â€” byte-identical behavior. The actionArgs (verdict/commitment
   // parameters for the custody call) come from the request BODY, NOT the
   // signed access auth (the auth stays 8 fields); authority to EXECUTE comes
   // solely from the contract path (2-of-3 Safe for release/refund, timeout
   // rules for timeout refund, buyer/seller for dispute) validated by the
-  // worker's D2Prerequisites — never from the body.
+  // worker's D2Prerequisites â€” never from the body.
   let integratedReqBody = null;
   try {
     if (ctx.reqBody) {
@@ -416,7 +416,7 @@ async function handleEscrowAccess(req, res, log, ctx) {
       actionArgs: integratedReqBody.actionArgs,
       exportArtifacts: integratedReqBody.exportArtifacts,
       // The outbox intent carries the CONFIRMED transition the worker must
-      // journal after execution (never 'intent' for an executable action —
+      // journal after execution (never 'intent' for an executable action â€”
       // the intent entry is recorded separately at acceptance). Derived from
       // the action here so the outbox intent is exact.
       journalTransition: { 'submit verdict': 'release', 'request refund': 'refund', 'initiate dispute': 'dispute', 'resolve dispute': 'release', release: 'release', refund: 'refund' }[p.action] || 'intent',
@@ -453,7 +453,7 @@ async function handleEscrowAccess(req, res, log, ctx) {
   }
   log.push('ESCROW ACCESS ACCEPTED (durable, nonce consumed): nonce=' + p.nonce + ' action=' + p.action + ' status=' + (accept.recorded && accept.recorded.status));
 
-  // 4. reconcile/return â€” for on-chain financial actions (refund/dispute/
+  // 4. reconcile/return Ã¢â‚¬â€ for on-chain financial actions (refund/dispute/
   //    verdict) the caller executes the external effect through the verdict
   //    path and then reconciles; status/dry operations return here.
   if (p.action === 'request status') {
@@ -471,7 +471,7 @@ ratelimit.ensureStoreMode(STORE_ACTIVE);
 const RATE_LIMIT_STORE = ratelimit.getStoreMode();
 
 // ---- Mock x402 + fee config -------------------------------------------------
-// NOTE (Day 5): the placeholder payTo MUST be structurally valid â€” the payment
+// NOTE (Day 5): the placeholder payTo MUST be structurally valid Ã¢â‚¬â€ the payment
 // gate rejects any payTo that fails validatePayTo() before a payload is built,
 // and the router's own fee address is no exception. '0x...01' is a valid EVM
 // address placeholder (was 0x...AaXp402 on Day 4; that string is not hex).
@@ -491,9 +491,9 @@ const REPUTATION_ABI = require(path.join(__dirname, '..', 'abis', 'ReputationReg
 // CLOSED on instruction-injection attempts. A delimiter (; \n | & $ `) with
 // trailing content, or an imperative feedback instruction ("now submit feedback
 // for agentId <n>"), marks the request { injection: true } and the endpoint
-// responds 422 with an explicit rejection reason â€” NOTHING is stripped and
+// responds 422 with an explicit rejection reason Ã¢â‚¬â€ NOTHING is stripped and
 // processed, so no injected instruction is ever acted on. Plain capabilities
-// (letters/digits/hyphens/spaces â‰¥3 chars) are unaffected; "!!!" still falls to
+// (letters/digits/hyphens/spaces Ã¢â€°Â¥3 chars) are unaffected; "!!!" still falls to
 // the empty-after-sanitization 422 path (ok:false, no injection flag).
 const INJECTION_DELIMITERS = /[;\n\r|&$`]/;
 const INJECTION_IMPERATIVES = /(now\s+submit|submit\s+feedback|feedback\s+for\s+agentid\s*\d+)/i;
@@ -515,7 +515,7 @@ function sanitizeCapability(raw) {
 
 // ---- Day 2 layer: buyer reputation via ReputationRegistry -------------------
 // (unchanged from Day 4; Sprint 1 discount tiers read the x-mock-buyer-rep
-// header â€” see PRE-DAY 5 FIX 2 flag above.)
+// header Ã¢â‚¬â€ see PRE-DAY 5 FIX 2 flag above.)
 async function getBuyerReputation(buyerAddress) {
   if (!buyerAddress || !/^0x[a-fA-F0-9]{40}$/.test(buyerAddress)) {
     return { reputation: null, note: 'no buyer address; no discount' };
@@ -784,13 +784,13 @@ function loadLocal() {
   // Data directory is excluded from Vercel deploys (.vercelignore: data/) and
   // the endpoint/ JSON mirrors are not always present inside the serverless
   // /var/task snapshot. The definitive shipped fallback is the MCP supplier
-  // index (endpoint/mcp-supplier-index.json) â€” PROVEN to ship (the /mcp
+  // index (endpoint/mcp-supplier-index.json) Ã¢â‚¬â€ PROVEN to ship (the /mcp
   // function reads it on every deploy).
   //
   // IMPORTANT: only the AGENTS file may fall back to the supplier index. The
   // reputation and leaderboard files have NO shipped fallback; when absent
-  // they default to [] (buildRanker tolerates missing reputation â†’ score 0).
-  // Never let those fall through to mcp-supplier-index.json â€” its object
+  // they default to [] (buildRanker tolerates missing reputation Ã¢â€ â€™ score 0).
+  // Never let those fall through to mcp-supplier-index.json Ã¢â‚¬â€ its object
   // shape ({suppliers:[...]}) is not iterable and crashes loadLocal.
   let agents = null;
   try {
@@ -849,8 +849,16 @@ if (!railsMod.resolve('mpp')) {
     const railsMpp = require('./rails/mpp.js');
     railsMod.register('mpp', railsMpp);
     let mppxVersion = '?';
-    try { mppxVersion = require('mppx/package.json').version; } catch (e) { /* exports map blocks the subpath; fall back to a static read */ }
-    console.error('rails.register(mpp) OK â€” MPP rail live (mppx ' + mppxVersion + ')');
+    // Dynamic fs read instead of require('mppx/package.json'): the bare subpath is
+    // blocked by mppx's exports map AND breaks Vercel's static bundler (RESOLVE_ERROR)
+    // even though the require is guarded. fs keeps the read runtime-only and safe.
+    try {
+      const fsMppx = require('node:fs');
+      const pathMppx = require('node:path');
+      const mppxPkg = JSON.parse(fsMppx.readFileSync(pathMppx.join(__dirname, '..', 'node_modules', 'mppx', 'package.json'), 'utf8'));
+      mppxVersion = mppxPkg.version || '?';
+    } catch (e) { /* mppx not installed or unreadable; x402-only mode remains functional */ }
+    console.error('rails.register(mpp) OK Ã¢â‚¬â€ MPP rail live (mppx ' + mppxVersion + ')');
   } catch (e) {
     console.error('rails.register(mpp) failed (x402-only mode): ' + (e.message || e));
   }
@@ -909,13 +917,13 @@ async function handleRoute(req, res, body) {
   if (!requirePilotToken(req, res, log)) return;
 
   // ---- DAY 8 GATES (earliest-first; the kill switch is THE first gate) -------
-  // 1. KILL SWITCH â€” before BODY PARSING, before idempotency, before rate
+  // 1. KILL SWITCH Ã¢â‚¬â€ before BODY PARSING, before idempotency, before rate
   //    limiting, before sanitization, before signature/on-chain/amount. Live
   //    verify + switch ON -> 503 halted; mock lane stays open (kill switch
   //    stops live processing, not mock testing). A halted server answers 503
-  //    even to a malformed body â€” no request content is processed or echoed.
+  //    even to a malformed body Ã¢â‚¬â€ no request content is processed or echoed.
   const verifyModeNow = x402.getVerifyMode();
-  // Day 9: in self mode settlement is REAL (broadcast to Base Sepolia) â€” the
+  // Day 9: in self mode settlement is REAL (broadcast to Base Sepolia) Ã¢â‚¬â€ the
   // kill switch must treat it as live, not as the mock testing lane.
   const ksMode = SELF_MODE ? 'live' : verifyModeNow;
   const ks = killswitch.requireKillSwitch(ksMode);
@@ -928,7 +936,7 @@ async function handleRoute(req, res, body) {
   if (ks.note) log.push(ks.note);
 
   // x402scan probe short-circuit (Day 15): an unauthenticated request with an
-  // EMPTY or MALFORMED body â€” the shape a discovery scanner sends â€” is answered
+  // EMPTY or MALFORMED body Ã¢â‚¬â€ the shape a discovery scanner sends Ã¢â‚¬â€ is answered
   // with the bare 402 challenge, not a 400. There is no capability to commit
   // against, so no commitment is issued; the bare buildChallenge() carries the
   // payment requirement (payTo, asset, network, amount) exactly as the first
@@ -965,7 +973,7 @@ async function handleRoute(req, res, body) {
   // (security sprint Item 2: demand request fields sanitized; empty or
   // injection-containing fields return 422). Note (Day 15): a MALFORMED body
   // with a payment signature still falls through to parsePayload below and
-  // yields a 400 â€” a signed payment must present a well-formed demand body.
+  // yields a 400 Ã¢â‚¬â€ a signed payment must present a well-formed demand body.
   const payload = parsePayload(body);
   if (payload.error) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -973,7 +981,7 @@ async function handleRoute(req, res, body) {
     return;
   }
 
-  // 2. RATE LIMIT â€” two-tier sliding window BEFORE sanitization and payment
+  // 2. RATE LIMIT Ã¢â‚¬â€ two-tier sliding window BEFORE sanitization and payment
   //    verification. 429 + Retry-After. No exemptions (the operator's own
   //    test wallet obeys; raise the limit, never exempt).
   const ipNow = clientIp(req);
@@ -992,11 +1000,11 @@ async function handleRoute(req, res, body) {
   }
   if (rl.errors && rl.errors.length) log.push('RATE LIMIT store warning (fail-open): ' + rl.errors.join('; '));
 
-  // 2b. BUYER IDENTITY (optional) â€” the `subscriptionEmail` body field.
+  // 2b. BUYER IDENTITY (optional) Ã¢â‚¬â€ the `subscriptionEmail` body field.
   //     Validated HERE (after rate limiting, before idempotency) so the lookup
   //     is rate-limited and no idempotency key is acquired for a request that
   //     is about to be rejected. A supplied email is checked against the
-  //     subscriptions table via lookup_subscription â€” the SAME RPC the premium
+  //     subscriptions table via lookup_subscription Ã¢â‚¬â€ the SAME RPC the premium
   //     gating uses. Valid + active -> the email is carried into commitment
   //     issuance (stored as buyer_email, so list_commitments can resolve it).
   //     Present but unresolvable -> 400 invalid_subscription_email, and NO
@@ -1027,19 +1035,19 @@ async function handleRoute(req, res, body) {
     log.push('BUYER IDENTITY: subscriptionEmail ' + rawEmail + ' resolved to an active subscription');
   }
 
-  // 3. IDEMPOTENCY â€” key from header or derived deterministic key; checked
+  // 3. IDEMPOTENCY Ã¢â‚¬â€ key from header or derived deterministic key; checked
   //    BEFORE payment verification. verified/settled -> cached response,
   //    pending -> 409, payload-hash mismatch -> 422.
   //
   //    IMPORTANT (Day 8 fix): a request with NO payment signature (bare 402
-  //    challenge probe) has nothing to duplicate â€” acquiring a key for it would
+  //    challenge probe) has nothing to duplicate Ã¢â‚¬â€ acquiring a key for it would
   //    poison the key with a 'pending' row that never settles and 409s the next
   //    legitimate attempt. The idempotency gate therefore only activates when a
   //    payment header (or legacy mock header) is PRESENT. This preserves the
   //    brief's ordering (idempotency BEFORE verification) while keeping the
   //    challenge path idempotency-neutral.
   const hasPaymentHeader = !!(req.headers['payment-signature'] || req.headers['x-x402-mock'] === 'mock');
-  // FINAL RELIABILITY GATE (Phase 2 — production storage enforcement):
+  // FINAL RELIABILITY GATE (Phase 2 â€” production storage enforcement):
   // In live (SELF) mode, financial processing MUST NOT proceed when the
   // idempotency store is not durable (in-memory process-local Map = replay
   // protection dies with the process; a missing/broken store = fail-closed
@@ -1054,11 +1062,11 @@ async function handleRoute(req, res, body) {
       return;
     }
     // Store unavailable during the gate (503 path): fail CLOSED in SELF mode.
-    // The 503 returned by idempotencyGate below is no longer a warning — it
+    // The 503 returned by idempotencyGate below is no longer a warning â€” it
     // aborts the request so an unknown prior outcome is never re-processed.
   }
   // Day 9 (Item 4): in self mode the idempotency key is bound to the EIP-3009
-  // nonce â€” hash(nonce) â€” so a re-presented signed authorization under ANY
+  // nonce Ã¢â‚¬â€ hash(nonce) Ã¢â‚¬â€ so a re-presented signed authorization under ANY
   // request identifier collides with the settled/pending row (replay-safe).
   // The nonce is extracted from the payment header BEFORE the idempotency gate.
   let nonceBoundKeyOverride = null;
@@ -1074,7 +1082,7 @@ async function handleRoute(req, res, body) {
     buyerAddress: walletNow,
     nonce: (payload.deadline ? String(payload.deadline) : '') + ':' + (payload.budget === undefined ? '' : String(payload.budget)),
     // Fee-affecting input: the mock buyer-rep header changes the response fee,
-    // so it must be part of the derived-key identity (regression fix â€” without
+    // so it must be part of the derived-key identity (regression fix Ã¢â‚¬â€ without
     // it, a rep-bearing retry would replay a no-rep cached response).
     extra: req.headers['x-mock-buyer-rep'] ? String(req.headers['x-mock-buyer-rep']).trim() : '',
   };
@@ -1084,7 +1092,7 @@ async function handleRoute(req, res, body) {
     // the client-supplied/derived key so replay protection is anchored to the
     // EIP-3009 nonce, not to an attacker-supplied header. Pass it via a
     // synthetic header the gate prefers (nonce-bound keys are authoritative in
-    // self mode â€” see gateway.nonceIdempotencyKey).
+    // self mode Ã¢â‚¬â€ see gateway.nonceIdempotencyKey).
     if (nonceBoundKeyOverride) {
       idem = await idempotency.idempotencyGate({
         ...req,
@@ -1136,7 +1144,7 @@ async function handleRoute(req, res, body) {
 
   // SECURITY GATE: sanitize capability at the boundary. Reject if empty OR if
   // an injection attempt is detected (Day 7: fail closed, nothing stripped and
-  // processed â€” see sanitizeCapability).
+  // processed Ã¢â‚¬â€ see sanitizeCapability).
   const sanitized = sanitizeCapability(payload.capability);
   if (sanitized.injection) {
     log.push('SECURITY GATE: ' + sanitized.reason + ' -> 422');
@@ -1155,18 +1163,18 @@ async function handleRoute(req, res, body) {
   // The commitment (Trade Manifest) is issued BEFORE any payment challenge.
   // It binds the TERMS (capability, price, acceptance criteria, deadline,
   // cancel condition) and carries NO rail, NO credential, NO settlement
-  // reference â€” the settlement method S that realises the neutral requirement
+  // reference Ã¢â‚¬â€ the settlement method S that realises the neutral requirement
   // R is resolved at execution time (IETF draft, R/S separation; x402 is no
   // longer mandatory). All Day 8 controls above (kill switch -> rate limit ->
   // idempotency -> sanitization) remain in force and in the same order.
   //
   // buyer: from the verified payment signature when present, else the legacy
   // mock header, else a per-request placeholder. seller: the router's fee
-  // address (the commitment is issued for the DEMAND â€” the seller wallet is
+  // address (the commitment is issued for the DEMAND Ã¢â‚¬â€ the seller wallet is
   // resolved at settlement time from the rail).
   // Escrow mode: the buyer identity comes from the AUTHENTICATED access
   // authorization (the signer of the EIP-712 access auth with role=buyer), so
-  // the signed agreement's buyerAgentId is the verified caller â€” never a
+  // the signed agreement's buyerAgentId is the verified caller Ã¢â‚¬â€ never a
   // payment-derived placeholder (escrow mode has no payment signature).
   let commitmentBuyer = null;
   if (ESCROW_BACKED) {
@@ -1177,7 +1185,7 @@ async function handleRoute(req, res, body) {
         const a = escrowAccess.verifyAccessAuthorization(art);
         // Only a BUYER-role auth defines the agreement buyer. A seller or
         // evaluator signing (their own actions) must never rebind the
-        // agreement buyer to their address â€” the buyer is the party who
+        // agreement buyer to their address Ã¢â‚¬â€ the buyer is the party who
         // funded the escrow (the configured buyer role owner).
         if (a.ok && a.signer && String(art.payload && art.payload.role) === 'buyer') commitmentBuyer = String(a.signer).toLowerCase();
       } catch (e) { /* unverifiable auth resolves later in handleEscrowAccess */ }
@@ -1187,7 +1195,7 @@ async function handleRoute(req, res, body) {
     commitmentBuyer = walletFromReq(req);
   }
   if (!commitmentBuyer && ESCROW_BACKED) {
-    // The agreement buyer is the party who FUNDED the escrow â€” the configured
+    // The agreement buyer is the party who FUNDED the escrow Ã¢â‚¬â€ the configured
     // buyer role owner (SAAX_TEST_BUYER_ADDRESS). Never a payment placeholder:
     // escrow mode has no payment signature, and seller/evaluator-initiated
     // actions must still bind the agreement to the real escrow buyer.
@@ -1207,14 +1215,14 @@ async function handleRoute(req, res, body) {
       // derive from THIS request's idempotency key (the same identity the
       // gate used), so identical retries re-derive the SAME commitment row
       // and DISTINCT payments get DISTINCT commitments. Without this, every
-      // request maps to one constant ID (hash of the empty scope) — the
+      // request maps to one constant ID (hash of the empty scope) â€” the
       // second legitimate payment for a buyer is rejected as a consumed
       // requirement replay, or worse reconciles to the wrong row.
       idempotencyKey: idemKeyNow,
       // Escrow mode: the agreement seller is the ESCROW-FLOW SUPPLIER (the
       // party who receives the escrowed funds, SAAX_SELLER_ADDRESS). The
       // operative payee (signer/hot wallet) is the direct-x402 payment
-      // destination â€” a DIFFERENT role. Binding the agreement seller to the
+      // destination Ã¢â‚¬â€ a DIFFERENT role. Binding the agreement seller to the
       // escrow seller makes the signature-verified agreement match the
       // on-chain escrow party (funding-binding check compares like to like).
       seller: ESCROW_BACKED ? (gateway.getSellerAddress() || gateway.getOperativePayee() || MOCK_PAYTO) : (SELF_MODE ? (gateway.getOperativePayee() || MOCK_PAYTO) : MOCK_PAYTO),
@@ -1228,7 +1236,7 @@ async function handleRoute(req, res, body) {
     // Reliability remediation (F-4): commitment persistence is STRICT.
     // We never present a payment challenge (and never return 200) for a
     // commitment that was not durably recorded. An ambiguous DB outcome is
-    // surfaced as 503 with an explicit retryable error — the deterministic
+    // surfaced as 503 with an explicit retryable error â€” the deterministic
     // commitment ID + PK upsert guarantee the retry reconciles to the SAME
     // row instead of duplicating (reconcile-before-respond).
     if (commitmentFlowCtx.persist && commitmentFlowCtx.persist.ok !== true) {      // Fail-closed: also release the idempotency key as failed (retryable)
@@ -1244,7 +1252,7 @@ async function handleRoute(req, res, body) {
     }
     log.push('COMMITMENT: durable row confirmed for ' + commitmentFlowCtx.manifest.commitmentId);
   } catch (e) {
-    // A commitment that cannot be issued fails CLOSED (500) â€” no payment
+    // A commitment that cannot be issued fails CLOSED (500) Ã¢â‚¬â€ no payment
     // challenge is ever presented without a governing commitment.
     log.push('COMMITMENT FAILED: ' + (e.message || e));
     res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -1267,7 +1275,7 @@ async function handleRoute(req, res, body) {
   if (ESCROW_BACKED) {
     const accessAuthHdr = req.headers['x-saax-access-auth'] || '';
     if (accessAuthHdr) {
-      // Explicit prefunded-escrow access path â€” the contract sequence runs
+      // Explicit prefunded-escrow access path Ã¢â‚¬â€ the contract sequence runs
       // here, bypassing the direct-payment gates entirely (Test 1: no
       // payment-signature required; a payment-signature alongside is
       // rejected above).
@@ -1373,7 +1381,7 @@ async function handleRoute(req, res, body) {
       };
       // Day 15 (Item 4): replace SAAX's own self-verification with Circle's
       // external verifier. Every payment payload is sent to Circle's /verify
-      // (keyless trial, seller-proof auth). Circle's verdict is returned â€”
+      // (keyless trial, seller-proof auth). Circle's verdict is returned Ã¢â‚¬â€
       // NOT SAAX's own. FAIL-CLOSED: if Circle is unreachable or returns an
       // error, the payment fails. There is no fallback to the gateway's
       // self-verification on the live path.
@@ -1445,7 +1453,7 @@ async function handleRoute(req, res, body) {
   }
 
   // Day 14 (Item 1): read the provided commitment ID from the verified
-  // payment payload (extensions.saax_commitment_id). Verified payload only â€”
+  // payment payload (extensions.saax_commitment_id). Verified payload only Ã¢â‚¬â€
   // an unverified or malformed payload never reaches this point.
   if (paymentPayload && paymentPayload.extensions && paymentPayload.extensions.saax_commitment_id) {
     saaxCommitmentOverride = String(paymentPayload.extensions.saax_commitment_id);
@@ -1481,7 +1489,7 @@ async function handleRoute(req, res, body) {
 
     let challenge, headers = { 'Content-Type': 'application/json' };
     if (SELF_MODE) {
-      // Day 9 (Item 2): self-hosted challenge â€” PAYMENT-REQUIRED header carries
+      // Day 9 (Item 2): self-hosted challenge Ã¢â‚¬â€ PAYMENT-REQUIRED header carries
       // base64 JSON: { network: eip155:84532, asset: USDC Base Sepolia,
       //   payTo: seller wallet, amount: routing fee raw units, facilitator: 'self',
       //   scheme: 'exact' }.
@@ -1575,7 +1583,7 @@ async function handleRoute(req, res, body) {
     res.end(JSON.stringify(challenge));
     return;
   }
-  // Payment verified: mark the key 'verified' (brief state machine) â€” the final
+  // Payment verified: mark the key 'verified' (brief state machine) Ã¢â‚¬â€ the final
   // settle happens at response time (markSettled below).
   if (idemKeyNow && idem.fresh) {
     await idempotency.markVerified(idemKeyNow);
@@ -1632,7 +1640,7 @@ async function handleRoute(req, res, body) {
   // caller-asserted), and BEFORE any settlement or broadcast. A rejected quota
   // therefore authorizes nothing and moves no funds.
   //
-  // The wallet is the VERIFIED payer recovered from the payment authorization —
+  // The wallet is the VERIFIED payer recovered from the payment authorization â€”
   // never a header or body field. When enforcement is off (the default) this
   // block is a no-op and existing behavior is unchanged.
   let pilotReservation = null;
@@ -1640,7 +1648,7 @@ async function handleRoute(req, res, body) {
     const authz = (paymentPayload && paymentPayload.payload && paymentPayload.payload.authorization) || {};
     // PILOT PAYER RESOLUTION: the payer is the SIGNATURE-derived address
     // whenever a signature exists. Only the mock lane (no signature, no
-    // financial effect) falls back to its own mock buyer identity — a
+    // financial effect) falls back to its own mock buyer identity â€” a
     // caller-supplied string is never treated as authenticated where money
     // can move, and SELF mode with no signature fails closed.
     const verifiedPayer = authz.from
@@ -1669,33 +1677,33 @@ async function handleRoute(req, res, body) {
       // after the operator resolves the condition is not stuck at 409.
       // ---- Gate D.2: HTTP error semantics ---------------------------------
       // Distinguish the failure class so callers can act correctly:
-      //   403 Forbidden — the wallet is not authorized for the pilot
+      //   403 Forbidden â€” the wallet is not authorized for the pilot
       //                   (not allowlisted / revoked / explicitly prohibited).
-      //   429 Too Many Requests — a configured amount or count quota is
+      //   429 Too Many Requests â€” a configured amount or count quota is
       //                   exceeded; retryAfter is set only when the quota
       //                   window makes a retry provably safe (window expiry),
       //                   otherwise the header is omitted rather than guessed.
-      //   503 Service Unavailable — the limit store is unreachable or the
+      //   503 Service Unavailable â€” the limit store is unreachable or the
       //                   reservation outcome is unknown; fail closed, retryable.
-      //   422 Unprocessable — malformed/unsupported request parameters that
+      //   422 Unprocessable â€” malformed/unsupported request parameters that
       //                   fail local validation (never a server condition).
       // Every rejection is issued BEFORE any payment authorization or
       // broadcast, and the response body never includes wallet, amount,
       // recipient or settlement data.
       const quotaReason = String(quota.reason || 'quota_rejected');
       const QUOTA_CLASS = {
-        // 422 — locally-validated malformed input
+        // 422 â€” locally-validated malformed input
         invalid_chain_id: 422, invalid_asset_address: 422, unsupported_asset: 422,
         invalid_wallet_address: 422, invalid_recipient: 422, missing_idempotency_key: 422,
         malformed_amount: 422, non_integer_amount: 422, non_positive_amount: 422,
         amount_overflow: 422, empty_amount: 422, invalid_decimals: 422,
         too_many_decimals: 422, invalid_policy_configuration: 422,
-        // 403 — authorization
+        // 403 â€” authorization
         wallet_not_allowlisted: 403, wallet_revoked: 403,
-        // 429 — quota
+        // 429 â€” quota
         single_transaction_cap: 429, wallet_amount_cap: 429, wallet_count_cap: 429,
         global_amount_cap: 429, global_count_cap: 429,
-        // 503 — fail closed (unknown/absent store)
+        // 503 â€” fail closed (unknown/absent store)
         limit_store_unavailable: 503, limit_store_invalid_response: 503,
         reservation_payload_mismatch: 409, idempotency_key_conflict: 409,
       };
@@ -1787,7 +1795,7 @@ async function handleRoute(req, res, body) {
     }
   }
   const fee = computeFee(buyerRep, log);
-  // ---- SPRINT 2, ITEM 1: outcome logging â€” every ranked result inserts a
+  // ---- SPRINT 2, ITEM 1: outcome logging Ã¢â‚¬â€ every ranked result inserts a
   // row into saax_router.ranking_outcomes (weights_used snapshot + shrinkage
   // flag + per-component scores for tuning analysis). request_id is the
   // idempotency key when present, else a deterministic per-run id. Rows are
@@ -1903,7 +1911,7 @@ async function handleRoute(req, res, body) {
             custody: process.env.SAAX_CUSTODY_ADDRESS || '',
             // F3B: explicit custody version dispatch (LOCAL TEST ONLY). The
             // escrow module selects V1/V2/V3 by validated chain/lane identity
-            // from SAAX_CUSTODY_VERSION — NEVER from formatVersion. Unset on
+            // from SAAX_CUSTODY_VERSION â€” NEVER from formatVersion. Unset on
             // the hosted lane keeps the legacy V1 artifact path.
             custodyVersion: process.env.SAAX_CUSTODY_VERSION || '',
           });
@@ -1972,12 +1980,12 @@ async function handleRoute(req, res, body) {
       log.push('DAY 9 SETTLEMENT: broadcast ' + selfSettlement.txHash + ' status=' + selfSettlement.status +
         ' signaturePath=' + (selfSettlement.signaturePath || 'eip2612') +
         (selfSettlement.pathEvidence ? ' evidence=' + (selfSettlement.pathEvidence.selector || '') + (selfSettlement.pathEvidence.found ? ' (eip3009 selector present)' : ' (no eip3009 selector -> eip2612)') : '') +
-        (selfSettlement.dryRun ? ' (DRY RUN â€” no real tx broadcast)' : ' block=' + selfSettlement.blockNumber));
+        (selfSettlement.dryRun ? ' (DRY RUN Ã¢â‚¬â€ no real tx broadcast)' : ' block=' + selfSettlement.blockNumber));
       // Day 14 (Item 1): additive post-broadcast linkage write. The on-chain
       // settlement just confirmed; bind its REAL txHash to the commitment row.
       // Keyed on the provided saax ID (extensions.saax_commitment_id) when
       // present, else the issued manifest ID. This is a write AFTER the
-      // success path â€” the broadcast, signature verification, facilitator call
+      // success path Ã¢â‚¬â€ the broadcast, signature verification, facilitator call
       // and settlement amount are untouched. A persistence failure is logged
       // and never alters the response contract.
       const settleCommitmentId = saaxCommitmentOverride || commitmentFlowCtx.manifest.commitmentId;
@@ -2018,7 +2026,7 @@ async function handleRoute(req, res, body) {
       log.push('DAY 9 SETTLEMENT FAILED: ' + selfSettlementError);
       // Gate D.1: a broadcast that provably failed is authoritative evidence
       // that the operation cannot settle, so the reserved exposure is released.
-      // (A TIMEOUT is not this case — it leaves the reservation consuming
+      // (A TIMEOUT is not this case â€” it leaves the reservation consuming
       // budget until reconciliation establishes the real outcome.)
       if (pilotReservation) {
         try { await pilotLimits.release(pilotReservation, 'settlement broadcast failed'); } catch (_) {}
@@ -2034,8 +2042,8 @@ async function handleRoute(req, res, body) {
 
   // ---- DAY 12 (Item 3/4): MPP settlement ------------------------------------
   // When the buyer presented an MPP credential (Authorization: Payment), the
-  // gateway settles via the mpp rail's settle() â€” which calls mppx's
-  // broadcastCredential and our custom dual-path settler â€” and records the
+  // gateway settles via the mpp rail's settle() Ã¢â‚¬â€ which calls mppx's
+  // broadcastCredential and our custom dual-path settler Ã¢â‚¬â€ and records the
   // rail reference for the Spend Receipt. The MPP receipt header (Payment-
   // Receipt) is emitted on the final response; x402 keeps PAYMENT-RESPONSE.
   let mppSettlement = null;
@@ -2064,7 +2072,7 @@ async function handleRoute(req, res, body) {
 
   // ---- DAY 11 (Item 4/5): Spend Receipt binding settlement -> commitment ----
   // The receipt carries ONLY the public railReference (transaction identifier)
-  // â€” never the credential, signature, or authorization (non-leakage rule).
+  // Ã¢â‚¬â€ never the credential, signature, or authorization (non-leakage rule).
   // Built from the rail's settle() output (x402 mock receipts, or the
   // self-hosted gateway settlement txHash).
   let spendReceipt = null;
@@ -2075,7 +2083,7 @@ async function handleRoute(req, res, body) {
       payee: commitmentFlowCtx.requirement.payee,
       amount: primarySettlement ? String(primarySettlement.amount || commitmentFlowCtx.requirement.amt) : commitmentFlowCtx.requirement.amt,
       currency: primarySettlement && primarySettlement.asset ? String(primarySettlement.asset) : commitmentFlowCtx.requirement.cur,
-      // DAY 12: rail-agnostic binding â€” x402 settlements bind the txHash, MPP
+      // DAY 12: rail-agnostic binding Ã¢â‚¬â€ x402 settlements bind the txHash, MPP
       // settlements bind the MPP railReference. Both are public transaction
       // identifiers; the credential never appears in the receipt.
       rail: (mppSettlement && 'mpp') || ((selfSettlement && SELF_MODE) ? 'x402' : (primarySettlement && primarySettlement.rail) || 'x402'),
@@ -2166,7 +2174,7 @@ async function handleRoute(req, res, body) {
       ...(selfSettlement.dryRun ? { dryRun: true } : {}),
     })).toString('base64');
   }
-  // DAY 12 (Item 3): MPP receipt header â€” Payment-Receipt, the MPP counterpart
+  // DAY 12 (Item 3): MPP receipt header Ã¢â‚¬â€ Payment-Receipt, the MPP counterpart
   // to x402's PAYMENT-RESPONSE. Returns the rail reference (public tx id) only;
   // the credential never appears in any header or body.
   if (mppSettlement && railsMod.resolve('mpp')) {
@@ -2237,7 +2245,7 @@ const server = http.createServer((req, res) => {
     req.on('data', c => { body += c; if (body.length > 64 * 1024) req.destroy(); });
     req.on('end', () => handleRoute(req, res, body));
   } else if (url.pathname === '/route' && (req.method === 'GET' || req.method === 'PUT' || req.method === 'PATCH' || req.method === 'DELETE')) {
-    // 2a â€” method coverage: GET/PUT/PATCH/DELETE on /route answer the same
+    // 2a Ã¢â‚¬â€ method coverage: GET/PUT/PATCH/DELETE on /route answer the same
     // x402 challenge as POST, so discovery probes on any verb see the
     // payment requirement instead of a 404/405. Additive to request dispatch;
     // the settlement path, commitment layer, and challenge shape are unchanged.
