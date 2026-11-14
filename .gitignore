@@ -96,3 +96,6 @@ test-e2e-*.mjs
 scripts/_token.txt  
 scripts/_precheck.txt  
 .env.stagef  
+
+.vercel
+.env*

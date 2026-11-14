@@ -78,16 +78,14 @@ nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
 </nav></div></header>
 <main><div class="container"><article>
 <h1 id="saax-integration-guide">SAAX integration guide</h1>
-
-
-<div class="status-note" role="note" aria-label="Public Beta notice" style="border:1px solid var(--amber-bg); border-radius:12px; padding:1.1rem 1.3rem; background:#1c2128; margin:0 0 1.4rem;">
-<h2 style="color:var(--amber-bg); margin-top:0;">SAAX Protocol — Public Beta</h2>
+<p><em>Last verified: 2026-11-06</em></p>
+<blockquote>
+<p><strong>SAAX Protocol — Public Beta</strong></p>
 <p>SAAX Protocol is currently in public Beta. Immediate-payment functionality is available on Base mainnet, while escrow custody remains limited to testnet.</p>
 <p>Independent external security review is pending. Although internal verification and reliability testing have been performed, these do not replace an independent security assessment.</p>
 <p>Live transactions involve financial and technical risks, including potential loss of funds and irreversible blockchain transfers. Users should evaluate these risks carefully and use the platform at their own discretion.</p>
 <p><em>This notice does not constitute a guarantee of reimbursement, dispute recovery, or financial protection.</em></p>
-</div>
-<p><em>Last verified: 2026-11-06</em></p>
+</blockquote>
 <p>Start with the interface you intend to use. Public signed Discovery and buyer-authorized commitment creation do not move funds. Existing immediate payments are public beta on Base mainnet. The connected custody integration is a separate Base Sepolia testnet preview, operated through controlled scripts rather than public financial execution endpoints.</p>
 <p>Read the <a href="/terms">terms</a> and <a href="/status">current status</a>. No refund, safety, service-quality or independent-audit guarantee applies.</p>
 <h2 id="choose-a-supported-path">Choose a supported path</h2>
@@ -108,7 +106,7 @@ nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
 <tr>
 <td>Immediate x402 payment</td>
 <td><strong>Public beta; Base mainnet 8453</strong></td>
-<td>Existing direct USDC payment flow, no mainnet escrow.</td>
+<td>Existing direct USDC payment flow, no mainnet escrow. The MPP rail is implemented but not registered in production.</td>
 </tr>
 <tr>
 <td>Discovery → custody → signed release/refund</td>
@@ -118,7 +116,7 @@ nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
 <tr>
 <td>Unreleased custody/governance candidates</td>
 <td><strong>Under development / security review</strong></td>
-<td>Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed &#8212; not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit.</td>
+<td>Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed — not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit.</td>
 </tr>
 </tbody>
 </table>
@@ -175,21 +173,37 @@ nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
 <p>Endpoint:</p>
 <pre><code class="language-text">https://www.saax-protocol.com/mcp
 </code></pre>
-<p>The release check initializes MCP and calls <code>tools/list</code>, <code>ping</code> and <code>get_protocol_info</code>. The deployed tool names are:</p>
+<p>The release check initializes MCP and calls <code>tools/list</code>, <code>ping</code> and <code>get_protocol_info</code>. The deployed tool names are (verified live against the production endpoint):</p>
+<p><strong>Core &amp; routing</strong></p>
 <ul>
 <li><code>get_protocol_info</code>, <code>get_routing_fee</code>, <code>ping</code></li>
 <li><code>route_request</code>, <code>list_capabilities</code></li>
-<li><code>get_commitment</code>, <code>list_commitments</code>, <code>get_commitment_status</code></li>
-<li><code>create_commitment</code></li>
-<li><code>get_evidence_verification</code>, <code>get_authority_validation</code></li>
-<li><code>prepare_commitment</code>, <code>accept_commitment</code></li>`n<li><em>Lifecycle (controlled nonfinancial beta):</em> <code>get_commitment_history</code>, <code>get_recovery_status</code>, <code>get_pending_actions</code>, <code>resume_commitment</code>, <code>cancel_commitment</code>, <code>close_commitment</code></li>`n<li><em>Evidence (beta):</em> <code>submit_evidence</code>, <code>list_evidence</code>, <code>verify_evidence</code></li>`n<li><em>Disputes (beta):</em> <code>raise_dispute</code>, <code>resolve_dispute</code>, <code>list_disputes</code></li>
+<li><code>prepare_commitment</code>, <code>accept_commitment</code>, <code>create_commitment</code></li>
 </ul>
+<p><strong>Commitments &amp; lifecycle</strong></p>
+<ul>
+<li><code>get_commitment</code>, <code>list_commitments</code>, <code>get_commitment_status</code></li>
+<li><code>get_commitment_history</code>, <code>get_recovery_status</code>, <code>get_pending_actions</code></li>
+<li><code>resume_commitment</code>, <code>cancel_commitment</code>, <code>close_commitment</code></li>
+</ul>
+<p><strong>Evidence</strong></p>
+<ul>
+<li><code>submit_evidence</code>, <code>list_evidence</code>, <code>verify_evidence</code></li>
+<li><code>get_evidence_verification</code>, <code>get_authority_validation</code></li>
+</ul>
+<p><strong>Disputes</strong></p>
+<ul>
+<li><code>raise_dispute</code>, <code>resolve_dispute</code>, <code>list_disputes</code></li>
+</ul>
+<p>All 25 tools are available through the same endpoint. Mutating tools (<code>create_commitment</code>, <code>accept_commitment</code>, <code>cancel_commitment</code>, <code>close_commitment</code>, <code>submit_evidence</code>, <code>verify_evidence</code>, <code>raise_dispute</code>, <code>resolve_dispute</code>, <code>resume_commitment</code>) require the caller to present a valid EIP-712 authority proof and to hold the corresponding authorization record in the durable agent-authorization registry. Read-only tools (<code>get_commitment*</code>, <code>list_*</code>, <code>get_protocol_info</code>, <code>ping</code>, <code>route_request</code>, <code>list_capabilities</code>, <code>get_recovery_status</code>, <code>get_pending_actions</code>, <code>get_authority_validation</code>) do not require a proof, but still enforce commitment-scoped visibility.</p>
+<p><strong>Commitment Lifecycle &amp; Evidence Operations</strong></p>
+<p>The canonical lifecycle is: <code>issued -&gt; authority_validated -&gt; accepted -&gt; in_flight -&gt; executing -&gt; evidence_pending -&gt; evidence_submitted -&gt; verifying -&gt; fulfilled -&gt; settled -&gt; finalized</code>, with recovery (<code>recovering</code>) and dispute (<code>disputed</code>) branches. <strong>Cancellation</strong> is an authorized terminal branch: a caller holding buyer or provider authority may transition an eligible nonterminal commitment to <code>cancelled</code> via <code>cancel_commitment</code>. <strong>Closure</strong> (<code>close_commitment</code>) finalizes a settled commitment (<code>settled -&gt; finalized</code>) and is reserved for system or authority roles. <strong>Evidence submission</strong> (<code>submit_evidence</code>) durably records evidence bound to the commitment and its acceptance criteria; <code>verify_evidence</code> sets the verification outcome (verified/rejected) and requires evaluator authority; <code>list_evidence</code> returns the durable evidence records with integrity references and submitter attribution. Evidence submission is nonfinancial: it never triggers settlement, escrow release, or refunds. A replacement agent may continue a commitment through <code>resume_commitment</code> only with its own independently authorized grant -- authority never transfers automatically.</p>
 <p>Client configuration varies by MCP client:</p>
 <pre><code class="language-json">{ &quot;mcpServers&quot;: { &quot;saax&quot;: { &quot;url&quot;: &quot;https://www.saax-protocol.com/mcp&quot; } } }
 </code></pre>
 <p>The older <code>create_commitment</code> tool is distinct from the new signed proposal/acceptance path. Its deterministic <code>saax_...</code> reference or a successful tool response does not establish the complete signed Discovery financial profile. Use the exact export verifier for the representation you received, not a generic claim that any commitment is fully verified.</p>
 <h2 id="existing-immediate-payments">Existing immediate payments</h2>
-<p>The existing live mainnet Router uses x402 with Base USDC. The MPP rail implementation exists but is not registered in production (x402-only mode). The site HTTP route is <code>https://saax-protocol.com/route</code>; the settlement host <code>https://settlement.saax-protocol.com</code> is a separate existing integration surface. Read its current challenge before authorizing a payment. This website release does not change its payment code, fees, secrets or configuration.</p>
+<p>The existing live mainnet Router uses x402 with Base USDC. The MPP rail is implemented but not registered in production (x402-only mode). The site HTTP route is <code>https://saax-protocol.com/route</code>; the settlement host <code>https://settlement.saax-protocol.com</code> is a separate existing integration surface. Read its current challenge before authorizing a payment. This website release does not change its payment code, fees, secrets or configuration.</p>
 <p>A402 challenge supplies the amount, asset, network and payee. A separate wallet/payment authorization is required; Discovery acceptance does not pay. Confirm the actual successful settlement and its binding to your intended request. A transaction hash is not proof of success, fulfillment or refund rights. See <a href="/blog/x402-receipts-what-a-receipt-proves">what a receipt proves</a>.</p>
 <p>The x402 broadcaster may cover gas for its supported immediate-payment path; do not generalize this to custody transactions. Mainnet immediate payments are non-custodial and final, not escrow-backed.</p>
 <h2 id="testnet-financial-integration-and-independent-verification">Testnet financial integration and independent verification</h2>
