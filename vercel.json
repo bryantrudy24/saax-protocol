@@ -126,6 +126,10 @@
       "destination": "/landing/.well-known/glama.json"
     },
     {
+      "source": "/.well-known/mcp.json",
+      "destination": "/landing/.well-known/mcp.json"
+    },
+    {
       "source": "/checkout",
       "destination": "/api/checkout.mjs"
     },

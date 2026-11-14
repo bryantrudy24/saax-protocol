@@ -1,0 +1,53 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bryantrudy24/saax-protocol",
+  "title": "SAAX Protocol",
+  "version": "1.0.4",
+  "description": "Durable commitment lifecycle, verification, governance and recovery layer for agentic commerce. Vendor-neutral: complements MCP, x402, AP2, ACP and existing payment/identity infrastructure. Not a payment rail, marketplace, identity authority or oracle.",
+  "websiteUrl": "https://saax-protocol.com",
+  "canonicalEndpoint": "https://saax-protocol.com/mcp",
+  "registryIdentifier": "io.github.bryantrudy24/saax-protocol",
+  "registryVersion": "1.0.4",
+  "transport": {
+    "type": "streamable-http",
+    "methods": ["POST"],
+    "contentType": "application/json",
+    "accept": "application/json, text/event-stream"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://saax-protocol.com/mcp"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://www.saax-protocol.com/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/bryantrudy24/saax-protocol",
+    "source": "github"
+  },
+  "documentation": [
+    "https://saax-protocol.com/docs",
+    "https://saax-protocol.com/spec",
+    "https://saax-protocol.com/protocol",
+    "https://saax-protocol.com/llms.txt"
+  ],
+  "security": {
+    "securityDisclosure": "https://saax-protocol.com/security",
+    "independentValidation": "Pending Release Requirement",
+    "status": "https://saax-protocol.com/status"
+  },
+  "capabilities": {
+    "readOnly": true,
+    "mutationRequiresAuthorization": true,
+    "financialOperations": "not exposed through MCP",
+    "toolCount": 26
+  },
+  "notes": [
+    "The commitment must outlive the worker: durable lifecycle, evidence, governance and independent-agent recovery.",
+    "MCP tool inventory and schemas are served by the live endpoint; this document is a discovery aid, not an authoritative schema source.",
+    "Independent third-party security validation is a Pending Release Requirement; this listing is not a certification or endorsement."
+  ]
+}
