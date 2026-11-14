@@ -30,7 +30,7 @@
 - MCP: https://saax-protocol.com/mcp (canonical; www.saax-protocol.com/mcp also serves the same server) ; verified live initialize/tools/list/ping/protocol-info, 26 tools: get_protocol_info, get_routing_fee, ping, route_request, list_capabilities, prepare_commitment, accept_commitment, create_commitment, get_commitment, list_commitments, get_commitment_status, get_commitment_history, get_recovery_status, get_pending_actions, resume_commitment, cancel_commitment, close_commitment, submit_evidence, list_evidence, verify_evidence, get_evidence_verification, get_authority_validation, raise_dispute, resolve_dispute, list_disputes, get_supplier_details.
 - Machine-readable server metadata: https://saax-protocol.com/server.json (registry-format manifest, version 1.0.4).
 - Machine-readable discovery document: https://saax-protocol.com/.well-known/mcp.json (canonical endpoint, registry identifier, transport, documentation).
-- Official MCP registry: identifier io.github.bryantrudy24/saax-protocol — publication pending (not yet present in the official registry as of 2026-11-14).
+- Official MCP registry: identifier io.github.bryantrudy24/saax-protocol — published; versions 1.0.0-1.0.4 active, 1.0.4 latest (verified live via registry API 2026-11-14).
 - Mainnet immediate-payment HTTP route: https://saax-protocol.com/route (separate existing settlement host: https://settlement.saax-protocol.com).
 
 ## Essays
