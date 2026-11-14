@@ -204,3 +204,36 @@ owner risk acceptance; no unresolved financial-integrity or auth-bypass defect.
 - Reproducible install: `npm ci` (799 pkgs, 0 errors); testbed via `docker exec ax_router_db psql`.
 - All evidence paths listed; no secrets in this package.
 - **Independent Third-Party Security Validation: PENDING RELEASE REQUIREMENT — not yet assessed.**
+
+
+---
+
+# Gate J.3 — Audit Package Update
+
+**Date:** 2026-11-14
+
+## New component: `get_supplier_details` (production MCP tool #26)
+- **Implementation:** `api/mcp.mjs` (read-only exact-match lookup over `endpoint/mcp-supplier-index.json`, 123 records).
+- **Security review:** `docs/gate-j3-supplier-security-review.md` — **PASS**. Allowlist disclosure (id/name/description/services/owner/source + hardcoded `unverified`/null), 41/41 adversarial checks (traversal/injection/unicode/overflow/wildcard/private-ID all rejected), zero secret fields in the index, no enumeration, fail-closed on missing index.
+- **README/docs:** updated to 26-tool inventory (docs.md + served docs.html verified live).
+- **Live verification:** production domain — tools/list = 26, supplier 73846 returns ok, 999999 returns not_found.
+
+## Deployment reproducibility (Gate J.3 Phase A/D fixes)
+- **Root cause:** public-line `endpoint/*.json` runtime assets were absent AND `vercel.json` `functions.api.*.includeFiles: "data/**"` starved the lambdas of those assets; `loadSupplierIndex()` failed OPEN to an empty registry.
+- **Fixes:** (1) removed the includeFiles globs (full bundle, matching the production lambda profile); (2) `loadSupplierIndex()` now fails CLOSED (`null` → explicit `supplier index not loaded` errors in all 3 callers); (3) `SAAX_MCP_MODE=stateless` pinned into production env.
+- **Manifest:** `docs/gate-j3-deployment-manifest.md` (assets, env names only, validation commands, rollback).
+- **Platform note:** Vercel Deployment Protection returns 401 for POST to non-production candidate URLs; post-promotion live verification is the authoritative gate.
+
+## Pilot isolation evidence (Phase F)
+- Pre-activation security checklist green: principal-binding 18/18, three-agent harness 35/35, MCP recovery 12/12, durable idempotency 19/19, evidence lifecycle 21/21, abuse-guard 10/10, conformance 94/94 (re-verified in the J.3 tree this run).
+- Pilot design: `docs/gate-j2-external-pilot.md` — isolated Docker testbed (not production), EIP-712 proofs, per-participant scoping, allowed/prohibited ops, incident response. **NOT ACTIVATED** (no participants recruited; owner approval + invitation list required).
+
+## Production release record (Gate J.3)
+- Current production: `ax-router-77unnw7zr` (promoted 2026-11-14); previous: `9l9mj1zq7`; rollback baseline: `mz56pmo41`/`mskmb8biw`.
+- Financial controls unchanged: pilot enforcement OFF, telemetry OFF, scheduler E-STOPPED, mainnet escrow/EAS inactive.
+
+## Registry & search status (verified this run)
+- Official MCP registry: **no SAAX listing** (searched by name + identifier across pagination; identifier 404s). Version 1.0.4 submission remains blocked on owner GitHub OAuth.
+- Google Search Console: no authorized access in environment (standing owner action).
+
+**Independent Third-Party Security Validation: PENDING RELEASE REQUIREMENT — not yet assessed.**

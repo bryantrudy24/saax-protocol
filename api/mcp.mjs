@@ -75,7 +75,12 @@ function loadSupplierIndex() {
   try {
     if (existsSync(ROUTE_SUPPLIER_INDEX)) raw = JSON.parse(readFileSync(ROUTE_SUPPLIER_INDEX, "utf8"));
   } catch (e) { /* fall through */ }
-  if (!raw || !Array.isArray(raw.suppliers)) return [];
+  if (!raw || !Array.isArray(raw.suppliers)) {
+    // FAIL CLOSED (Gate J.3): a missing/corrupt supplier index must not silently
+    // behave as an empty registry. Callers that need the index surface an
+    // explicit unavailable error instead of returning empty results.
+    return null;
+  }
   return raw.suppliers;
 }
 
@@ -225,6 +230,7 @@ captureTool("verify_evidence");
 captureTool("raise_dispute");
 captureTool("resolve_dispute");
 captureTool("list_disputes");
+captureTool("get_supplier_details");
 
 // ---- Fail-closed sanitizer (same posture as the HTTP boundary) ---------------
 // All MCP input crosses this. Non-string / empty / oversized input is rejected
@@ -545,7 +551,7 @@ server.registerTool(
     }
 
     const suppliers = loadSupplierIndex();
-    if (!suppliers.length) {
+    if (!suppliers || !suppliers.length) {
       return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "supplier index not loaded" }, null, 2) }] };
     }
 
@@ -655,6 +661,9 @@ server.registerTool(
   },
   async () => {
     const suppliers = loadSupplierIndex();
+    if (!suppliers) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "supplier index not loaded" }, null, 2) }] };
+    }
     const caps = refreshCapabilitiesIfStale(suppliers);
     return {
       content: [
@@ -1778,6 +1787,57 @@ server.registerTool(
       return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
     }
     return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...out.record }, null, 2) }] };
+  }
+);
+
+
+// ---- Tool 24 - get_supplier_details (read-only supplier lookup) --------------
+// Read-only, read from the shippable supplier index (endpoint/mcp-supplier-index.json).
+// Exact-ID match only: no enumeration, no private metadata, no reputational claims.
+// Provenance is preserved from the index; verification status is NOT fabricated
+// (the index has no verification data, so none is implied).
+server.registerTool(
+  "get_supplier_details",
+  {
+    title: "Get supplier details",
+    description:
+      "Returns the detailed record for one supplier in the SAAX Router index: identifier, name, description, services (name/endpoint/version), owner and source provenance. Call this after route_request or list_capabilities to inspect a specific supplier before preparing a commitment. Read-only; exact supplier_id match only (no enumeration). A registry entry is not a guarantee of service quality or verification.",
+    inputSchema: {
+      supplier_id: z.string().describe("The supplier identifier (agent_id from list_capabilities/route_request results, or its decimal string form)"),
+    },
+  },
+  async ({ supplier_id }) => {
+    const clean = sanitizeInput(supplier_id, { maxLen: 64 });
+    if (!clean.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: clean.reason }, null, 2) }] };
+    }
+    const raw = clean.value.trim();
+    // Accept the bare decimal string or an explicit prefix form.
+    const key = /^\d+$/.test(raw) ? Number(raw) : raw;
+    const suppliers = loadSupplierIndex();
+    if (!suppliers) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "supplier index not loaded" }, null, 2) }] };
+    }
+    const hit = suppliers.find((s) => {
+      if (s == null) return false;
+      if (typeof s.agent_id === "number") return s.agent_id === key || String(s.agent_id) === raw;
+      return String(s.agent_id) === raw;
+    });
+    if (!hit) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "not_found", reason: "supplier not found in the current index" }, null, 2) }] };
+    }
+    // Return only intended public metadata; never invent verification fields.
+    const detail = {
+      supplier_id: hit.agent_id,
+      name: hit.name,
+      description: hit.description,
+      services: Array.isArray(hit.services) ? hit.services.map((s) => ({ name: s && s.name, endpoint: s && s.endpoint, version: s && s.version != null ? s.version : null })) : [],
+      owner: hit.owner,
+      source: hit.source || "indexed",
+      verification_status: "unverified",
+      last_verified_at: null,
+    };
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", supplier: detail }, null, 2) }] };
   }
 );
 

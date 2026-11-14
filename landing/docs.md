@@ -1,8 +1,8 @@
-# SAAX integration guide
+﻿# SAAX integration guide
 
 *Last verified: 2026-11-06*
 
-> **SAAX Protocol — Public Beta**
+> **SAAX Protocol â€” Public Beta**
 >
 > SAAX Protocol is currently in public Beta. Immediate-payment functionality is available on Base mainnet, while escrow custody remains limited to testnet.
 >
@@ -20,10 +20,10 @@ Read the [terms](/terms) and [current status](/status). No refund, safety, servi
 
 | Path | Availability | What it does |
 |---|---|---|
-| Signed profile → preflight → buyer acceptance | **Beta; publicly deployed** | Creates a verifiable commitment after configured buyer authorization; no financial side effect. |
+| Signed profile â†’ preflight â†’ buyer acceptance | **Beta; publicly deployed** | Creates a verifiable commitment after configured buyer authorization; no financial side effect. |
 | Immediate x402 payment | **Public beta; Base mainnet 8453** | Existing direct USDC payment flow, no mainnet escrow. The MPP rail is implemented but not registered in production. |
-| Discovery → custody → signed release/refund | **Testnet preview; operator-run** | Actual Base Sepolia 84532 test-USDC execution with complete independent export verification for the defined self-test. No public financial API. |
-| Unreleased custody/governance candidates | **Under development / security review** | Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed — not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit. |
+| Discovery â†’ custody â†’ signed release/refund | **Testnet preview; operator-run** | Actual Base Sepolia 84532 test-USDC execution with complete independent export verification for the defined self-test. No public financial API. |
+| Unreleased custody/governance candidates | **Under development / security review** | Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed â€” not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit. |
 
 ## Discovery quickstart
 
@@ -129,7 +129,11 @@ The release check initializes MCP and calls `tools/list`, `ping` and `get_protoc
 
 - `raise_dispute`, `resolve_dispute`, `list_disputes`
 
-All 25 tools are available through the same endpoint. Mutating tools (`create_commitment`, `accept_commitment`, `cancel_commitment`, `close_commitment`, `submit_evidence`, `verify_evidence`, `raise_dispute`, `resolve_dispute`, `resume_commitment`) require the caller to present a valid EIP-712 authority proof and to hold the corresponding authorization record in the durable agent-authorization registry. Read-only tools (`get_commitment*`, `list_*`, `get_protocol_info`, `ping`, `route_request`, `list_capabilities`, `get_recovery_status`, `get_pending_actions`, `get_authority_validation`) do not require a proof, but still enforce commitment-scoped visibility.
+**Supplier discovery**
+
+- `get_supplier_details` — read-only detailed lookup of a single registered supplier (identifier, name, description, services with endpoints, owner, source provenance). Call after `route_request`/`list_capabilities` to inspect a specific supplier before preparing a commitment. Exact `supplier_id` match only (no enumeration); a registry entry is not a guarantee of service quality or verification — `verification_status` is reported as `unverified` unless an authoritative verification source exists.
+
+All 26 tools are available through the same endpoint. Mutating tools (`create_commitment`, `accept_commitment`, `cancel_commitment`, `close_commitment`, `submit_evidence`, `verify_evidence`, `raise_dispute`, `resolve_dispute`, `resume_commitment`) require the caller to present a valid EIP-712 authority proof and to hold the corresponding authorization record in the durable agent-authorization registry. Read-only tools (`get_commitment*`, `list_*`, `get_protocol_info`, `ping`, `route_request`, `list_capabilities`, `get_recovery_status`, `get_pending_actions`, `get_authority_validation`) do not require a proof, but still enforce commitment-scoped visibility.
 
 **Commitment Lifecycle & Evidence Operations**
 
@@ -153,7 +157,7 @@ The x402 broadcaster may cover gas for its supported immediate-payment path; do 
 
 ## Testnet financial integration and independent verification
 
-The isolated preview completes: separately signed testnet profile → provider proposal → buyer acceptance → commitment → real custody funding → signed evidence → evaluator-signed release or refund → complete export → independent verifier. It pins Base Sepolia 84532, USDC `0x036cbd53842c5426634e7929541ec2318f3dcf7e`, six decimals and CustodyV1 `0x5a5472d751839cd4968cbf1b136baf862279ff5d`.
+The isolated preview completes: separately signed testnet profile â†’ provider proposal â†’ buyer acceptance â†’ commitment â†’ real custody funding â†’ signed evidence â†’ evaluator-signed release or refund â†’ complete export â†’ independent verifier. It pins Base Sepolia 84532, USDC `0x036cbd53842c5426634e7929541ec2318f3dcf7e`, six decimals and CustodyV1 `0x5a5472d751839cd4968cbf1b136baf862279ff5d`.
 
 Network and CAIP-19 asset chain must agree across authenticated terms and execution. Mainnet terms cannot be interpreted as a testnet label, and no environment override changes the signed asset. Explicit `mode:escrow` differs from immediate-payment `mode:x402`; the preview's x402 compatibility rail label does not mean a facilitator settled the escrow.
 

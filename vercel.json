@@ -167,16 +167,4 @@
       "destination": "/blog/agentic-commerce-rails",
       "permanent": true
     }
-  ],
-  "functions": {
-    "api/route.mjs": {
-      "includeFiles": "data/**"
-    },
-    "api/receipt.mjs": {
-      "includeFiles": "data/**"
-    },
-    "api/mcp.mjs": {
-      "includeFiles": "data/**"
-    }
-  }
-}
+  ]}
