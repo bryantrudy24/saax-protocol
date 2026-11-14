@@ -106,14 +106,34 @@ Endpoint:
 https://www.saax-protocol.com/mcp
 ```
 
-The release check initializes MCP and calls `tools/list`, `ping` and `get_protocol_info`. The deployed tool names are:
+The release check initializes MCP and calls `tools/list`, `ping` and `get_protocol_info`. The deployed tool names are (verified live against the production endpoint):
+
+**Core & routing**
 
 - `get_protocol_info`, `get_routing_fee`, `ping`
 - `route_request`, `list_capabilities`
+- `prepare_commitment`, `accept_commitment`, `create_commitment`
+
+**Commitments & lifecycle**
+
 - `get_commitment`, `list_commitments`, `get_commitment_status`
-- `create_commitment`
+- `get_commitment_history`, `get_recovery_status`, `get_pending_actions`
+- `resume_commitment`, `cancel_commitment`, `close_commitment`
+
+**Evidence**
+
+- `submit_evidence`, `list_evidence`, `verify_evidence`
 - `get_evidence_verification`, `get_authority_validation`
-- `prepare_commitment`, `accept_commitment`
+
+**Disputes**
+
+- `raise_dispute`, `resolve_dispute`, `list_disputes`
+
+All 25 tools are available through the same endpoint. Mutating tools (`create_commitment`, `accept_commitment`, `cancel_commitment`, `close_commitment`, `submit_evidence`, `verify_evidence`, `raise_dispute`, `resolve_dispute`, `resume_commitment`) require the caller to present a valid EIP-712 authority proof and to hold the corresponding authorization record in the durable agent-authorization registry. Read-only tools (`get_commitment*`, `list_*`, `get_protocol_info`, `ping`, `route_request`, `list_capabilities`, `get_recovery_status`, `get_pending_actions`, `get_authority_validation`) do not require a proof, but still enforce commitment-scoped visibility.
+
+**Commitment Lifecycle & Evidence Operations**
+
+The canonical lifecycle is: `issued -> authority_validated -> accepted -> in_flight -> executing -> evidence_pending -> evidence_submitted -> verifying -> fulfilled -> settled -> finalized`, with recovery (`recovering`) and dispute (`disputed`) branches. **Cancellation** is an authorized terminal branch: a caller holding buyer or provider authority may transition an eligible nonterminal commitment to `cancelled` via `cancel_commitment`. **Closure** (`close_commitment`) finalizes a settled commitment (`settled -> finalized`) and is reserved for system or authority roles. **Evidence submission** (`submit_evidence`) durably records evidence bound to the commitment and its acceptance criteria; `verify_evidence` sets the verification outcome (verified/rejected) and requires evaluator authority; `list_evidence` returns the durable evidence records with integrity references and submitter attribution. Evidence submission is nonfinancial: it never triggers settlement, escrow release, or refunds. A replacement agent may continue a commitment through `resume_commitment` only with its own independently authorized grant -- authority never transfers automatically.
 
 Client configuration varies by MCP client:
 
