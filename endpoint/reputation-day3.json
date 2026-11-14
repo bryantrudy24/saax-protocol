@@ -1,0 +1,15 @@
+// SAAX Protocol — Day 3: canonical reputation map (merged from Day 2 on-chain probe
+// + Day 3 leaderboard probe + researcher-validated explorer values for agents
+// whose direct RPC probe reverted). Source of truth: Supabase saax_router.agents.
+[
+  { "agent_id": 84979, "clients": 1, "count": 1, "avgX100": 94 },
+  { "agent_id": 84947, "clients": 1, "count": 1, "avgX100": 92 },
+  { "agent_id": 84978, "clients": 1, "count": 1, "avgX100": 92 },
+  { "agent_id": 84982, "clients": 1, "count": 1, "avgX100": 92 },
+  { "agent_id": 84981, "clients": 1, "count": 1, "avgX100": 91 },
+  { "agent_id": 51085, "clients": 31, "count": 54, "avgX100": 99 },
+  { "agent_id": 1380, "clients": 1514, "count": 1534, "avgX100": 99 },
+  { "agent_id": 2290, "clients": 482, "count": 660, "avgX100": 98 },
+  { "agent_id": 55985, "clients": 9745, "count": 13168, "avgX100": 91 },
+  { "agent_id": 7522, "clients": 2, "count": 13, "avgX100": 60 }
+]

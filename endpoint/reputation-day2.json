@@ -1,0 +1,959 @@
+[
+  {
+    "agent_id": 73244,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73245,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73246,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73247,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73248,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73249,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73250,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73251,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 73846,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 74501,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 76231,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84131,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84569,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84599,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84615,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84667,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84670,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84922,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 84947,
+    "clients": 1,
+    "count": 1,
+    "avgX100": 92,
+    "decimals": 0,
+    "summaryValue": "92",
+    "found": true
+  },
+  {
+    "agent_id": 84978,
+    "clients": 1,
+    "count": 1,
+    "avgX100": 92,
+    "decimals": 0,
+    "summaryValue": "92",
+    "found": true
+  },
+  {
+    "agent_id": 84979,
+    "clients": 1,
+    "count": 1,
+    "avgX100": 94,
+    "decimals": 0,
+    "summaryValue": "94",
+    "found": true
+  },
+  {
+    "agent_id": 84981,
+    "clients": 1,
+    "count": 1,
+    "avgX100": 91,
+    "decimals": 0,
+    "summaryValue": "91",
+    "found": true
+  },
+  {
+    "agent_id": 84982,
+    "clients": 1,
+    "count": 1,
+    "avgX100": 92,
+    "decimals": 0,
+    "summaryValue": "92",
+    "found": true
+  },
+  {
+    "agent_id": 85060,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85084,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85119,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85380,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85420,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85421,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85422,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85425,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85667,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 85709,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 86020,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 86797,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 87085,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 87086,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 88090,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 88612,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 94674,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 94703,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 94726,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95227,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95228,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95229,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95276,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95277,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95278,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95279,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95280,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95281,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95282,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95283,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95598,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95599,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95600,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95601,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95602,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95603,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95604,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95605,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95606,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95607,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95608,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95609,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95610,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95611,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95612,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95613,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95614,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95615,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95616,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95617,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95618,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95752,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95753,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95754,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95755,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95756,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95757,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95758,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95759,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95760,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95761,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95762,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95763,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95764,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95765,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95853,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95854,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95855,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95856,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 95857,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96032,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96128,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96129,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96130,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96322,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96323,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96324,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96326,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96327,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96328,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96329,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96661,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96662,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96663,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96664,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96665,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96666,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96667,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96668,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96669,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96670,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96671,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96672,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96673,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96674,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  },
+  {
+    "agent_id": 96675,
+    "clients": 0,
+    "count": 0,
+    "avgX100": null,
+    "decimals": null,
+    "found": true
+  }
+]
