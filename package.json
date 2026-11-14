@@ -1,31 +1,45 @@
 {
-  "name": "saax-protocol",
-  "version": "1.0.3",
-  "mcpName": "io.github.bryantrudy24/saax-protocol",
-  "description": "Governed commitment lifecycle and rail-agnostic settlement layer for agent-to-agent commerce.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "@ethereum-attestation-service/eas-sdk": "^2.10.0",
-    "@modelcontextprotocol/sdk": "1.32.0",
-    "@supabase/supabase-js": "^2.117.2",
-    "dotenv": "18.0.5",
-    "ethers": "6.17.0",
-    "jose": "6.2.12",
-    "mppx": "0.13.1",
-    "stripe": "^23.0.0",
-    "viem": "2.57.2"
-  },
-  "devDependencies": {
-    "ganache": "^7.9.2",
-    "solc": "0.8.26",
-    "@safe-global/safe-contracts": "1.4.1",
-    "hardhat": "2.22.4"
-  }
+    "name": "saax-protocol",
+    "version": "1.0.3",
+    "mcpName": "io.github.bryantrudy24/saax-protocol",
+    "description": "Governed commitment lifecycle and rail-agnostic settlement layer for agent-to-agent commerce.",
+    "main": "index.js",
+    "scripts": {
+        "test": "node scripts/run-dev-tests.cjs",
+        "test:conformance": "node conformance/runner/run-conformance.mjs",
+        "test:lifecycle": "node tests/reliability/test-lifecycle-transitions.cjs",
+        "test:evidence": "node tests/reliability/test-evidence-verification.cjs",
+        "test:recovery": "node tests/reliability/test-mcp-three-agent-recovery.cjs",
+        "test:infra": "node scripts/run-infra-tests.cjs"
+    },
+    "keywords": [
+        "agentic commerce",
+        "MCP",
+        "x402",
+        "commitment",
+        "durable",
+        "recovery"
+    ],
+    "author": "SAAX Protocol (bryantrudy24)",
+    "license": "MIT",
+    "type": "commonjs",
+    "dependencies": {
+        "@ethereum-attestation-service/eas-sdk": "^2.10.0",
+        "@modelcontextprotocol/sdk": "1.32.0",
+        "@supabase/supabase-js": "^2.117.2",
+        "cbor": "^10.0.12",
+        "dotenv": "18.0.5",
+        "ethers": "6.17.0",
+        "jose": "6.2.12",
+        "mppx": "0.13.1",
+        "stripe": "^23.0.0",
+        "viem": "2.57.2"
+    },
+    "devDependencies": {
+        "@safe-global/safe-contracts": "1.4.1",
+        "ganache": "^7.9.2",
+        "hardhat": "2.22.4",
+        "pg": "^8.23.1",
+        "solc": "0.8.26"
+    }
 }

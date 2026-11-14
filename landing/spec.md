@@ -149,7 +149,7 @@ In the current v3 agreement format, an agreement without an external authority p
 
 - The commitment issues a settlement **requirement (R)** that is rail-agnostic: `R = <amt, cur, payee, eta, scheme, t_exp>` — no rail knowledge at commitment time.
 - The **rail (S)** is resolved at execution time from the registered registry.
-- Currently registered rails: **x402**, **MPP**.
+- Currently registered rails: **x402**. The MPP rail is implemented but not registered in production (x402-only mode).
 - Future rails: entitlement, card, ACH, internal ledger — any implementation of the rail interface can register as a SAAX settlement rail.
 
 ### 4.1 Rail interface

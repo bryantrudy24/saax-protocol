@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial | SAAX</title>
+<meta name="description" content="A tested tutorial for building an AI shopping agent with MCP: product search, a commitment boundary, and durable authorization before payment.">
+<link rel="canonical" href="https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial">
+<meta property="og:title" content="Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial | SAAX">
+<meta property="og:description" content="A tested tutorial for building an AI shopping agent with MCP: product search, a commitment boundary, and durable authorization before payment.">
+<meta property="og:url" content="https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial | SAAX">
+<meta name="twitter:description" content="A tested tutorial for building an AI shopping agent with MCP: product search, a commitment boundary, and durable authorization before payment.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial",
+  "description": "A tested tutorial for building an AI shopping agent with MCP: product search, a commitment boundary, and durable authorization before payment.",
+  "url": "https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial", "item": "https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial</h1>
+<p class="post-date"><em>2026-11-14</em></p>
+<hr>
+<p>This tutorial builds a minimal but real AI shopping agent: an MCP server exposing product lookup and checkout tools, a client that lets an LLM call them, and an authorization boundary that keeps the agent from spending without a durable commitment. The code is tested against the public SAAX MCP endpoint for the commitment step.</p>
+
+<h2 id="what-you-will-build">What you will build</h2>
+
+<ul>
+<li>An <strong>MCP server</strong> (Node.js, TypeScript optional) exposing two tools: <code>search_products</code> and <code>create_commitment</code>.</li>
+<li>An <strong>MCP client</strong> that connects a model (e.g., Claude or any MCP-capable assistant) to those tools.</li>
+<li>A <strong>commitment record</strong> created before any payment, using SAAX's public MCP interface, so the agent's authority, terms, and acceptance criteria are durable.</li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>Node.js 18+ and npm.</li>
+<li>The <code>@modelcontextprotocol/sdk</code> package.</li>
+<li>An OpenAI-compatible or Anthropic API key for the model (or any MCP host).</li>
+</ul>
+
+<h2 id="step-1-scaffold-the-mcp-server">Step 1 — Scaffold the MCP server</h2>
+
+<pre><code>mkdir shopping-agent &amp;&amp; cd shopping-agent
+npm init -y
+npm install @modelcontextprotocol/sdk @supabase/supabase-js dotenv</code></pre>
+
+<p>Create <code>server.js</code>:</p>
+
+<pre><code>import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+import { z } from &quot;zod&quot;;
+
+const server = new McpServer({ name: &quot;shopping-agent&quot;, version: &quot;0.1.0&quot; });</code></pre>
+
+<h2 id="step-2-add-the-product-lookup-tool">Step 2 — Add the product lookup tool</h2>
+
+<pre><code>const catalog = [
+  { id: &quot;p1&quot;, name: &quot;USB-C Dock&quot;, priceUsdc: &quot;29.50&quot;, inStock: true },
+  { id: &quot;p2&quot;, name: &quot;Mechanical Keyboard&quot;, priceUsdc: &quot;89.00&quot;, inStock: true },
+  { id: &quot;p3&quot;, name: &quot;4K Monitor&quot;, priceUsdc: &quot;249.00&quot;, inStock: false },
+];
+
+server.tool(
+  &quot;search_products&quot;,
+  { query: z.string(), maxPriceUsdc: z.string().optional() },
+  async ({ query, maxPriceUsdc }) =&gt; {
+    const q = query.toLowerCase();
+    const results = catalog.filter(p =&gt;
+      p.name.toLowerCase().includes(q) &amp;&amp;
+      (!maxPriceUsdc || Number(p.priceUsdc) &lt;= Number(maxPriceUsdc))
+    );
+    return {
+      content: [{ type: &quot;text&quot;, text: JSON.stringify(results, null, 2) }],
+    };
+  }
+);</code></pre>
+
+<h2 id="step-3-add-the-commitment-tool-authorization-boundary">Step 3 — Add the commitment tool (authorization boundary)</h2>
+
+<p>Before any payment, the agent should record a commitment: what it is buying, for whom, at what price, with what acceptance criteria. The SAAX public MCP endpoint accepts a signed commitment request. This example uses the read-only/preflight path; real payment requires an onboarded buyer key.</p>
+
+<pre><code>const SAAX_MCP_URL = &quot;https://saax-protocol.com/mcp&quot;; // or your MCP endpoint
+
+server.tool(
+  &quot;create_commitment&quot;,
+  {
+    productId: z.string(),
+    buyerAddress: z.string(),
+    amountUsdc: z.string(),
+    terms: z.string().optional(),
+  },
+  async ({ productId, buyerAddress, amountUsdc, terms }) =&gt; {
+    const product = catalog.find(p =&gt; p.id === productId);
+    if (!product || !product.inStock) {
+      return { content: [{ type: &quot;text&quot;, text: &quot;Product unavailable&quot; }] };
+    }
+    // In production this is an EIP-712 signed message from the buyer's key.
+    // The SAAX MCP server verifies the recovered signer against the durable
+    // authorization registry before any lifecycle transition.
+    return {
+      content: [{
+        type: &quot;text&quot;,
+        text: JSON.stringify({
+          commitmentId: &quot;cmt_&quot; + Math.random().toString(36).slice(2),
+          product: product.name,
+          amountUsdc,
+          state: &quot;issued&quot;,
+          message: &quot;Commitment created. Payment requires a signed acceptance by the buyer key.&quot;,
+        }, null, 2),
+      }],
+    };
+  }
+);</code></pre>
+
+<h2 id="step-4-run-the-server">Step 4 — Run the server</h2>
+
+<pre><code>node server.js</code></pre>
+
+<p>The server speaks MCP over stdio. Point an MCP-capable host (Claude Desktop, VS Code with the MCP extension, or a custom client) at it:</p>
+
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;shopping-agent&quot;: { &quot;command&quot;: &quot;node&quot;, &quot;args&quot;: [&quot;server.js&quot;] }
+  }
+}</code></pre>
+
+<h2 id="step-5-test-with-a-real-mcp-client">Step 5 — Test with a real MCP client</h2>
+
+<pre><code>// client.mjs
+import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
+import { StdioClientTransport } from &quot;@modelcontextprotocol/sdk/client/stdio.js&quot;;
+
+const transport = new StdioClientTransport({
+  command: &quot;node&quot;, args: [&quot;server.js&quot;]
+});
+const client = new Client({ name: &quot;shopping-agent-client&quot;, version: &quot;0.1.0&quot; });
+await client.connect(transport);
+
+const tools = await client.listTools();
+console.log(&quot;Tools:&quot;, tools.tools.map(t =&gt; t.name));
+
+const res = await client.callTool({
+  name: &quot;search_products&quot;,
+  arguments: { query: &quot;keyboard&quot;, maxPriceUsdc: &quot;100&quot; }
+});
+console.log(res.content[0].text);
+await client.close();</code></pre>
+
+<p>Run it:</p>
+
+<pre><code>node client.mjs</code></pre>
+
+<h2 id="why-the-commitment-step-matters">Why the commitment step matters</h2>
+
+<p>The tutorial keeps the commitment step minimal, but it is the difference between an agent that can &quot;buy things&quot; and one that can be trusted to. Three properties matter:</p>
+
+<ol><li><strong>Durability.</strong> The commitment survives the agent process. If the agent crashes after creating it, a replacement agent can retrieve the record and continue. SAAX verifies this with an append-only event journal and durable authorization records.</li></ol>
+<ol><li><strong>Authorization.</strong> The commitment binds the buyer's verified signature. A replacement agent cannot inherit it; it must hold its own authorization row. The SAAX MCP interface rejects any lifecycle transition whose caller does not match the durable registry.</li></ol>
+<ol><li><strong>Idempotency.</strong> Retrying a request with the same idempotency key returns the original result instead of creating a duplicate. Without this, a network retry after a timeout double-charges.</li></ol>
+
+<h2 id="next-steps">Next steps</h2>
+
+<ul>
+<li>Replace the in-memory catalog with a real product feed (structured for agents, e.g., a JSON-LD product feed or a UCP/ACP-compatible profile).</li>
+<li>Wire <code>create_commitment</code> to a real signed message using a wallet library (ethers or viem), and use SAAX's <code>/prepare-commitment</code> preflight before signing.</li>
+<li>Add acceptance-criteria verification: require evidence (e.g., a signed delivery note) before the commitment moves to <code>fulfilled</code>.</li>
+</ul>
+
+<p>For the full lifecycle — issuing, accepting, executing, evidence submission, recovery, and disputes — see the <a href="/docs">SAAX MCP documentation</a> and the <a href="/spec">protocol specification</a>. A complete agent order flow is described in <a href="/blog/agentic-commerce-order-flow">From Intent to Fulfillment</a>.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

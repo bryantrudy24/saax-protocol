@@ -1,7 +1,7 @@
-﻿// SAAX Protocol â€” MCP discovery server (read-only, no settlement).
+// SAAX Protocol — MCP discovery server (read-only, no settlement).
 // Exposes protocol information to AI clients and agents via streamable-http.
 //
-// Day 13 (Task 3): wired to real gateway logic â€” ROUTES and READS only.
+// Day 13 (Task 3): wired to real gateway logic — ROUTES and READS only.
 //   - route_request   : sanitize -> rank (scripts/rank-suppliers.js) -> ranked
 //                       suppliers with scores, agent IDs, payTo addresses. If
 //                       nothing clears the capability floor -> no_match.
@@ -26,10 +26,21 @@ import crypto from "crypto";
 import { lookupSubscription, lookupCommitmentById, lookupCommitmentsByEmail, commitmentRowToRecord, upsertCommitment } from "./lib/supabase.mjs";
 import usageTelemetry from "../endpoint/usage-telemetry.js";
 import { buildStoreClient } from "../endpoint/store.js";
+import * as abuseGuard from "../endpoint/abuse-guard.js";
 
 if (usageTelemetry.isEnabled()) {
   try { usageTelemetry.setStoreClient(buildStoreClient()); } catch (_) { /* stays disabled */ }
 }
+
+// Gate G.1: shared distributed rate limiting + auth-abuse protection.
+// The Supabase rate_limits store is the shared authority across serverless
+// instances; a memory window is ONLY a bounded fallback when the store is
+// unreachable (fail-open on store outage, fail-closed on a real limit hit).
+try {
+  const storeMod = buildStoreClient();
+  // reuse the same PostgREST client the ratelimit module uses (same table)
+  abuseGuard.setStoreClient(storeMod);
+} catch (_) { /* store optional; memory fallback engaged */ }
 
 // ---- create_commitment (rail-neutral commitment minting) ---------------------
 // Idempotent, deterministic, collision-resistant id: sha256(canonical terms +
@@ -74,7 +85,7 @@ function loadSupplierIndex() {
 // of commitments RECORDED in this instance. get_commitment, list_commitments and
 // get_commitment_status all read this ONE store.
 //
-// PERSISTENCE (audited â€” daily-logs/saax-mcp-registry.md Â§13): this is an
+// PERSISTENCE (audited — daily-logs/saax-mcp-registry.md §13): this is an
 // in-process module-level Map. It does NOT survive a Vercel cold start, and it
 // is NOT shared with the HTTP /route function (a separate serverless process).
 // A commitment minted via /route in another instance is not visible here.
@@ -160,7 +171,7 @@ try {
 const PROTOCOL = {
   name: "saax-protocol",
   version: _pkgVersion,
-  fullName: "SAAX Protocol â€” Solvent Applied Autonomous Exchange Protocol",
+  fullName: "SAAX Protocol — Solvent Applied Autonomous Exchange Protocol",
   description:
     "Governed commitment lifecycle and rail-agnostic settlement layer for agent-to-agent commerce. Routes demand to verified suppliers, settles payments via x402 or MPP, and writes on-chain reputation feedback.",
   repository: "https://github.com/bryantrudy24/saax-protocol",
@@ -177,6 +188,43 @@ const PROTOCOL = {
   asset: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   chainId: 8453,
 };
+
+// ---- Canonical tool-name registry (Phase 5E) -------------------------------
+// Single source of truth for discovery surfaces (plain-GET response, metadata,
+// future OpenAPI tool list). Populated by captureTool at registration time;
+// never a hard-coded subset that can drift from the JSON-RPC surface.
+const REGISTERED_TOOL_NAMES = [];
+function captureTool(name) {
+  if (name && !REGISTERED_TOOL_NAMES.includes(name)) REGISTERED_TOOL_NAMES.push(name);
+  return name;
+}
+
+// Eagerly populate at module load (cold-start safe for plain-GET discovery).
+captureTool("get_protocol_info");
+captureTool("get_routing_fee");
+captureTool("ping");
+captureTool("route_request");
+captureTool("get_commitment");
+captureTool("list_capabilities");
+captureTool("list_commitments");
+captureTool("get_commitment_status");
+captureTool("create_commitment");
+captureTool("get_evidence_verification");
+captureTool("get_authority_validation");
+captureTool("get_commitment_history");
+captureTool("get_recovery_status");
+captureTool("get_pending_actions");
+captureTool("resume_commitment");
+captureTool("cancel_commitment");
+captureTool("close_commitment");
+captureTool("prepare_commitment");
+captureTool("accept_commitment");
+captureTool("submit_evidence");
+captureTool("list_evidence");
+captureTool("verify_evidence");
+captureTool("raise_dispute");
+captureTool("resolve_dispute");
+captureTool("list_disputes");
 
 // ---- Fail-closed sanitizer (same posture as the HTTP boundary) ---------------
 // All MCP input crosses this. Non-string / empty / oversized input is rejected
@@ -205,7 +253,7 @@ function validateCommitmentId(id) {
 // The subscriptions table is written ONLY by the Stripe webhook
 // (api/stripe/webhook.mjs) via a SECURITY DEFINER upsert RPC. Reads go through
 // the lookup RPC (status='active' AND current_period_end > now()).
-// Identity is resolved from the X-SAAX-Email header (or X-SAAX-Session-Email) â€”
+// Identity is resolved from the X-SAAX-Email header (or X-SAAX-Session-Email) —
 // the operator maps a customer's email to their agent/session. Keeps gating
 // stateless and N+1-free.
 const PREMIUM_PAYMENT_REQUIRED = {
@@ -226,6 +274,121 @@ function identityFromRequest(req) {
   if (!req) return null;
   const h = req.headers || {};
   return h["x-saax-email"] || h["x-saax-session-email"] || null;
+}
+
+// ---- Gate G.1: request bounds + client identity ------------------------------
+const MAX_BODY_BYTES = Number(process.env.SAAX_MCP_MAX_BODY_BYTES || 256 * 1024); // 256 KiB
+const MAX_EVIDENCE_BYTES = Number(process.env.SAAX_MCP_MAX_EVIDENCE_BYTES || 64 * 1024); // 64 KiB
+const MAX_BODY_MESSAGE = "MCP request body exceeds the configured size limit";
+
+function clientIpFromRequest(req) {
+  if (!req || !req.headers) return "unknown";
+  const xff = req.headers["x-forwarded-for"];
+  if (typeof xff === "string" && xff.length) {
+    // Vercel sets X-Forwarded-For to the client IP (leftmost, trusted edge).
+    const first = xff.split(",")[0].trim();
+    if (first) return first;
+  }
+  return req.socket && req.socket.remoteAddress ? req.socket.remoteAddress : "unknown";
+}
+
+// Tool handlers run inside SDK closures with no access to the HTTP request.
+// Stateless mode processes exactly one request per handler invocation, so a
+// module-level IP slot is race-safe there (used ONLY for throttle bucket keys
+// and auth-failure counting � never for authorization). Stateful mode falls
+// back to "unknown" for handler-scoped calls when no request is active.
+let currentRequestIp = "unknown";
+function setCurrentRequestIp(ip) { currentRequestIp = ip || "unknown"; }
+function handlerIp() { return currentRequestIp; }
+
+// Extract the tool name from a JSON-RPC request so the per-op tier can apply.
+function toolNameFromBody(parsedBody) {
+  if (!parsedBody || typeof parsedBody !== "object") return null;
+  if (Array.isArray(parsedBody)) {
+    const first = parsedBody[0];
+    if (first && first.method) {
+      const m = String(first.method).replace(/^tools\//, "");
+      if (m === "call" && first.params && first.params.name) return String(first.params.name);
+      return m;
+    }
+    return null;
+  }
+  if (parsedBody.method) {
+    const m = String(parsedBody.method).replace(/^tools\//, "");
+    if (m === "call" && parsedBody.params && parsedBody.params.name) return String(parsedBody.params.name);
+    return m;
+  }
+  // Notifications / responses carry no method; treat as non-sensitive.
+  return null;
+}
+
+async function readBodyBounded(req) {
+  const chunks = [];
+  let total = 0;
+  for await (const chunk of req) {
+    const buf = typeof chunk === "string" ? Buffer.from(chunk, "utf8") : Buffer.from(chunk);
+    total += buf.length;
+    if (total > MAX_BODY_BYTES) {
+      const err = new Error(MAX_BODY_MESSAGE);
+      err.statusCode = 413;
+      throw err;
+    }
+    chunks.push(buf);
+  }
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+// Evidence envelope size guard (payloads only; never raw secrets). Applied at
+// the submit_evidence tool boundary in addition to the HTTP body cap.
+function evidenceSizeGuard(evidence) {
+  if (!evidence || typeof evidence !== "object") return null;
+  const raw = JSON.stringify(evidence);
+  if (raw.length > MAX_EVIDENCE_BYTES) {
+    return { ok: false, reason: "evidence envelope exceeds " + MAX_EVIDENCE_BYTES + " bytes" };
+  }
+  return { ok: true, bytes: raw.length };
+}
+
+// Per-request abuse check at the HTTP boundary (before session creation and
+// before proof verification). Principal is only trusted AFTER verification �
+// until then the IP tier bounds the source. Returns {ok:false,status:429,...}
+// on a real limit hit; never throws on a store error (fail-open).
+async function guardRequest(req, { tool }) {
+  const ip = handlerIp();
+  try {
+    return await abuseGuard.checkMcpRequest({ ip, principal: null, tool });
+  } catch (e) {
+        // checkMcpRequest itself throws only in unexpected paths; fail closed for
+    // sensitive tools so a guard failure can never disable abuse protection.
+    if (abuseGuard.SENSITIVE_TOOLS.has(tool)) {
+      return { ok: false, status: 503, limitType: 'store-unavailable', message: 'MCP abuse guard unavailable; sensitive operation refused (fail-closed)' };
+    }
+    return { ok: true, counts: {}, errors: ["guard:" + String(e.message || e)] };
+  }
+}
+
+// Verified-principal tier: applied INSIDE tool handlers after EIP-712 proof
+// verification, keyed on the recovered signer (never a claimed agentId). A
+// forged proof is rejected before any principal bucket is touched. On a 429 the
+// caller receives the standard MCP error payload.
+async function guardPrincipal(principal, tool) {
+  if (!principal) return { ok: true };
+  try {
+    return await abuseGuard.checkMcpRequest({ ip: null, principal, tool });
+  } catch (e) {
+        if (abuseGuard.SENSITIVE_TOOLS.has(tool)) {
+      return { ok: false, status: 503, limitType: 'store-unavailable', message: 'MCP abuse guard unavailable; sensitive operation refused (fail-closed)' };
+    }
+    return { ok: true, errors: ["guard:" + String(e.message || e)] };
+  }
+}
+
+// Record a failed proof verification for auth-abuse throttling (per-source,
+// bounded backoff; anti-lockout: a later VALID proof succeeds and clears).
+async function recordAuthFailure(principal, ip) {
+  try {
+    await abuseGuard.recordAuthFailure({ ip: ip || null, principal: principal || null });
+  } catch (_) { /* non-fatal */ }
 }
 
 async function gatePremium(email, toolName) {
@@ -284,6 +447,8 @@ const _preflightCore = await Promise.resolve(_require("../endpoint/preflight-cor
 const _ProposalStoreMod = await Promise.resolve(_require("../endpoint/proposal-store.js")).catch(() => null);
 const _acceptanceCore = await Promise.resolve(_require("../endpoint/acceptance-core.js")).catch(() => null);
 const _AcceptanceStoreMod = await Promise.resolve(_require("../endpoint/acceptance-store.js")).catch(() => null);
+const _lifecycleMcp = await Promise.resolve(_require("../endpoint/lifecycle-mcp.js")).catch(() => null);
+const _lifecycle = await Promise.resolve(_require("../endpoint/lifecycle.js")).catch(() => null);
 // The MCP SDK's Protocol owns a SINGLE transport: connect() throws "Already
 // connected to a transport. Call close() before connecting to a new transport,
 // or use a separate Protocol instance per connection." A module-level singleton
@@ -291,7 +456,7 @@ const _AcceptanceStoreMod = await Promise.resolve(_require("../endpoint/acceptan
 // request's transport would tear down another's). Following the SDK's own
 // simpleStreamableHttp example, each MCP session gets its OWN McpServer +
 // transport, registered in `sessions` below. Tool closures share only
-// module-level read caches (commitmentStore, sessionIdentityStore) — safe:
+// module-level read caches (commitmentStore, sessionIdentityStore) � safe:
 // they are plain synchronous Maps, never torn down per session.
 function createSessionServer() {
   const server = new McpServer({
@@ -300,7 +465,7 @@ function createSessionServer() {
   });
 
 // -----------------------------------------------------------------------------
-// Tool 1 â€” get_protocol_info (unchanged)
+// Tool 1 — get_protocol_info (unchanged)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_protocol_info",
@@ -315,7 +480,7 @@ server.registerTool(
 );
 
 // -----------------------------------------------------------------------------
-// Tool 2 â€” get_routing_fee (unchanged)
+// Tool 2 — get_routing_fee (unchanged)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_routing_fee",
@@ -347,20 +512,20 @@ server.registerTool(
 );
 
 // -----------------------------------------------------------------------------
-// Tool 3 â€” ping (unchanged)
+// Tool 3 — ping (unchanged)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "ping",
   {
     title: "Ping",
-    description: "Returns a lightweight liveness response. Call this to verify the endpoint is reachable. Do not use for discovery, capability listing, or pricing â€” use get_protocol_info, list_capabilities, or get_routing_fee instead.",
+    description: "Returns a lightweight liveness response. Call this to verify the endpoint is reachable. Do not use for discovery, capability listing, or pricing — use get_protocol_info, list_capabilities, or get_routing_fee instead.",
     inputSchema: {},
   },
   async () => ({ content: [{ type: "text", text: "ok" }] })
 );
 
 // -----------------------------------------------------------------------------
-// Tool 4 â€” route_request (WIRED: real ranking, no settlement)
+// Tool 4 — route_request (WIRED: real ranking, no settlement)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "route_request",
@@ -436,13 +601,13 @@ server.registerTool(
 );
 
 // -----------------------------------------------------------------------------
-// Tool 5 â€” get_commitment (WIRED: commitment store lookup)
+// Tool 5 — get_commitment (WIRED: commitment store lookup)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_commitment",
   {
     title: "Get a commitment manifest",
-    description: "Returns the full commitment object for a given commitment ID â€” including terms, state, manifest hash, and evidence references. Call this when an agent needs the complete commitment record. For status-only polling, use get_commitment_status. For listing all commitments for a subscriber, use list_commitments.",
+    description: "Returns the full commitment object for a given commitment ID — including terms, state, manifest hash, and evidence references. Call this when an agent needs the complete commitment record. For status-only polling, use get_commitment_status. For listing all commitments for a subscriber, use list_commitments.",
     inputSchema: {
       commitmentId: z.string().describe("The commitment id (0x-prefixed or agent-id style) to look up"),
     },
@@ -479,7 +644,7 @@ server.registerTool(
 );
 
 // -----------------------------------------------------------------------------
-// Tool 6 â€” list_capabilities (NEW: read-only capability discovery)
+// Tool 6 — list_capabilities (NEW: read-only capability discovery)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "list_capabilities",
@@ -504,7 +669,7 @@ server.registerTool(
 
 
 // -----------------------------------------------------------------------------
-// Tool 7 â€” list_commitments (PREMIUM-gated read; same gating as the premium tools)
+// Tool 7 — list_commitments (PREMIUM-gated read; same gating as the premium tools)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "list_commitments",
@@ -570,13 +735,13 @@ function nextActionFor(state) {
 }
 
 // -----------------------------------------------------------------------------
-// Tool 8 â€” get_commitment_status (ungated; commitment id is the access token)
+// Tool 8 — get_commitment_status (ungated; commitment id is the access token)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_commitment_status",
   {
     title: "Get a commitment's lifecycle state",
-    description: "Returns only the current lifecycle state for a given commitment ID, plus the recommended next action for the calling agent. Call this before retrying any commitment that timed out â€” an unknown outcome is a status check, not another POST. The next_action field tells the agent whether to retry, poll, or stop. For the full commitment record, use get_commitment.",
+    description: "Returns only the current lifecycle state for a given commitment ID, plus the recommended next action for the calling agent. Call this before retrying any commitment that timed out — an unknown outcome is a status check, not another POST. The next_action field tells the agent whether to retry, poll, or stop. For the full commitment record, use get_commitment.",
     inputSchema: {
       commitmentId: z.string().describe("The commitment id to poll for its lifecycle state"),
     },
@@ -723,9 +888,9 @@ server.registerTool(
   }
 );
 // -----------------------------------------------------------------------------
-// PREMIUM TOOL A â€” get_evidence_verification (gated by SAAX Premium)
+// PREMIUM TOOL A — get_evidence_verification (gated by SAAX Premium)
 // -----------------------------------------------------------------------------// -----------------------------------------------------------------------------
-// PREMIUM TOOL A â€” get_evidence_verification (gated by SAAX Premium)
+// PREMIUM TOOL A — get_evidence_verification (gated by SAAX Premium)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_evidence_verification",
@@ -776,7 +941,7 @@ server.registerTool(
 );
 
 // -----------------------------------------------------------------------------
-// PREMIUM TOOL B â€” get_authority_validation (gated by SAAX Premium)
+// PREMIUM TOOL B — get_authority_validation (gated by SAAX Premium)
 // -----------------------------------------------------------------------------
 server.registerTool(
   "get_authority_validation",
@@ -824,7 +989,355 @@ server.registerTool(
 
 
 // -----------------------------------------------------------------------------
-// Tool 10 — prepare_commitment (SAAX Discovery Phase 3: FREE, NONBINDING
+// MCP LIFECYCLE PHASE 2 � Secure lifecycle + recovery tools
+// (isolated implementation; NOT deployed). Principal binding: every mutating
+// tool verifies the caller's EIP-712 authority proof and binds the recovered
+// signer as verifiedPrincipal � caller-supplied agentId is never authority.
+// No financial transitions (settlement/escrow release/refunds) are exposed.
+// -----------------------------------------------------------------------------
+
+function lifecycleProofError(reason, stage) {
+  return { content: [{ type: "text", text: JSON.stringify({ status: "unauthorized", reason, stage }, null, 2) }] };
+}
+
+// When a caller retries with the SAME idempotencyRef, the RPC's fingerprint
+// includes from_state � so the retry must pass the ORIGINAL from_state (the
+// state at first execution), not the current row state. Resolve it from the
+// event ledger when the ref already exists.
+async function resolveReplayFromState(cid, idempotencyRef) {
+  if (!idempotencyRef) return null;
+  try {
+    const history = await _lifecycleMcp.readHistory(cid);
+    const hit = history.find((e) => e.idempotency_ref === idempotencyRef);
+    return hit ? hit.from_state : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+async function lifecycleReadTool(args) {
+  const { commitmentId, agentId, role, proof } = args;
+  const vid = validateCommitmentId(commitmentId || "");
+  if (!vid.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: vid.reason }, null, 2) }] };
+  const cid = vid.value;
+  let row = null;
+  try {
+    row = await _lifecycleMcp.loadCommitment(cid);
+  } catch (e) {
+    console.error("[lifecycle read] lookup failed:", e.message);
+    return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "commitment lookup failed" }, null, 2) }] };
+  }
+  if (!row) return { content: [{ type: "text", text: JSON.stringify({ status: "not_found", commitmentId: cid }, null, 2) }] };
+  const vp = await _lifecycleMcp.verifyPrincipal(proof, row, { callerRole: args.role, callerAction: 'get_recovery_status' });
+  if (!vp.ok) {
+    await recordAuthFailure(vp.principal || proof?.issuer || null, handlerIp());
+    return lifecycleProofError(vp.reason, vp.stage);
+  }
+  const principalGuard = await guardPrincipal(vp.principal, "get_recovery_status");
+  if (!principalGuard.ok) {
+    return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+  }
+  return { row, cid, principal: vp.principal };
+}
+
+// Tool 12 � get_commitment_history (read-only lifecycle journal)
+server.registerTool(
+  "get_commitment_history",
+  {
+    title: "Get the durable lifecycle journal for a commitment",
+    description: "Returns the append-only lifecycle event ledger for a commitment � every recorded transition with actor, authority reference, state version, and evidence reference. The caller must present an EIP-712 authority proof binding its identity to the commitment. Read-only; reconciles the authoritative commitment before returning. For a compact status, use get_commitment_status; for recovery guidance, use get_recovery_status.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role on this commitment"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+    },
+  },
+  async (args) => {
+    const pre = await lifecycleReadTool(args);
+    if (!pre.row) return pre;
+    try {
+      const history = await _lifecycleMcp.readHistory(pre.cid);
+      return {
+        content: [{ type: "text", text: JSON.stringify({
+          status: "ok",
+          commitmentId: pre.cid,
+          state: pre.row.state,
+          version: pre.row.version || 1,
+          principal: pre.principal,
+          count: history.length,
+          events: history,
+        }, null, 2) }],
+      };
+    } catch (e) {
+      console.error("[get_commitment_history] failed:", e.message);
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "event history unavailable" }, null, 2) }] };
+    }
+  }
+);
+
+// Tool 13 � get_recovery_status (reconcile-before-read recovery guidance)
+server.registerTool(
+  "get_recovery_status",
+  {
+    title: "Get recovery status and pending actions for a commitment",
+    description: "Returns the authoritative commitment state, the caller's authorization status (active/revoked/expired), whether the commitment is recoverable, and the caller's permitted next actions. Reconciles the durable commitment row and the caller's authorization record before returning. The caller must present an EIP-712 authority proof. Read-only. For the raw journal, use get_commitment_history; to continue a workflow, use resume_commitment.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role on this commitment"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+    },
+  },
+  async (args) => {
+    const pre = await lifecycleReadTool(args);
+    if (!pre.row) return pre;
+    try {
+      const status = await _lifecycleMcp.buildRecoveryStatus(pre.row, args.agentId, pre.principal, args.role);
+      return { content: [{ type: "text", text: JSON.stringify(status, null, 2) }] };
+    } catch (e) {
+      console.error("[get_recovery_status] failed:", e.message);
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "recovery status unavailable" }, null, 2) }] };
+    }
+  }
+);
+
+// Tool 14 � get_pending_actions (read-only; derives the caller's permitted next steps)
+server.registerTool(
+  "get_pending_actions",
+  {
+    title: "Get the caller's permitted next lifecycle actions",
+    description: "Returns the lifecycle actions the caller (verified by EIP-712 proof) may currently perform on a commitment � derived from the canonical transition map, the caller's role, and the caller's durable authorization scope. Read-only. For full recovery context, use get_recovery_status.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role on this commitment"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+    },
+  },
+  async (args) => {
+    const pre = await lifecycleReadTool(args);
+    if (!pre.row) return pre;
+    try {
+      const status = await _lifecycleMcp.buildRecoveryStatus(pre.row, args.agentId, pre.principal, args.role);
+      return { content: [{ type: "text", text: JSON.stringify({
+        status: "ok",
+        commitmentId: pre.cid,
+        state: pre.row.state,
+        authorized: status.caller.authorized,
+        pendingActions: status.pendingActions,
+      }, null, 2) }] };
+    } catch (e) {
+      console.error("[get_pending_actions] failed:", e.message);
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "pending actions unavailable" }, null, 2) }] };
+    }
+  }
+);
+
+// Tool 15 � resume_commitment (authorized continuation; no automatic inheritance)
+server.registerTool(
+  "resume_commitment",
+  {
+    title: "Resume a commitment after the original agent terminated",
+    description: "Lets an independently authorized replacement agent continue a commitment. Reconciles the authoritative state, verifies the caller's EIP-712 authority proof, and executes the requested nonfinancial transition through the canonical transition engine. The replacement agent must hold its OWN durable authorization (no automatic inheritance). Duplicate requests are idempotent. Financial transitions (settle/finalize with settlement, escrow release, refunds) are NOT exposed. For inspection first, use get_recovery_status or get_pending_actions.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role on this commitment"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+      action: z.string().describe("The lifecycle action to execute: cancel, accept, authorize, execute, complete, submit, verify, fulfill, recover, dispute (nonfinancial subset)"),
+      idempotencyRef: z.string().optional().describe("Caller-scoped idempotency reference (>= 8 chars) for safe retries"),
+      expectedVersion: z.number().int().optional().describe("Optimistic-concurrency guard: the state version the caller observed"),
+      authorityRef: z.string().optional().describe("Optional external authority reference to record on the event"),
+      evidenceRef: z.string().optional().describe("Optional evidence reference to bind to the transition"),
+    },
+  },
+  async (args) => {
+    const vid = validateCommitmentId(args.commitmentId || "");
+    if (!vid.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: vid.reason }, null, 2) }] };
+    const cid = vid.value;
+    const agentId = String(args.agentId || "").trim();
+    const role = String(args.role || "").trim();
+    const action = String(args.action || "").trim();
+    if (!agentId || !role || !action) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: "agentId, role, and action are required" }, null, 2) }] };
+    }
+    let row = null;
+    try {
+      row = await _lifecycleMcp.loadCommitment(cid);
+    } catch (e) {
+      console.error("[resume_commitment] lookup failed:", e.message);
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "commitment lookup failed" }, null, 2) }] };
+    }
+    if (!row) return { content: [{ type: "text", text: JSON.stringify({ status: "not_found", commitmentId: cid }, null, 2) }] };
+    const vp = await _lifecycleMcp.verifyPrincipal(args.proof, row, { callerRole: args.role, callerAction: args.action || 'resume_commitment' });
+    if (!vp.ok) {
+      await recordAuthFailure(vp.principal || args.proof?.issuer || null, handlerIp());
+      return lifecycleProofError(vp.reason, vp.stage);
+    }
+    const principalGuard = await guardPrincipal(vp.principal, "resume_commitment");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    const toState = _lifecycleMcp.actionToTransition(action, row.state);
+    if (!toState) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: "unsupported action: " + action }, null, 2) }] };
+    }
+    if (['settled', 'finalized'].includes(toState)) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "blocked", reason: "settlement and finalization are not exposed through MCP" }, null, 2) }] };
+    }
+    const idem = args.idempotencyRef ||
+      ('mcp:' + cid + ':' + vp.principal + ':' + action + ':' + (row.version || 1) + ':' + Date.now());
+    // On a same-ref retry, the RPC fingerprint requires the ORIGINAL from_state.
+    const replayFrom = await resolveReplayFromState(cid, idem);
+    const r = await _lifecycle.transitionCommitment({
+      commitmentId: cid,
+      fromState: replayFrom || row.state,
+      toState,
+      requestedAction: action,
+      agentId,
+      verifiedPrincipal: vp.principal,
+      actorRole: role,
+      authorityRef: args.authorityRef || row.authority_ref || null,
+      idempotencyRef: idem,
+      evidenceRef: args.evidenceRef || null,
+      expectedVersion: args.expectedVersion ?? row.version,
+    });
+    if (!r.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", code: r.code, reason: r.error }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...r.data }, null, 2) }] };
+  }
+);
+
+// Tool 16 � cancel_commitment (authorized cancellation; terminal, nonfinancial)
+server.registerTool(
+  "cancel_commitment",
+  {
+    title: "Cancel a commitment",
+    description: "Cancels a commitment when the caller (verified by EIP-712 proof) holds buyer or authority authorization with cancel scope. Terminal and nonfinancial � no payment, refund, or settlement is executed. Reconciles authoritative state first. Idempotent via idempotencyRef.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role (cancel requires buyer or authority)"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+      reason: z.string().optional().describe("Cancellation reason (recorded as authority reference)"),
+      idempotencyRef: z.string().optional().describe("Caller-scoped idempotency reference"),
+    },
+  },
+  async (args) => _invokeResume(args, "cancel")
+);
+
+// Internal helper shared by cancel_commitment (DRY).
+async function _invokeResume(args, action) {
+  const vid = validateCommitmentId(args.commitmentId || "");
+  if (!vid.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: vid.reason }, null, 2) }] };
+  const cid = vid.value;
+  const agentId = String(args.agentId || "").trim();
+  const role = String(args.role || "").trim();
+  if (!agentId || !role) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: "agentId and role are required" }, null, 2) }] };
+  let row = null;
+  try {
+    row = await _lifecycleMcp.loadCommitment(cid);
+  } catch (e) {
+    return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "commitment lookup failed" }, null, 2) }] };
+  }
+  if (!row) return { content: [{ type: "text", text: JSON.stringify({ status: "not_found", commitmentId: cid }, null, 2) }] };
+  const vp = await _lifecycleMcp.verifyPrincipal(args.proof, row, { callerRole: args.role, callerAction: action });
+  if (!vp.ok) {
+    await recordAuthFailure(vp.principal || args.proof?.issuer || null, handlerIp());
+    return lifecycleProofError(vp.reason, vp.stage);
+  }
+  const principalGuard = await guardPrincipal(vp.principal, action);
+  if (!principalGuard.ok) {
+    return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+  }
+  const toState = _lifecycleMcp.actionToTransition(action, row.state);
+  if (!toState) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: "unsupported action: " + action }, null, 2) }] };
+  const idem = args.idempotencyRef || ('mcp:' + cid + ':' + vp.principal + ':' + action + ':' + Date.now());
+  // On a same-ref retry, the RPC fingerprint requires the ORIGINAL from_state.
+  const replayFrom = await resolveReplayFromState(cid, idem);
+  const r = await _lifecycle.transitionCommitment({
+    commitmentId: cid,
+    fromState: replayFrom || row.state,
+    toState,
+    requestedAction: action,
+    agentId,
+    verifiedPrincipal: vp.principal,
+    actorRole: role,
+    authorityRef: args.reason || row.authority_ref || null,
+    idempotencyRef: idem,
+    expectedVersion: args.expectedVersion ?? row.version,
+  });
+  if (!r.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "error", code: r.code, reason: r.error }, null, 2) }] };
+  return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...r.data }, null, 2) }] };
+}
+
+// Tool 17 � close_commitment (authorized closure; nonfinancial)
+server.registerTool(
+  "close_commitment",
+  {
+    title: "Close a fulfilled commitment",
+    description: "Closes a fulfilled commitment (settled -> finalized) when the caller (verified by EIP-712 proof) holds system or authority authorization. Nonfinancial � no settlement, escrow release, or refund is executed. Reconciles authoritative state first. Idempotent via idempotencyRef.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment id"),
+      agentId: z.string().describe("The caller's durable agent identifier"),
+      role: z.enum(["buyer", "provider", "evaluator", "authority", "system"]).describe("The caller's role (close requires system or authority)"),
+      proof: z.record(z.any()).describe("EIP-712 AuthorityProof signed by the caller (issuer = signer)"),
+      idempotencyRef: z.string().optional().describe("Caller-scoped idempotency reference"),
+    },
+  },
+  async (args) => {
+    const vid = validateCommitmentId(args.commitmentId || "");
+    if (!vid.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: vid.reason }, null, 2) }] };
+    const cid = vid.value;
+    const agentId = String(args.agentId || "").trim();
+    const role = String(args.role || "").trim();
+    if (!agentId || !role) return { content: [{ type: "text", text: JSON.stringify({ status: "invalid", reason: "agentId and role are required" }, null, 2) }] };
+    if (!["system", "authority"].includes(role)) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "blocked", reason: "close_commitment requires system or authority role" }, null, 2) }] };
+    }
+    let row = null;
+    try {
+      row = await _lifecycleMcp.loadCommitment(cid);
+    } catch (e) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "commitment lookup failed" }, null, 2) }] };
+    }
+    if (!row) return { content: [{ type: "text", text: JSON.stringify({ status: "not_found", commitmentId: cid }, null, 2) }] };
+    if (row.state !== "settled") {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "blocked", reason: "close_commitment requires state 'settled' (current: " + row.state + ")" }, null, 2) }] };
+    }
+    const vp = await _lifecycleMcp.verifyPrincipal(args.proof, row, { callerRole: args.role, callerAction: 'close_commitment' });
+    if (!vp.ok) {
+      await recordAuthFailure(vp.principal || args.proof?.issuer || null, handlerIp());
+      return lifecycleProofError(vp.reason, vp.stage);
+    }
+    const principalGuard = await guardPrincipal(vp.principal, "close_commitment");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    const idem = args.idempotencyRef || ('mcp:' + cid + ':' + vp.principal + ':finalize:' + Date.now());
+    const replayFrom = await resolveReplayFromState(cid, idem);
+    const r = await _lifecycle.transitionCommitment({
+      commitmentId: cid,
+      fromState: replayFrom || row.state,
+      toState: "finalized",
+      requestedAction: "finalize",
+      agentId,
+      verifiedPrincipal: vp.principal,
+      actorRole: role,
+      authorityRef: row.authority_ref || null,
+      idempotencyRef: idem,
+      expectedVersion: args.expectedVersion ?? row.version,
+    });
+    if (!r.ok) return { content: [{ type: "text", text: JSON.stringify({ status: "error", code: r.code, reason: r.error }, null, 2) }] };
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...r.data }, null, 2) }] };
+  }
+);
+
+
+// -----------------------------------------------------------------------------
+// Tool 10 � prepare_commitment (SAAX Discovery Phase 3: FREE, NONBINDING
 // signed preflight). Same core as the isolated HTTP endpoint:
 // endpoint/preflight-core.js. Deterministic validation + normalization,
 // specific DSC_* errors, signed proposal (EdDSA JWS over RFC 8785 canonical
@@ -967,11 +1480,11 @@ server.registerTool(
 // Tool 11 - accept_commitment (SAAX Discovery Phase 4: explicit buyer
 // authorization -> exactly one authenticated commitment). Same core as the
 // isolated HTTP endpoint: endpoint/acceptance-core.js. Revalidates the signed
-// proposal (trusted-key path, §7.2), verifies the BUYER'S OWN SIGNATURE over
+// proposal (trusted-key path, �7.2), verifies the BUYER'S OWN SIGNATURE over
 // the exact proposal digest + terms digest (caller-supplied identity is not
 // proof), durably accepts ONCE (single-writer acceptance store), and creates
 // the commitment (manifest v1 + provider JWS over the canonical manifest+
-// proposal binding — signedRepresentationVersion "manifest-v1.1+saax-
+// proposal binding � signedRepresentationVersion "manifest-v1.1+saax-
 // proposal-bound"). Creates NO payment authorization, custody funding, service
 // execution, or release. A buyer acceptance is NOT a payment authorization or
 // an evaluator release verdict. Errors are typed DSC_* codes.
@@ -1069,11 +1582,210 @@ server.registerTool(
   }
 );
 
+// ---- Tool 18 � submit_evidence (durable, authorized evidence submission) ----
+// Phase 3 (evidence infrastructure). Principal-bound via EIP-712 proof;
+// persists a durable evidence record bound to the commitment + criterion;
+// idempotent per (commitment, idempotencyRef); NEVER transitions the
+// commitment state and never triggers settlement/escrow/finalization.
+server.registerTool(
+  "submit_evidence",
+  {
+    title: "Submit fulfillment evidence",
+    description:
+      "Durably submits evidence for a commitment. The caller must present an EIP-712 authority proof; the recovered signer must hold an unrevoked, unexpired provider or buyer authorization on the commitment (verified in-transaction against the durable registry). The evidence envelope is validated for structure and size, bound to the commitment and optional acceptance criterion, and persisted with the verified submitter attribution and an integrity payload hash. Idempotent per idempotencyRef: a replay returns the original record; reuse with a materially different payload is rejected. Submission does NOT transition the commitment state and does NOT trigger settlement, escrow release, or finalization � those require separate authorized lifecycle actions.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment ID the evidence binds to"),
+      criterionId: z.string().optional().describe("The acceptance criterion ID this evidence addresses, if applicable"),
+      agentId: z.string().describe("The caller's agent identity (bound to the verified principal)"),
+      proof: z.any().describe("The EIP-712 AuthorityProof: authorityProofId, issuer, subject, validFrom, validUntil, scope, signature, verificationScheme=eip712"),
+      evidence: z.any().describe("The evidence envelope: evidenceType, issuer, subject, payload, payloadHash, signature, verificationScheme, commitmentId, acceptanceCriterionId, provenance"),
+      idempotencyRef: z.string().optional().describe("Stable idempotency reference; replay-safe"),
+    },
+  },
+  async (args) => {
+    const { submitEvidence } = await import("../endpoint/evidence-lifecycle.js").catch((e) => ({ submitEvidence: null, error: String(e.message || e) }));
+    if (!submitEvidence) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "evidence module unavailable" }, null, 2) }] };
+    }
+    const out = await submitEvidence(args);
+    if (!out.ok) {
+      await recordAuthFailure(args.proof?.issuer || null, handlerIp());
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    const principalGuard = await guardPrincipal(out.principal || args.proof?.issuer || null, "submit_evidence");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", evidence: out.record }, null, 2) }] };
+  }
+);
+
+// ---- Tool 19 � list_evidence (commitment-scoped read) ------------------------
+server.registerTool(
+  "list_evidence",
+  {
+    title: "List evidence for a commitment",
+    description:
+      "Returns the durable evidence records for a commitment (stable identifiers, integrity references, submitter attribution, status, timestamps � never raw payload content). The caller must present an EIP-712 authority proof and hold an active authorization on the commitment. Commitment-scoped: callers with no authorization on the commitment see nothing. Optional status filter (submitted|verified|rejected|disputed). Read-only.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment ID whose evidence to list"),
+      agentId: z.string().describe("The caller's agent identity"),
+      proof: z.any().describe("The EIP-712 AuthorityProof"),
+      status: z.enum(["submitted", "verified", "rejected", "disputed"]).optional().describe("Filter by evidence status"),
+      limit: z.number().min(1).max(200).optional().describe("Max records (default 50)"),
+      offset: z.number().min(0).optional().describe("Pagination offset"),
+    },
+  },
+  async (args) => {
+    const { listEvidence } = await import("../endpoint/evidence-lifecycle.js").catch((e) => ({ listEvidence: null, error: String(e.message || e) }));
+    if (!listEvidence) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "evidence module unavailable" }, null, 2) }] };
+    }
+    const out = await listEvidence(args);
+    if (!out.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...out.record }, null, 2) }] };
+  }
+);
+
+// ---- Tool 20 � verify_evidence (evaluator-only verdict) -----------------------
+server.registerTool(
+  "verify_evidence",
+  {
+    title: "Verify or reject submitted evidence",
+    description:
+      "Sets the verification status of a submitted evidence record to verified or rejected. The caller must present an EIP-712 authority proof and hold an unrevoked, unexpired EVALUATOR authorization on the commitment (verified in-transaction). Idempotent per verdict: re-verifying with the same verdict replays the original outcome; changing a verified record to rejected (or vice versa) is rejected without a dispute path. Does NOT auto-transition the commitment state � the caller must perform the authorized lifecycle transition separately. Rejection requires a reason.",
+    inputSchema: {
+      evidenceId: z.string().describe("The evidence record ID to verify"),
+      verdict: z.enum(["verified", "rejected"]).describe("The evaluator verdict"),
+      agentId: z.string().describe("The caller's agent identity"),
+      proof: z.any().describe("The EIP-712 AuthorityProof"),
+      reason: z.string().optional().describe("Required when verdict=rejected"),
+      expectedVersion: z.number().optional().describe("Optimistic-concurrency expected version"),
+    },
+  },
+  async (args) => {
+    const { verifyEvidence } = await import("../endpoint/evidence-lifecycle.js").catch((e) => ({ verifyEvidence: null, error: String(e.message || e) }));
+    if (!verifyEvidence) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "evidence module unavailable" }, null, 2) }] };
+    }
+    const out = await verifyEvidence(args);
+    if (!out.ok) {
+      await recordAuthFailure(args.proof?.issuer || null, handlerIp());
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    const principalGuard = await guardPrincipal(out.principal || args.proof?.issuer || null, "verify_evidence");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", evidence: out.record }, null, 2) }] };
+  }
+);
+
+// ---- Tool 21 - raise_dispute (authorized dispute initiation) ----------------
+server.registerTool(
+  "raise_dispute",
+  {
+    title: "Raise a dispute on a commitment",
+    description:
+      "Raises a durable dispute on a commitment and transitions it to the disputed state. The caller must present an EIP-712 authority proof and hold an unrevoked, unexpired authorization on the commitment (verified in-transaction). Disputes may only be raised from evidence_submitted or fulfilled states per the canonical lifecycle. Dispute resolution NEVER triggers a financial transfer. Idempotent per idempotencyRef.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment ID being disputed"),
+      disputeId: z.string().optional().describe("Stable dispute identifier; generated if omitted"),
+      agentId: z.string().describe("The caller's agent identity (bound to the verified principal)"),
+      proof: z.any().describe("The EIP-712 AuthorityProof"),
+      reason: z.string().describe("Dispute reason (at least 8 characters)"),
+      evidenceRefs: z.array(z.string()).optional().describe("Reference identifiers of supporting evidence records"),
+      idempotencyRef: z.string().optional().describe("Stable idempotency reference; replay-safe"),
+    },
+  },
+  async (args) => {
+    const { raiseDispute } = await import("../endpoint/dispute.js").catch((e) => ({ raiseDispute: null, error: String(e.message || e) }));
+    if (!raiseDispute) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "dispute module unavailable" }, null, 2) }] };
+    }
+    const out = await raiseDispute(args);
+    if (!out.ok) {
+      await recordAuthFailure(args.proof?.issuer || null, handlerIp());
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    const principalGuard = await guardPrincipal(out.principal || args.proof?.issuer || null, "raise_dispute");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", dispute: out.record }, null, 2) }] };
+  }
+);
+
+// ---- Tool 22 - resolve_dispute (evaluator-only, nonfinancial) -----------------
+server.registerTool(
+  "resolve_dispute",
+  {
+    title: "Resolve an open dispute",
+    description:
+      "Records an evaluator decision on an open dispute and transitions the commitment to the canonical nonfinancial outcome (continue|rework|satisfied|against). The caller must present an EIP-712 authority proof and hold an unrevoked, unexpired EVALUATOR authorization on the commitment (verified in-transaction). Resolution NEVER executes a financial transfer or settlement. Idempotent per idempotencyRef.",
+    inputSchema: {
+      disputeId: z.string().describe("The dispute ID to resolve"),
+      outcome: z.enum(["continue", "rework", "satisfied", "against"]).describe("Nonfinancial resolution outcome"),
+      agentId: z.string().describe("The caller's agent identity (bound to the verified principal)"),
+      proof: z.any().describe("The EIP-712 AuthorityProof"),
+      reason: z.string().optional().describe("Resolution rationale"),
+      idempotencyRef: z.string().optional().describe("Stable idempotency reference; replay-safe"),
+    },
+  },
+  async (args) => {
+    const { resolveDispute } = await import("../endpoint/dispute.js").catch((e) => ({ resolveDispute: null, error: String(e.message || e) }));
+    if (!resolveDispute) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "dispute module unavailable" }, null, 2) }] };
+    }
+    const out = await resolveDispute(args);
+    if (!out.ok) {
+      await recordAuthFailure(args.proof?.issuer || null, handlerIp());
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    const principalGuard = await guardPrincipal(out.principal || args.proof?.issuer || null, "resolve_dispute");
+    if (!principalGuard.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "rate_limited", reason: principalGuard.message }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", dispute: out.record }, null, 2) }] };
+  }
+);
+
+// ---- Tool 23 - list_disputes (commitment-scoped authorized read) --------------
+server.registerTool(
+  "list_disputes",
+  {
+    title: "List disputes for a commitment",
+    description:
+      "Returns the durable dispute records for a commitment (dispute identifiers, status, resolution, attribution, timestamps). The caller must present an EIP-712 authority proof and hold an active authorization on the commitment. Commitment-scoped: callers with no authorization see nothing. Optional status filter. Read-only.",
+    inputSchema: {
+      commitmentId: z.string().describe("The commitment ID whose disputes to list"),
+      agentId: z.string().describe("The caller's agent identity"),
+      proof: z.any().describe("The EIP-712 AuthorityProof"),
+      status: z.enum(["open", "resolved", "rejected"]).optional().describe("Filter by dispute status"),
+      limit: z.number().min(1).max(200).optional().describe("Max records (default 50)"),
+      offset: z.number().min(0).optional().describe("Pagination offset"),
+    },
+  },
+  async (args) => {
+    const { listDisputes } = await import("../endpoint/dispute.js").catch((e) => ({ listDisputes: null, error: String(e.message || e) }));
+    if (!listDisputes) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: "dispute module unavailable" }, null, 2) }] };
+    }
+    const out = await listDisputes(args);
+    if (!out.ok) {
+      return { content: [{ type: "text", text: JSON.stringify({ status: "error", reason: out.reason, stage: out.stage }, null, 2) }] };
+    }
+    return { content: [{ type: "text", text: JSON.stringify({ status: "ok", ...out.record }, null, 2) }] };
+  }
+);
+
 let _phase4BuyerRegistryCache = null;
 function _phase4BuyerRegistry() {
   // Configured buyer registry: file-backed JSON under .output/ (gitignored).
   // { "<lowercased address>": { publicJwk, scopeMaxAmount?, scopeCurrency?,
-  //   scopeCapability? } } — a buyer is authorized ONLY when their key is
+  //   scopeCapability? } } � a buyer is authorized ONLY when their key is
   // registered here (Phase-4 configured-buyer path, mirroring trusted-key).
   try {
     if (_phase4BuyerRegistryCache) return _phase4BuyerRegistryCache;
@@ -1146,7 +1858,7 @@ async function closeSession(sid) {
 // Enabled via SAAX_MCP_MODE=stateless (default: stateful, preserving the
 // existing session-based behavior for clients that rely on it). The env var
 // is read ONCE at module load: flipping it requires a redeploy (a new
-// process), which is the intended rollout path — see the deployment plan.
+// process), which is the intended rollout path � see the deployment plan.
 //
 // Key properties:
 //  - Per-request session identity is read from HTTP headers (X-SAAX-Email /
@@ -1171,17 +1883,47 @@ async function readBodyRaw(req) {
 
 async function handleStateless(req, res) {
   const t0 = Date.now();
+  setCurrentRequestIp(clientIpFromRequest(req));
+  // Gate G.1: bound the body BEFORE parsing (413 on oversize).
+  let rawBody;
+  try {
+    rawBody = await readBodyBounded(req);
+  } catch (e) {
+    if (!res.headersSent) {
+      res.statusCode = e.statusCode || 413;
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: e.message }, id: null }));
+    }
+    usageTelemetry.record({ endpoint: "/mcp", method: req.method, status: res.statusCode || 413, outcome: "error", durationMs: Date.now() - t0, requestId: req.headers["x-request-id"] || null, isSynthetic: false, mode: "stateless", errorCode: "body_too_large" }).catch(() => {});
+    return;
+  }
   // SSO/identity: capture per-request from headers (not from a session map).
   const email = identityFromRequest(req);
   if (email) sessionIdentityStore.set("__request__", email);
+  // Gate G.1: distributed rate limit at the HTTP boundary (IP tier for
+  // unauthenticated; the verified-principal tier applies inside tool handlers
+  // where the recovered signer is known).
+  let parsedBody;
+  try { parsedBody = rawBody ? JSON.parse(rawBody) : undefined; } catch (_) { parsedBody = null; }
+  const tool = toolNameFromBody(parsedBody);
+  const guard = await guardRequest(req, { tool });
+  if (!guard.ok) {
+    // Preserve the guard decision: 429 for a real limit hit, 503 when the
+    // sensitive-operation store-outage policy refuses (fail-closed). Retry-After
+    // is only meaningful for 429 (rate limit); omit it for 503.
+    const code = guard.status === 503 ? 503 : 429;
+    res.statusCode = code;
+    res.setHeader("Content-Type", "application/json");
+    if (code === 429) res.setHeader("Retry-After", String(guard.retryAfterSeconds || 60));
+    res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: guard.message || "rate limited" }, id: null }));
+    usageTelemetry.record({ endpoint: "/mcp", method: req.method, status: code, outcome: "error", durationMs: Date.now() - t0, requestId: req.headers["x-request-id"] || null, isSynthetic: false, mode: "stateless", errorCode: code === 503 ? "rate_limiter_unavailable" : "rate_limited", limitType: guard.limitType || null }).catch(() => {});
+    return;
+  }
   const statelessServer = createSessionServer();
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
   });
   await statelessServer.connect(transport);
-  const rawBody = await readBodyRaw(req);
-  let parsedBody;
-  try { parsedBody = rawBody ? JSON.parse(rawBody) : undefined; } catch (_) { parsedBody = null; }
   let responded = false;
   try {
     await transport.handleRequest(req, res, parsedBody);
@@ -1226,13 +1968,13 @@ export default async function handler(req, res) {
   };
 
   // Stateless mode: every request (initialization, reinitialization, tools)
-  // is handled with its own fresh transport — no process-local session map.
+  // is handled with its own fresh transport � no process-local session map.
   // This is the deployment-compatible path for hosts without sticky-session
   // routing (the proxy acceptance test exercises per-request alternation).
   if (req.method === "GET" && !(req.headers.accept || "").includes("text/event-stream")) {
     res.setHeader("Content-Type", "application/json");
     res.statusCode = 200;
-    res.end(JSON.stringify({ name: PROTOCOL.name, version: PROTOCOL.version, title: PROTOCOL.fullName, description: PROTOCOL.description, endpoint: { type: "streamable-http", url: "https://ax-router.vercel.app/mcp", initialize: "POST /mcp with JSON-RPC initialize to begin" }, tools: ["get_protocol_info", "get_routing_fee", "ping", "route_request", "get_commitment", "list_capabilities", "list_commitments", "get_commitment_status", "get_evidence_verification", "get_authority_validation", "prepare_commitment", "accept_commitment"] }, null, 2));
+    res.end(JSON.stringify({ name: PROTOCOL.name, version: PROTOCOL.version, title: PROTOCOL.fullName, description: PROTOCOL.description, endpoint: { type: "streamable-http", url: "https://saax-protocol.com/mcp", initialize: "POST /mcp with JSON-RPC initialize to begin" }, tools: REGISTERED_TOOL_NAMES }, null, 2));
     usageTelemetry.record({ endpoint: "/mcp", method: req.method, status: 200, outcome: "ok", durationMs: Date.now() - _t0, requestId: req.headers["x-request-id"] || null, isSynthetic: false, mode: "stateless" }).catch(() => {});
     return;
   }
@@ -1263,23 +2005,10 @@ export default async function handler(req, res) {
           description: PROTOCOL.description,
           endpoint: {
             type: "streamable-http",
-            url: "https://ax-router.vercel.app/mcp",
+            url: "https://saax-protocol.com/mcp",
             initialize: "POST /mcp with JSON-RPC initialize to begin",
           },
-          tools: [
-            "get_protocol_info",
-            "get_routing_fee",
-            "ping",
-            "route_request",
-            "get_commitment",
-            "list_capabilities",
-            "list_commitments",
-            "get_commitment_status",
-            "get_evidence_verification",
-            "get_authority_validation",
-            "prepare_commitment",
-            "accept_commitment",
-          ],
+          tools: REGISTERED_TOOL_NAMES,
         },
         null,
         2
@@ -1294,6 +2023,35 @@ export default async function handler(req, res) {
   // later POSTs and the SSE GET carry Mcp-Session-Id; each session owns its own
   // McpServer + transport. No request ever closes another session's transport.
   const sessionIdHeader = req.headers["mcp-session-id"];
+  // Gate G.1: distributed rate limit at the HTTP boundary for POST traffic.
+  if (req.method === "POST") {
+    let parsedForGuard = null;
+    try {
+      const bodyPreview = await readBodyBounded(req);
+      try { parsedForGuard = JSON.parse(bodyPreview); } catch (_) { parsedForGuard = null; }
+      const guardTool = toolNameFromBody(parsedForGuard);
+      const guard = await guardRequest(req, { tool: guardTool });
+      if (!guard.ok) {
+        res.statusCode = 429;
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Retry-After", String(guard.retryAfterSeconds || 60));
+        res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: guard.message || "rate limited" }, id: null }));
+        _record("/mcp", 429, "error", { errorCode: "rate_limited", limitType: guard.limitType || null });
+        return;
+      }
+      // Re-attach the body so the SDK transport can read it (Node http.IncomingMessage
+      // is a stream; after readBodyBounded the stream is consumed). Rebuild a
+      // fresh readable and stash it on the request for the transport.
+      req.rawBody = bodyPreview;
+    } catch (e) {
+      // Body exceeded the bound: 413 without touching the transport.
+      res.statusCode = e.statusCode || 413;
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ jsonrpc: "2.0", error: { code: -32000, message: e.message }, id: null }));
+      _record("/mcp", res.statusCode, "error", { errorCode: "body_too_large" });
+      return;
+    }
+  }
 
   if (req.method === "DELETE") {
     if (sessionIdHeader) await closeSession(sessionIdHeader);
@@ -1318,7 +2076,7 @@ export default async function handler(req, res) {
       _record("/mcp", 400, "error", { errorCode: "no_session" });
       return;
     }
-    const rawBody = await readBody();
+    const rawBody = req.rawBody !== undefined ? req.rawBody : undefined;
     let parsedBody = null;
     try { parsedBody = rawBody ? JSON.parse(rawBody) : null; } catch (_) { /* malformed */ }
     if (!parsedBody || parsedBody.method !== "initialize") {
@@ -1365,7 +2123,7 @@ export default async function handler(req, res) {
     return;
   }
   trackSessionOpen(session, res);
-  const body = req.method === "POST" ? await readBody() : undefined;
+  const body = req.method === "POST" ? (req.rawBody !== undefined ? req.rawBody : undefined) : undefined;
   let parsedBody = null;
   try { parsedBody = body ? JSON.parse(body) : undefined; } catch (_) { /* raw string fallback */ }
   try {

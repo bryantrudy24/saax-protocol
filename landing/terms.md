@@ -24,7 +24,7 @@ SAAX processes real funds on the Base mainnet. Transactions are irreversible onc
 
 SAAX currently runs two distinct flows with different money mechanics.
 
-**Immediate payments (Base mainnet).** The Router settles x402/MPP payments directly on Base mainnet. Settlement is irreversible once confirmed on-chain; there is no chargeback, no reversal, and no refund mechanism in the protocol. If you send funds, you lose access, or a transaction fails or is malicious, those funds may be permanently unrecoverable. **Only use SAAX with funds you are prepared to lose.**
+**Immediate payments (Base mainnet).** The Router settles x402 payments directly on Base mainnet. Settlement is irreversible once confirmed on-chain; there is no chargeback, no reversal, and no refund mechanism in the protocol. If you send funds, you lose access, or a transaction fails or is malicious, those funds may be permanently unrecoverable. **Only use SAAX with funds you are prepared to lose.**
 
 **Escrow flow (Base Sepolia testnet only).** The integrated escrow flow holds test USDC in a custody contract and releases or refunds it under an evaluator-signed verdict or a timeout refund. A refund, when it occurs, is a **separate on-chain transfer** from the custody contract back to the buyer's address — it is not a reversal or rewriting of blockchain history. The original funding and release transactions remain on-chain permanently. Refunds are conditional: they require the evaluator to sign a refund verdict (or, before the deadline, the timeout path) and are not guaranteed. Disputed funds can be released or refunded only by the agreement-bound evaluator; if the evaluator disappears, the funds stay locked.
 

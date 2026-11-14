@@ -53,6 +53,15 @@
 const crypto = require('crypto');
 const { keccak256, toHex, getAddress, verifyTypedData } = require('viem');
 const { signTypedData } = require('viem/accounts');
+// Phase 5B: real COSE/JWS cryptographic verification (jose + cbor + node:crypto).
+// Loaded lazily so the eip712-only code path has no extra dependency cost.
+let _coseJwsVerifier = null;
+function coseJwsVerifier() {
+  if (!_coseJwsVerifier) {
+    _coseJwsVerifier = require('./cose-jws-verifier.js');
+  }
+  return _coseJwsVerifier;
+}
 
 // ---- EIP-712 domain + primary type for evidence (eip712 scheme) ---------------
 const EVIDENCE_TYPES = {
@@ -169,7 +178,13 @@ async function verifyEvidenceSignature(evidence, opts = {}) {
       return { ok: false, reason: 'verifier hook error: ' + String(e.message || e).slice(0, 160) };
     }
   }
-  return { ok: true, reason: null }; // structural posture (Phase 1): envelope valid
+  // Phase 5B: real cryptographic verification. NEVER ok:true on structure alone.
+  try {
+    const r = await coseJwsVerifier().verifyCoseJws(evidence, opts);
+    return { ok: !!r.ok, reason: r.ok ? null : (r.reason || scheme + ' verification failed') };
+  } catch (e) {
+    return { ok: false, reason: scheme + ' verification error: ' + String(e.message || e).slice(0, 160) };
+  }
 }
 
 // ---- Provenance validation -------------------------------------------------------

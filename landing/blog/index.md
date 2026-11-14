@@ -44,3 +44,12 @@ Technical writing on the trust layer for agent payments — what breaks, what it
 ## Making Money with Agents
 
 - [How to Actually Make Money with AI Agents (And Why Most People Don't)](/blog/how-to-make-money-with-ai-agents) — 2026-10-10
+
+## Guides
+
+- [How AI Agents Buy Things: A Plain-English Guide to Agentic Commerce](/blog/how-ai-agents-buy-things-guide-agentic-commerce) — 2026-11-14
+- [Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial](/blog/build-ai-shopping-agent-mcp-tutorial) — 2026-11-14
+- [From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows](/blog/agentic-commerce-order-flow) — 2026-11-14
+- [MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained](/blog/agentic-commerce-stack-explained) — 2026-11-14
+- [AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure](/blog/ai-agent-security-identity-authorization-recovery) — 2026-11-14
+- [Agentic Commerce Market Size: What the 2026 Forecasts Actually Say](/blog/agentic-commerce-market-size-2026-forecasts) — 2026-11-14

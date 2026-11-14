@@ -1,0 +1,16 @@
+{
+  "pubJwk": {
+    "kty": "EC",
+    "x": "k_1apO4WoxYTC0ZT7GkWST1jayD25kSO-x21fQE1I94",
+    "y": "64h0voReUF9cNf8AvKBpus0j9ZgMSGB4z0LUAkrd-PI",
+    "crv": "P-256"
+  },
+  "privJwk": {
+    "kty": "EC",
+    "x": "k_1apO4WoxYTC0ZT7GkWST1jayD25kSO-x21fQE1I94",
+    "y": "64h0voReUF9cNf8AvKBpus0j9ZgMSGB4z0LUAkrd-PI",
+    "crv": "P-256",
+    "d": "iMiwocjaIJ2ggz4k9BarqYS9qzm-lB54MWGHj3Q1z4s"
+  },
+  "label": "SAAX conformance test key (deterministic placeholder - NOT for production)"
+}

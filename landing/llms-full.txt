@@ -564,7 +564,7 @@ SAAX does not prescribe a settlement rail.
 
 - The rail (S) is resolved at execution time from the registered registry.
 
-- Currently registered rails: x402, MPP.
+- Currently registered rails: x402. The MPP rail is implemented but not registered in production (x402-only mode).
 
 - Future rails: entitlement, card, ACH, internal ledger — any implementation of the rail interface can register as a SAAX settlement rail.
 
@@ -2575,7 +2575,7 @@ Step three is the one most systems skip. A missing response, record, or receipt 
 
 SAAX treats the commitment as the primary artifact of the purchase. The commitment is created before execution begins and carries an ID that survives retries, session restarts, and process boundaries; recovery semantics for failure, timeout, partial completion, and dispute are part of the commitment lifecycle (/spec), and the current status page (/status) is explicit that recovery is operator-assisted and demonstrated at specific crash boundaries — not automatic.
 
-That last qualifier matters. A commitment record makes the unknown outcome detectable and gives recovery something durable to reconcile against. It does not by itself guarantee that a hung workflow resumes itself. Anyone evaluating SAAX for agent recovery should read the current status page (/status): immediate x402/MPP payments are public beta on Base mainnet and non-custodial; escrow custody is testnet preview only; a Custody V3 candidate with governance work is under development and has not been independently reviewed.
+That last qualifier matters. A commitment record makes the unknown outcome detectable and gives recovery something durable to reconcile against. It does not by itself guarantee that a hung workflow resumes itself. Anyone evaluating SAAX for agent recovery should read the current status page (/status): immediate x402 payments are public beta on Base mainnet and non-custodial; escrow custody is testnet preview only; a Custody V3 candidate with governance work is under development and has not been independently reviewed.
 
 ## Tradeoffs
 
@@ -2929,7 +2929,7 @@ The infrastructure exists. The demand is growing. The missing piece is trust —
 
 That's what a commitment layer adds. It records the authority, terms, acceptance criteria, evidence requirements, and recovery policy before execution begins. A commitment ID can prevent double-charging only when the settlement layer enforces durable deduplication — the same ID must be recognized as the same intent and the same payment authorization must not settle twice. If the fulfillment doesn't match the agreement, the commitment record is the evidence.
 
-For the integration details, see the integration guide (/docs): MCP connection, immediate x402/MPP payments on Base mainnet, and the testnet-only escrow flow. For a closer look at the individual protocols, see Agentic Commerce Protocols Explained: AP2, x402, ACP, and UCP (/blog/agentic-commerce-protocols-explained), which compares what each one handles and what it does not. The spec is at saax-protocol.com/spec (/spec) and the conformance suite at saax-protocol.com/conformance (/conformance); the commitment lifecycle, the evidence interface, and the settlement-linkage model are documented there.
+For the integration details, see the integration guide (/docs): MCP connection, immediate x402 payments on Base mainnet, and the testnet-only escrow flow. For a closer look at the individual protocols, see Agentic Commerce Protocols Explained: AP2, x402, ACP, and UCP (/blog/agentic-commerce-protocols-explained), which compares what each one handles and what it does not. The spec is at saax-protocol.com/spec (/spec) and the conformance suite at saax-protocol.com/conformance (/conformance); the commitment lifecycle, the evidence interface, and the settlement-linkage model are documented there.
 
 ---
 

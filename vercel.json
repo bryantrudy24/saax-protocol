@@ -26,6 +26,10 @@
       "destination": "/landing/security.html"
     },
     {
+      "source": "/recovery",
+      "destination": "/landing/recovery.html"
+    },
+    {
       "source": "/privacy",
       "destination": "/landing/privacy.html"
     },
@@ -132,6 +136,10 @@
     {
       "source": "/favicon.ico",
       "destination": "/landing/assets/favicon.ico"
+    },
+    {
+      "source": "/openapi.json",
+      "destination": "/landing/openapi.json"
     }
   ],
   "headers": [

@@ -43,7 +43,7 @@ Step three is the one most systems skip. A missing response, record, or receipt 
 
 SAAX treats the commitment as the primary artifact of the purchase. The commitment is created before execution begins and carries an ID that survives retries, session restarts, and process boundaries; recovery semantics for failure, timeout, partial completion, and dispute are part of the [commitment lifecycle](/spec), and the [current status page](/status) is explicit that recovery is operator-assisted and demonstrated at specific crash boundaries — not automatic.
 
-That last qualifier matters. A commitment record makes the unknown outcome *detectable* and gives recovery something durable to reconcile against. It does not by itself guarantee that a hung workflow resumes itself. Anyone evaluating SAAX for agent recovery should read the [current status page](/status): immediate x402/MPP payments are public beta on Base mainnet and non-custodial; escrow custody is testnet preview only; a Custody V3 candidate with governance work is under development and has not been independently reviewed.
+That last qualifier matters. A commitment record makes the unknown outcome *detectable* and gives recovery something durable to reconcile against. It does not by itself guarantee that a hung workflow resumes itself. Anyone evaluating SAAX for agent recovery should read the [current status page](/status): immediate x402 payments are public beta on Base mainnet and non-custodial; escrow custody is testnet preview only; a Custody V3 candidate with governance work is under development and has not been independently reviewed.
 
 ## Tradeoffs
 

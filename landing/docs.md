@@ -21,7 +21,7 @@ Read the [terms](/terms) and [current status](/status). No refund, safety, servi
 | Path | Availability | What it does |
 |---|---|---|
 | Signed profile → preflight → buyer acceptance | **Beta; publicly deployed** | Creates a verifiable commitment after configured buyer authorization; no financial side effect. |
-| Immediate x402/MPP payment | **Public beta; Base mainnet 8453** | Existing direct USDC payment flow, no mainnet escrow. |
+| Immediate x402 payment | **Public beta; Base mainnet 8453** | Existing direct USDC payment flow, no mainnet escrow. The MPP rail is implemented but not registered in production. |
 | Discovery → custody → signed release/refund | **Testnet preview; operator-run** | Actual Base Sepolia 84532 test-USDC execution with complete independent export verification for the defined self-test. No public financial API. |
 | Unreleased custody/governance candidates | **Under development / security review** | Not the deployed CustodyV1 implementation; Custody V3 has an owner-approved snapshot for independent review (review not completed — not an audit, not readiness, not deployment approval); no mainnet approval or completed independent audit. |
 
@@ -125,7 +125,7 @@ The older `create_commitment` tool is distinct from the new signed proposal/acce
 
 ## Existing immediate payments
 
-The existing live mainnet Router uses x402/MPP with Base USDC. The site HTTP route is `https://saax-protocol.com/route`; the settlement host `https://settlement.saax-protocol.com` is a separate existing integration surface. Read its current challenge before authorizing a payment. This website release does not change its payment code, fees, secrets or configuration.
+The existing live mainnet Router uses x402 with Base USDC. The MPP rail is implemented but not registered in production (x402-only mode). The site HTTP route is `https://saax-protocol.com/route`; the settlement host `https://settlement.saax-protocol.com` is a separate existing integration surface. Read its current challenge before authorizing a payment. This website release does not change its payment code, fees, secrets or configuration.
 
 A402 challenge supplies the amount, asset, network and payee. A separate wallet/payment authorization is required; Discovery acceptance does not pay. Confirm the actual successful settlement and its binding to your intended request. A transaction hash is not proof of success, fulfillment or refund rights. See [what a receipt proves](/blog/x402-receipts-what-a-receipt-proves).
 

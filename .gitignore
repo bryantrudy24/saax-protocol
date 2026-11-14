@@ -90,4 +90,9 @@ test-e2e-*.mjs
 .output/
 # The financial-lifecycle export verifier is REQUIRED committed tooling (the
 # root-level verify-* rule targets probe scripts; the verifier/ dir is not that).
-!/verifier/verify-financial-export.js
+!/verifier/verify-financial-export.js  
+# Stage F nonfinancial beta credentials - MUST NEVER BE COMMITTED  
+.stage-f-*  
+scripts/_token.txt  
+scripts/_precheck.txt  
+.env.stagef  

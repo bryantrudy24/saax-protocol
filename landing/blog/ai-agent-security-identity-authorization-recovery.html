@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure | SAAX</title>
+<meta name="description" content="Three pillars of AI agent security: cryptographic identity, scoped revocable authorization, and durable recovery when an agent dies mid-workflow.">
+<link rel="canonical" href="https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery">
+<meta property="og:title" content="AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure | SAAX">
+<meta property="og:description" content="Three pillars of AI agent security: cryptographic identity, scoped revocable authorization, and durable recovery when an agent dies mid-workflow.">
+<meta property="og:url" content="https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure | SAAX">
+<meta name="twitter:description" content="Three pillars of AI agent security: cryptographic identity, scoped revocable authorization, and durable recovery when an agent dies mid-workflow.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure",
+  "description": "Three pillars of AI agent security: cryptographic identity, scoped revocable authorization, and durable recovery when an agent dies mid-workflow.",
+  "url": "https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure", "item": "https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure</h1>
+<p class="post-date"><em>2026-11-14</em></p>
+<hr>
+<p>AI agents can now initiate payments, sign agreements, and take actions across systems. The security question is no longer &quot;can they act?&quot; It is &quot;how do we keep acting agents safe, accountable, and recoverable?&quot;</p>
+
+<p>This article covers the three pillars of agent security in 2026 — identity, authorization, and recovery — and the concrete controls that matter.</p>
+
+<h2 id="why-agent-security-is-a-distinct-problem">Why agent security is a distinct problem</h2>
+
+<p>Traditional security assumes a human at the keyboard. Agents break that assumption: they can ingest untrusted content at runtime, reason over enterprise data, and execute tool calls autonomously. In May 2026, NIST published a set of ten principles for AI agent identity and authorization, emphasizing delegated access, revocable permissions, and audit trails. The message: agent workflows need controls designed for machines, not just humans.</p>
+
+<p>The stakes are visible in the numbers. Shopify reported AI-driven traffic to its stores tripled year over year in Q2 2026, and analysts project hundreds of billions in agent-mediated US e-commerce by 2030 (Bain: $300–500B; Morgan Stanley: $190–385B). Each of those transactions is an authorization decision made by software.</p>
+
+<h2 id="pillar-1-identity-who-is-acting">Pillar 1 — Identity: who is acting?</h2>
+
+<p>An agent is not a person, but it still needs a verifiable identity: something that lets a counterparty confirm <em>which</em> agent (and <em>whose</em> authority) is making a claim.</p>
+
+<p>Minimum controls:</p>
+
+<ul>
+<li><strong>Cryptographic identity.</strong> The agent's proofs are signed with a key bound to a principal. In SAAX, proofs are EIP-712 signatures over a domain-separated message; the recovered signer is the verified principal. A literal identity string in a request header is not identity — it is self-attestation.</li>
+<li><strong>Distinct from the person.</strong> An agent identity is the <em>delegation</em>, not the owner. Agent A and Agent C can both act for the same principal without being interchangeable.</li>
+<li><strong>No identity spoofing.</strong> The counterparty must not be able to claim another agent's identity by passing a different field value. The system must derive identity from the verified signature, never from caller-supplied arguments.</li>
+</ul>
+
+<p>Relevant to the ecosystem: ERC-8004 is a draft standard for agent identity; NIST's ten principles cover agent identity and authorization; Microsoft Entra Agent ID and IBM's agentic identity work apply least-privilege patterns to agents.</p>
+
+<h2 id="pillar-2-authorization-what-may-it-do">Pillar 2 — Authorization: what may it do?</h2>
+
+<p>Identity answers &quot;who are you?&quot; Authorization answers &quot;what are you allowed to do?&quot; — and for agents, that must be <em>scoped, bounded, and revocable</em>.</p>
+
+<p>Practical rules:</p>
+
+<ul>
+<li><strong>Least privilege.</strong> Grant the minimum actions needed for the task, scoped to a specific commitment or resource. Never a global &quot;agent can do anything&quot; grant.</li>
+<li><strong>Explicit delegation.</strong> A replacement agent never inherits the original agent's permissions. It must be granted its own authorization, bound to its own identity, for the specific commitment.</li>
+<li><strong>Expiration.</strong> Grants carry <code>valid_from</code> / <code>valid_until</code>. An expired grant fails closed.</li>
+<li><strong>Revocation.</strong> A grant can be revoked at any time by an authorized principal, durably recorded so the revoked agent is rejected on the <em>next</em> protected operation — including a replayed operation. Revocation must not require deleting history; the record remains for audit.</li>
+<li><strong>Separation of roles.</strong> Buyer, seller, evaluator, and operator are distinct roles with distinct permissions. An evaluator cannot submit evidence as the seller; an agent cannot declare its own evidence verified.</li>
+</ul>
+
+<p>The SAAX implementation models this as a durable authorization registry: rows bind <code>(agent_id, principal, role, commitment scope, action allowlist, validity window)</code>, with an append-only authorization event log for grants and revocations. Every lifecycle transition re-checks the registry <em>inside</em> the transaction, so a concurrent revocation cannot be bypassed by a cached approval.</p>
+
+<h2 id="pillar-3-recovery-what-happens-when-the-agent-dies">Pillar 3 — Recovery: what happens when the agent dies?</h2>
+
+<p>The strongest identity and authorization controls still leave the hardest problem: the agent process dies mid-workflow, the network drops after a payment, or the original builder of the commitment disappears.</p>
+
+<p>Recovery requirements:</p>
+
+<ul>
+<li><strong>Durable state.</strong> The commitment record and its event history live in durable storage, not in agent memory. If the agent process vanishes, the record remains.</li>
+<li><strong>Reconciliation before mutation.</strong> A recovery operation reads the authoritative current state and reconciles pending operations before attempting any mutation. It never guesses from stale state.</li>
+<li><strong>Independent authority.</strong> Recovery does not grant authority. A replacement agent may inspect and continue only within its own authorization scope — an unauthorized or revoked replacement is rejected.</li>
+<li><strong>Idempotency.</strong> Retrying a request with the same idempotency key returns the original result instead of creating a second effect. This is what prevents a timeout+retry from double-charging or double-fulfilling.</li>
+<li><strong>Version enforcement.</strong> Writes carry an expected version; a stale write fails. Concurrent agents cannot silently overwrite each other.</li>
+</ul>
+
+<p>In a demonstrated production scenario (SAAX, nonfinancial beta), a buyer agent accepted a commitment, a seller agent began execution, the original buyer agent terminated, and a separately authorized replacement agent resumed the commitment through the public MCP interface: it retrieved the durable history, performed the permitted next action, and the event journal recorded the replacement's identity. Unauthorized and revoked replacements were rejected. The demo is described on the <a href="/recovery">recovery page</a>.</p>
+
+<h2 id="the-control-checklist">The control checklist</h2>
+
+<p>When evaluating any agentic commerce system, ask:</p>
+
+<ol><li>Is the agent's identity derived from a verified cryptographic signature, not a self-asserted header?</li></ol>
+<ol><li>Are permissions commitment-scoped, least-privilege, expiring, and revocable?</li></ol>
+<ol><li>Does revocation take effect immediately — even against a replayed request?</li></ol>
+<ol><li>Does the system persist commitment state and event history durably, independent of the agent process?</li></ol>
+<ol><li>Can an authorized replacement agent recover a workflow? Can an unauthorized one be rejected?</li></ol>
+<ol><li>Are duplicate requests (retries, replays) idempotent?</li></ol>
+<ol><li>Are grant, revocation, transition, and evidence actions all auditable with verified actor identity?</li></ol>
+
+<h2 id="where-the-controls-live">Where the controls live</h2>
+
+<ul>
+<li><strong>NIST</strong> ten principles for agent identity/authorization (May 2026).</li>
+<li><strong>ERC-8004</strong> draft standard for agent identity, and <strong>Microsoft Entra / IBM</strong> agent-identity patterns for enterprise deployments.</li>
+<li><strong>SAAX</strong> implements commitment-scoped authorization, durable event journaling, version-based concurrency, idempotent transitions, and independent-agent recovery as an open protocol: see the <a href="/spec">specification</a>, the <a href="/security">security page</a>, and the <a href="/blog/the-audit-trail-problem-in-agentic-commerce">audit trail article</a>.</li>
+</ul>
+
+<p>Agent security is not one control; it is a system. Identity establishes who acts, authorization bounds what they may do, and recovery keeps the workflow alive when the worker fails. Get all three right and an agent becomes something you can trust to act for you — get any one wrong and the failure mode is expensive.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

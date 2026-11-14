@@ -38,6 +38,13 @@
 // compatible with buyer-signature-only authorization).
 
 const { verifyTypedData } = require('viem');
+// Phase 5C: real cose/jws verification for authority proofs (same pluggable
+// verifier as evidence). Loaded lazily so the eip712-only path has no cost.
+let _coseJwsVerifier = null;
+function coseJwsVerifier() {
+  if (!_coseJwsVerifier) _coseJwsVerifier = require('./cose-jws-verifier.js');
+  return _coseJwsVerifier;
+}
 
 // ---- EIP-712 domain + types for authority proofs (eip712 scheme) ----------------
 const PROOF_TYPES = {
@@ -52,6 +59,31 @@ const PROOF_TYPES = {
 };
 const PROOF_DOMAIN_NAME = 'SAAX Authority';
 const PROOF_DOMAIN_VERSION = '1';
+
+// Phase 5C — chain-binding policy.
+// The PROOF domain is a chain-INDEPENDENT off-chain authorization by default
+// (no chainId — v1 compatibility). When a proof explicitly binds a chain
+// (scope.chainId, or a verificationMaterial chain-hint of the form
+// "chain:<chainId>"), the domain object is built WITH that chainId at
+// signature-verification time, so cross-chain replay of a chain-bound proof
+// is rejected. A binding that is present but cannot be parsed is a hard
+// failure (never silently treated as unbound).
+function proofDomainFor(proof) {
+  const base = { name: PROOF_DOMAIN_NAME, version: PROOF_DOMAIN_VERSION };
+  const scopeChain = proof && proof.scope && proof.scope.chainId;
+  const matMatch = proof && proof.verificationMaterial && String(proof.verificationMaterial).match(/^chain:(\d+)$/);
+  const matChain = matMatch ? matMatch[1] : null;
+  if (scopeChain != null && matChain != null && String(scopeChain) !== String(matChain)) {
+    throw new Error('PROOF_CHAIN_BINDING_CONFLICT: scope.chainId=' + scopeChain + ' conflicts with verificationMaterial chain=' + matChain);
+  }
+  const chainId = scopeChain != null ? scopeChain : matChain;
+  if (chainId == null || chainId === '') return base; // unbound -> v1 domain
+  const n = Number(chainId);
+  if (!Number.isInteger(n) || n < 1) {
+    throw new Error('PROOF_CHAIN_BINDING_INVALID: chainId must be a positive integer');
+  }
+  return Object.assign({}, base, { chainId: BigInt(n) });
+}
 
 const PROOF_TYPES_LIST = ['ap2-mandate', 'verifiable-intent', 'oauth-token', 'custom'];
 const SCHEMES = ['cose', 'jws', 'eip712'];
@@ -120,6 +152,12 @@ async function verifyProofSignature(proof, opts = {}) {
   const scheme = String(proof.verificationScheme).toLowerCase();
   if (scheme === 'eip712') {
     try {
+      let domain;
+      try {
+        domain = proofDomainFor(proof);
+      } catch (e) {
+        return { ok: false, reason: String(e.message || e).slice(0, 200) };
+      }
       const ok = await verifyTypedData({
         address: proof.issuer,
         types: PROOF_TYPES,
@@ -132,7 +170,7 @@ async function verifyProofSignature(proof, opts = {}) {
           validUntil: BigInt(Math.floor(Date.parse(proof.validUntil) / 1000)),
           scopeDigest: scopeDigest(proof.scope),
         },
-        domain: { name: PROOF_DOMAIN_NAME, version: PROOF_DOMAIN_VERSION },
+        domain,
         signature: proof.signature,
       });
       return { ok: !!ok, reason: ok ? null : 'eip712 signature does not recover to the claimed issuer' };
@@ -152,7 +190,21 @@ async function verifyProofSignature(proof, opts = {}) {
       return { ok: false, reason: 'verifier hook error: ' + String(e.message || e).slice(0, 160) };
     }
   }
-  return { ok: true, reason: null };
+  // Phase 5C: real cryptographic verification for cose/jws authority proofs.
+  // NEVER ok:true on structure alone.
+  try {
+    // Phase 5C: authority proofs bind via their own scope/authority validation
+    // (like the eip712 typed message), NOT an evidence payloadHash — so the
+    // evidence-specific payload binding is skipped; the signature is still
+    // cryptographically verified against the trusted issuer key (fail closed
+    // on untrusted key, unknown alg, tampered token).
+    const verifierOpts = { skipEvidenceBinding: true };
+    if (typeof opts.resolver === 'function') verifierOpts.resolver = opts.resolver;
+    const r = await coseJwsVerifier().verifyCoseJws(proof, verifierOpts);
+    return { ok: !!r.ok, reason: r.ok ? null : (r.reason || scheme + ' verification failed') };
+  } catch (e) {
+    return { ok: false, reason: scheme + ' verification error: ' + String(e.message || e).slice(0, 160) };
+  }
 }
 
 // ---- Scope check --------------------------------------------------------------------
@@ -252,6 +304,7 @@ module.exports = {
   scopeCovers,
   scopeDigest,
   verifyProofSignature,
+  proofDomainFor,
   attachAuthorityProof,
   PROOF_TYPES,
   PROOF_TYPES_LIST,

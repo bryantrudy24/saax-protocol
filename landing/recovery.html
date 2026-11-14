@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAAX — How Independent-Agent Recovery Works</title>
+<meta name="description" content="How SAAX preserves a commitment when the agent that created it disappears: independent-agent recovery verified in production (controlled nonfinancial beta), authorization, durability, and recovery boundaries.">
+<link rel="canonical" href="https://saax-protocol.com/recovery">
+<meta property="og:title" content="SAAX — How Independent-Agent Recovery Works">
+<meta property="og:description" content="How SAAX preserves a commitment when the agent that created it disappears: independent-agent recovery verified in production (controlled nonfinancial beta), authorization, durability, and recovery boundaries.">
+<meta property="og:url" content="https://saax-protocol.com/security">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://saax-protocol.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  h1,h2{margin-bottom:1rem;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.4rem;font-weight:750;margin-top:1.75rem;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){
+    .nav .links{gap:.8rem;}
+    article h1{font-size:1.6rem;}
+  }
+
+/* Preserve the established palette, typography and layout; constrain long proof data. */
+article{min-width:0;overflow-wrap:anywhere;}
+article table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:1rem 0;}
+article th,article td{padding:.6rem;border:1px solid var(--border);text-align:left;min-width:110px;}
+article th{background:#161b22;} article pre{overflow-x:auto;max-width:100%;}
+article pre code{white-space:pre;overflow-wrap:normal;}
+nav.nav{flex-wrap:wrap;} .nav .links{flex-wrap:wrap;}
+@media(max-width:640px){article h1{font-size:1.6rem;} .nav .links{gap:.8rem;}}
+
+</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="twitter:title" content="SAAX — How Independent-Agent Recovery Works">
+<meta name="twitter:description" content="How SAAX preserves a commitment when the agent that created it disappears: independent-agent recovery verified in production (controlled nonfinancial beta), authorization, durability, and recovery boundaries.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "SAAX — How Independent-Agent Recovery Works",
+  "description": "How SAAX preserves a commitment when the agent that created it disappears: independent-agent recovery verified in production (controlled nonfinancial beta), authorization, durability, and recovery boundaries.",
+  "url": "https://saax-protocol.com/recovery",
+  "mainEntityOfPage": "https://saax-protocol.com/recovery",
+  "datePublished": "2026-11-13",
+  "dateModified": "2026-11-14",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://saax-protocol.com/assets/logo-full-light.png"
+    }
+  },
+  "about": [
+    "Agentic commerce",
+    "Independent-agent recovery",
+    "Durable commitments",
+    "Authorization",
+    "Commitment lifecycle"
+  ],
+  "isAccessibleForFree": true
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1 id="saax-how-independent-agent-recovery-works">SAAX — How Independent-Agent Recovery Works</h1>
+<p><strong>Status:</strong> Verified in production (controlled nonfinancial beta) · 2026-11-13
+<strong>Scope:</strong> Nonfinancial commitment lifecycle only. This is NOT a payment, escrow, or custody flow.</p>
+<h2 id="the-core-principle">The core principle</h2>
+<p><strong>The commitment must outlive the worker.</strong></p>
+<p>An AI agent may create a commitment, begin executing it, and then disappear — process crash,
+session loss, network interruption, or replacement by a different agent. SAAX is designed so
+that the commitment's state, event history, and authorization records persist independently of
+any single agent's lifetime. A separately authorized replacement agent can discover the
+commitment, reconcile its state, and continue permitted operations — without inheriting the
+original agent's authority.</p>
+<h2 id="what-was-verified-stage-f-live-production-mcp">What was verified (Stage F, live production MCP)</h2>
+<p>A controlled nonfinancial demonstration was executed against the live SAAX MCP endpoint:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Actor</th>
+<th>Action</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Buyer agent</td>
+<td>Accepts a commitment with defined terms</td>
+<td>State <code>issued → accepted</code> (v2)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Seller agent</td>
+<td>Begins execution, submits fulfillment evidence</td>
+<td>State <code>accepted → executing → evidence_submitted</code> (v5)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Original buyer agent</td>
+<td>Terminates (simulated process failure)</td>
+<td>Commitment remains durable</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Replacement agent C</td>
+<td>Authenticates independently, proves its own authorization</td>
+<td>Granted recovery-scoped authority</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Replacement agent C</td>
+<td>Retrieves commitment history + recovery status</td>
+<td>Full event journal returned</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Replacement agent C</td>
+<td>Resumes the permitted action</td>
+<td>State advanced, version incremented, event recorded</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Unauthorized agent</td>
+<td>Attempts the same action</td>
+<td>Rejected (<code>AUTH_*</code> error)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Revoked agent</td>
+<td>Attempts a protected action after revocation</td>
+<td>Rejected</td>
+</tr>
+</tbody>
+</table>
+<p>Observed lifecycle states: <code>issued → accepted → executing → evidence_pending → evidence_submitted</code>.</p>
+<p><strong>This demonstration was nonfinancial.</strong> No payment, escrow release, refund, or settlement
+occurred. The controlled beta operates under restricted access; lifecycle capabilities are not
+authorized to move real money.</p>
+<h2 id="why-authority-does-not-transfer-automatically">Why authority does not transfer automatically</h2>
+<p>A replacement agent never inherits the original agent's permissions. Each agent identity is
+bound to its own durable authorization record (<code>agent_authorizations</code>), which is checked
+inside the same database transaction as the lifecycle transition. The replacement must:</p>
+<ol>
+<li>Present a valid cryptographic proof (EIP-712 signed action, recovered to a verified principal).</li>
+<li>Have its own commitment-scoped authorization row (granted by the operator/authority).</li>
+<li>Have an unexpired, unrevoked grant covering exactly the permitted action.</li>
+</ol>
+<p>If any of these fail, the transition is rejected with no state change and no event written.</p>
+<h2 id="what-survives-an-agent-failure">What survives an agent failure</h2>
+<ul>
+<li><strong>Commitment state</strong> — persisted in the authoritative database (versioned, optimistic concurrency).</li>
+<li><strong>Event journal</strong> — every authorized transition recorded with actor, role, authority ref, and version.</li>
+<li><strong>Authorization records</strong> — durable, commitment-scoped, expiring, revocable.</li>
+<li><strong>Evidence</strong> — integrity-bound, attributable to the original submitter.</li>
+<li><strong>Idempotency</strong> — a replayed request returns the original durable outcome, never a second effect.</li>
+</ul>
+<h2 id="what-is-not-guaranteed">What is NOT guaranteed</h2>
+<ul>
+<li>Recovery does <strong>not</strong> grant authority it did not independently verify.</li>
+<li>Revoked or expired authorizations fail immediately (fail-closed).</li>
+<li>The controlled beta is <strong>not</strong> independently security-audited — see <a href="/security">Security</a>.</li>
+<li>Recovery of <em>financial</em> operations (escrow release, refund, settlement) is out of scope for
+  the current beta and requires separate authorization.</li>
+</ul>
+<h2 id="try-it">Try it</h2>
+<ul>
+<li>Read the <a href="/spec">commitment lifecycle specification</a>.</li>
+<li>Connect via MCP: <code>https://www.saax-protocol.com/mcp</code> (Streamable HTTP).</li>
+<li>See the <a href="/docs">integration guide</a> for the 25-tool inventory and authorization requirements.</li>
+<li><a href="/security">Security status and independent-validation tracking</a>.</li>
+</ul>
+<p><em>SAAX Protocol — Durable Commitments for Agentic Commerce.</em></p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a><a href="/conformance">Conformance</a>
+  </div>
+  <p class="copy">c 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>
+<hr>
+<h2>SAAX Protocol — Controlled Beta Security Status</h2>
+<p><em>Last updated: 2026-11-13</em></p>
+<blockquote>
+<p><strong>Independent Security Validation — Pending Release Requirement</strong></p>
+</blockquote>
+<p>SAAX's commitment lifecycle, evidence verification, dispute governance, and authorized recovery capabilities are available for <strong>controlled nonfinancial beta evaluation</strong>.</p>
+<p>These capabilities have undergone <strong>internal implementation testing, cryptographic verification testing, protocol conformance testing, and integration testing</strong>. They have <strong>not</strong> undergone an independent third-party security assessment.</p>
+<ul>
+<li><strong>Independent third-party security validation is currently a Pending Release Requirement.</strong></li>
+<li>The controlled beta operates with restricted access and defined nonfinancial safeguards.</li>
+<li>Beta lifecycle functionality is <strong>not authorized</strong> to perform real-money escrow releases, automated refunds, or financial settlement.</li>
+<li>SAAX's existing immediate-payment functionality operates separately and is <strong>not</strong> represented as covered by an independent assessment of the new beta lifecycle capabilities.</li>
+<li>Security validation progress and any material changes to supported capabilities will be reflected in SAAX's published status information.</li>
+</ul>
+<p>Do not treat the absence of an external audit finding as certification. This software is experimental; use it only within the controlled beta scope defined above.</p>
+</body>
+</html>

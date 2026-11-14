@@ -10,7 +10,7 @@
       "jwk": {
         "kty": "OKP",
         "crv": "Ed25519",
-        "x": "BybNiscLdz_-yZiVwN-NxzKXcIB7wjluqEXK4Xq1TrE"
+        "x": "7zZYSK3-_QkMW03yRDL366pbeJYbtNyvl-jrRlRnZQI"
       },
       "controller": "https://example-provider.test/.well-known/did.json",
       "validFrom": "2026-01-01T00:00:00Z",

@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Building Reliable Autonomous Commerce | SAAX Protocol</title>
+<title>Building Reliable Agentic Commerce | SAAX Protocol</title>
 <meta name="description" content="Why persistent commitments matter when autonomous agents fail, restart, or disappear. A technical community introduction to SAAX Protocol and the open problems in agent-commerce reliability.">
 <link rel="canonical" href="https://saax-protocol.com/blog/building-reliable-autonomous-commerce">
-<meta property="og:title" content="Building Reliable Autonomous Commerce | SAAX Protocol">
+<meta property="og:title" content="Building Reliable Agentic Commerce | SAAX Protocol">
 <meta property="og:description" content="Why persistent commitments matter when autonomous agents fail, restart, or disappear. A technical community introduction to SAAX Protocol and the open problems in agent-commerce reliability.">
 <meta property="og:url" content="https://saax-protocol.com/blog/building-reliable-autonomous-commerce">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SAAX Protocol">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Building Reliable Autonomous Commerce | SAAX Protocol">
+<meta name="twitter:title" content="Building Reliable Agentic Commerce | SAAX Protocol">
 <meta name="twitter:description" content="Why persistent commitments matter when autonomous agents fail, restart, or disappear. A technical community introduction to SAAX Protocol and the open problems in agent-commerce reliability.">
 <style>
 :root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
@@ -62,7 +62,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Building Reliable Autonomous Commerce: Join the SAAX Protocol Discussion",
+  "headline": "Building Reliable Agentic Commerce: Join the SAAX Protocol Discussion",
   "description": "Why persistent commitments matter when autonomous agents fail, restart, or disappear. A technical community introduction to SAAX Protocol and the open problems in agent-commerce reliability.",
   "url": "https://saax-protocol.com/blog/building-reliable-autonomous-commerce",
   "mainEntityOfPage": "https://saax-protocol.com/blog/building-reliable-autonomous-commerce",
@@ -91,7 +91,7 @@
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
     { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": "building reliable autonomous commerce", "item": "https://saax-protocol.com/blog/building-reliable-autonomous-commerce" }
+    { "@type": "ListItem", "position": 3, "name": "building reliable agentic commerce", "item": "https://saax-protocol.com/blog/building-reliable-autonomous-commerce" }
   ]
 }
 </script>
@@ -108,13 +108,13 @@
 </nav></div></header>
 <main><div class="container">
 <article>
-<h1>Building Reliable Autonomous Commerce: Join the SAAX Protocol Discussion</h1>
+<h1>Building Reliable Agentic Commerce: Join the SAAX Protocol Discussion</h1>
 <p class="post-byline">SAAX Protocol | Published November 6, 2026 | Technical implementation note</p>
 <p class="post-date"><em>November 6, 2026</em></p>
 <hr>
 <p>An autonomous agent that pays for a service and then crashes mid-flow is not a novelty anymore; it is a Tuesday. The interesting question is what happens next: does the retry double-charge? Does anyone know what was actually agreed? Can a replacement process find the original commitment, or does the deal silently vanish?</p>
 <p>Reliability in agent commerce is not about smarter models. It is about durable records: a commitment that is signed before value moves, survives restarts, and can be verified later by any party — including a process that was not there when the deal was made.</p>
-<p>That is the problem SAAX Protocol works on. SAAX is a vendor-neutral commitment layer for autonomous commerce, focused on <strong>trust, durability, and recovery</strong>. This article explains why persistent commitments matter when agents fail, restart, or disappear — and invites you to a technical community to work on those questions together.</p>
+<p>That is the problem SAAX Protocol works on. SAAX is a vendor-neutral commitment layer for agentic commerce, focused on <strong>trust, durability, and recovery</strong>. This article explains why persistent commitments matter when agents fail, restart, or disappear — and invites you to a technical community to work on those questions together.</p>
 <h2>Why persistence matters when agents fail</h2>
 <p>Consider a simple purchase: an agent is authorized to buy a research report for 0.05 USDC on Base. It sends a payment authorization, receives a receipt, and then the process is killed before it can record what the payment was for.</p>
 <p>What does the next morning's reconciliation see?</p>
@@ -151,11 +151,11 @@
 <li><strong>Feedback and failure cases</strong> from developers actually wiring agents to payments.</li>
 <li><strong>Collaboration</strong> on protocol design, verification tooling, and the road to production custody (which remains a testnet-only preview today).</li>
 </ul>
-<p>The community is new and intentionally technical: no token talk, no price speculation — just engineering. If you are building agents that spend, wallets for autonomous commerce, or protocols that move value between machines, the discussion is relevant to you.</p>
+<p>The community is new and intentionally technical: no token talk, no price speculation — just engineering. If you are building agents that spend, wallets for agentic commerce, or protocols that move value between machines, the discussion is relevant to you.</p>
 <h2>Join the discussion</h2>
 <p>If this matches problems you are working on, join the SAAX Protocol Discord: <strong>https://discord.gg/HEbPR8NEZ</strong></p>
 <p>You will find the current <a href="/status">status</a> of what is deployed versus what is testnet preview, the <a href="/spec">specification</a>, the <a href="/docs">integration guide</a>, and the <a href="/blog/signed-discovery-to-testnet-finance">verification walkthrough</a>. The <a href="/status">current status page</a> is explicit about maturity: immediate payments are live on Base mainnet; escrow custody remains testnet-only — not production-ready.</p>
-<p>The open questions are the best part: what should a commitment record contain so that any process can reconstruct the deal after a crash? What belongs in the payment external-reference field? When is a receipt enough, and when is it not? Bring your failure cases; the goal is to make autonomous commerce survivable, not just automatable.</p>
+<p>The open questions are the best part: what should a commitment record contain so that any process can reconstruct the deal after a crash? What belongs in the payment external-reference field? When is a receipt enough, and when is it not? Bring your failure cases; the goal is to make agentic commerce survivable, not just automatable.</p>
 <p><em>AI disclosure: this article was written by an AI operator on behalf of SAAX Protocol, based on SAAX's publicly documented implementation and status. It is a community introduction, not an independent audit, a product endorsement, or a financial recommendation. Verify any protocol claim against the primary specification before relying on it.</em></p>
 <p>Next step: join the Discord (https://discord.gg/HEbPR8NEZ) and post one failure case you have hit — a retry that double-charged, a receipt that did not prove the deal, or a recovery path that had to guess. Those concrete cases are what the protocol work should be solving.</p>
 </article>

@@ -17,7 +17,7 @@
 - [Protocol overview](https://saax-protocol.com/protocol)
 - [Versioned specification](https://saax-protocol.com/spec)
 - [Conformance](https://saax-protocol.com/conformance)
-- [Security](https://saax-protocol.com/security)
+- [Security](https://saax-protocol.com/security)`n- [Independent-Agent Recovery](https://saax-protocol.com/recovery)
 - [Terms](https://saax-protocol.com/terms)
 - [Privacy](https://saax-protocol.com/privacy)
 - [Disputes](https://saax-protocol.com/disputes)
@@ -53,3 +53,12 @@
 - [Agentic Commerce Foundations: The Complete Guide](https://saax-protocol.com/blog/what-is-agentic-commerce)
 - [Why Payment Authorization ≠ Fulfillment in Agentic Commerce](https://saax-protocol.com/blog/why-payment-authorization-does-not-equal-fulfillment)
 - [x402 Receipts: What a Payment Receipt Actually Proves](https://saax-protocol.com/blog/x402-receipts-what-a-receipt-proves)
+
+## Blog
+
+- [How AI Agents Buy Things: A Plain-English Guide to Agentic Commerce](https://saax-protocol.com/blog/how-ai-agents-buy-things-guide-agentic-commerce)
+- [Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial](https://saax-protocol.com/blog/build-ai-shopping-agent-mcp-tutorial)
+- [From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows](https://saax-protocol.com/blog/agentic-commerce-order-flow)
+- [MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained](https://saax-protocol.com/blog/agentic-commerce-stack-explained)
+- [AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure](https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery)
+- [Agentic Commerce Market Size: What the 2026 Forecasts Actually Say](https://saax-protocol.com/blog/agentic-commerce-market-size-2026-forecasts)

@@ -123,3 +123,22 @@ What we commit to:
 Do not test against production accounts, live funds, or the mainnet settlement contracts beyond what is necessary to demonstrate an issue. Use small amounts. Reports are handled on a best-effort, non-guaranteed timeline; this is experimental software maintained by a small team.
 
 — SAAX Protocol
+---
+
+## SAAX Protocol — Controlled Beta Security Status
+
+*Last updated: 2026-11-13*
+
+> **Independent Security Validation — Pending Release Requirement**
+
+SAAX's commitment lifecycle, evidence verification, dispute governance, and authorized recovery capabilities are available for **controlled nonfinancial beta evaluation**.
+
+These capabilities have undergone **internal implementation testing, cryptographic verification testing, protocol conformance testing, and integration testing**. They have **not** undergone an independent third-party security assessment.
+
+- **Independent third-party security validation is currently a Pending Release Requirement.**
+- The controlled beta operates with restricted access and defined nonfinancial safeguards.
+- Beta lifecycle functionality is **not authorized** to perform real-money escrow releases, automated refunds, or financial settlement.
+- SAAX's existing immediate-payment functionality operates separately and is **not** represented as covered by an independent assessment of the new beta lifecycle capabilities.
+- Security validation progress and any material changes to supported capabilities will be reflected in SAAX's published status information.
+
+Do not treat the absence of an external audit finding as certification. This software is experimental; use it only within the controlled beta scope defined above.

@@ -21,12 +21,67 @@ import { createRequire } from 'node:module';
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
-import { createHash } from 'node:crypto';
+import { createHash, createSign } from 'node:crypto';
+import cbor from 'cbor';
 
 const require = createRequire(import.meta.url);
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..', '..');
 const VECTORS = join(HERE, '..', 'vectors');
+
+// ---- Conformance test-key fixture & real-signature builder (Phase 5 hardened
+// verification) ---------------------------------------------------------------
+// The Phase 5 COSE/JWS verifier performs REAL cryptographic verification and
+// fails closed on placeholder signatures. The conformance vectors therefore
+// carry real, deterministic test signatures produced by the fixture key below.
+// The fixture key is ONLY for conformance vectors - never for production.
+// issuer: 0x1ac42a57b843f0857bd8d102ded851703b157771 (derived from pubJwk)
+const FIXTURE_KEY = existsSync(join(HERE, 'test-cose-key.json'))
+  ? JSON.parse(readFileSync(join(HERE, 'test-cose-key.json'), 'utf8'))
+  : null;
+const FIXTURE_ISSUER = '0x1ac42a57b843f0857bd8d102ded851703b157771';
+
+async function signCoseFixture(payloadObj) {
+  // Build a real COSE_Sign1 (ES256, P-256) over the payload with the fixture key.
+  // The signed payload must be CBOR-encoded (the verifier CBOR-decodes it).
+  const payloadBstr = await cbor.encodeAsync(payloadObj);
+  const protectedMap = new Map([[1, -7]]); // alg = ES256
+  const protectedBstr = await cbor.encodeAsync(protectedMap);
+  const sigStructure = await cbor.encodeAsync(['Signature1', protectedBstr, Buffer.alloc(0), payloadBstr]);
+  const signer = createSign('sha256');
+  signer.update(sigStructure);
+  signer.end();
+  const privJwk = FIXTURE_KEY.privJwk;
+  const key = { key: privJwk, format: 'jwk' };
+  // ES256 needs RAW r||s (64 bytes) - node's DER output would fail the
+  // verifier's signature-length check, so request IEEE-P1363 encoding.
+  const sig = signer.sign({ key: privJwk, format: 'jwk', dsaEncoding: 'ieee-p1363' });
+  // COSE_Sign1 = [ protectedBstr, {}, payloadBstr, sigBstr ]
+  const sign1 = [protectedBstr, new Map(), payloadBstr, sig];
+  const b64 = (await cbor.encodeAsync(sign1)).toString('base64url');
+  return 'COSE_Sign1_' + b64;
+}
+
+function fixtureResolver(issuer) {
+  // Resolve the fixture key for the conformance test issuer; never fails open.
+  if (!FIXTURE_KEY) return null;
+  if (String(issuer).toLowerCase() !== FIXTURE_ISSUER.toLowerCase()) return null;
+  return { kty: 'EC', x: FIXTURE_KEY.pubJwk.x, y: FIXTURE_KEY.pubJwk.y, crv: 'P-256' };
+}
+
+// Vectors whose evidence/proof carries the legacy placeholder marker get their
+// signature replaced with a real fixture signature before evaluation.
+const COSE_PLACEHOLDER = 'COSE_Sign1-valid';
+async function materializeVectorSignatures(v) {
+  const input = v.input;
+  if (!input) return;
+  if (input.evidence && input.evidence.signature === COSE_PLACEHOLDER) {
+    input.evidence.signature = await signCoseFixture({ evidenceId: input.evidence.evidenceId, payloadHash: input.evidence.payloadHash });
+  }
+  if (input.proof && input.proof.signature === COSE_PLACEHOLDER) {
+    input.proof.signature = await signCoseFixture({ authorityProofId: input.proof.authorityProofId, scopeDigest: input.proof.scope && input.proof.scope.actions ? input.proof.scope.actions.join(',') : undefined });
+  }
+}
 
 // Implementation contract: which function each category invokes and how the
 // vector's `input` is unpacked into the call.
@@ -163,11 +218,11 @@ async function loadImpl() {
     },
     evaluateCriterion: async (i) => {
       const { evidence, criterion, commitmentId } = i;
-      return ev.evaluateCriterion(criterion, [evidence], {});
+      return ev.evaluateCriterion(criterion, [evidence], { resolver: fixtureResolver });
     },
     validateAuthorityProof: async (i) => {
       const { proof } = i;
-      const r = await au.validateAuthorityProof(proof, null, {});
+      const r = await au.validateAuthorityProof(proof, null, { resolver: fixtureResolver });
       return { valid: r.ok };
     },
     resolveSettlementVector: (i) => {
@@ -278,6 +333,7 @@ const vectors = loadVectors();
 let passed = 0, failed = 0;
 const failures = [];
 for (const v of vectors) {
+  await materializeVectorSignatures(v);
   const r = await runVector(impl, v);
   if (r.pass) { passed++; console.log(`[PASS] ${v.id} — ${v.description || v.category}`); }
   else { failed++; failures.push(v); console.log(`[FAIL] ${v.id} — ${r.detail}`); }

@@ -6,17 +6,12 @@ const { privateKeyToAccount } = require('viem/accounts');
 const fs = require('fs');
 const path = require('path');
 const CHAIN_ID = 84532;
-// The deployed custody contract's verdict scheme (SAAXEscrowCustodyV1).
-const VERDICT_SCHEME = 'escrow-custody-v1';
-const VERDICT_DOMAIN_NAME = 'SAAX Escrow Custody V1';
-const VERDICT_DOMAIN_VERSION = '1';
-const CUSTODY = (process.env.SAAX_CUSTODY_ADDRESS || '0x5a5472d751839cd4968cbf1b136baf862279ff5d').trim();
-const VERDICT_DOMAIN = { name: VERDICT_DOMAIN_NAME, version: VERDICT_DOMAIN_VERSION, chainId: CHAIN_ID, verifyingContract: CUSTODY };
-const VERDICT_TYPES = { EscrowVerdict: [
+const VERDICT_DOMAIN = { name: 'SAAX Evaluator Verdict', version: '1', chainId: CHAIN_ID, verifyingContract: '0x0000000000000000000000000000000000000000' };
+const VERDICT_TYPES = { EvaluatorVerdict: [
   { name: 'commitmentId', type: 'bytes32' },
   { name: 'commitmentDigest', type: 'bytes32' },
+  { name: 'escrowRef', type: 'string' },
   { name: 'action', type: 'string' },
-  { name: 'nonce', type: 'uint256' },
   { name: 'issuedAt', type: 'uint256' },
 ] };
 
@@ -68,9 +63,8 @@ async function main() {
   j.eventCount = j.events.length;
 
   const escrowRef = 'escrow-v3-' + exp.agreement.commitmentId;
-  const nonce = String(Math.floor(Date.now() / 1000));
   exp.escrow = {
-    commitmentId: exp.agreement.commitmentId,
+    commitmentId: exp.commitmentId,
     state: 'released',
     amount: '50000',
     asset: 'USDC',
@@ -78,19 +72,17 @@ async function main() {
     seller: exp.agreement.sellerAgentId,
     evaluator: exp.agreement.evaluator,
     escrowRef,
-    custody: CUSTODY,
-    verdictScheme: VERDICT_SCHEME,
     txRefFunding: { txHash: exp.anchor.txHash, rail: 'chain' },
     txRefRelease: { txHash: exp.anchor.txHash, rail: 'chain' },
     releaseVerdict: { satisfied: true, evidenceRefs: ['work_output'], verdict: null },
   };
   const issuedAt = Math.floor(Date.now() / 1000);
-  const verdict = { commitmentId: digestBytes32, commitmentDigest: digestBytes32, action: 'release', nonce, issuedAt: String(issuedAt) };
+  const verdict = { commitmentId: digestBytes32, commitmentDigest: digestBytes32, escrowRef, action: 'release', issuedAt: String(issuedAt) };
   const vsig = await evaluator.signTypedData({
     domain: { ...VERDICT_DOMAIN, chainId: BigInt(CHAIN_ID) },
     types: VERDICT_TYPES,
-    primaryType: 'EscrowVerdict',
-    message: { commitmentId: digestBytes32, commitmentDigest: digestBytes32, action: 'release', nonce: BigInt(nonce), issuedAt: BigInt(issuedAt) },
+    primaryType: 'EvaluatorVerdict',
+    message: { commitmentId: digestBytes32, commitmentDigest: digestBytes32, escrowRef, action: 'release', issuedAt: BigInt(issuedAt) },
   });
   const vhex = String(vsig).replace(/^0x/, '');
   const verdictSig = { v: parseInt(vhex.slice(128, 130), 16), r: '0x' + vhex.slice(0, 64), s: '0x' + vhex.slice(64, 128) };
@@ -100,7 +92,6 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(exp, null, 2));
   console.log('full-lifecycle fixture written: ' + outPath);
   console.log('  escrow.state=' + exp.escrow.state + ' escrowRef=' + escrowRef);
-  console.log('  escrow.custody=' + CUSTODY + ' verdictScheme=' + VERDICT_SCHEME + ' nonce=' + nonce);
   console.log('  agreement.evaluator=' + exp.agreement.evaluator);
   console.log('  verdict.action=' + exp.escrow.releaseVerdict.verdict.action);
 }

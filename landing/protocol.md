@@ -110,7 +110,7 @@ Any conforming node would be able to participate in the Network regardless of it
 
 The SAAX Router is one implementation of the Protocol — an optional commercial service for discovering, ranking and matching providers and connecting commitments to supported settlement rails.
 
-The Router currently settles on Base mainnet via USDC through x402 or MPP. That is the Router's current settlement profile — a choice, not a requirement of the Protocol. The Router is the practical way to use SAAX today: [integration guide](/docs), [settlement endpoint](https://settlement.saax-protocol.com), [MCP server](https://www.saax-protocol.com/mcp).
+The Router currently settles on Base mainnet via USDC through x402. That is the Router's current settlement profile — a choice, not a requirement of the Protocol. The Router is the practical way to use SAAX today: [integration guide](/docs), [settlement endpoint](https://settlement.saax-protocol.com), [MCP server](https://www.saax-protocol.com/mcp).
 
 Other implementations are free to build on the Protocol. The Protocol does not depend on the Router; the Router depends on the Protocol.
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained | SAAX</title>
+<meta name="description" content="What each agentic commerce protocol does, what it does not do, and how MCP, x402, AP2, ACP, and EAS fit together into one stack.">
+<link rel="canonical" href="https://saax-protocol.com/blog/agentic-commerce-stack-explained">
+<meta property="og:title" content="MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained | SAAX">
+<meta property="og:description" content="What each agentic commerce protocol does, what it does not do, and how MCP, x402, AP2, ACP, and EAS fit together into one stack.">
+<meta property="og:url" content="https://saax-protocol.com/blog/agentic-commerce-stack-explained">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained | SAAX">
+<meta name="twitter:description" content="What each agentic commerce protocol does, what it does not do, and how MCP, x402, AP2, ACP, and EAS fit together into one stack.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained",
+  "description": "What each agentic commerce protocol does, what it does not do, and how MCP, x402, AP2, ACP, and EAS fit together into one stack.",
+  "url": "https://saax-protocol.com/blog/agentic-commerce-stack-explained",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/agentic-commerce-stack-explained",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained", "item": "https://saax-protocol.com/blog/agentic-commerce-stack-explained" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained</h1>
+<p class="post-date"><em>2026-11-14</em></p>
+<hr>
+<p>When people talk about &quot;agentic commerce infrastructure,&quot; they are usually talking about five different protocols that do five different jobs. This article maps the stack: what each protocol is, what it settles, what it does not, and how they fit together.</p>
+
+<h2 id="the-five-protocols-at-a-glance">The five protocols at a glance</h2>
+
+<table>
+<thead><tr><th>Protocol</th><th>Maintainer</th><th>Layer</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><strong>MCP</strong></td><td>Anthropic (open standard)</td><td>Tool access</td><td>Lets AI models call tools and read data through a standard interface</td></tr>
+<tr><td><strong>x402</strong></td><td>Coinbase (open standard)</td><td>Payment execution</td><td>Makes payment a native HTTP operation for agents</td></tr>
+<tr><td><strong>AP2</strong></td><td>Google → FIDO Alliance</td><td>Authorization</td><td>Signed mandates proving a user allowed an agent to pay</td></tr>
+<tr><td><strong>ACP</strong></td><td>OpenAI + Stripe + Meta</td><td>Checkout</td><td>Defines how an agent and a business complete a purchase</td></tr>
+<tr><td><strong>EAS</strong></td><td>Ethereum Attestation Service</td><td>Verifiable records</td><td>On-chain or off-chain attestations that something is true</td></tr>
+</tbody></table>
+
+<p>Each one answers a different question. Knowing which question each answers is how you avoid building the wrong layer.</p>
+
+<h2 id="mcp-the-tool-access-layer">MCP — the tool access layer</h2>
+
+<p>The Model Context Protocol, introduced by Anthropic in November 2024, standardizes how AI systems connect to external tools and data. It is often called &quot;the USB-C for AI applications&quot;: build a tool server once, and any MCP-capable client (Claude, ChatGPT, VS Code, Cursor) can use it.</p>
+
+<p>MCP answers: <strong>&quot;How does an agent call a tool?&quot;</strong></p>
+
+<p>What MCP does not answer: <strong>&quot;What happens after the tool call creates a business obligation?&quot;</strong> MCP carries tool requests and responses; it does not define commitments, payments, or dispute resolution. An MCP server can expose a checkout tool, but the protocol itself does not guarantee the checkout is durable.</p>
+
+<h2 id="x402-the-payment-execution-layer">x402 — the payment execution layer</h2>
+
+<p>Coinbase's x402 (announced May 2025) makes payment a native HTTP exchange. A server responds to a request with HTTP 402 and payment terms; the agent pays in USDC on Base; the server verifies and releases the resource. By mid-2026, x402 had processed 165 million agent transactions, and a foundation including Visa, Mastercard, and Stripe supports it.</p>
+
+<p>x402 answers: <strong>&quot;How does an agent pay for something?&quot;</strong></p>
+
+<p>What x402 does not answer: <strong>&quot;Did the deliverable match the agreement?&quot;</strong> Payment moves money; the receipt proves money moved. Whether the resource delivered was the right one, in the right condition, is outside the protocol's scope.</p>
+
+<h2 id="ap2-the-authorization-layer">AP2 — the authorization layer</h2>
+
+<p>Google's Agent Payments Protocol (launched September 2025 with 60+ partners, including Mastercard, PayPal, American Express, and Coinbase) defines Verifiable Credentials — Intent Mandates, Cart Mandates, and Payment Mandates — that cryptographically capture user authorization. In 2026, Google donated AP2 to the FIDO Alliance to steward it.</p>
+
+<p>AP2 answers: <strong>&quot;Did the user allow this agent to spend this amount, on this, at this time?&quot;</strong></p>
+
+<p>What AP2 does not answer: <strong>&quot;What were the full commercial terms, and what counts as fulfillment?&quot;</strong> A mandate is an authorization artifact, not a complete agreement record. It expires, it is scoped, and it is silent on what happens after the payment if the delivery is wrong.</p>
+
+<h2 id="acp-the-checkout-layer">ACP — the checkout layer</h2>
+
+<p>The Agentic Commerce Protocol, co-developed by OpenAI, Stripe, and Meta (announced September 2025), defines how an agent and a business interact to complete a purchase. It powers experiences like Instant Checkout in ChatGPT (Stripe).</p>
+
+<p>ACP answers: <strong>&quot;How does an agent complete a checkout with a merchant?&quot;</strong></p>
+
+<p>What ACP does not answer: <strong>&quot;What happens after checkout when the agent process dies or the fulfillment fails?&quot;</strong> ACP defines the flow to buy; the durable record of what was agreed — and what to do about it later — is left to the merchant's systems and any commitment layer built on top.</p>
+
+<h2 id="eas-the-verifiable-record-layer">EAS — the verifiable-record layer</h2>
+
+<p>The Ethereum Attestation Service is an open protocol for creating attestations — signed statements about anything — on-chain or off-chain (attest.org). EAS lets any party register a schema and issue attestations that others can verify independently.</p>
+
+<p>EAS answers: <strong>&quot;How do we make a verifiable claim that survives the systems that created it?&quot;</strong></p>
+
+<p>EAS does not by itself define commerce semantics: an attestation proves someone signed a statement, not that the statement is true or that it fulfills a contract. Used well, it anchors evidence (delivery notes, verification results, commitment hashes) so the record can be checked long after the original systems are gone.</p>
+
+<h2 id="how-they-fit-together">How they fit together</h2>
+
+<p>A complete agentic purchase uses them in sequence:</p>
+
+<pre><code>MCP  →  agent discovers and calls tools
+AP2  →  user authorization, captured as signed mandates
+x402 →  payment moves (USDC over HTTP)
+ACP  →  checkout flow between agent and merchant
+EAS  →  optional anchoring of the commitment + evidence records</code></pre>
+
+<p>None of these five defines the <strong>commitment layer</strong> — the structured record of the parties, terms, acceptance criteria, evidence requirements, and recovery policy that exists before the transaction and survives it.</p>
+
+<p>That is the layer the commitment lifecycle fills: a versioned state machine with durable event history, identity-bound authorization, evidence verification, and authorized recovery. It uses the other protocols where they are strongest — payment execution via x402, authorization evidence via AP2-style mandates, discoverability via MCP — and adds the durable record none of them specifies.</p>
+
+<p>The SAAX implementation of this layer is documented in the <a href="/spec">specification</a>, with integration guidance in <a href="/blog/agentic-commerce-rails">What Exists and What's Missing</a> and the <a href="/blog/agentic-commerce-protocols-verified-map-2026">Verified Map of Protocols</a>.</p>
+
+<h2 id="choosing-your-stack">Choosing your stack</h2>
+
+<ul>
+<li>If you are a merchant: make your catalog agent-discoverable (structured feeds, ACP/UCP profiles), support machine-readable payment terms (x402), and decide your mandate rules (AP2-style).</li>
+<li>If you are a platform: choose MCP for tool exposure, a payment rail for settlement, and a commitment layer for the durable record.</li>
+<li>If you are a buyer of agent services: demand an architecture that records what was agreed before money moves, and that can recover when the agent fails.</li>
+</ul>
+
+<p>The stack is young but the pattern is clear: execution, authorization, and checkout are all being standardized. The durable agreement record is the remaining gap — and it is the layer that turns a convenient demo into something you can rely on.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

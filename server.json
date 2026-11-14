@@ -1,17 +1,18 @@
 {
-    "$schema":  "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-    "name":  "io.github.bryantrudy24/saax-protocol",
-    "description":  "Governed commitment lifecycle and settlement layer for agent-to-agent commerce.",
-    "title":  "SAAX Protocol",
-    "repository":  {
-                       "url":  "https://github.com/bryantrudy24/saax-protocol",
-                       "source":  "github"
-                   },
-    "version":  "1.0.3",
-    "remotes":  [
-                    {
-                        "type":  "streamable-http",
-                        "url":  "https://saax-protocol.com/mcp"
-                    }
-                ]
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bryantrudy24/saax-protocol",
+  "version": "1.0.3",
+  "description": "Governed commitment lifecycle and rail-agnostic settlement layer for agent-to-agent commerce.",
+  "title": "SAAX Protocol",
+  "websiteUrl": "",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://ax-router.vercel.app/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/bryantrudy24/saax-protocol",
+    "source": "github"
+  }
 }

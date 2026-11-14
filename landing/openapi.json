@@ -3,13 +3,18 @@
   "info": {
     "title": "SAAX Router",
     "version": "1.0.3",
-    "x-guidance": "Use POST /route to request a capability. Returns a ranked supplier list with pricing. SAAX is a commitment layer: immediate x402/MPP payments settle on Base mainnet and return a commitment ID; an integrated escrow flow is tested on Base Sepolia only and is not available on mainnet; a Custody V3 candidate is tested only on a local EVM (chain 31337) and is not deployed. See /status for current status. Use GET /receipt to resolve a settled transaction back to a commitment ID.",
+    "x-guidance": "Use POST /route to request a capability. Returns a ranked supplier list with pricing. SAAX is a commitment layer: immediate x402 payments settle on Base mainnet via USDC and return a commitment ID; the MPP rail is implemented but not registered in production. An integrated escrow flow is tested on Base Sepolia only and is not available on mainnet; a Custody V3 candidate is tested only on a local EVM (chain 31337) and is not deployed. See /status for current status. Use GET /receipt to resolve a settled transaction back to a commitment ID.",
     "contact": {
       "name": "SAAX Protocol",
       "url": "https://saax-protocol.com",
       "email": "reachsaaxprotocol@gmail.com"
     }
   },
+  "servers": [
+    {
+      "url": "https://saax-protocol.com"
+    }
+  ],
   "paths": {
     "/route": {
       "post": {

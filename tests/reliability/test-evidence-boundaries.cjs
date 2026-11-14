@@ -11,7 +11,7 @@
 //   E2  Seller submits invalid evidence (bad hash) -> rejected at validation.
 //   E3  Evidence references ANOTHER commitment -> rejected at binding.
 //   E4  Structurally valid but cryptographically UNVERIFIED COSE/JWS evidence
-//      -> currently PASSES structural-only verification (F-8: GAP, documented).
+//      -> REJECTED fail-closed (Phase 5B real COSE/JWS crypto verification).
 //   E5  Valid content hash WITHOUT delivery proof -> not satisfied by logic.
 //   E6  Buyer disputes incomplete fulfillment -> dispute path unavailable
 //      (recovery.js NOT_IMPLEMENTED; documented boundary, not a pass).
@@ -89,11 +89,22 @@ function makeEvidence(over = {}) {
       signature: 'COSE_Sign1:0x' + 'aa'.repeat(65), // any long payload passes structural check
     });
     const v = await evidenceMod.validateEvidence(ev, COMMITMENT);
-    // F-8: COSE/JWS is structural-only today. A forged envelope with a valid tag
-    // passes. Honest documentation: this IS a gap in cryptographic evidence
-    // authentication for those schemes (eip712 is real).
-    check('E4 COSE structural envelope passes (F-8 GAP DOCUMENTED)', v.ok === true, (v && v.stage) || 'ok');
-    if (v.ok) console.log('      -> NOTE F-8: cose/jws verification is structural-only (no crypto); eip712 is real. Documented gap, not claimed as verified.');
+    // Phase 5B: the pluggable verifier performs REAL COSE/JWS cryptographic
+    // verification (jose + cbor + node:crypto). A forged envelope with a valid
+    // tag but no valid signature MUST be rejected — never ok on structure alone.
+    check('E4 forged COSE envelope -> rejected fail-closed (crypto enforced)', v.ok === false, (v && v.stage || 'ok') + ': ' + (v && v.reason || ''));
+    check('E4b rejection occurs at the signature stage (structure passed first)', v.stage === 'signature', (v && v.stage) || 'none');
+    console.log('      -> NOTE F-8 RESOLVED: cose/jws verification is cryptographically enforced; structural-only envelopes are rejected.');
+
+    // E4c: a properly tagged envelope (COSE_Sign1_ with trailing underscore) passes
+    // the structural gate and MUST be rejected by the REAL cryptographic verifier
+    // (jose/cbor path) — proving crypto enforcement, not just the tag gate.
+    const ev2 = makeEvidence({
+      verificationScheme: 'cose',
+      signature: 'COSE_Sign1_0x' + 'aa'.repeat(96), // valid tag, garbage signature material
+    });
+    const v2 = await evidenceMod.validateEvidence(ev2, COMMITMENT);
+    check('E4c valid-tag forged COSE -> rejected at crypto verification stage', v2.ok === false && v2.stage === 'signature', (v2 && v2.stage || 'ok') + ': ' + (v2 && v2.reason || ''));
   }
 
   // E5: valid content hash, no delivery proof (logic unmet). The DSL compares
@@ -155,7 +166,7 @@ function makeEvidence(over = {}) {
 
   console.log('\n===== PHASE-5 EVIDENCE BOUNDARY SUMMARY =====');
   console.log('passed=' + passes + ' failed=' + failures);
-  console.log('NOTE: E4 and E9b are DOCUMENTED GAPS (structural-only crypto; in-process outcomes) — the checks assert the honest current behavior and the report records the limitation.');
+  console.log('NOTE: E4 RESOLVED (real COSE/JWS crypto); E9b remains a documented gap (in-process outcomes).');
   process.exit(failures > 0 ? 1 : 0);
 })().catch(e => {
   console.error('HARNESS ERROR: ' + (e && e.stack || e));

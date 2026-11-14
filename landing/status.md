@@ -19,7 +19,7 @@ SAAX is a commitment layer for autonomous commerce. The public discovery and com
 | Component | Status | Demonstrated scope |
 |---|---|---|
 | Protocol specification | **Public specification — versioned** | Protocol v1.0.3; Discovery profile 1.0.0 and acceptance-v1 are separate formats. Publication is not standards-body adoption. |
-| Routing and immediate payments | **Public beta** | Existing x402/MPP USDC payments on Base mainnet 8453; direct payments, no mainnet custody. |
+| Routing and immediate payments | **Public beta** | Existing x402 USDC payments on Base mainnet 8453; direct payments, no mainnet custody. The MPP rail is implemented but not registered in production. |
 | Signed discovery, preflight and buyer acceptance | **Beta** | Public signed profile, free nonbinding preflight, configured-buyer acceptance creating one authenticated commitment. No payment or service execution is triggered. |
 | Verification and receipts | **Beta** | Actual JWS crypto for Discovery records; verification is format-specific. General COSE/JWS evidence hooks remain distinct. `GET /receipt?txHash=...` resolves a settled transaction hash to its commitment; verified live on 2026-11-06. |
 | Custody / financial integration | **Testnet preview — not approved for mainnet funds** | Separately signed Base Sepolia profile, authenticated agreement/evaluator, actual test-USDC funding and signed release/refund, portable exports and public-chain verification. Financial execution is operator-run, not a public API. |

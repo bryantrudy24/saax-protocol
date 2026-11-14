@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows | SAAX</title>
+<meta name="description" content="The ten stages of an agentic commerce order, from intent to fulfillment to recovery, and where each stage can break.">
+<link rel="canonical" href="https://saax-protocol.com/blog/agentic-commerce-order-flow">
+<meta property="og:title" content="From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows | SAAX">
+<meta property="og:description" content="The ten stages of an agentic commerce order, from intent to fulfillment to recovery, and where each stage can break.">
+<meta property="og:url" content="https://saax-protocol.com/blog/agentic-commerce-order-flow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows | SAAX">
+<meta name="twitter:description" content="The ten stages of an agentic commerce order, from intent to fulfillment to recovery, and where each stage can break.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows",
+  "description": "The ten stages of an agentic commerce order, from intent to fulfillment to recovery, and where each stage can break.",
+  "url": "https://saax-protocol.com/blog/agentic-commerce-order-flow",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/agentic-commerce-order-flow",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "author": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SAAX Protocol",
+    "url": "https://saax-protocol.com"
+  },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows", "item": "https://saax-protocol.com/blog/agentic-commerce-order-flow" }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows</h1>
+<p class="post-date"><em>2026-11-14</em></p>
+<hr>
+<p>An agentic purchase is more than &quot;the agent clicks buy.&quot; It is a sequence of distinct steps, each with its own trust boundary. This article walks the full journey — intent, discovery, selection, authorization, payment, commitment, fulfillment, evidence, recovery — and shows where the process can break.</p>
+
+<h2 id="the-ten-stages-of-an-agent-order">The ten stages of an agent order</h2>
+
+<h3 id="1-intent">1. Intent</h3>
+
+<p>The user tells the agent what they want: &quot;find a mechanical keyboard under $100, backlit, with hot-swap switches, delivered Friday.&quot; The agent now holds constraints, not a purchase order. Intent must be captured in a form the agent can act on without inventing terms.</p>
+
+<h3 id="2-discovery">2. Discovery</h3>
+
+<p>The agent searches machine-readable catalogs. Retailers expose products through structured feeds: JSON-LD product schemas, ACP product feeds, UCP capability profiles, or plain APIs. An agent finds what is available, in stock, and shippable.</p>
+
+<p>Discovery is where &quot;the agent can't find your store&quot; happens. If your catalog is not structured for machine reading, agents never see it.</p>
+
+<h3 id="3-selection">3. Selection</h3>
+
+<p>The agent compares candidates against the user's constraints. This is reasoning work: weighing price, availability, delivery, and trade-offs. The agent may present options for human confirmation, or — with standing authority — decide.</p>
+
+<h3 id="4-authorization">4. Authorization</h3>
+
+<p>Before any money moves, the agent must prove it is allowed to spend. This is the layer Google's AP2 addresses with signed mandates (Intent, Cart, Payment), and the layer ACP defines for checkout. A mandate cryptographically limits what the agent may do: amount, payee, items, and expiry.</p>
+
+<p><strong>Authorization is not the same as agreement.</strong> A mandate proves the user permitted a payment. It does not record the full terms of what the agent committed to buy and what counts as delivery.</p>
+
+<h3 id="5-payment">5. Payment</h3>
+
+<p>The agent pays using a machine-native rail. Coinbase's x402 makes payment an HTTP operation: the server responds 402 with payment terms, the agent pays in USDC on Base, and the resource is released. By 2026, x402 had processed over 165 million agent transactions.</p>
+
+<p>Payment is fast and final. That is exactly why the surrounding record matters: once money moves, the only thing left to argue about is whether the deliverable matched the agreement.</p>
+
+<h3 id="6-commitment">6. Commitment</h3>
+
+<p>A commitment is the durable record created before or at the moment of the transaction: parties, terms, authorization reference, acceptance criteria, evidence requirements, and recovery policy. It is the artifact both sides can point to after the fact.</p>
+
+<p>In SAAX's model, a commitment passes through a versioned lifecycle — <code>issued</code>, <code>accepted</code>, <code>executing</code>, <code>evidence_pending</code>, <code>evidence_submitted</code>, and terminal states. Each transition is recorded in an append-only event journal with the verified actor. The canonical lifecycle is defined in the <a href="/spec">specification</a>.</p>
+
+<h3 id="7-fulfillment">7. Fulfillment</h3>
+
+<p>The merchant delivers. For digital goods, delivery is the API response or file transfer. For physical goods, fulfillment is the shipment and its tracking events. Fulfillment produces evidence: a delivery note, a hash of the delivered artifact, a signed attestation.</p>
+
+<h3 id="8-evidence-verification">8. Evidence verification</h3>
+
+<p>The buyer's agent checks the evidence against the acceptance criteria. Did the deliverable match the terms? Was it the right item, right quantity, right quality? This is the least-standardized step — and the one where most disputes begin.</p>
+
+<p>A payment receipt proves money moved. It does not prove the deliverable matched. That gap is why evidence verification is a distinct step with its own authority: the submitter of evidence is rarely the same party as the verifier.</p>
+
+<h3 id="9-recovery">9. Recovery</h3>
+
+<p>The agent process dies. The network drops. The payment outcome is uncertain. The original buyer agent disappears mid-workflow.</p>
+
+<p>If the only record of the transaction lived inside the agent's memory, everything is lost. Recovery means an independently authorized replacement agent can retrieve the durable commitment, inspect its history, and continue only the permitted next action — without inheriting the original agent's full authority.</p>
+
+<p>This is the scenario SAAX demonstrated in production: a buyer agent accepted, a seller agent began execution, the original agent terminated, and a replacement agent with its own authorization resumed the commitment through the public MCP interface. The event journal recorded each transition with the acting principal. The demonstration was nonfinancial and is documented on the <a href="/recovery">recovery page</a>.</p>
+
+<h3 id="10-completion-and-dispute">10. Completion and dispute</h3>
+
+<p>If everything matches, the commitment reaches a terminal state (<code>fulfilled</code> or <code>finalized</code>). If not, the dispute path begins: an authorized party raises a dispute, an evaluator reviews the evidence, and the lifecycle resolves to a governed outcome — without automatically triggering money movement.</p>
+
+<h2 id="where-the-flow-breaks">Where the flow breaks</h2>
+
+<table>
+<thead><tr><th>Stage</th><th>Typical failure</th><th>Consequence</th></tr></thead>
+<tbody>
+<tr><td>Discovery</td><td>Catalog not machine-readable</td><td>Agent never finds the product</td></tr>
+<tr><td>Authorization</td><td>Mandate too broad or expired</td><td>Agent exceeds user intent</td></tr>
+<tr><td>Payment</td><td>Timeout after send</td><td>Outcome unknown; double-charge risk on retry</td></tr>
+<tr><td>Commitment</td><td>No durable record</td><td>Both parties disagree on terms after the fact</td></tr>
+<tr><td>Fulfillment</td><td>Deliverable not matching terms</td><td>Dispute with no evidence baseline</td></tr>
+<tr><td>Recovery</td><td>No replacement authority</td><td>Workflow permanently stuck</td></tr>
+</tbody></table>
+
+<p>The two most expensive failures are the ones at the edges: <strong>payment without a durable commitment</strong> (money moved, but the agreement is a memory) and <strong>agent failure without recovery</strong> (agreement exists, but no one can continue it).</p>
+
+<h2 id="the-architectural-takeaway">The architectural takeaway</h2>
+
+<p>Every layer of agentic commerce — discovery, authorization, payment, checkout — exists to make one transaction happen. The layers that make it <em>durable</em> are the ones that survived after the transaction: the commitment record, the evidence trail, and the recovery path.</p>
+
+<p>A useful way to think about it: <strong>payment execution is the moment; the commitment is the memory.</strong> A reliable agentic commerce stack needs both.</p>
+
+<p>For the protocol-level detail of how commitments are structured and verified, see <a href="/blog/agentic-commerce-rails">SAAX Protocol: What Exists and What's Missing</a>, the <a href="/protocol">protocol overview</a>, and the <a href="/docs">MCP documentation</a>.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

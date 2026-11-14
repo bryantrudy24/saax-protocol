@@ -188,7 +188,7 @@ commitment validly authorized or rejected
 <ul>
 <li>The commitment issues a settlement <strong>requirement (R)</strong> that is rail-agnostic: <code>R = &lt;amt, cur, payee, eta, scheme, t_exp&gt;</code> — no rail knowledge at commitment time.</li>
 <li>The <strong>rail (S)</strong> is resolved at execution time from the registered registry.</li>
-<li>Currently registered rails: <strong>x402</strong>, <strong>MPP</strong>.</li>
+<li>Currently registered rails: <strong>x402</strong>. The MPP rail is implemented but not registered in production (x402-only mode).</li>
 <li>Future rails: entitlement, card, ACH, internal ledger — any implementation of the rail interface can register as a SAAX settlement rail.</li>
 </ul>
 <h3 id="41-rail-interface">4.1 Rail interface</h3>
