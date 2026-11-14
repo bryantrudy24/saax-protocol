@@ -144,13 +144,6 @@
     {
       "source": "/openapi.json",
       "destination": "/landing/openapi.json"
-    },
-    {
-      "source": "/(.*)",
-      "destination": {
-        "type": "service",
-        "service": "web"
-      }
     }
   ],
   "headers": [
@@ -178,11 +171,4 @@
       "destination": "/blog/agentic-commerce-rails",
       "permanent": true
     }
-  ],
-  "services": {
-    "web": {
-      "root": ".",
-      "entrypoint": "endpoint/route-server.js"
-    }
-  }
-}
+  ]}
