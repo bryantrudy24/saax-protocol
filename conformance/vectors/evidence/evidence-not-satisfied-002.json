@@ -1,0 +1,44 @@
+{
+  "id": "evidence-not-satisfied-002",
+  "description": "Evidence whose evaluated logic is false -> not_satisfied",
+  "input": {
+    "evidence": {
+      "evidenceId": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "evidenceType": "temperature-reading",
+      "issuer": "0x1ac42a57b843f0857bd8d102ded851703b157771",
+      "subject": "0x1111111111111111111111111111111111111111",
+      "issuanceTimestamp": "#NOW_MINUS_60S#",
+      "contextReference": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "payload": {
+        "maxTemperature": 9.9,
+        "probe": "sensor-17"
+      },
+      "payloadHash": "sha256:349f65f65c00a6eac0a99d744053fed8a73264fa1fdd91fde4bcd6019c49a819",
+      "provenance": {
+        "source": "iot-hub",
+        "transport": "https",
+        "traceId": "tr-1"
+      },
+      "signature": "COSE_Sign1-valid",
+      "verificationScheme": "cose",
+      "verificationMaterial": "0x1ac42a57b843f0857bd8d102ded851703b157771",
+      "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0",
+      "acceptanceCriterionId": "c1"
+    },
+    "criterion": {
+      "acceptedIssuers": [
+        "0x1ac42a57b843f0857bd8d102ded851703b157771"
+      ],
+      "verificationScheme": "cose",
+      "evaluationLogic": "payload.maxTemperature <= 5",
+      "maxEvidenceAge": 3600,
+      "minimumEvidenceCount": 1,
+      "criterionId": "c1",
+      "requiredEvidenceType": "temperature-reading"
+    },
+    "commitmentId": "0xba414d52d2cfbe23ca5a6d9e03aacdbbaa102aa2e6fb514080655fc2f1fb15c0"
+  },
+  "expected": {
+    "outcome": "not_satisfied"
+  }
+}
