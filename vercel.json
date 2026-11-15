@@ -130,6 +130,10 @@
       "destination": "/landing/.well-known/mcp.json"
     },
     {
+      "source": "/.well-known/rnwy-claim.txt",
+      "destination": "/landing/.well-known/rnwy-claim.txt"
+    },
+    {
       "source": "/checkout",
       "destination": "/api/checkout.mjs"
     },
