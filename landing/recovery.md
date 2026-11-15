@@ -67,7 +67,7 @@ If any of these fail, the transition is rejected with no state change and no eve
 
 - Read the [commitment lifecycle specification](/spec).
 - Connect via MCP: `https://www.saax-protocol.com/mcp` (Streamable HTTP).
-- See the [integration guide](/docs) for the 25-tool inventory and authorization requirements.
+- See the [integration guide](/docs) for the 26-tool inventory and authorization requirements.
 - [Security status and independent-validation tracking](/security).
 
 *SAAX Protocol — Durable Commitments for Agentic Commerce.*
