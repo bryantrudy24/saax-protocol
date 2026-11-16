@@ -29,7 +29,7 @@ The live MCP server is available at:
 https://saax-protocol.com/mcp
 ```
 
-Server name: `saax-protocol` · Protocol version: `2025-06-18` · Application version: `1.0.3`
+Server name: `saax-protocol` · Protocol version: `2025-03-26` (negotiated) · Application version: `1.0.3`
 
 Use any MCP client (Claude, Roo, Cursor, or the SDK):
 
@@ -48,7 +48,7 @@ await client.connect(new StreamableHTTPClientTransport(new URL("https://saax-pro
 
 const tools = await client.listTools();
 console.log(tools.tools.map((t) => t.name).sort());
-// 25 tools, including create_commitment, accept_commitment,
+// 26 tools, including create_commitment, accept_commitment,
 // submit_evidence, verify_evidence, resume_commitment, and more
 ```
 
@@ -124,7 +124,7 @@ Each example runs against the local Docker testbed (no real funds, no production
 
 | Capability | Status |
 |---|---|
-| MCP endpoint + 25 tools | Live (production) |
+| MCP endpoint + 26 tools | Live (production) |
 | Read-only commitment inspection | Live |
 | EIP-712 / COSE / JWS evidence verification | Live (with trusted-issuer policy) |
 | Independent-agent recovery | Verified in production (nonfinancial) |
