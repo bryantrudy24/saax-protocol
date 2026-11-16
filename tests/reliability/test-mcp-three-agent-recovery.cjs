@@ -23,10 +23,22 @@ const { randomUUID } = require('crypto');
 const http = require('http');
 const { once } = require('events');
 const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 
 process.env.POSTGREST_URL = process.env.POSTGREST_URL || 'http://127.0.0.1:3000';
 const { mint } = require('./_gate-d-jwt.cjs');
 process.env.SAAX_POSTGREST_KEY = process.env.SAAX_POSTGREST_KEY || mint('service_role');
+
+// Self-seed the testbed operator token so this suite is order-independent:
+// later infra suites (evidence-lifecycle, disputes) overwrite the shared
+// operator_secrets row with their own tokens, which would otherwise break
+// provision_authority here. Mirrors test-dispute-lifecycle.cjs.
+function sql(q) {
+  return execFileSync('docker', ['exec', 'ax_router_db', 'psql', '-U', 'postgres', '-d', 'ax_router', '-t', '-A', '-c', q], { encoding: 'utf8' }).trim();
+}
+sql(`INSERT INTO ax_router.operator_secrets (secret_key, secret_hash, updated_at)
+     VALUES ('authority_operator', encode(sha256(convert_to('test-operator-token-0123456789abcdef','UTF8')),'hex'), now())
+     ON CONFLICT (secret_key) DO UPDATE SET secret_hash = EXCLUDED.secret_hash, updated_at = now();`);
 
 const store = require('../../endpoint/store.js');
 const { grantAgentAuthorization } = require('../../endpoint/lifecycle.js');

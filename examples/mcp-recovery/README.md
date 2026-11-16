@@ -19,6 +19,11 @@ Demonstrates the full independent-agent recovery sequence through the **real MCP
 - Node.js 20+
 - The SAAX local Docker testbed, with the MCP server running in `stateless` mode and the testbed migrations applied. See `tests/reliability/README.md`.
 
+> **Operator token:** the recovery suite self-seeds the testbed `operator_secrets`
+> row (`test-operator-token-0123456789abcdef`) before provisioning authority, so
+> it is order-independent and can run after suites that overwrite that row with
+> their own tokens. This mirrors the other reliability suites.
+
 ## Run
 
 ```bash
