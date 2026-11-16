@@ -39,7 +39,7 @@ function check(name, cond, detail) {
     const tools = await client.listTools();
     const names = tools.tools.map(t => t.name);
     check("MCP tool discovery returns tools", names.length > 0);
-    check("25-tool inventory", names.length === 25, "got " + names.length);
+    check("26-tool inventory", names.length === 26, "got " + names.length);
     const required = ["get_commitment_history", "resume_commitment", "get_recovery_status", "create_commitment", "accept_commitment", "get_protocol_info"];
     for (const r of required) check("exposes " + r, names.includes(r));
 
