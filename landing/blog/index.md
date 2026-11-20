@@ -47,6 +47,8 @@ Technical writing on the trust layer for agent payments — what breaks, what it
 
 ## Guides
 
+- [What Is Agentic Commerce? How an Agentic Commerce Platform Works](/blog/agentic-commerce-platform) — 2026-11-19
+- [How Do Agentic Commerce Protocols Secure a Transaction?](/blog/agentic-commerce-security) — 2026-11-19
 - [How AI Agents Buy Things: A Plain-English Guide to Agentic Commerce](/blog/how-ai-agents-buy-things-guide-agentic-commerce) — 2026-11-14
 - [Build an AI Shopping Agent with MCP Tools: A Step-by-Step Tutorial](/blog/build-ai-shopping-agent-mcp-tutorial) — 2026-11-14
 - [From Intent to Fulfillment: How an Agentic Commerce Order Actually Flows](/blog/agentic-commerce-order-flow) — 2026-11-14

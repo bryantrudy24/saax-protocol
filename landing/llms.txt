@@ -66,3 +66,5 @@
 - [MCP, x402, AP2, ACP, and EAS: The Agentic Commerce Stack, Explained](https://saax-protocol.com/blog/agentic-commerce-stack-explained)
 - [AI Agent Security in 2026: Identity, Authorization, and Recovering from Failure](https://saax-protocol.com/blog/ai-agent-security-identity-authorization-recovery)
 - [Agentic Commerce Market Size: What the 2026 Forecasts Actually Say](https://saax-protocol.com/blog/agentic-commerce-market-size-2026-forecasts)
+- [What Is Agentic Commerce? How an Agentic Commerce Platform Works](https://saax-protocol.com/blog/agentic-commerce-platform)
+- [How Do Agentic Commerce Protocols Secure a Transaction?](https://saax-protocol.com/blog/agentic-commerce-security)

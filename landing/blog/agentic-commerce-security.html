@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Do Agentic Commerce Protocols Secure a Transaction? | SAAX</title>
+<meta name="description" content="What agentic commerce protocols actually verify: authorization, payment, evidence, dispute authority, evaluator fallback, and settlement — and why a payment receipt cannot prove delivery.">
+<link rel="canonical" href="https://saax-protocol.com/blog/agentic-commerce-security">
+<meta property="og:title" content="How Do Agentic Commerce Protocols Secure a Transaction? | SAAX">
+<meta property="og:description" content="What agentic commerce protocols actually verify: authorization, payment, evidence, dispute authority, evaluator fallback, and settlement — and why a payment receipt cannot prove delivery.">
+<meta property="og:url" content="https://saax-protocol.com/blog/agentic-commerce-security">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SAAX Protocol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Do Agentic Commerce Protocols Secure a Transaction? | SAAX">
+<meta name="twitter:description" content="What agentic commerce protocols actually verify: authorization, payment, evidence, dispute authority, evaluator fallback, and settlement — and why a payment receipt cannot prove delivery.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do Agentic Commerce Protocols Secure a Transaction?",
+  "description": "What agentic commerce protocols actually verify: authorization, payment, evidence, dispute authority, evaluator fallback, and settlement — and why a payment receipt cannot prove delivery.",
+  "url": "https://saax-protocol.com/blog/agentic-commerce-security",
+  "mainEntityOfPage": "https://saax-protocol.com/blog/agentic-commerce-security",
+  "datePublished": "2026-11-19",
+  "dateModified": "2026-11-19",
+  "author": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "publisher": { "@type": "Organization", "name": "SAAX Protocol", "url": "https://saax-protocol.com" },
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saax-protocol.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://saax-protocol.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": "How Do Agentic Commerce Protocols Secure a Transaction?", "item": "https://saax-protocol.com/blog/agentic-commerce-security" }
+  ]
+}
+</script>
+<style>
+:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9aa7b4;--accent:#2f81f7;--border:#2d333b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .container{max-width:1040px;margin:0 auto;padding:0 20px;}
+  header .nav{display:flex;align-items:center;gap:1rem;padding:1rem 0;}
+  .brand{font-weight:800;font-size:1.15rem;color:var(--fg);letter-spacing:.01em;}
+  .nav .links{margin-left:auto;display:flex;gap:1.25rem;}
+  .nav .links a{color:var(--fg);text-decoration:none;font-size:.92rem;}
+  .nav .links a:hover{color:var(--accent);}
+  main{padding:3rem 0 4rem;}
+  article{max-width:780px;margin:0 auto;}
+  article h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:1rem;}
+  article h2{font-size:1.4rem;font-weight:750;margin:1.75rem 0 .9rem;}
+  article h3{font-size:1.2rem;font-weight:700;margin:1.4rem 0 .7rem;}
+  article p{color:var(--fg);margin-bottom:1.1rem;}
+  article em{color:var(--muted);}
+  article code{background:#161b22;border:1px solid var(--border);border-radius:4px;padding:.1rem .35rem;font-size:.9em;}
+  article pre{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;overflow-x:auto;margin:0 0 1.1rem;}
+  article pre code{background:transparent;border:none;padding:0;font-size:.9em;display:block;}
+  article ul,article ol{margin:0 0 1.1rem 1.4rem;}
+  article li{margin-bottom:.4rem;}
+  article blockquote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);margin:0 0 1.1rem;}
+  article hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0;}
+  article p.states{background:#161b22;border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;font-size:.95rem;}
+  article .post-byline{color:var(--muted);font-weight:600;margin-bottom:.2rem;}
+  article .post-date{color:var(--muted);font-style:italic;margin-bottom:1.2rem;}
+  article table{border-collapse:collapse;width:100%;margin:0 0 1.1rem;font-size:.92rem;}
+  article th,article td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;color:var(--fg);}
+  article th{background:#161b22;font-weight:700;}
+  article{min-width:0;overflow-wrap:anywhere;}
+  article table{display:block;max-width:100%;overflow-x:auto;}
+  article th,article td{min-width:110px;}
+  .muted{color:var(--muted);}
+  footer{border-top:1px solid var(--border);padding:2rem 0 3rem;}
+  footer .brand-line{font-weight:700;margin-bottom:.8rem;}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1rem;}
+  footer .links a{color:var(--muted);font-size:.9rem;}
+  footer .copy{color:var(--muted);font-size:.82rem;}
+  @media (max-width:640px){.nav .links{gap:.8rem;}article h1{font-size:1.6rem;}}
+</style>
+</head>
+<body>
+<header><div class="container"><nav class="nav" aria-label="Main">
+  <a class="brand" href="/"><img src="/assets/logo-full-light.png" alt="SAAX Protocol" class="site-logo" style="height: 32px;"></a>
+  <div class="links">
+    <a href="/protocol">Protocol</a>
+    <a href="/spec">Spec</a>
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav></div></header>
+<main><div class="container"><article>
+<h1>How Do Agentic Commerce Protocols Secure a Transaction?</h1>
+<p class="post-byline">SAAX Protocol — developer education series</p>
+<p class="post-date"><em>2026-11-19</em></p>
+<hr>
+<p>An agentic commerce protocol is a defined set of rules and interfaces that let AI agents discover, authorize, pay for, and track commercial transactions in a machine-verifiable way. The security question is not "can agents act?" — it is "how do we know the right agent acted, within the right limits, for the right purpose, and that the outcome can be verified afterward?"</p>
+<p>This article answers that question directly, continuing the industrial filter purchase from <a href="/blog/agentic-commerce-platform">What Is Agentic Commerce? How an Agentic Commerce Platform Works</a> — but this time the purchase goes wrong.</p>
+<h2 id="the-scenario-payment-succeeds-then-the-agent-times-out">The scenario: payment succeeds, then the agent times out</h2>
+<p>The plant's procurement agent has ordered the replacement filter. Payment succeeded — USDC moved from buyer to seller via x402, and a receipt was issued. Then the purchasing agent's process times out and dies.</p>
+<p>The buyer later receives the shipment and disputes it: the filter does not conform to the specification. The part number is right, but the filtration rating is wrong.</p>
+<p>This is the case that separates agentic commerce security from ordinary payment security. The payment was authorized. The money moved. The dispute is about <em>fulfillment</em>, not about whether the payment was permitted.</p>
+<h2 id="what-each-system-in-the-stack-actually-verifies">What each system in the stack actually verifies</h2>
+<h3 id="authorization">Authorization</h3>
+<p>Authorization answers: "was this agent permitted to pay?" Google's AP2 (Agent Payments Protocol) captures this with verifiable credentials — Intent, Cart, and Payment Mandates — signed by the principal. The mandate limits amount, payee, items, and expiry.</p>
+<p><strong>What it verifies:</strong> the agent had permission. <strong>What it does not:</strong> whether the delivered goods matched the mandate.</p>
+<h3 id="payment-confirmation">Payment confirmation</h3>
+<p>Payment answers: "did value move?" Coinbase's x402 makes payment an HTTP operation — request a resource, receive a 402 with payment terms, pay in USDC, receive the resource. The receipt proves the transfer.</p>
+<p><strong>What it verifies:</strong> value moved from buyer to seller. <strong>What it does not:</strong> that the correct filter was shipped, or that it works.</p>
+<h3 id="order-evidence">Order evidence</h3>
+<p>Order evidence answers: "what was actually agreed?" A durable commitment record captures the parties, terms, acceptance criteria, evidence requirements, and recovery policy — before payment, not after. This is the artifact the buyer and seller both reference when the filter arrives wrong.</p>
+<p><strong>What it verifies:</strong> the terms of the agreement, durably recorded. <strong>What it does not:</strong> that the seller performed.</p>
+<h3 id="delivery-evidence">Delivery evidence</h3>
+<p>Delivery evidence answers: "was the deliverable provided?" This can be a delivery note, a tracking event, a hash of a delivered digital artifact, or a signed attestation from a delivery system.</p>
+<p><strong>What it verifies:</strong> something was delivered. <strong>What it does not:</strong> that the delivered item matched the specification. A delivery receipt for a box is not proof of the filtration rating inside it.</p>
+<h3 id="dispute-authority">Dispute authority</h3>
+<p>Dispute authority answers: "who decides when the buyer and seller disagree?" In a governed dispute flow, an authorized evaluator — not the buyer, not the seller — reviews the evidence and issues a decision.</p>
+<p><strong>What it verifies:</strong> the decision came from the authorized party under the agreed rules. <strong>What it does not:</strong> that the decision is factually correct. A valid signature proves who signed, not that the underlying claim is true.</p>
+<h3 id="evaluator-fallback">Evaluator fallback</h3>
+<p>Evaluator fallback answers: "what happens when the evaluator disappears?" SAAX's Financial Recovery Engine design includes a preauthorized fallback evaluator — agreed before funding, eligible only under defined conditions, with a defined decision scope. A timeout alone never authorizes a release or refund.</p>
+<p><strong>What it verifies:</strong> a fallback exists and is bound by the same rules. <strong>What it does not:</strong> that a fallback decision is more trustworthy than the primary one.</p>
+<h3 id="financial-enforcement">Financial enforcement</h3>
+<p>Financial enforcement answers: "does the authorized decision actually move money?" In the custody architecture, the escrow contract holds the funds and enforces the release/refund rules — the contract itself rejects unauthorized, replayed, or premature settlement. An approved refund decision is executed by the contract; a forged one is rejected.</p>
+<p><strong>What it verifies:</strong> the financial effect matches the authorized decision. <strong>What it does not:</strong> that the decision was correct about the real world.</p>
+<h3 id="settlement-verification">Settlement verification</h3>
+<p>Settlement verification answers: "did the transfer actually confirm?" A transaction hash is not proof of finality. The system must observe the chain, confirm the transfer, and reconcile its durable records with the actual contract and token balances.</p>
+<p><strong>What it verifies:</strong> the on-chain outcome. <strong>What it does not:</strong> that the physical filter conforms.</p>
+<h2 id="why-a-payment-receipt-cannot-prove-delivery">Why a payment receipt cannot prove delivery</h2>
+<p>A payment receipt establishes that a transfer occurred — the amount, the asset, the sender, the recipient, the transaction hash. It is excellent evidence of <em>payment</em>. It is not evidence of <em>fulfillment</em>.</p>
+<p>The logic is simple: the payment and the delivery are different events, performed by different actors, at different times, with different evidence. A receipt for the payment says nothing about the state of the filter in the box. The same logic applies to cryptographic evidence more broadly:</p>
+<ul>
+<li>A <strong>signature</strong> proves who signed a message — not that the message's claims are true.</li>
+<li>A <strong>hash</strong> proves a file was not altered after it was hashed — not that the contents are accurate.</li>
+<li>An <strong>EAS attestation</strong> anchors a claim on-chain, providing integrity and provenance — it does not independently establish that the physical event occurred.</li>
+<li>A <strong>transaction submission</strong> proves a transfer was attempted — not that it settled.</li>
+</ul>
+<p>Each of these is a layer of evidence. They stack. None of them alone establishes real-world truth.</p>
+<h2 id="token-terminology-three-different-tokens">Token terminology: three different "tokens"</h2>
+<p>The word "token" is overloaded in agentic commerce. There are at least three distinct meanings:</p>
+<ol>
+<li><strong>Authorization credentials</strong> — e.g., AP2 verifiable credentials, OAuth tokens, JWTs. These prove permission to act; they are not value.</li>
+<li><strong>Tokenized payment credentials</strong> — e.g., a card token that represents a payment instrument. These enable payment; they are not the payment itself.</li>
+<li><strong>Blockchain assets</strong> — e.g., USDC, a tokenized stablecoin. These are the value being transferred.</li>
+</ol>
+<p>These are not interchangeable. An authorization token does not pay a bill. A payment credential does not prove the agent was authorized. A blockchain asset does not prove the purchase was permitted. A system's security depends on which "token" it means — and confusing them is how agentic commerce vulnerabilities happen.</p>
+<h2 id="how-the-protocol-layers-complement-each-other">How the protocol layers complement each other</h2>
+<p>The current agentic commerce protocols form a stack, not competing monoliths:</p>
+<ul>
+<li><strong>MCP</strong> connects agents to tools (Model Context Protocol).</li>
+<li><strong>A2A</strong> connects agents to agents (Agent2Agent).</li>
+<li><strong>AP2</strong> authorizes agent payments (Google's Agent Payments Protocol).</li>
+<li><strong>x402</strong> executes machine-native payments (Coinbase's protocol).</li>
+<li><strong>ACP</strong> defines agentic checkout (OpenAI and Stripe's Agentic Commerce Protocol, including the Agentic Checkout Specification).</li>
+<li><strong>MPP</strong> (Machine Payments Protocol) and EAS (Ethereum Attestation Service) also play roles in payment and evidence anchoring respectively.</li>
+</ul>
+<p>SAAX is designed to complement these — recording the durable commitment, the evidence trail, the dispute lifecycle, and the settlement authorization around them. It is not a replacement for any of them. It does not process payments, run a marketplace, or provide identity. It preserves and governs the commercial commitment lifecycle.</p>
+<p>Protocol scopes evolve. Verify each protocol's current specification before relying on this comparison; the sources reviewed for this article are linked in the text.</p>
+<h2 id="where-saax-stands-today">Where SAAX stands today</h2>
+<p>SAAX's current release state is published on the <a href="/status">status page</a>:</p>
+<ul>
+<li>Immediate x402 payments: available on Base mainnet.</li>
+<li>Escrow functionality: testnet-only.</li>
+<li>Financial Recovery Engine custody candidates (including the preauthorized fallback): local demonstrations, not deployed to production.</li>
+<li>Independent security audit: not completed. The protocol's conformance suite and internal adversarial tests are not an independent audit.</li>
+</ul>
+<p>The commitment lifecycle, evidence interface, authorization model, and settlement-linkage are documented in the <a href="/spec">specification</a>; the conformance suite is at <a href="/conformance">/conformance</a>.</p>
+<h2 id="the-security-checklist">The security checklist</h2>
+<p>When evaluating an agentic commerce system, ask:</p>
+<ol>
+<li>Is the agent's identity derived from a verified cryptographic signature, not a self-asserted field?</li>
+<li>Are permissions commitment-scoped, least-privilege, expiring, and revocable?</li>
+<li>Does revocation take effect immediately — even against a replayed request?</li>
+<li>Is the commitment state durable, independent of the agent process?</li>
+<li>Can an authorized replacement agent recover the workflow? Is an unauthorized one rejected?</li>
+<li>Are duplicate requests idempotent — no double-charge on retry?</li>
+<li>Are grant, revocation, transition, and evidence actions auditable with verified actor identity?</li>
+<li>Does the custody contract itself enforce the settlement rules — not just the application layer?</li>
+<li>Does the system distinguish <em>authorized</em> from <em>factually true</em>?</li>
+<li>What survives when every agent in the workflow disappears?</li>
+</ol>
+<p>The commitment must outlive the worker — and an authorized financial remedy must have an actual mechanism capable of executing it.</p>
+<h2 id="sources">Sources</h2>
+<p>The protocol comparisons in this article reference the following primary documentation:</p>
+<ul>
+<li><strong>AP2</strong> (Agent Payments Protocol) — <a href="https://ap2-protocol.org/ap2/specification/">AP2 specification</a> and <a href="https://github.com/google-agentic-commerce/AP2">AP2 repository</a>.</li>
+<li><strong>x402</strong> — <a href="https://github.com/x402-foundation/x402/blob/main/specs/x402-specification-v2.md">x402 specification v2</a> and <a href="https://x402.org">x402.org</a>.</li>
+<li><strong>ACP</strong> (Agentic Commerce Protocol) — <a href="https://github.com/agentic-commerce-protocol/agentic-commerce-protocol">agentic-commerce-protocol repository</a>.</li>
+<li><strong>MCP</strong> (Model Context Protocol) — <a href="https://modelcontextprotocol.io/specification/">official specification</a>.</li>
+<li><strong>A2A</strong> (Agent2Agent) — <a href="https://a2a-protocol.org">a2a-protocol.org</a>.</li>
+<li><strong>EAS</strong> (Ethereum Attestation Service) — <a href="https://attest.org">attest.org</a> and <a href="https://easscan.org">EASScan</a>.</li>
+<li><strong>Protocol ecosystem registry</strong> — <a href="https://agenticcommerceprotocol.info/">agenticcommerceprotocol.info</a>.</li>
+</ul>
+<p>Protocol scopes evolve. Verify each protocol's current specification before relying on this comparison; the sources reviewed for this article are linked above.</p>
+<p class="states"><em>AI disclosure: This article was developed with AI assistance and reviewed by the SAAX team. Claims about external protocols are sourced from official documentation linked in the text; SAAX status claims reflect the published <a href="/status">status page</a>. Nothing here is an independent audit, certification, or production-custody approval.</em></p>
+<p><strong>Next step:</strong> read the <a href="/protocol">protocol overview</a> and the <a href="/spec">commitment lifecycle specification</a>, then try the <a href="/docs">public preflight and acceptance flow</a> — it creates a signed commitment without moving funds.</p>
+</article></div></main>
+<footer><div class="container">
+  <p class="brand-line">SAAX Protocol - Solvent Applied Autonomous Exchange Protocol</p>
+  <div class="links">
+    <a href="/spec">Spec</a><a href="/docs">Docs</a><a href="/blog">Blog</a>
+    <a href="/terms">Terms</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/disputes">Disputes</a>
+  </div>
+  <p class="copy">© 2026 SAAX Protocol. All rights reserved.</p>
+</div></footer>
+</body>
+</html>
